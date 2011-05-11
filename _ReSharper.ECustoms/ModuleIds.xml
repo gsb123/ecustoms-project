@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Windows.Forms" />
+  <Module PersistentId="CFBE420D-493D-448E-916A-D74A9672722E" ModuleId="ECustoms" />
+  <Module PersistentId="0494EB3E-3E10-4058-B8B0-0B461E84D154" ModuleId="ECustoms.BOL" />
+  <Module PersistentId="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99" ModuleId="ECustoms.DAL" />
+  <Module PersistentId="DC919A57-770A-453A-A7F8-FD4F37491957" ModuleId="ECustoms.Utilities" />
+</Modules>

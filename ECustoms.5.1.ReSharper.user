@@ -3,56 +3,61 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DeclarationDAL.cs" caret="4518" fromTop="7" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSelect.cs" caret="952" fromTop="7" />
-      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5890" fromTop="22" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DbConnection.cs" caret="2032" fromTop="32" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="20599" fromTop="19" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ConstantInfo.cs" caret="3456" fromTop="17" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="2343" fromTop="17" />
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="2138" fromTop="22" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="4902" fromTop="20" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:DeclarationBOL.cs" caret="3591" fromTop="37" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="863" fromTop="22" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="12914" fromTop="21" />
-      <File id="d:Miscellaneous Files/f:SchemaUpdate_[VUONGDD-LAPTOP.updateCustom]_1.sql/l:C!?Users?vuongdd?AppData?Local?Temp?SchemaUpdate_[VUONGDD-LAPTOP.updateCustom]_1.sql" caret="12720" fromTop="9" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ConstantInfo.cs" caret="4002" fromTop="12" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DbConnection.cs" caret="1996" fromTop="31" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmAddUser.cs" caret="6247" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmDecleration.cs" caret="6720" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="1753" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmUser.cs" caret="3631" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSelect.cs" caret="2331" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="13252" fromTop="0" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="2105" fromTop="6" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:UserInfo.cs" caret="948" fromTop="21" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="8507" fromTop="20" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="9682" fromTop="28" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="4697" fromTop="0" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="7094" fromTop="20" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="232" fromTop="5" />
     </RecentFiles>
     <RecentEdits>
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="29635" fromTop="16" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="18059" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="9551" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="22151" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="20644" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="13512" fromTop="40" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="13267" fromTop="26" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="12917" fromTop="15" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="13537" fromTop="15" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="8094" fromTop="38" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="7266" fromTop="30" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="7578" fromTop="30" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="2369" fromTop="21" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="2581" fromTop="25" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="4729" fromTop="29" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="396" fromTop="15" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="716" fromTop="25" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="1043" fromTop="27" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="2487" fromTop="31" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="328" fromTop="14" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="1032" fromTop="39" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="1356" fromTop="31" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="1233" fromTop="27" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="2288" fromTop="36" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="1879" fromTop="21" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="864" fromTop="26" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="10451" fromTop="36" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="13537" fromTop="21" />
-      <File id="d:Miscellaneous Files/f:SchemaUpdate_[VUONGDD-LAPTOP.updateCustom]_1.sql/l:C!?Users?vuongdd?AppData?Local?Temp?SchemaUpdate_[VUONGDD-LAPTOP.updateCustom]_1.sql" caret="0" fromTop="0" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="30729" fromTop="18" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="30963" fromTop="24" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="31377" fromTop="15" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="27082" fromTop="14" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="28164" fromTop="38" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="28094" fromTop="32" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="27736" fromTop="36" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="14938" fromTop="33" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="16110" fromTop="33" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="2383" fromTop="15" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="10560" fromTop="32" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5008" fromTop="21" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5008" fromTop="40" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5008" fromTop="16" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5008" fromTop="22" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="5008" fromTop="7" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="1753" fromTop="23" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="2762" fromTop="15" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="2322" fromTop="34" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="4583" fromTop="29" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="2486" fromTop="18" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="3184" fromTop="25" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="3623" fromTop="24" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="3873" fromTop="28" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="9562" fromTop="31" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="8159" fromTop="16" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="8210" fromTop="27" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="4819" fromTop="22" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmExport.cs" caret="5125" fromTop="30" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="167" fromTop="3" />
     </RecentEdits>
   </RecentFiles>
@@ -69,41 +74,41 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="grdVehicle" priority="3" />
-      <Item value="if" priority="7" />
-      <Item value="false" priority="2" />
+      <Item value="grdVehicle" priority="6" />
+      <Item value="if" priority="15" />
+      <Item value="false" priority="4" />
       <Item value="Application`0" priority="0" />
       <Item value="txtDeclaraceNumber" priority="0" />
       <Item value="_count" priority="0" />
-      <Item value="string" priority="17" />
+      <Item value="string" priority="19" />
       <Item value="txtExportTotalVehicles" priority="2" />
       <Item value="groupBoxVehicle" priority="0" />
       <Item value="_mode" priority="1" />
-      <Item value="vehicleInfo" priority="4" />
+      <Item value="vehicleInfo" priority="8" />
       <Item value="btnXacNhanXuatCanh" priority="0" />
-      <Item value="else" priority="2" />
+      <Item value="else" priority="4" />
       <Item value="result" priority="0" />
-      <Item value="null" priority="2" />
-      <Item value="txtImportProductName" priority="0" />
-      <Item value="Convert`0" priority="1" />
+      <Item value="null" priority="5" />
+      <Item value="txtImportProductName" priority="1" />
+      <Item value="Convert`0" priority="7" />
       <Item value="d" priority="0" />
       <Item value="btnDelete" priority="0" />
-      <Item value="txtExportUnit" priority="0" />
-      <Item value="return" priority="15" />
-      <Item value="MessageBox`0" priority="0" />
+      <Item value="txtExportUnit" priority="2" />
+      <Item value="return" priority="17" />
+      <Item value="MessageBox`0" priority="3" />
       <Item value="txtPlateNumber" priority="0" />
-      <Item value="prop" priority="0" />
+      <Item value="prop" priority="3" />
       <Item value="BindData`0" priority="2" />
-      <Item value="true" priority="0" />
+      <Item value="true" priority="2" />
       <Item value="OnFontChanged`0" priority="0" />
       <Item value="String`0" priority="0" />
-      <Item value="private" priority="13" />
+      <Item value="private" priority="14" />
       <Item value="_plateNumber" priority="1" />
-      <Item value="value" priority="13" />
+      <Item value="value" priority="14" />
       <Item value="_driverName" priority="1" />
       <Item value="_note" priority="1" />
       <Item value="_status" priority="1" />
-      <Item value="_importStatus" priority="1" />
+      <Item value="_importStatus" priority="2" />
       <Item value="AppDomainSetup`0" priority="0" />
       <Item value="_productName" priority="3" />
       <Item value="_companyName" priority="1" />
@@ -111,11 +116,56 @@
       <Item value="_createdBy" priority="1" />
       <Item value="_importProductName" priority="2" />
       <Item value="_importUnit" priority="0" />
+      <Item value="exception" priority="5" />
+      <Item value="try" priority="3" />
+      <Item value="DateTime`0" priority="2" />
+      <Item value="VehicleID" priority="0" />
+      <Item value="VehicleInfo`0" priority="0" />
+      <Item value="new" priority="4" />
+      <Item value="DateTime" priority="2" />
+      <Item value="_importedLocalTime" priority="1" />
+      <Item value="SqlDataAdapter`0" priority="0" />
+      <Item value="SqlDataAdapter" priority="0" />
+      <Item value="adapter" priority="2" />
+      <Item value="_connectionString" priority="0" />
+      <Item value="foreach" priority="1" />
+      <Item value="DataRow`0" priority="0" />
+      <Item value="in" priority="0" />
+      <Item value="_dtResult" priority="2" />
+      <Item value="dr" priority="0" />
+      <Item value="for" priority="1" />
+      <Item value="i" priority="1" />
+      <Item value="importFrom" priority="3" />
+      <Item value="importTo" priority="2" />
+      <Item value="exportFrom" priority="3" />
+      <Item value="exportTo" priority="0" />
+      <Item value="declarationInfo" priority="2" />
+      <Item value="txtImportNumber" priority="0" />
+      <Item value="txtExportNumber" priority="0" />
+      <Item value="txtImportCompanyName" priority="0" />
+      <Item value="txtExportCompanyName" priority="0" />
+      <Item value="txtExportProductName" priority="0" />
+      <Item value="txtImportUnit" priority="0" />
+      <Item value="txtImportProductAmount" priority="0" />
+      <Item value="txtExportProductAmount" priority="0" />
+      <Item value="bool" priority="1" />
+      <Item value="public" priority="0" />
+      <Item value="List" priority="0" />
+      <Item value="var" priority="0" />
+      <Item value="int" priority="0" />
+      <Item value="xeKhongXC" priority="1" />
+      <Item value="xeKhongNC" priority="1" />
+      <Item value="lblKhongNC" priority="0" />
+      <Item value="xeVaoNoiDia" priority="1" />
+      <Item value="xeCohangNC" priority="0" />
+      <Item value="lblVaonoidia" priority="0" />
+      <Item value="cbExportHasDeclaration" priority="0" />
+      <Item value="cbImportHasDeclaration" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.DataGridView">
       <Item value="SelectedRows" priority="1" />
       <Item value="AutoGenerateColumns" priority="1" />
-      <Item value="Rows" priority="0" />
+      <Item value="Rows" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.DataGridViewSelectedRowCollection">
       <Item value="Count" priority="1" />
@@ -125,7 +175,7 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
       <Item value="Focus`0" priority="0" />
-      <Item value="Text" priority="0" />
+      <Item value="Text" priority="8" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:ECustoms.Utilities.VehicleInfo">
       <Item value="Count" priority="0" />
@@ -134,23 +184,25 @@
       <Item value="ImportHour" priority="1" />
       <Item value="ImportStatus" priority="3" />
       <Item value="IsGoodsImported" priority="0" />
+      <Item value="ImportedLocalTime" priority="1" />
+      <Item value="HasGoodsImported" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
-      <Item value="IsNullOrEmpty`0" priority="2" />
+      <Item value="IsNullOrEmpty`0" priority="3" />
       <Item value="Equals`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.MaskedTextBox">
-      <Item value="Text" priority="3" />
+      <Item value="Text" priority="9" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.DataGridViewRowCollection">
-      <Item value="Count" priority="0" />
+      <Item value="Count" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Forms.Button">
       <Item value="Focus`0" priority="0" />
       <Item value="Enabled" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:ECustoms.Utilities.DeclarationInfo">
-      <Item value="ImportNumber" priority="1" />
+      <Item value="ImportNumber" priority="2" />
       <Item value="ImportProductAmount" priority="2" />
       <Item value="ImportCompanyName" priority="2" />
       <Item value="ImportUnit" priority="0" />
@@ -158,18 +210,54 @@
       <Item value="ImportProductName" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Convert">
-      <Item value="ToInt32`0" priority="0" />
-      <Item value="ToBoolean`0" priority="0" />
+      <Item value="ToInt32`0" priority="1" />
+      <Item value="ToBoolean`0" priority="1" />
+      <Item value="ToDateTime`0" priority="4" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Forms.MessageBox">
-      <Item value="Show`0" priority="0" />
+      <Item value="Show`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Object">
-      <Item value="ToString`0" priority="1" />
+      <Item value="ToString`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@ECustoms.Utilities.ConstantInfo">
       <Item value="TBL_VEHICLE_IMPORT_STATUS" priority="0" />
       <Item value="TBL_DECLARATION_COMPANY_NAME" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="ToString`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime">
+      <Item value="Now" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataTable">
+      <Item value="Rows" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DateTime">
+      <Item value="Year" priority="4" />
+      <Item value="Subtract`0" priority="0" />
+      <Item value="Hour" priority="0" />
+      <Item value="Month" priority="1" />
+      <Item value="Day" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int32">
+      <Item value="Equals`0" priority="1" />
+      <Item value="ToString`0" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.DataGridViewRow">
+      <Item value="Cells" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.DataGridViewCell">
+      <Item value="Value" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Data.DataRowCollection">
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.Label">
+      <Item value="Text" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.CheckBox">
+      <Item value="Checked" priority="1" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>

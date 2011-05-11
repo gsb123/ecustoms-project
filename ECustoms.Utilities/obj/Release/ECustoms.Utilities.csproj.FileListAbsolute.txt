@@ -1,0 +1,5 @@
+C:\Working\ECustoms\SourceCode\ECustoms.Utilities\bin\Release\ECustoms.Utilities.dll
+C:\Working\ECustoms\SourceCode\ECustoms.Utilities\bin\Release\ECustoms.Utilities.pdb
+C:\Working\ECustoms\SourceCode\ECustoms.Utilities\obj\Release\ResolveAssemblyReference.cache
+C:\Working\ECustoms\SourceCode\ECustoms.Utilities\obj\Release\ECustoms.Utilities.dll
+C:\Working\ECustoms\SourceCode\ECustoms.Utilities\obj\Release\ECustoms.Utilities.pdb
