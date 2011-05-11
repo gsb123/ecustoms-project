@@ -1,0 +1,254 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using ECustoms.Utilities;
+using System.Data;
+
+namespace ECustoms.DAL
+{
+    public class VehicleDAL
+    {
+        #region Private variables
+        private string _connectionString;
+        private DbConnection _dbConnection;
+        #endregion
+
+        public VehicleDAL(string connectionString)
+        {
+            _connectionString = connectionString;
+            _dbConnection = new DbConnection(_connectionString);
+        }
+
+        /// <summary>
+        /// Insert vehicel
+        /// </summary>
+        /// <param name="vehicleInfo">VehicleInfo object</param>
+        /// <returns>Number of rows are effectd</returns>
+        public int Insert(VehicleInfo vehicleInfo)
+        {
+            try
+            {
+                var parameters = new SqlParameter[12];
+                parameters[0] = new SqlParameter("@DeclarationID", vehicleInfo.DeclarationID);
+                parameters[1] = new SqlParameter("@PlateNumber", vehicleInfo.PlateNumber);
+                parameters[2] = new SqlParameter("@NumberOfContainer", vehicleInfo.NumberOfContainer);
+                parameters[3] = new SqlParameter("@DriverName", vehicleInfo.DriverName);
+                parameters[4] = new SqlParameter("@ExportDate", vehicleInfo.ExportDate);
+                parameters[5] = new SqlParameter("@Note", vehicleInfo.Note);
+                parameters[6] = new SqlParameter("@Status", vehicleInfo.Status);
+                parameters[7] = new SqlParameter("@IsExport", Convert.ToInt32(vehicleInfo.IsExport));
+                parameters[8] = new SqlParameter("@IsCompleted", Convert.ToInt32(vehicleInfo.IsCompleted));
+                parameters[9] = new SqlParameter("@ImportDate", vehicleInfo.ImportDate);
+                parameters[10] = new SqlParameter("@IsImport", Convert.ToInt32(vehicleInfo.IsImport));
+                parameters[11] = new SqlParameter("@IsGoodsImported", Convert.ToInt32(vehicleInfo.IsGoodsImported));
+                return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_INSERTVEHICLE, parameters);
+            }
+            catch (Exception)
+            {                    
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get list Vehicle whihc not import or export
+        /// </summary>
+        /// <returns>List vehicle objects</returns>
+        public List<VehicleInfo> SelectVehicleNotImportExport()
+        {
+            var result = new List<VehicleInfo>();
+            VehicleInfo vehicleInfo;
+            try
+            {
+                var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_GETVEHICLENOTIMPORTEXPORT);
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    vehicleInfo = new VehicleInfo();
+                    vehicleInfo.CreateFrom(dr);
+                    result.Add(vehicleInfo);
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public List<VehicleInfo> GetExportingVehicles()
+        {
+            var result = new List<VehicleInfo>();
+            VehicleInfo vehicleInfo;
+            try
+            {
+                var sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0";
+                var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    vehicleInfo = new VehicleInfo();
+                    vehicleInfo.CreateFrom(dr);
+                    result.Add(vehicleInfo);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Search Vehicle
+        /// </summary>
+        /// <param name="importFrom">Import from date</param>
+        /// <param name="importTo">Import to date</param>
+        /// <param name="exportFrom">Export from date</param>
+        /// <param name="exportTo">Export to date</param>
+        /// <param name="searchType">
+        /// 0- Not import and export
+        /// </param>
+        /// <returns>List vehicleInfo object</returns>
+        public DataTable SearchVehicle(bool isCompleted, string plateNumber, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo, int searchType)
+        {
+            var result = new List<VehicleInfo>();
+            VehicleInfo vehicleInfo;
+            try
+            {
+                var parameters = new SqlParameter[7];
+                parameters[0] = new SqlParameter("@IsCompleted", isCompleted);
+                parameters[1] = new SqlParameter("@PlateNumber", plateNumber);
+                parameters[2] = new SqlParameter("@ImportFrom", importFrom);
+                parameters[3] = new SqlParameter("@ImportTo", importTo);
+                parameters[4] = new SqlParameter("@ExportFrom", exportFrom);
+                parameters[5] = new SqlParameter("@ExportTo", exportTo);
+                parameters[6] = new SqlParameter("@SearchType", searchType);
+                     
+                var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_SEARCHVEHICLE, parameters);
+                //foreach (DataRow dr in dataTable.Rows)
+                //{
+                //    vehicleInfo = new VehicleInfo();
+                //    vehicleInfo.CreateFrom(dr);
+                //    result.Add(vehicleInfo);
+                //}
+                return dataTable;
+
+            }
+            catch (Exception)
+            {
+                    
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Vehicle by DeclarationID
+        /// </summary>
+        /// <param name="declarationID">DeclarationID</param>
+        /// <returns>List VehicleInfo objects</returns>
+        public List<VehicleInfo> SelectByDeclarationID(int declarationID)
+        {
+            var result = new List<VehicleInfo>();
+            VehicleInfo vehicleInfo;
+            try
+            {
+                var parameters = new SqlParameter[1];
+                parameters[0] = new SqlParameter("@DeclarationID", declarationID);
+                var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_SELECTVEHICLEBYDECLARATIONID, parameters);
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    vehicleInfo = new VehicleInfo();
+                    vehicleInfo.CreateFrom(dr);
+                    result.Add(vehicleInfo);
+                }
+                return result;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Select Vehicle by VehicleID
+        /// </summary>
+        /// <param name="vehicleID"></param>
+        /// <returns></returns>
+        public VehicleInfo SelectByID(int vehicleID)
+        {
+            var vehicleInfo = new VehicleInfo();
+            try
+            {
+                var parameters = new SqlParameter[1];
+                parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+
+                var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_SELECTVEHICLEBYID, parameters);
+
+                if (dataTable.Rows.Count == 1)
+                {
+                    vehicleInfo.CreateFrom(dataTable.Rows[0]);
+                }
+                return vehicleInfo;
+            }
+            catch (Exception)
+            {                    
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update vehicle
+        /// </summary>
+        /// <param name="vehicleInfo">vehicleInfo object</param>
+        /// <returns>Number of rows are effected</returns>
+        public int Update(VehicleInfo vehicleInfo)
+        {
+            try
+            {
+                var parameters = new SqlParameter[15];
+                parameters[0] = new SqlParameter("@VehicleID", vehicleInfo.VehicleID);
+                parameters[1] = new SqlParameter("@PlateNumber", vehicleInfo.PlateNumber);
+                parameters[2] = new SqlParameter("@NumberOfContainer", vehicleInfo.NumberOfContainer);
+                parameters[3] = new SqlParameter("@DriverName", vehicleInfo.DriverName);
+                parameters[4] = new SqlParameter("@ImportDate", vehicleInfo.ImportDate);
+                parameters[5] = new SqlParameter("@ExportDate", vehicleInfo.ExportDate);
+                parameters[6] = new SqlParameter("@Status", vehicleInfo.Status);
+                parameters[7] = new SqlParameter("@Note", vehicleInfo.Note);
+                parameters[8] = new SqlParameter("@IsExport", Convert.ToInt32(vehicleInfo.IsExport));
+                parameters[9] = new SqlParameter("@IsImport", Convert.ToInt32(vehicleInfo.IsImport));
+                parameters[10] = new SqlParameter("@IsCompleted", Convert.ToInt32(vehicleInfo.IsCompleted));
+                parameters[11] = new SqlParameter("@ImportedLocalTime", Convert.ToDateTime(vehicleInfo.ImportedLocalTime));
+                parameters[12] = new SqlParameter("@ImportStatus", vehicleInfo.ImportStatus);
+                parameters[13] = new SqlParameter("@HasGoodsImported", Convert.ToInt32(vehicleInfo.HasGoodsImported));
+                parameters[14] = new SqlParameter("@IsGoodsImported", Convert.ToInt32(vehicleInfo.IsGoodsImported));
+                
+                return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_UPDATEVEHICLE, parameters);
+            }
+            catch (Exception)
+            {                    
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete vehicle by ID
+        /// </summary>
+        /// <param name="vehicleID">Vehicle ID</param>
+        /// <returns>Number of rows are effected</returns>
+        public int DeleteByID(int vehicleID)
+        {
+            try
+            {
+                var parameters = new SqlParameter[1];
+                parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+                return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_DELETEVEHICLEBYID, parameters);
+            }
+            catch (Exception)
+            {                    
+                throw;
+            }
+        }
+    }
+}

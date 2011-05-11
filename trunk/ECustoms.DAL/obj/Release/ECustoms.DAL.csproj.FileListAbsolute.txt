@@ -1,0 +1,7 @@
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\bin\Release\ECustoms.DAL.dll
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\bin\Release\ECustoms.DAL.pdb
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\bin\Release\ECustoms.Utilities.dll
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\bin\Release\ECustoms.Utilities.pdb
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\obj\Release\ResolveAssemblyReference.cache
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\obj\Release\ECustoms.DAL.dll
+C:\Working\ECustoms\SourceCode\ECustoms.DAL\obj\Release\ECustoms.DAL.pdb
