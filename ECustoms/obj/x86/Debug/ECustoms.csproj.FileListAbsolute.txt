@@ -27,3 +27,6 @@ C:\Working\ECustoms\SourceCodeSVN\ECustoms\obj\x86\Debug\GenerateResource-ResGen
 C:\Working\ECustoms\SourceCodeSVN\ECustoms\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 C:\Working\ECustoms\SourceCodeSVN\ECustoms\obj\x86\Debug\ECustoms.exe
 C:\Working\ECustoms\SourceCodeSVN\ECustoms\obj\x86\Debug\ECustoms.pdb
+D:\MY JOBS\Ecustoms\ECustoms\bin\Debug\ECustoms.exe.config
+D:\MY JOBS\Ecustoms\ECustoms\obj\x86\Debug\ECustoms.exe
+D:\MY JOBS\Ecustoms\ECustoms\obj\x86\Debug\ECustoms.pdb
