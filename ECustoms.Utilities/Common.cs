@@ -9,7 +9,8 @@ namespace ECustoms.Utilities
 {
     public class Common
     {
-        public static string EncodePassword(string originalPassword)
+
+        public static string Encode(string originalPassword)
         {
             //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
             MD5 md5 = new MD5CryptoServiceProvider();

@@ -9,7 +9,7 @@ namespace ECustoms.Utilities
     public class UserInfo
     {
         public int UserID { get; set; }
-        public string Name { get; set; }                
+        public string Name { get; set; }
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
@@ -19,6 +19,18 @@ namespace ECustoms.Utilities
         public string Permission { get; set; }
         public int PermissionID { get; set; }
         public bool IsActive { get; set; }
+
+        public UserType Type
+        {
+            get
+            {
+
+                if (PermissionID == 1) return UserType.Confirm;
+                else if (PermissionID == 2) return UserType.Admin;
+                else return UserType.Input;
+
+            }
+        }
 
         #region Methods
         public void CreateFrom(DataRow dr)
@@ -67,7 +79,7 @@ namespace ECustoms.Utilities
             {
                 this.PermissionID = Convert.ToInt32(dr[ConstantInfo.TBL_PERMISSION_PERMISSION_ID]);
             }
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_USER_IS_ACTIVE) &&  !dr.IsNull(ConstantInfo.TBL_USER_IS_ACTIVE))
+            if (dr.Table.Columns.Contains(ConstantInfo.TBL_USER_IS_ACTIVE) && !dr.IsNull(ConstantInfo.TBL_USER_IS_ACTIVE))
             {
                 this.IsActive = Convert.ToBoolean(dr[ConstantInfo.TBL_USER_IS_ACTIVE]);
             }

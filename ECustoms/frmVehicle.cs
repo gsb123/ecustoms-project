@@ -12,7 +12,7 @@ using ECustoms.BOL;
 namespace ECustoms
 {
     public partial class frmVehicle : Form
-    {        
+    {
         private frmExport _parrent;
         private List<VehicleInfo> _vehicleInfosTemp;
         private List<VehicleInfo> _newAddingVehicles = new List<VehicleInfo>();
@@ -32,6 +32,29 @@ namespace ECustoms
         {
             InitializeComponent();
             grdVehicle.AutoGenerateColumns = false;
+
+        }
+
+        private void InitialPermission()
+        {
+            //throw new NotImplementedException();
+
+            if (_userInfo.Type == UserType.Admin)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Confirm)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Input)
+            {
+                btnConfirmExport.Visible = false;
+                btnConfirmImport.Visible = false;
+                btnSearch.Visible = false;
+
+            }
+
         }
 
         public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, DeclarationInfo declarationInfo, UserInfo userInfo)
@@ -44,6 +67,8 @@ namespace ECustoms
             _vehicleInfosTemp = vehicleInfosTemp;
             _parrentDeclaration = declarationInfo;
             _userInfo = userInfo;
+
+            InitialPermission();
         }
 
         public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, int count, DeclarationInfo parrentDeclaration, UserInfo userInfo)
@@ -90,7 +115,7 @@ namespace ECustoms
             return true;
         }
 
-        private  void ResetForm()
+        private void ResetForm()
         {
             txtDriverName.Text = "";
             txtPlateNumber.Text = "";
@@ -119,7 +144,7 @@ namespace ECustoms
             Init();
         }
 
-        private  void Init()
+        private void Init()
         {
             // TODO: Need to handler it
             if (_mode == 3)
@@ -140,7 +165,7 @@ namespace ECustoms
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = false;
                 btnConfirmImport.Enabled = true;
-                btnConfirmExport.Enabled = true;                
+                btnConfirmExport.Enabled = true;
                 btnAdd.Enabled = true;
                 ResetForm();
                 btnAdd.Text = "Lưu trữ phương tiện";
@@ -150,10 +175,10 @@ namespace ECustoms
             else if (_mode == 1) // Add mode - CLick on Update
             {
                 dtpImportDate.Visible = false;
-                mtxtImportHour.Visible  = false;
+                mtxtImportHour.Visible = false;
                 btnUpdate.Enabled = true;
                 btnAdd.Enabled = false;
-                btnDelete.Enabled = true;                
+                btnDelete.Enabled = true;
                 btnConfirmImport.Enabled = true;
                 foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
                 {
@@ -164,8 +189,8 @@ namespace ECustoms
                     break;
                 }
                 btnAdd.Text = "Lưu trữ phương tiện";
-            } 
-            else if(_mode == 2 || _mode == 3) // EditMode - Update
+            }
+            else if (_mode == 2 || _mode == 3) // EditMode - Update
             {
                 btnAdd.Enabled = false;
                 // Get data from database
@@ -173,7 +198,7 @@ namespace ECustoms
 
                 var vehicleInfo = _vehicleBOL.SelectByID(_vehicleID);
 
-                if (_vehicleID ==  0) // If vehicleID > 0 --> this form is opened form search form. so get data from database. If vehicle=0--> get by Count
+                if (_vehicleID == 0) // If vehicleID > 0 --> this form is opened form search form. so get data from database. If vehicle=0--> get by Count
                 {
                     foreach (VehicleInfo vehicleInfoTemp in _vehicleInfosTemp)
                     {
@@ -181,7 +206,7 @@ namespace ECustoms
                         {
                             vehicleInfo = vehicleInfoTemp;
                         }
-                    }    
+                    }
                 }
                 if (vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
                 {
@@ -205,7 +230,7 @@ namespace ECustoms
 
                 // Bind data to Controls
                 BindDataToControls(vehicleInfo);
-                
+
                 _declarationID = vehicleInfo.DeclarationID;
                 btnAdd.Text = "Thêm mới phương tiện";
             }
@@ -256,10 +281,10 @@ namespace ECustoms
 
             mtxtImportHour.Text = vehicleInfo.ImportHour;
             txtStatus.Text = vehicleInfo.Status;
-            txtNote.Text = vehicleInfo.Note;            
+            txtNote.Text = vehicleInfo.Note;
             _isImport = vehicleInfo.IsImport;
             _isExport = vehicleInfo.IsExport;
-            
+
         }
 
         /// <summary>
@@ -278,7 +303,7 @@ namespace ECustoms
                         vehicleInfo.DriverName = txtDriverName.Text.Trim();
                         vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
                         vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
-                        vehicleInfo.ExportDate = dtpExportDate.Value;                        
+                        vehicleInfo.ExportDate = dtpExportDate.Value;
                         vehicleInfo.ExportHour = mtxtExportHour.Text;
                         vehicleInfo.Status = txtStatus.Text;
                         vehicleInfo.Note = txtNote.Text;
@@ -296,7 +321,7 @@ namespace ECustoms
                 var vehicleInfo = new VehicleInfo();
                 vehicleInfo.DriverName = txtDriverName.Text.Trim();
                 vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
-                vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());                                
+                vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
                 vehicleInfo.ExportDate = dtpExportDate.Value;
                 vehicleInfo.ImportDate = dtpImportDate.Value;
                 vehicleInfo.Status = txtStatus.Text;
@@ -313,7 +338,7 @@ namespace ECustoms
                 this.Close();
             }
 
-            if(_mode == 3) // Edit mode from Search form
+            if (_mode == 3) // Edit mode from Search form
             {
                 var vehicleInfo = new VehicleInfo();
                 vehicleInfo.DriverName = txtDriverName.Text.Trim();
@@ -347,7 +372,7 @@ namespace ECustoms
                     message.Append("; Số lượng: " + _parrentDeclaration.ProductAmount);
                 }
 
-                if (MessageBox.Show(message.ToString() , "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     dtpExportDate.Visible = true;
                     dtpExportDate.Value = DateTime.Now;
@@ -366,7 +391,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -376,15 +401,15 @@ namespace ECustoms
             {
                 var message = new StringBuilder();
                 message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
-                if (_parrentDeclaration != null &&  _parrentDeclaration.HasDeclaration)
+                if (_parrentDeclaration != null && _parrentDeclaration.HasDeclaration)
                 {
                     message.Append("; Số tờ khai: " + _parrentDeclaration.Number);
                     message.Append("; Ngày khai: " + DateTime.Now.ToString("dd/MM/yyy HH:mm"));
                     message.Append("; Tên hàng: " + _parrentDeclaration.ProductName);
-                    message.Append("; Số lượng: " + _parrentDeclaration.ProductAmount);    
+                    message.Append("; Số lượng: " + _parrentDeclaration.ProductAmount);
                 }
 
-                if (MessageBox.Show(message.ToString() , "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     dtpImportDate.Visible = true;
                     dtpImportDate.Value = DateTime.Now;
@@ -407,7 +432,7 @@ namespace ECustoms
             {
                 //MessageBox.Show(exception.ToString());
             }
-            
+
         }
 
         private void btnClose_Click_1(object sender, EventArgs e)
@@ -427,11 +452,11 @@ namespace ECustoms
                 var vehicleInfo = new VehicleInfo();
                 vehicleInfo.DriverName = txtDriverName.Text.Trim();
                 vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
-                if (txtNumberOfContainer.Text!= "")
+                if (txtNumberOfContainer.Text != "")
                 {
                     vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
                 }
-            
+
                 if (_isExport)
                 {
                     vehicleInfo.ExportDate = dtpExportDate.Value;
@@ -449,7 +474,7 @@ namespace ECustoms
                 vehicleInfo.VehicleID = _vehicleInfosTemp.Count + 1;
                 vehicleInfo.IsExport = _isExport;
                 vehicleInfo.IsImport = _isImport;
-                vehicleInfo.IsCompleted = _isCompleted;                
+                vehicleInfo.IsCompleted = _isCompleted;
                 vehicleInfo.DeclarationID = _parrentDeclaration.DeclarationID;
                 if (vehicleInfo.ExportDate != null && vehicleInfo.ExportDate.Value.Year.Equals(1900))
                 {
@@ -463,7 +488,7 @@ namespace ECustoms
                 // Add Mode
                 if (_mode == 0)
                 {
-                     // Bind to gridview.
+                    // Bind to gridview.
                     _vehicleInfosTemp.Add(vehicleInfo);
                     _newAddingVehicles.Add(vehicleInfo);
                     _parrent.BindVehicle(_vehicleInfosTemp);
@@ -507,7 +532,7 @@ namespace ECustoms
                 result.PlateNumber = txtPlateNumber.Text.Trim();
                 result.NumberOfContainer = Convert.ToInt16(txtNumberOfContainer.Text);
                 result.Status = txtStatus.Text;
-                result.Note = txtNote.Text;                
+                result.Note = txtNote.Text;
 
                 grdVehicle.Refresh();
                 _parrent.grdVehicle.DataSource = null;
@@ -526,7 +551,7 @@ namespace ECustoms
             try
             {
                 if (!Validate()) return;
-                if (_mode == 1 || _mode == 2 ) // AddNew- Edit
+                if (_mode == 1 || _mode == 2) // AddNew- Edit
                 {
                     foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
                     {
@@ -540,7 +565,7 @@ namespace ECustoms
                             vehicleInfo.ExportHour = mtxtExportHour.Text;
                             vehicleInfo.ImportHour = mtxtImportHour.Text;
                             vehicleInfo.Status = txtStatus.Text;
-                            vehicleInfo.Note = txtNote.Text;                            
+                            vehicleInfo.Note = txtNote.Text;
                             vehicleInfo.IsExport = _isExport;
                             vehicleInfo.IsImport = _isImport;
                             vehicleInfo.IsCompleted = _isCompleted;
@@ -574,7 +599,7 @@ namespace ECustoms
                 //    vehicleInfo.IsGoodsImported = chkGoodsImported.Checked;
                 //    vehicleInfo.VehicleID = _vehicleID;
                 //    _vehicleBOL.Update(vehicleInfo);
-                    
+
                 //    // Get Vehicle by DeclarationID
                 //    var listVehicle = _vehicleBOL.SelectByDeclarationID(_declarationID);
                 //    _parrent.BindVehicle(listVehicle);
@@ -597,7 +622,7 @@ namespace ECustoms
                     vehicleInfo.Note = txtNote.Text;
                     vehicleInfo.IsExport = _isExport;
                     vehicleInfo.IsImport = _isImport;
-                    vehicleInfo.IsCompleted= _isCompleted;
+                    vehicleInfo.IsCompleted = _isCompleted;
                     vehicleInfo.VehicleID = _vehicleID;
                     _vehicleBOL.Update(vehicleInfo);
                     MessageBox.Show("Cập nhật thành công.");
@@ -606,10 +631,10 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
 
             }
-            
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -648,7 +673,7 @@ namespace ECustoms
             {
                 //MessageBox.Show(exception.ToString());
             }
-            
+
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -737,8 +762,8 @@ namespace ECustoms
                 grdVehicle.DataSource = _newAddingVehicles;
             }
 
-            var result = _newAddingVehicles.Where(v => (v.DriverName.IndexOf(driverName,StringComparison.InvariantCultureIgnoreCase) >= 0) 
-                                                           &&(v.PlateNumber.IndexOf(plateNumber,StringComparison.InvariantCultureIgnoreCase) >= 0)).ToList();
+            var result = _newAddingVehicles.Where(v => (v.DriverName.IndexOf(driverName, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                                                           && (v.PlateNumber.IndexOf(plateNumber, StringComparison.InvariantCultureIgnoreCase) >= 0)).ToList();
             grdVehicle.DataSource = result;
         }
 
@@ -767,13 +792,13 @@ namespace ECustoms
             }
             // add to database when closing form
             _vehicleBOL = new VehicleBOL();
-            
+
             foreach (var vehicle in _newAddingVehicles)
             {
                 _vehicleBOL.Insert(vehicle);
             }
 
-            
+
             _parrent.grdVehicle.DataSource = null;
             var listVehicle = _vehicleBOL.SelectByDeclarationID(_parrentDeclaration.DeclarationID);
             _parrent.BindVehicle(listVehicle);

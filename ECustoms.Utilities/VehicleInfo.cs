@@ -12,18 +12,18 @@ namespace ECustoms.Utilities
         public int VehicleID { get; set; }
         public int DeclarationID { get; set; }
         private string _plateNumber = "";
-        public string PlateNumber 
+        public string PlateNumber
         {
             get { return _plateNumber; }
             set { _plateNumber = value; }
         }
         public int NumberOfContainer { get; set; }
 
-        private string _driverName = "" ;
+        private string _driverName = "";
         public string DriverName
         {
             get { return _driverName; }
-            set { _driverName = value; } 
+            set { _driverName = value; }
         }
 
         private string _note = "";
@@ -40,7 +40,7 @@ namespace ECustoms.Utilities
             set { _status = value; }
         }
 
-        private DateTime? _exportDate = new DateTime(1900,1,1);
+        private DateTime? _exportDate = new DateTime(1900, 1, 1);
         public DateTime? ExportDate
         {
             get { return _exportDate; }
@@ -49,11 +49,12 @@ namespace ECustoms.Utilities
 
         public bool IsExport { get; set; }
 
-        private DateTime? _importDate = new DateTime(1900, 1,1);
+        private DateTime? _importDate = new DateTime(1900, 1, 1);
         public DateTime? ImportDate
         {
             get { return _importDate; }
-            set {
+            set
+            {
                 _importDate = value;
             }
         }
@@ -63,10 +64,10 @@ namespace ECustoms.Utilities
         public string ImportHour
         {
             get
-            {                
+            {
                 return _importHour;
             }
-            set {  _importHour = value; }
+            set { _importHour = value; }
         }
 
         private string _exportHour;
@@ -88,10 +89,10 @@ namespace ECustoms.Utilities
 
         public bool IsGoodsImported { get; set; }
 
-        public bool HasGoodsImported { get; set; }        
-        private DateTime _importedLocalTime = new DateTime(1900, 1,1);
+        public bool HasGoodsImported { get; set; }
+        private DateTime _importedLocalTime = new DateTime(1900, 1, 1);
         public DateTime ImportedLocalTime
-        { 
+        {
             get { return _importedLocalTime; }
             set { _importedLocalTime = value; }
         }
@@ -101,11 +102,34 @@ namespace ECustoms.Utilities
             get { return _importStatus; }
             set { _importStatus = value; }
         }
+
+
+        public int ConfirmImportBy { set; get; }
+        public int ConfirmExportBy { set; get; }
+        public int ConfirmLocalImportBy { set; get; }
+
         #endregion
 
         #region Methods
         public void CreateFrom(DataRow dr)
         {
+            if (dr.Table.Columns.Contains("ConfirmImportBy") && !dr.IsNull("ConfirmImportBy"))
+            {
+                this.ConfirmImportBy = Convert.ToInt32(dr["ConfirmImportBy"]);
+            }
+            else this.ConfirmImportBy = 0;
+            if (dr.Table.Columns.Contains("ConfirmExportBy") && !dr.IsNull("ConfirmExportBy"))
+            {
+                this.ConfirmExportBy = Convert.ToInt32(dr["ConfirmExportBy"]);
+            }
+            else this.ConfirmExportBy = 0;
+
+            if (dr.Table.Columns.Contains("ConfirmLocalImportBy") && !dr.IsNull("ConfirmLocalImportBy"))
+            {
+                this.ConfirmLocalImportBy = Convert.ToInt32(dr["ConfirmLocalImportBy"]);
+            }
+            else this.ConfirmLocalImportBy = 0;
+
             if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_VEHICLE_ID) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_VEHICLE_ID))
             {
                 this.VehicleID = Convert.ToInt32(dr[ConstantInfo.TBL_VEHICLE_VEHICLE_ID]);
@@ -163,7 +187,7 @@ namespace ECustoms.Utilities
 
             if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_COMPLETED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_COMPLETED))
             {
-                this.IsCompleted = Convert.ToBoolean( dr[ConstantInfo.TBL_VEHICLE_IS_COMPLETED]);
+                this.IsCompleted = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_COMPLETED]);
             }
 
             if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED))
@@ -173,7 +197,7 @@ namespace ECustoms.Utilities
 
             if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS))
             {
-                this.ImportStatus= dr[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
+                this.ImportStatus = dr[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
             }
             if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME))
             {

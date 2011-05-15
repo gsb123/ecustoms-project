@@ -20,21 +20,24 @@ namespace ECustoms
         public frmVehicleSelect()
         {
             InitializeComponent();
-            LoadExportedVehichles();
+            // Export not Import
+            int mode = 1;
+            LoadExportedVehichles(mode);
         }
 
-        private void LoadExportedVehichles()
+        private void LoadExportedVehichles(int mode)
         {
             try
             {
                 var verhichBL = new VehicleBOL();
-                _vehicleList = verhichBL.GetExportingVehicles();
+
+                _vehicleList = verhichBL.GetExportingVehicles(mode);
                 grdVehicle.AutoGenerateColumns = false;
                 grdVehicle.DataSource = _vehicleList;
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString());
             }
         }
 
@@ -64,12 +67,12 @@ namespace ECustoms
                 else
                 {
                     MessageBox.Show("Bạn cần chọn 1 phương.");
-                }            
+                }
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
-                throw;
+                MessageBox.Show(exception.Message);
+                //throw;
             }
         }
 
@@ -81,6 +84,22 @@ namespace ECustoms
         private void frmVehicleSelect_Load(object sender, EventArgs e)
         {
             this.Text = "Thêm từ phương tiện đã xuất khẩu" + ConstantInfo.MESSAGE_TITLE;
+        }
+
+
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            // Import not export
+            LoadExportedVehichles(1);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            // Import and Export with status = 'co hang'
+            LoadExportedVehichles(2);
         }
 
     }

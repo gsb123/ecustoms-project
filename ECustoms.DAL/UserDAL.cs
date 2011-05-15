@@ -65,14 +65,16 @@ namespace ECustoms.DAL
                 {
                     userInfo = new UserInfo();
                     userInfo.CreateFrom(dr);
+                    userInfo.UserName = Common.Decrypt(userInfo.UserName, true);
+
                     result.Add(userInfo);
                 }
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 
-                throw;
+                throw ex;
             }
         }
 

@@ -18,3 +18,8 @@ C:\Working\ECustoms\SourceCodeSVN\ECustoms.Utilities\bin\Debug\ECustoms.Utilitie
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.Utilities\obj\Debug\ResolveAssemblyReference.cache
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.Utilities\obj\Debug\ECustoms.Utilities.dll
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.Utilities\obj\Debug\ECustoms.Utilities.pdb
+D:\MY JOBS\Ecustoms\ECustoms.Utilities\bin\Debug\ECustoms.Utilities.dll
+D:\MY JOBS\Ecustoms\ECustoms.Utilities\bin\Debug\ECustoms.Utilities.pdb
+D:\MY JOBS\Ecustoms\ECustoms.Utilities\obj\Debug\ResolveAssemblyReference.cache
+D:\MY JOBS\Ecustoms\ECustoms.Utilities\obj\Debug\ECustoms.Utilities.dll
+D:\MY JOBS\Ecustoms\ECustoms.Utilities\obj\Debug\ECustoms.Utilities.pdb

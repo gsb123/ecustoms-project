@@ -26,7 +26,7 @@ namespace ECustoms
         }
 
         public frmAddUser(frmUser parrent, int mode)
-        {            
+        {
             InitializeComponent();
             _parrent = parrent;
             _mode = mode;
@@ -76,7 +76,11 @@ namespace ECustoms
                 // Get User by ID
                 var userInfo = _userBOL.SelectByID(_userID);
                 // Bind data to the UI
-                txtUserName.Text = userInfo.UserName;
+                txtUserName.Text = Common.Decrypt(userInfo.UserName, true);
+
+                // Don't allow you edit username
+                txtUserName.Enabled = false;
+
                 txtPassword.Text = userInfo.Password;
                 txtRetypePassword.Text = userInfo.Password;
                 txtEmail.Text = userInfo.Email;
@@ -107,7 +111,8 @@ namespace ECustoms
                         MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                         this.Close();
 
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show(ConstantInfo.MESSAGE_USERNAME_EXISTING);
                     }
@@ -117,10 +122,10 @@ namespace ECustoms
             {
                 //MessageBox.Show(exception.ToString());
             }
-            
+
         }
 
-       
+
         private bool Validate()
         {
             if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
@@ -138,7 +143,7 @@ namespace ECustoms
             }
 
 
-            if(!txtPassword.Text.Trim().Equals(txtRetypePassword.Text.Trim()))
+            if (!txtPassword.Text.Trim().Equals(txtRetypePassword.Text.Trim()))
             {
                 MessageBox.Show(ConstantInfo.MESSAGE_COMPARE_PASSWORD);
                 txtPassword.Focus();
@@ -151,7 +156,8 @@ namespace ECustoms
                 MessageBox.Show(ConstantInfo.MESSAGE_BLANK_EMAIL);
                 txtEmail.Focus();
                 return false;
-            } else if(!rEMail.IsMatch(txtEmail.Text.Trim()))
+            }
+            else if (!rEMail.IsMatch(txtEmail.Text.Trim()))
             {
                 MessageBox.Show(ConstantInfo.MESSAGE_WRONG_EMAIL);
                 txtEmail.Focus();
@@ -179,7 +185,7 @@ namespace ECustoms
             {
                 //MessageBox.Show(exception.ToString());
             }
-            
+
         }
 
         /// <summary>
@@ -194,7 +200,7 @@ namespace ECustoms
             userInfo.Address = txtAddress.Text;
             userInfo.PhoneNumber = txtPhone.Text;
             userInfo.PermissionID = Convert.ToInt32(cbbPermission.SelectedValue);
-            userInfo.IsActive = cbActive.Checked;            
+            userInfo.IsActive = cbActive.Checked;
         }
     }
 }

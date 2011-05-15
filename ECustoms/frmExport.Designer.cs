@@ -85,6 +85,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoExport = new System.Windows.Forms.RadioButton();
             this.cbImportHasDeclaration = new System.Windows.Forms.CheckBox();
+            this.btnAddExisting = new System.Windows.Forms.Button();
             this.groupBoxVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.gbExportDeclaration.SuspendLayout();
@@ -168,6 +169,7 @@
             // 
             // groupBoxVehicle
             // 
+            this.groupBoxVehicle.Controls.Add(this.btnAddExisting);
             this.groupBoxVehicle.Controls.Add(this.btnDeleteVehicle);
             this.groupBoxVehicle.Controls.Add(this.btnUpdateVehicle);
             this.groupBoxVehicle.Controls.Add(this.btnAddVehicle);
@@ -188,7 +190,7 @@
             this.btnDeleteVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteVehicle.Image = global::ECustoms.Properties.Resources._001_05;
             this.btnDeleteVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteVehicle.Location = new System.Drawing.Point(393, 320);
+            this.btnDeleteVehicle.Location = new System.Drawing.Point(685, 320);
             this.btnDeleteVehicle.Name = "btnDeleteVehicle";
             this.btnDeleteVehicle.Size = new System.Drawing.Size(163, 33);
             this.btnDeleteVehicle.TabIndex = 19;
@@ -386,7 +388,7 @@
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Image = global::ECustoms.Properties.Resources._001_39;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(339, 623);
+            this.btnReset.Location = new System.Drawing.Point(371, 623);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(141, 29);
             this.btnReset.TabIndex = 22;
@@ -402,7 +404,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Image = global::ECustoms.Properties.Resources._001_45;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(170, 623);
+            this.btnUpdate.Location = new System.Drawing.Point(198, 623);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(163, 29);
             this.btnUpdate.TabIndex = 21;
@@ -418,7 +420,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::ECustoms.Properties.Resources.close;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(486, 623);
+            this.button1.Location = new System.Drawing.Point(527, 623);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 29);
             this.button1.TabIndex = 23;
@@ -436,9 +438,9 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(14, 623);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(150, 29);
+            this.btnAdd.Size = new System.Drawing.Size(173, 29);
             this.btnAdd.TabIndex = 20;
-            this.btnAdd.Text = "Tạo mới tờ khai";
+            this.btnAdd.Text = "Tạo mới/lưu tờ khai";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -644,6 +646,23 @@
             this.cbImportHasDeclaration.UseVisualStyleBackColor = true;
             this.cbImportHasDeclaration.CheckedChanged += new System.EventHandler(this.cbImportHasDeclaration_CheckedChanged);
             // 
+            // btnAddExisting
+            // 
+            this.btnAddExisting.Enabled = false;
+            this.btnAddExisting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAddExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddExisting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddExisting.Image = global::ECustoms.Properties.Resources._001_01;
+            this.btnAddExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExisting.Location = new System.Drawing.Point(405, 320);
+            this.btnAddExisting.Name = "btnAddExisting";
+            this.btnAddExisting.Size = new System.Drawing.Size(249, 33);
+            this.btnAddExisting.TabIndex = 20;
+            this.btnAddExisting.Text = "Thêm từ phương tiện đã XK";
+            this.btnAddExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddExisting.UseVisualStyleBackColor = true;
+            this.btnAddExisting.Click += new System.EventHandler(this.btnAddExisting_Click);
+            // 
             // frmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,5 +748,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfContainer;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExportDate;
+        private System.Windows.Forms.Button btnAddExisting;
     }
 }
