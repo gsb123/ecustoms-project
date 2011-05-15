@@ -30,7 +30,7 @@ namespace ECustoms.DAL
         {
             try
             {
-                var parameters = new SqlParameter[12];
+                var parameters = new SqlParameter[15];
                 parameters[0] = new SqlParameter("@DeclarationID", vehicleInfo.DeclarationID);
                 parameters[1] = new SqlParameter("@PlateNumber", vehicleInfo.PlateNumber);
                 parameters[2] = new SqlParameter("@NumberOfContainer", vehicleInfo.NumberOfContainer);
@@ -43,10 +43,16 @@ namespace ECustoms.DAL
                 parameters[9] = new SqlParameter("@ImportDate", vehicleInfo.ImportDate);
                 parameters[10] = new SqlParameter("@IsImport", Convert.ToInt32(vehicleInfo.IsImport));
                 parameters[11] = new SqlParameter("@IsGoodsImported", Convert.ToInt32(vehicleInfo.IsGoodsImported));
+
+                // Phuong add
+                parameters[12] = new SqlParameter("@ConfirmImportBy", Convert.ToInt32(vehicleInfo.ConfirmImportBy));
+                parameters[13] = new SqlParameter("@ConfirmExportBy", Convert.ToInt32(vehicleInfo.ConfirmExportBy));
+                parameters[14] = new SqlParameter("@ConfirmLocalImportBy", Convert.ToInt32(vehicleInfo.ConfirmLocalImportBy));
+
                 return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_INSERTVEHICLE, parameters);
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
@@ -77,13 +83,17 @@ namespace ECustoms.DAL
         }
 
 
-        public List<VehicleInfo> GetExportingVehicles()
+        public List<VehicleInfo> GetExportingVehicles(int mode)
         {
             var result = new List<VehicleInfo>();
             VehicleInfo vehicleInfo;
             try
             {
+
                 var sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0";
+                if (mode == 2)
+                    sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng'";
+
                 var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
                 foreach (DataRow dr in dataTable.Rows)
                 {
@@ -124,7 +134,7 @@ namespace ECustoms.DAL
                 parameters[4] = new SqlParameter("@ExportFrom", exportFrom);
                 parameters[5] = new SqlParameter("@ExportTo", exportTo);
                 parameters[6] = new SqlParameter("@SearchType", searchType);
-                     
+
                 var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_SEARCHVEHICLE, parameters);
                 //foreach (DataRow dr in dataTable.Rows)
                 //{
@@ -137,7 +147,7 @@ namespace ECustoms.DAL
             }
             catch (Exception)
             {
-                    
+
                 throw;
             }
         }
@@ -193,7 +203,7 @@ namespace ECustoms.DAL
                 return vehicleInfo;
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
@@ -207,7 +217,7 @@ namespace ECustoms.DAL
         {
             try
             {
-                var parameters = new SqlParameter[15];
+                var parameters = new SqlParameter[19];
                 parameters[0] = new SqlParameter("@VehicleID", vehicleInfo.VehicleID);
                 parameters[1] = new SqlParameter("@PlateNumber", vehicleInfo.PlateNumber);
                 parameters[2] = new SqlParameter("@NumberOfContainer", vehicleInfo.NumberOfContainer);
@@ -223,11 +233,17 @@ namespace ECustoms.DAL
                 parameters[12] = new SqlParameter("@ImportStatus", vehicleInfo.ImportStatus);
                 parameters[13] = new SqlParameter("@HasGoodsImported", Convert.ToInt32(vehicleInfo.HasGoodsImported));
                 parameters[14] = new SqlParameter("@IsGoodsImported", Convert.ToInt32(vehicleInfo.IsGoodsImported));
-                
+                parameters[15] = new SqlParameter("@DeclarationID", Convert.ToInt32(vehicleInfo.DeclarationID));
+                // Phuong add
+                parameters[16] = new SqlParameter("@ConfirmImportBy", Convert.ToInt32(vehicleInfo.ConfirmImportBy));
+                parameters[17] = new SqlParameter("@ConfirmExportBy", Convert.ToInt32(vehicleInfo.ConfirmExportBy));
+                parameters[18] = new SqlParameter("@ConfirmLocalImportBy", Convert.ToInt32(vehicleInfo.ConfirmLocalImportBy));
+
+
                 return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_UPDATEVEHICLE, parameters);
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
@@ -239,16 +255,43 @@ namespace ECustoms.DAL
         /// <returns>Number of rows are effected</returns>
         public int DeleteByID(int vehicleID)
         {
-            try
-            {
-                var parameters = new SqlParameter[1];
-                parameters[0] = new SqlParameter("@VehicleID", vehicleID);
-                return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_DELETEVEHICLEBYID, parameters);
-            }
-            catch (Exception)
-            {                    
-                throw;
-            }
+            var parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+            return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_DELETEVEHICLEBYID, parameters);
+
+        }
+
+
+
+        public int UpdateLocalConfirm(int vehicleID, int userId)
+        {
+
+
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+            parameters[1] = new SqlParameter("@UserId", userId);
+            return _dbConnection.ExecuteNonQuery("sp_UpdateLocalConfirm", parameters);
+
+        }
+
+        public int UpdateImportConfirm(int vehicleID, int userId)
+        {
+
+
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+            parameters[1] = new SqlParameter("@UserId", userId);
+            return _dbConnection.ExecuteNonQuery("sp_UpdateImportConfirm", parameters);
+
+        }
+        public int UpdateExportConfirm(int vehicleID, int userId)
+        {
+
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
+            parameters[1] = new SqlParameter("@UserId", userId);
+            return _dbConnection.ExecuteNonQuery("sp_UpdateExportConfirm", parameters);
+
         }
     }
 }

@@ -47,6 +47,16 @@
             this.lblExportTo = new System.Windows.Forms.Label();
             this.lblExportFrom = new System.Windows.Forms.Label();
             this.grbResult = new System.Windows.Forms.GroupBox();
+            this.lblVaonoidia = new System.Windows.Forms.Label();
+            this.label8333 = new System.Windows.Forms.Label();
+            this.lblKhonghangNC = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblCohangNC = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblKhongNC = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblKhongXC = new System.Windows.Forms.Label();
+            this.lblNotExported = new System.Windows.Forms.Label();
             this.grdVehicle = new System.Windows.Forms.DataGridView();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,16 +84,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnLocalConfirm = new System.Windows.Forms.Button();
-            this.lblNotExported = new System.Windows.Forms.Label();
-            this.lblKhongXC = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblKhongNC = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblCohangNC = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblKhonghangNC = new System.Windows.Forms.Label();
-            this.label8333 = new System.Windows.Forms.Label();
-            this.lblVaonoidia = new System.Windows.Forms.Label();
             this.grbConditionSearch.SuspendLayout();
             this.grbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
@@ -273,6 +273,96 @@
             this.grbResult.TabIndex = 1;
             this.grbResult.TabStop = false;
             this.grbResult.Text = "Kết quả tìm kiếm";
+            // 
+            // lblVaonoidia
+            // 
+            this.lblVaonoidia.AutoSize = true;
+            this.lblVaonoidia.Location = new System.Drawing.Point(701, 26);
+            this.lblVaonoidia.Name = "lblVaonoidia";
+            this.lblVaonoidia.Size = new System.Drawing.Size(18, 20);
+            this.lblVaonoidia.TabIndex = 10;
+            this.lblVaonoidia.Text = "0";
+            // 
+            // label8333
+            // 
+            this.label8333.AutoSize = true;
+            this.label8333.Location = new System.Drawing.Point(504, 26);
+            this.label8333.Name = "label8333";
+            this.label8333.Size = new System.Drawing.Size(191, 20);
+            this.label8333.TabIndex = 9;
+            this.label8333.Text = "Tổng số xe đã vào nội địa:";
+            // 
+            // lblKhonghangNC
+            // 
+            this.lblKhonghangNC.AutoSize = true;
+            this.lblKhonghangNC.Location = new System.Drawing.Point(417, 52);
+            this.lblKhonghangNC.Name = "lblKhonghangNC";
+            this.lblKhonghangNC.Size = new System.Drawing.Size(18, 20);
+            this.lblKhonghangNC.TabIndex = 8;
+            this.lblKhonghangNC.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(255, 58);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(144, 20);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Số xe có hàng XC: ";
+            // 
+            // lblCohangNC
+            // 
+            this.lblCohangNC.AutoSize = true;
+            this.lblCohangNC.Location = new System.Drawing.Point(417, 26);
+            this.lblCohangNC.Name = "lblCohangNC";
+            this.lblCohangNC.Size = new System.Drawing.Size(18, 20);
+            this.lblCohangNC.TabIndex = 6;
+            this.lblCohangNC.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(255, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 20);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Số xe có hàng NC :";
+            // 
+            // lblKhongNC
+            // 
+            this.lblKhongNC.AutoSize = true;
+            this.lblKhongNC.Location = new System.Drawing.Point(148, 58);
+            this.lblKhongNC.Name = "lblKhongNC";
+            this.lblKhongNC.Size = new System.Drawing.Size(18, 20);
+            this.lblKhongNC.TabIndex = 4;
+            this.lblKhongNC.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 20);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Số xe không NC:";
+            // 
+            // lblKhongXC
+            // 
+            this.lblKhongXC.AutoSize = true;
+            this.lblKhongXC.Location = new System.Drawing.Point(148, 26);
+            this.lblKhongXC.Name = "lblKhongXC";
+            this.lblKhongXC.Size = new System.Drawing.Size(18, 20);
+            this.lblKhongXC.TabIndex = 2;
+            this.lblKhongXC.Text = "0";
+            // 
+            // lblNotExported
+            // 
+            this.lblNotExported.AutoSize = true;
+            this.lblNotExported.Location = new System.Drawing.Point(11, 26);
+            this.lblNotExported.Name = "lblNotExported";
+            this.lblNotExported.Size = new System.Drawing.Size(127, 20);
+            this.lblNotExported.TabIndex = 1;
+            this.lblNotExported.Text = "Số xe không XC:";
             // 
             // grdVehicle
             // 
@@ -565,96 +655,6 @@
             this.btnLocalConfirm.Text = "Xác nhận hàng vào nội địa";
             this.btnLocalConfirm.UseVisualStyleBackColor = true;
             this.btnLocalConfirm.Click += new System.EventHandler(this.btnLocalConfirm_Click);
-            // 
-            // lblNotExported
-            // 
-            this.lblNotExported.AutoSize = true;
-            this.lblNotExported.Location = new System.Drawing.Point(11, 26);
-            this.lblNotExported.Name = "lblNotExported";
-            this.lblNotExported.Size = new System.Drawing.Size(127, 20);
-            this.lblNotExported.TabIndex = 1;
-            this.lblNotExported.Text = "Số xe không XC:";
-            // 
-            // lblKhongXC
-            // 
-            this.lblKhongXC.AutoSize = true;
-            this.lblKhongXC.Location = new System.Drawing.Point(148, 26);
-            this.lblKhongXC.Name = "lblKhongXC";
-            this.lblKhongXC.Size = new System.Drawing.Size(18, 20);
-            this.lblKhongXC.TabIndex = 2;
-            this.lblKhongXC.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 58);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Số xe không NC:";
-            // 
-            // lblKhongNC
-            // 
-            this.lblKhongNC.AutoSize = true;
-            this.lblKhongNC.Location = new System.Drawing.Point(148, 58);
-            this.lblKhongNC.Name = "lblKhongNC";
-            this.lblKhongNC.Size = new System.Drawing.Size(18, 20);
-            this.lblKhongNC.TabIndex = 4;
-            this.lblKhongNC.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(255, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(144, 20);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Số xe có hàng NC :";
-            // 
-            // lblCohangNC
-            // 
-            this.lblCohangNC.AutoSize = true;
-            this.lblCohangNC.Location = new System.Drawing.Point(417, 26);
-            this.lblCohangNC.Name = "lblCohangNC";
-            this.lblCohangNC.Size = new System.Drawing.Size(18, 20);
-            this.lblCohangNC.TabIndex = 6;
-            this.lblCohangNC.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(255, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 20);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Số xe có hàng XC: ";
-            // 
-            // lblKhonghangNC
-            // 
-            this.lblKhonghangNC.AutoSize = true;
-            this.lblKhonghangNC.Location = new System.Drawing.Point(417, 52);
-            this.lblKhonghangNC.Name = "lblKhonghangNC";
-            this.lblKhonghangNC.Size = new System.Drawing.Size(18, 20);
-            this.lblKhonghangNC.TabIndex = 8;
-            this.lblKhonghangNC.Text = "0";
-            // 
-            // label8333
-            // 
-            this.label8333.AutoSize = true;
-            this.label8333.Location = new System.Drawing.Point(504, 26);
-            this.label8333.Name = "label8333";
-            this.label8333.Size = new System.Drawing.Size(191, 20);
-            this.label8333.TabIndex = 9;
-            this.label8333.Text = "Tổng số xe đã vào nội địa:";
-            // 
-            // lblVaonoidia
-            // 
-            this.lblVaonoidia.AutoSize = true;
-            this.lblVaonoidia.Location = new System.Drawing.Point(701, 26);
-            this.lblVaonoidia.Name = "lblVaonoidia";
-            this.lblVaonoidia.Size = new System.Drawing.Size(18, 20);
-            this.lblVaonoidia.TabIndex = 10;
-            this.lblVaonoidia.Text = "0";
             // 
             // frmVehicleSearch
             // 

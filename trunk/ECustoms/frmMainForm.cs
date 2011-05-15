@@ -134,5 +134,13 @@ namespace ECustoms
             frmDecleration.MdiParent = this;
             frmDecleration.Show();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var frmChangePassword = new frmChangePassword(_userInfo);
+            frmChangePassword.MdiParent = this;
+            frmChangePassword.Show();
+
+        }
     }
 }

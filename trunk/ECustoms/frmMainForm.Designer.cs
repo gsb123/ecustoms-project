@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemUser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -39,6 +38,8 @@
             this.toolStripButtonDeclarace = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonListdeclarace = new System.Windows.Forms.ToolStripButton();
+            this.menuitemUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemDeclaration = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,20 +66,13 @@
             // 
             this.hệThốngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitemUser,
+            this.toolStripMenuItem1,
             this.menuitemLogout,
             this.toolStripSeparator1,
             this.menuitemExit});
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(86, 25);
             this.hệThốngToolStripMenuItem.Text = "Hệ thống";
-            // 
-            // menuitemUser
-            // 
-            this.menuitemUser.Image = global::ECustoms.Properties.Resources.Users;
-            this.menuitemUser.Name = "menuitemUser";
-            this.menuitemUser.Size = new System.Drawing.Size(248, 26);
-            this.menuitemUser.Text = "Quản lý người dùng";
-            this.menuitemUser.Click += new System.EventHandler(this.menuitemUser_Click);
             // 
             // toolStripSeparator1
             // 
@@ -150,6 +144,22 @@
             this.toolStripButtonListdeclarace.Text = "toolStripButton3";
             this.toolStripButtonListdeclarace.ToolTipText = "Danh sách tờ khai";
             this.toolStripButtonListdeclarace.Click += new System.EventHandler(this.toolStripButtonListdeclarace_Click);
+            // 
+            // menuitemUser
+            // 
+            this.menuitemUser.Image = global::ECustoms.Properties.Resources.Users;
+            this.menuitemUser.Name = "menuitemUser";
+            this.menuitemUser.Size = new System.Drawing.Size(248, 26);
+            this.menuitemUser.Text = "Quản lý người dùng";
+            this.menuitemUser.Click += new System.EventHandler(this.menuitemUser_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::ECustoms.Properties.Resources.change_password_icon;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(248, 26);
+            this.toolStripMenuItem1.Text = "Thay đổi mật khẩu";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // menuitemLogout
             // 
@@ -230,5 +240,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonDeclarace;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripButton toolStripButtonListdeclarace;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

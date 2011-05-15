@@ -29,30 +29,31 @@ namespace ECustoms.BOL
         {
             try
             {
-                // Encode the password
-                userInfo.Password = Common.EncodePassword(userInfo.Password);
+                // Encode the password & username
+                userInfo.Password = Common.Encode(userInfo.Password);
+                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
                 return _userDAL.GetUser(userInfo);
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Select all user
         /// </summary>
         /// <returns></returns>
         public List<UserInfo> SelectAll()
         {
-             try
-             {
-                 return _userDAL.SelectAll();
-             }
-             catch (Exception)
-             {
-                 throw;
-             }
+            try
+            {
+                return _userDAL.SelectAll();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -64,8 +65,12 @@ namespace ECustoms.BOL
         {
             try
             {
-                // Encode password
-                userInfo.Password = Common.EncodePassword(userInfo.Password);
+
+
+                // Encode password & username
+                userInfo.Password = Common.Encode(userInfo.Password);
+                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
+
                 return _userDAL.Insert(userInfo);
             }
             catch (Exception)
@@ -90,13 +95,13 @@ namespace ECustoms.BOL
                 {
                     result = true;
                 }
-                if(count == 0) result =  false;
+                if (count == 0) result = false;
 
                 return result;
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -127,8 +132,9 @@ namespace ECustoms.BOL
         {
             try
             {
-                // Encode password
-                userInfo.Password = Common.EncodePassword(userInfo.Password);
+                // Encode password & username
+                userInfo.Password = Common.Encode(userInfo.Password);
+                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
                 return _userDAL.Update(userInfo);
             }
             catch (Exception)

@@ -64,9 +64,9 @@ namespace ECustoms
 
                             if (grdVehicle.Rows[i].Cells["DriverName"].Value != null)
                             {
-                                vehicleInfo.DriverName = grdVehicle.Rows[i].Cells["DriverName"].Value.ToString();    
+                                vehicleInfo.DriverName = grdVehicle.Rows[i].Cells["DriverName"].Value.ToString();
                             }
-                            
+
                             if (grdVehicle.Rows[i].Cells["ExportHour"].Value != null)
                             {
                                 vehicleInfo.ExportHour = grdVehicle.Rows[i].Cells["ExportHour"].Value.ToString();
@@ -107,7 +107,7 @@ namespace ECustoms
                             }
                             if (!string.IsNullOrEmpty(txtImportNumber.Text) && Convert.ToInt32(txtImportNumber.Text) > 0)
                             {
-                                vehicleInfo.HasGoodsImported = true;    
+                                vehicleInfo.HasGoodsImported = true;
                             }
                             else
                             {
@@ -186,7 +186,7 @@ namespace ECustoms
             declarationInfo.ImportUnit = txtImportUnit.Text.Trim();
             declarationInfo.ModifiedByID = _userInfo.UserID;
             declarationInfo.ModifiedDate = DateTime.Now;
-            declarationInfo.ImportHasDeclaration = cbImportHasDeclaration.Checked;           
+            declarationInfo.ImportHasDeclaration = cbImportHasDeclaration.Checked;
 
             return declarationInfo;
         }
@@ -227,6 +227,7 @@ namespace ECustoms
                 btnUpdate.Enabled = false;
                 btnAdd.Enabled = true;
                 btnReset.Enabled = true;
+
             }
             else // Edit mode
             {
@@ -277,12 +278,12 @@ namespace ECustoms
             {
                 vehicleInfos[i].Count = i + 1;
             }
-            
+
             grdVehicle.DataSource = vehicleInfos;
             // Set number of vehicle
             if (!string.Equals(txtExportTotalVehicles.Text, grdVehicle.Rows.Count.ToString()) || grdVehicle.Rows.Count > 0)
             {
-                txtExportTotalVehicles.Text = grdVehicle.Rows.Count.ToString();                    
+                txtExportTotalVehicles.Text = grdVehicle.Rows.Count.ToString();
             }
             _vehicleInfosTemp = vehicleInfos;
         }
@@ -305,17 +306,20 @@ namespace ECustoms
                     _declarationBOL.UpdateDecleration(declerationInfo);
                     // update vehicle list
                     var vehicleBL = new VehicleBOL();
+
                     foreach (var v in this._vehicleInfosTemp)
                     {
+                        //update declationId
+                        v.DeclarationID = declerationInfo.DeclarationID;
                         vehicleBL.Update(v);
-                    } 
+                    }
 
                     MessageBox.Show("Cập nhật thành công");
                 }
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString());
             }
 
         }
@@ -432,15 +436,17 @@ namespace ECustoms
                     {
                         foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
                         {
-                            if (vehicleInfo.VehicleID == Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value))
+                            if (vehicleInfo.Count == Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["Count"].Value))
                             {
                                 _vehicleInfosTemp.Remove(vehicleInfo);
+                                break;
                             }
-                            break;
+
                         }
                         this.BindVehicle(_vehicleInfosTemp);
                     }
-                } if (grdVehicle.SelectedRows.Count == 1 && _mode == 1) // New mode
+                }
+                else if (grdVehicle.SelectedRows.Count == 1 && _mode == 1) // New mode
                 {
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
@@ -611,7 +617,7 @@ namespace ECustoms
             gbExportDeclaration.Enabled = true;
             cbExportHasDeclaration.Checked = true;
             grdVehicle.TabIndex = 9;
-            //btnAddExisting.Enabled = false;
+            btnAddExisting.Enabled = false;
 
         }
 
@@ -623,17 +629,18 @@ namespace ECustoms
             gbExportDeclaration.Enabled = false;
             cbImportHasDeclaration.Checked = true;
             grdVehicle.TabIndex = 16;
-            //btnAddExisting.Enabled = true;
+            btnAddExisting.Enabled = true;
+
             var declarationInfo = _declarationBOL.SelectByID(this._declerationID);
 
 
-            if (_mode == 0 || (declarationInfo != null && declarationInfo.ImportNumber  < 1) )
+            if (_mode == 0 || (declarationInfo != null && declarationInfo.ImportNumber < 1))
             {
                 txtImportNumber.Text = txtExportNumber.Text;
                 txtImportCompanyName.Text = txtExportCompanyName.Text;
                 txtImportProductName.Text = txtExportProductName.Text;
                 txtImportProductAmount.Text = txtExportProductAmount.Text;
-                txtImportUnit.Text = txtExportUnit.Text;                
+                txtImportUnit.Text = txtExportUnit.Text;
             }
         }
 
@@ -676,7 +683,7 @@ namespace ECustoms
         {
 
         }
-       
+
         private void txtExportTotalVehicles_Leave(object sender, EventArgs e)
         {
             try
@@ -714,25 +721,35 @@ namespace ECustoms
 
         }
 
-        //private void btnAddExisting_Click(object sender, EventArgs e)
-        //{
-        //    var frmSelect = new frmVehicleSelect();
-        //    frmSelect.OnSelectedVehichle += new frmVehicleSelect.OnSelectedVehicleHandler(frmSelect_OnSelectedVehichle);
-        //    frmSelect.ShowDialog();
+        private void btnAddExisting_Click(object sender, EventArgs e)
+        {
+            var frmSelect = new frmVehicleSelect();
+            frmSelect.OnSelectedVehichle += new frmVehicleSelect.OnSelectedVehicleHandler(frmSelect_OnSelectedVehichle);
+            frmSelect.ShowDialog();
 
-        //}
+        }
 
         void frmSelect_OnSelectedVehichle(object sender, EventArgs e)
         {
+
             var arg = (SelectedVehichleEventArgs)(e);
             var vehicleInfo = arg.Vehicle;
+
+            foreach (VehicleInfo v in _vehicleInfosTemp)
+            {
+                if (v.VehicleID == vehicleInfo.VehicleID)
+                    throw new Exception("Phương tiện này đã tồn tại trong tờ khai!");
+            }
             _vehicleInfosTemp.Add(vehicleInfo);
             this.BindVehicle(_vehicleInfosTemp);
+
         }
 
         private void txtImportProductName_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

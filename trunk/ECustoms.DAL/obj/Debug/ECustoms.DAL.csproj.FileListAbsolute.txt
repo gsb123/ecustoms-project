@@ -26,3 +26,10 @@ C:\Working\ECustoms\SourceCodeSVN\ECustoms.DAL\bin\Debug\ECustoms.Utilities.pdb
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.DAL\obj\Debug\ResolveAssemblyReference.cache
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.DAL\obj\Debug\ECustoms.DAL.dll
 C:\Working\ECustoms\SourceCodeSVN\ECustoms.DAL\obj\Debug\ECustoms.DAL.pdb
+D:\MY JOBS\Ecustoms\ECustoms.DAL\bin\Debug\ECustoms.DAL.dll
+D:\MY JOBS\Ecustoms\ECustoms.DAL\bin\Debug\ECustoms.DAL.pdb
+D:\MY JOBS\Ecustoms\ECustoms.DAL\bin\Debug\ECustoms.Utilities.dll
+D:\MY JOBS\Ecustoms\ECustoms.DAL\bin\Debug\ECustoms.Utilities.pdb
+D:\MY JOBS\Ecustoms\ECustoms.DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\MY JOBS\Ecustoms\ECustoms.DAL\obj\Debug\ECustoms.DAL.dll
+D:\MY JOBS\Ecustoms\ECustoms.DAL\obj\Debug\ECustoms.DAL.pdb

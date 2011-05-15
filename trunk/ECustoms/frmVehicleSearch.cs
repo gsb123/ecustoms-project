@@ -26,8 +26,31 @@ namespace ECustoms
         {
             InitializeComponent();
             _userInfo = userInfo;
-        }
+            InitialPermission();
 
+        }
+        private void InitialPermission()
+        {
+            //throw new NotImplementedException();
+
+            if (_userInfo.Type == UserType.Admin)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Confirm)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Input)
+            {
+                btnXacNhanXuatCanh.Visible = false;
+                btnXacNhanNhapCanhCoHang.Visible = false;
+                btnXacNhanXuatCanhKhongCoHang.Visible = false;
+                btnLocalConfirm.Visible = false;
+
+            }
+
+        }
         private void frmVehicleSearch_Load(object sender, EventArgs e)
         {
             this.Text = "Tìm kiếm" + ConstantInfo.MESSAGE_TITLE;
@@ -45,12 +68,12 @@ namespace ECustoms
             System.Data.DataTable dataTable;
             _dtResult = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
                                                      dtpExportFrom.Value, dtpExportTo.Value);
-            
+
             grdVehicle.DataSource = _dtResult;
 
             try
             {
-                
+
 
                 for (int i = 0; i < grdVehicle.Rows.Count; i++)
                 {
@@ -69,13 +92,13 @@ namespace ECustoms
                         xeKhongXC = xeKhongXC + 1;
                     }
 
-                    if (!_dtResult.Rows[i].IsNull("IsImport") &&  _dtResult.Rows[i]["IsImport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()))
+                    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()))
                     {
                         xeKhongNC = xeKhongNC + 1;
                     }
 
 
-                    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported")  && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
+                    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported") && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
                     {
                         xeCohangNC = xeCohangNC + 1;
                     }
@@ -86,7 +109,7 @@ namespace ECustoms
                     }
 
 
-                    if (!_dtResult.Rows[i].IsNull("IsGoodsImported") &&_dtResult.Rows[i]["IsGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsGoodsImported"].ToString()))
+                    if (!_dtResult.Rows[i].IsNull("IsGoodsImported") && _dtResult.Rows[i]["IsGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsGoodsImported"].ToString()))
                     {
                         xeVaoNoiDia = xeVaoNoiDia + 1;
                     }
@@ -103,7 +126,7 @@ namespace ECustoms
             {
                 MessageBox.Show(exception.ToString());
             }
-            
+
         }
 
         private void cbIsExport_CheckedChanged(object sender, EventArgs e)
@@ -209,7 +232,7 @@ namespace ECustoms
         private void grdVehicle_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
-            { 
+            {
                 if (e.RowIndex >= 0 && grdVehicle.SelectedRows.Count == 1) // Only select one row
                 {
                     var vehicle = new frmVehicle(3, Convert.ToInt32(grdVehicle.Rows[e.RowIndex].Cells["VehicleID"].Value), _userInfo);
@@ -275,14 +298,14 @@ namespace ECustoms
                         {
                             excel.Cells[rowIndex + 1, 17] = "";
                         }
-                    
+
                     }
                     catch (Exception)
                     {
                         excel.Cells[rowIndex + 1, 17] = "";
                     }
-                   
-                    
+
+
                     excel.Visible = true;
                     var worksheet = (Worksheet)excel.ActiveSheet;
                     worksheet.Activate();

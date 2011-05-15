@@ -100,6 +100,13 @@ namespace ECustoms.Utilities
         public const string MESSAGE_ADD_DONE = "Thêm xong.";
         public const string MESSAGE_BLANK_DECLARATION_NUMBER = "Số tờ khai không được trống.";
         public const string MESSAGE_TITLE = " :: Chi cục Hải quan Tân Thanh - Đội giám sát";
+        public const string MESSAGE_INCORRECT_PASS = "Mật khẩu cũ chưa đúng!";
+
+        #endregion
+
+        #region System
+
+        public const string HashString = "dfkjdk234fda23fdfssf";
 
         #endregion
     }
