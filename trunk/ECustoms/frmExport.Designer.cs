@@ -45,6 +45,7 @@
             this.lblUnit = new System.Windows.Forms.Label();
             this.txtExportUnit = new System.Windows.Forms.TextBox();
             this.groupBoxVehicle = new System.Windows.Forms.GroupBox();
+            this.btnAddExisting = new System.Windows.Forms.Button();
             this.btnDeleteVehicle = new System.Windows.Forms.Button();
             this.btnUpdateVehicle = new System.Windows.Forms.Button();
             this.btnAddVehicle = new System.Windows.Forms.Button();
@@ -85,7 +86,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoExport = new System.Windows.Forms.RadioButton();
             this.cbImportHasDeclaration = new System.Windows.Forms.CheckBox();
-            this.btnAddExisting = new System.Windows.Forms.Button();
             this.groupBoxVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.gbExportDeclaration.SuspendLayout();
@@ -183,6 +183,23 @@
             this.groupBoxVehicle.Text = "Khai báo xe";
             this.groupBoxVehicle.Enter += new System.EventHandler(this.groupBoxVehicle_Enter_1);
             // 
+            // btnAddExisting
+            // 
+            this.btnAddExisting.Enabled = false;
+            this.btnAddExisting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAddExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddExisting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddExisting.Image = global::ECustoms.Properties.Resources._001_01;
+            this.btnAddExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExisting.Location = new System.Drawing.Point(393, 320);
+            this.btnAddExisting.Name = "btnAddExisting";
+            this.btnAddExisting.Size = new System.Drawing.Size(249, 33);
+            this.btnAddExisting.TabIndex = 20;
+            this.btnAddExisting.Text = "Thêm từ phương tiện đã XK";
+            this.btnAddExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddExisting.UseVisualStyleBackColor = true;
+            this.btnAddExisting.Click += new System.EventHandler(this.btnAddExisting_Click);
+            // 
             // btnDeleteVehicle
             // 
             this.btnDeleteVehicle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -190,7 +207,7 @@
             this.btnDeleteVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteVehicle.Image = global::ECustoms.Properties.Resources._001_05;
             this.btnDeleteVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteVehicle.Location = new System.Drawing.Point(685, 320);
+            this.btnDeleteVehicle.Location = new System.Drawing.Point(648, 320);
             this.btnDeleteVehicle.Name = "btnDeleteVehicle";
             this.btnDeleteVehicle.Size = new System.Drawing.Size(163, 33);
             this.btnDeleteVehicle.TabIndex = 19;
@@ -645,23 +662,6 @@
             this.cbImportHasDeclaration.Text = "Khai báo tờ khai nhập khẩu";
             this.cbImportHasDeclaration.UseVisualStyleBackColor = true;
             this.cbImportHasDeclaration.CheckedChanged += new System.EventHandler(this.cbImportHasDeclaration_CheckedChanged);
-            // 
-            // btnAddExisting
-            // 
-            this.btnAddExisting.Enabled = false;
-            this.btnAddExisting.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnAddExisting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddExisting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddExisting.Image = global::ECustoms.Properties.Resources._001_01;
-            this.btnAddExisting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddExisting.Location = new System.Drawing.Point(405, 320);
-            this.btnAddExisting.Name = "btnAddExisting";
-            this.btnAddExisting.Size = new System.Drawing.Size(249, 33);
-            this.btnAddExisting.TabIndex = 20;
-            this.btnAddExisting.Text = "Thêm từ phương tiện đã XK";
-            this.btnAddExisting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddExisting.UseVisualStyleBackColor = true;
-            this.btnAddExisting.Click += new System.EventHandler(this.btnAddExisting_Click);
             // 
             // frmExport
             // 
