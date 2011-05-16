@@ -144,7 +144,7 @@
             // 
             // mtxtExportHour
             // 
-            this.mtxtExportHour.Location = new System.Drawing.Point(277, 44);
+            this.mtxtExportHour.Location = new System.Drawing.Point(280, 46);
             this.mtxtExportHour.Mask = "00:00";
             this.mtxtExportHour.Name = "mtxtExportHour";
             this.mtxtExportHour.Size = new System.Drawing.Size(33, 20);
