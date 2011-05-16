@@ -305,6 +305,9 @@ namespace ECustoms
                         excel.Cells[rowIndex + 1, 17] = "";
                     }
 
+                    excel.Cells[rowIndex + 1, 18] = dataRow["ConfirmImportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 19] = dataRow["ConfirmExportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 20] = dataRow["ConfirmLocalImportBy"].ToString();
 
                     excel.Visible = true;
                     var worksheet = (Worksheet)excel.ActiveSheet;
@@ -365,6 +368,11 @@ namespace ECustoms
                 {
                     vehicleInfo.ExportDate = DateTime.Now;
                     vehicleInfo.ExportHour = DateTime.Now.ToString("HH:mm");
+
+                    if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                        throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                    vehicleInfo.ConfirmExportBy = _userInfo.UserID;
                     vehicleInfo.IsExport = true;
                     _vehicleBOL.Update(vehicleInfo);
                 }
@@ -373,7 +381,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -393,6 +401,11 @@ namespace ECustoms
                     vehicleInfo.IsImport = true;
                     vehicleInfo.HasGoodsImported = true;
                     vehicleInfo.ImportStatus = "Nhập cảnh có hàng";
+                    if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                        throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                    vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+
                     _vehicleBOL.Update(vehicleInfo);
                 }
                 // Bind data to gridview
@@ -400,7 +413,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -419,6 +432,10 @@ namespace ECustoms
                     vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
                     vehicleInfo.IsImport = true;
                     vehicleInfo.HasGoodsImported = false;
+                    if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                        throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                    vehicleInfo.ConfirmImportBy = _userInfo.UserID;
                     vehicleInfo.ImportStatus = "Nhập cảnh không có hàng";
                     _vehicleBOL.Update(vehicleInfo);
                 }
@@ -427,7 +444,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -440,13 +457,19 @@ namespace ECustoms
                 vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
                 vehicleInfo.IsGoodsImported = true;
                 vehicleInfo.ImportedLocalTime = DateTime.Now;
+
+                if (vehicleInfo.ConfirmLocalImportBy != 0 && vehicleInfo.ConfirmLocalImportBy != _userInfo.UserID)
+                    throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                vehicleInfo.ConfirmLocalImportBy = _userInfo.UserID;
+
                 _vehicleBOL.Update(vehicleInfo);
                 // Bind data to gridview
                 BindData();
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
         }
 

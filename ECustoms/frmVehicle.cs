@@ -68,7 +68,7 @@ namespace ECustoms
             _parrentDeclaration = declarationInfo;
             _userInfo = userInfo;
 
-            InitialPermission();
+            //InitialPermission();
         }
 
         public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, int count, DeclarationInfo parrentDeclaration, UserInfo userInfo)
@@ -82,6 +82,7 @@ namespace ECustoms
             _count = count;
             _parrentDeclaration = parrentDeclaration;
             _userInfo = userInfo;
+            //InitialPermission();
         }
 
         public frmVehicle(int mode, int vehicleID, UserInfo userInfo)
@@ -90,6 +91,7 @@ namespace ECustoms
             _mode = mode;
             _vehicleID = vehicleID;
             _userInfo = userInfo;
+            //InitialPermission();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -229,18 +231,25 @@ namespace ECustoms
                 }
 
                 // Bind data to Controls
+
+                //if(vehicleInfo.IsExport){
+                //if(vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                //}
+
                 BindDataToControls(vehicleInfo);
 
                 _declarationID = vehicleInfo.DeclarationID;
                 btnAdd.Text = "Thêm mới phương tiện";
             }
 
-            // Check permission
-            if (_userInfo.PermissionID != 2) // Not is admin
-            {
-                btnConfirmExport.Enabled = false;
-                btnConfirmImport.Enabled = false;
-            }
+            //// Check permission
+            //if (_userInfo.PermissionID != 2) // Not is admin
+            //{
+            //    btnConfirmExport.Enabled = false;
+            //    btnConfirmImport.Enabled = false;
+            //}
+
+            InitialPermission();
         }
 
         private void BindDataToControls(VehicleInfo vehicleInfo)
@@ -285,6 +294,11 @@ namespace ECustoms
             _isImport = vehicleInfo.IsImport;
             _isExport = vehicleInfo.IsExport;
 
+            if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                btnConfirmImport.Enabled = false;
+
+            if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                btnConfirmExport.Enabled = false;
         }
 
         /// <summary>
@@ -379,7 +393,29 @@ namespace ECustoms
                     mtxtExportHour.Visible = true;
                     mtxtExportHour.Text = string.Format("{0:HH:mm}", DateTime.Now);
                     lblIsExport.Visible = false;
-                    _isExport = true;
+
+                    if (_mode == 1 || _mode == 2) // AddNew- Edit
+                    {
+                        foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
+                        {
+                            if (vehicleInfo.Count == _count)
+                            {
+                                if (vehicleInfo.ConfirmExportBy == 0)
+                                {
+                                    vehicleInfo.IsExport = _isExport;
+                                    vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+                                    _isExport = true;
+                                }
+                                else
+                                {
+                                    if (vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                                        throw new Exception("Phương tiện này đã được xác nhận xuất khẩu bởi người khác!");
+                                }
+
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
@@ -430,7 +466,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
 
         }
@@ -566,9 +602,18 @@ namespace ECustoms
                             vehicleInfo.ImportHour = mtxtImportHour.Text;
                             vehicleInfo.Status = txtStatus.Text;
                             vehicleInfo.Note = txtNote.Text;
+                            vehicleInfo.IsCompleted = _isCompleted;
                             vehicleInfo.IsExport = _isExport;
                             vehicleInfo.IsImport = _isImport;
-                            vehicleInfo.IsCompleted = _isCompleted;
+
+                            if (vehicleInfo.ConfirmExportBy == 0 && vehicleInfo.IsExport)
+                                vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+
+                            if (vehicleInfo.ConfirmImportBy == 0 && vehicleInfo.IsImport)
+                                vehicleInfo.ConfirmImportBy = _userInfo.UserID;
+
+
+
                             break;
                         }
                     }
@@ -616,12 +661,28 @@ namespace ECustoms
                     {
                         vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
                     }
-                    vehicleInfo.ExportDate = dtpExportDate.Value;
-                    vehicleInfo.ImportDate = dtpImportDate.Value;
+
+
                     vehicleInfo.Status = txtStatus.Text;
                     vehicleInfo.Note = txtNote.Text;
                     vehicleInfo.IsExport = _isExport;
                     vehicleInfo.IsImport = _isImport;
+                    vehicleInfo.ImportDate = dtpImportDate.Value;
+                    vehicleInfo.ExportDate = dtpExportDate.Value;
+
+
+                    //vehicleInfo.IsExport = _isExport;
+                    //vehicleInfo.IsImport = _isImport;
+
+
+                    if (vehicleInfo.ConfirmExportBy == 0 && vehicleInfo.IsExport)
+                        vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+
+                    if (vehicleInfo.ConfirmImportBy == 0 && vehicleInfo.IsImport)
+                        vehicleInfo.ConfirmImportBy = _userInfo.UserID;
+
+
+
                     vehicleInfo.IsCompleted = _isCompleted;
                     vehicleInfo.VehicleID = _vehicleID;
                     _vehicleBOL.Update(vehicleInfo);
