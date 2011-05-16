@@ -559,7 +559,7 @@
             this.CompanyName.HeaderText = "Tên doanh nghiệp xuất";
             this.CompanyName.Name = "CompanyName";
             this.CompanyName.ReadOnly = true;
-            this.CompanyName.Width = 200;
+            this.CompanyName.Width = 220;
             // 
             // ProductName
             // 
@@ -668,6 +668,7 @@
             this.ConfirmExportBy.HeaderText = "Xác nhận xuất";
             this.ConfirmExportBy.Name = "ConfirmExportBy";
             this.ConfirmExportBy.ReadOnly = true;
+            this.ConfirmExportBy.Width = 150;
             // 
             // ConfirmImportBy
             // 
@@ -675,6 +676,7 @@
             this.ConfirmImportBy.HeaderText = "Xác nhận nhập";
             this.ConfirmImportBy.Name = "ConfirmImportBy";
             this.ConfirmImportBy.ReadOnly = true;
+            this.ConfirmImportBy.Width = 200;
             // 
             // ConfirmLocalImportBy
             // 
@@ -682,6 +684,7 @@
             this.ConfirmLocalImportBy.HeaderText = "Xác nhận hàng nội địa";
             this.ConfirmLocalImportBy.Name = "ConfirmLocalImportBy";
             this.ConfirmLocalImportBy.ReadOnly = true;
+            this.ConfirmLocalImportBy.Width = 200;
             // 
             // frmVehicleSearch
             // 
