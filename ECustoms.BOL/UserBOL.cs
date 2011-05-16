@@ -31,7 +31,7 @@ namespace ECustoms.BOL
             {
                 // Encode the password & username
                 userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
+                userInfo.UserName =userInfo.UserName;
                 return _userDAL.GetUser(userInfo);
             }
             catch (Exception)
