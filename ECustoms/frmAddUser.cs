@@ -76,7 +76,7 @@ namespace ECustoms
                 // Get User by ID
                 var userInfo = _userBOL.SelectByID(_userID);
                 // Bind data to the UI
-                txtUserName.Text = Common.Decrypt(userInfo.UserName, true);
+                txtUserName.Text = userInfo.UserName;
 
                 // Don't allow you edit username
                 txtUserName.Enabled = false;
