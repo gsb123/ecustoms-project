@@ -45,7 +45,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(290, 20);
-            this.txtPassword.TabIndex = 7;
+            this.txtPassword.TabIndex = 2;
             // 
             // lblPassword
             // 
@@ -65,7 +65,7 @@
             this.txtRetypePassword.Name = "txtRetypePassword";
             this.txtRetypePassword.PasswordChar = '*';
             this.txtRetypePassword.Size = new System.Drawing.Size(290, 20);
-            this.txtRetypePassword.TabIndex = 9;
+            this.txtRetypePassword.TabIndex = 3;
             // 
             // lblRetypePassword
             // 
@@ -89,7 +89,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(82, 33);
-            this.btnClose.TabIndex = 14;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Đóng";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClose.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(114, 33);
-            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Text = "Cập nhật";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -119,7 +119,7 @@
             this.txtPassOld.Name = "txtPassOld";
             this.txtPassOld.PasswordChar = '*';
             this.txtPassOld.Size = new System.Drawing.Size(290, 20);
-            this.txtPassOld.TabIndex = 15;
+            this.txtPassOld.TabIndex = 1;
             // 
             // lbOldPass
             // 
@@ -147,6 +147,7 @@
             this.Controls.Add(this.lblPassword);
             this.Name = "frmChangePassword";
             this.Text = "Thay đổi mật khẩu";
+            this.Load += new System.EventHandler(this.frmChangePassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

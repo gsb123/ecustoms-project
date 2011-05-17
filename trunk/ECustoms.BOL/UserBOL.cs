@@ -69,7 +69,7 @@ namespace ECustoms.BOL
 
                 // Encode password & username
                 userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
+                userInfo.UserName = userInfo.UserName;
 
                 return _userDAL.Insert(userInfo);
             }
@@ -134,7 +134,7 @@ namespace ECustoms.BOL
             {
                 // Encode password & username
                 userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName = Common.Encrypt(userInfo.UserName, true);
+                userInfo.UserName = userInfo.UserName;
                 return _userDAL.Update(userInfo);
             }
             catch (Exception)

@@ -32,11 +32,11 @@ namespace ECustoms
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 if (Validate())
                 {
                 
-                _userInfo.UserName = Common.Decrypt(_userInfo.UserName, true);
+                _userInfo.UserName = _userInfo.UserName;
                 _userInfo.Password = txtPassword.Text.Trim();
               
                     // Update
@@ -86,6 +86,11 @@ namespace ECustoms
 
 
             return true;
+        }
+
+        private void frmChangePassword_Load(object sender, EventArgs e)
+        {
+            txtPassOld.Focus();
         }
     }
 }

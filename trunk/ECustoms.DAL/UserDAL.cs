@@ -65,7 +65,7 @@ namespace ECustoms.DAL
                 {
                     userInfo = new UserInfo();
                     userInfo.CreateFrom(dr);
-                    userInfo.UserName = Common.Decrypt(userInfo.UserName, true);
+                    userInfo.UserName = userInfo.UserName;
 
                     result.Add(userInfo);
                 }
