@@ -1,9 +1,0 @@
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.BOL.dll
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.BOL.pdb
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.DAL.dll
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.Utilities.dll
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.DAL.pdb
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\bin\Release\ECustoms.Utilities.pdb
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\obj\Release\ResolveAssemblyReference.cache
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\obj\Release\ECustoms.BOL.dll
-C:\Working\ECustoms\SourceCode\ECustoms.BOL\obj\Release\ECustoms.BOL.pdb
