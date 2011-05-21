@@ -173,7 +173,8 @@ namespace ECustoms
             declarationInfo.ModifiedByID = _userInfo.UserID;
             declarationInfo.ModifiedDate = DateTime.Now;
             declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
-
+            declarationInfo.ExportType = txtTypeExport.Text.Trim();
+            
 
             // import
             if (!string.IsNullOrEmpty(txtImportNumber.Text.Trim()))
@@ -187,6 +188,7 @@ namespace ECustoms
             declarationInfo.ModifiedByID = _userInfo.UserID;
             declarationInfo.ModifiedDate = DateTime.Now;
             declarationInfo.ImportHasDeclaration = cbImportHasDeclaration.Checked;
+            declarationInfo.ImportType = txtTypeImport.Text.Trim();
 
             return declarationInfo;
         }
@@ -199,6 +201,8 @@ namespace ECustoms
             txtExportProductAmount.Text = "";
             txtExportUnit.Text = "";
             txtExportTotalVehicles.Text = "";
+            txtTypeExport.Text = string.Empty;
+            txtTypeImport.Text = string.Empty;
             grdVehicle.DataSource = null;
         }
 
@@ -273,6 +277,9 @@ namespace ECustoms
                     txtExportCompanyName.Text = declarationInfo.CompanyName;
                     txtExportProductAmount.Text = declarationInfo.ProductAmount;
                     txtExportUnit.Text = declarationInfo.Unit;
+                    txtTypeExport.Text = declarationInfo.ExportType;
+                    txtTypeImport.Text = declarationInfo.ImportType;
+
                     if (!declarationInfo.HasDeclaration)
                     {
                         cbExportHasDeclaration.Checked = true;
