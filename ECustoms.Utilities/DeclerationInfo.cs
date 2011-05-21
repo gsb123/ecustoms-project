@@ -11,7 +11,22 @@ namespace ECustoms.Utilities
         #region public properties
         public int DeclarationID { get; set; }
         public int Number { get; set; }
-        
+
+        private string _importType = "";
+        private string _exportType = "";
+
+        public string ImportType
+        {
+            get { return _importType; }
+            set { _importType = value; }
+        }
+
+        public string ExportType
+        {
+            get { return _exportType; }
+            set { _exportType = value; }
+        }
+
         private string _productName = "";
         public string ProductName 
         {
@@ -171,6 +186,17 @@ namespace ECustoms.Utilities
             {
                 this.ImportHasDeclaration = Convert.ToBoolean(dr["ImportHasDeclaration"]);
             }
+
+            if (dr.Table.Columns.Contains("ImportType") && !dr.IsNull("ImportType"))
+            {
+                this.ImportType = dr["ImportType"].ToString();
+            }
+
+            if (dr.Table.Columns.Contains("ExportType") && !dr.IsNull("ExportType"))
+            {
+                this.ExportType = dr["ExportType"].ToString();
+            }
+
         }
         #endregion
     }

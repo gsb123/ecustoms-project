@@ -40,8 +40,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddVehichle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lbOldPass = new System.Windows.Forms.Label();
+            this.txtPlate = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -121,7 +122,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::ECustoms.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(153, 431);
+            this.btnClose.Location = new System.Drawing.Point(765, 440);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(71, 33);
             this.btnClose.TabIndex = 14;
@@ -136,7 +137,7 @@
             this.btnAddVehichle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddVehichle.Image = global::ECustoms.Properties.Resources._001_01;
             this.btnAddVehichle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddVehichle.Location = new System.Drawing.Point(18, 431);
+            this.btnAddVehichle.Location = new System.Drawing.Point(630, 440);
             this.btnAddVehichle.Name = "btnAddVehichle";
             this.btnAddVehichle.Size = new System.Drawing.Size(129, 33);
             this.btnAddVehichle.TabIndex = 15;
@@ -156,39 +157,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm từ phương tiện đã xuất khẩu";
             // 
-            // radioButton1
+            // btnSearch
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radioButton1.Location = new System.Drawing.Point(18, 31);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(446, 24);
-            this.radioButton1.TabIndex = 20;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Xe đã có xác nhận xuất cảnh, chưa có xác nhận nhập cảnh.";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(18, 88);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(111, 33);
+            this.btnSearch.TabIndex = 17;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // radioButton2
+            // lbOldPass
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radioButton2.Location = new System.Drawing.Point(18, 73);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(484, 24);
-            this.radioButton2.TabIndex = 21;
-            this.radioButton2.Text = "Xe đã có xác nhận xuất cảnh và có xác nhận nhập cảnh có hàng.";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.lbOldPass.AutoSize = true;
+            this.lbOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOldPass.Location = new System.Drawing.Point(14, 23);
+            this.lbOldPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOldPass.Name = "lbOldPass";
+            this.lbOldPass.Size = new System.Drawing.Size(188, 20);
+            this.lbOldPass.TabIndex = 18;
+            this.lbOldPass.Text = "Hãy nhập số xe cần thêm";
+            // 
+            // txtPlate
+            // 
+            this.txtPlate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtPlate.Location = new System.Drawing.Point(264, 22);
+            this.txtPlate.Name = "txtPlate";
+            this.txtPlate.Size = new System.Drawing.Size(182, 20);
+            this.txtPlate.TabIndex = 19;
             // 
             // frmVehicleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 470);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.ClientSize = new System.Drawing.Size(856, 485);
+            this.Controls.Add(this.txtPlate);
+            this.Controls.Add(this.lbOldPass);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnAddVehichle);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
@@ -215,7 +226,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lbOldPass;
+        private System.Windows.Forms.TextBox txtPlate;
     }
 }

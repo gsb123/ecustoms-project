@@ -86,6 +86,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoExport = new System.Windows.Forms.RadioButton();
             this.cbImportHasDeclaration = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTypeExport = new System.Windows.Forms.TextBox();
+            this.txtTypeImport = new System.Windows.Forms.TextBox();
             this.groupBoxVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.gbExportDeclaration.SuspendLayout();
@@ -114,7 +118,7 @@
             // 
             this.txtExportProductName.Location = new System.Drawing.Point(152, 91);
             this.txtExportProductName.Name = "txtExportProductName";
-            this.txtExportProductName.Size = new System.Drawing.Size(233, 26);
+            this.txtExportProductName.Size = new System.Drawing.Size(309, 26);
             this.txtExportProductName.TabIndex = 7;
             // 
             // lblCompanyName
@@ -131,7 +135,7 @@
             this.txtExportCompanyName.Location = new System.Drawing.Point(152, 57);
             this.txtExportCompanyName.Multiline = true;
             this.txtExportCompanyName.Name = "txtExportCompanyName";
-            this.txtExportCompanyName.Size = new System.Drawing.Size(233, 28);
+            this.txtExportCompanyName.Size = new System.Drawing.Size(309, 28);
             this.txtExportCompanyName.TabIndex = 6;
             // 
             // lblProductAmount
@@ -177,7 +181,7 @@
             this.groupBoxVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxVehicle.Location = new System.Drawing.Point(6, 258);
             this.groupBoxVehicle.Name = "groupBoxVehicle";
-            this.groupBoxVehicle.Size = new System.Drawing.Size(914, 361);
+            this.groupBoxVehicle.Size = new System.Drawing.Size(997, 361);
             this.groupBoxVehicle.TabIndex = 10;
             this.groupBoxVehicle.TabStop = false;
             this.groupBoxVehicle.Text = "Khai báo xe";
@@ -281,7 +285,7 @@
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdVehicle.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(886, 284);
+            this.grdVehicle.Size = new System.Drawing.Size(937, 284);
             this.grdVehicle.TabIndex = 9;
             this.grdVehicle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVehicle_CellContentClick);
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
@@ -464,6 +468,8 @@
             // 
             // gbExportDeclaration
             // 
+            this.gbExportDeclaration.Controls.Add(this.txtTypeExport);
+            this.gbExportDeclaration.Controls.Add(this.label1);
             this.gbExportDeclaration.Controls.Add(this.lblNumber);
             this.gbExportDeclaration.Controls.Add(this.lblProductName);
             this.gbExportDeclaration.Controls.Add(this.txtExportProductName);
@@ -477,7 +483,7 @@
             this.gbExportDeclaration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbExportDeclaration.Location = new System.Drawing.Point(6, 57);
             this.gbExportDeclaration.Name = "gbExportDeclaration";
-            this.gbExportDeclaration.Size = new System.Drawing.Size(400, 196);
+            this.gbExportDeclaration.Size = new System.Drawing.Size(490, 196);
             this.gbExportDeclaration.TabIndex = 18;
             this.gbExportDeclaration.TabStop = false;
             this.gbExportDeclaration.Text = "Thông tin tờ khai xuất khẩu";
@@ -531,6 +537,8 @@
             // 
             // gbImportDeclaration
             // 
+            this.gbImportDeclaration.Controls.Add(this.txtTypeImport);
+            this.gbImportDeclaration.Controls.Add(this.label7);
             this.gbImportDeclaration.Controls.Add(this.label2);
             this.gbImportDeclaration.Controls.Add(this.label3);
             this.gbImportDeclaration.Controls.Add(this.txtImportProductName);
@@ -543,9 +551,9 @@
             this.gbImportDeclaration.Controls.Add(this.label6);
             this.gbImportDeclaration.Enabled = false;
             this.gbImportDeclaration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbImportDeclaration.Location = new System.Drawing.Point(440, 58);
+            this.gbImportDeclaration.Location = new System.Drawing.Point(502, 58);
             this.gbImportDeclaration.Name = "gbImportDeclaration";
-            this.gbImportDeclaration.Size = new System.Drawing.Size(480, 194);
+            this.gbImportDeclaration.Size = new System.Drawing.Size(500, 194);
             this.gbImportDeclaration.TabIndex = 21;
             this.gbImportDeclaration.TabStop = false;
             this.gbImportDeclaration.Text = "Thông tin tờ khai nhập khẩu";
@@ -655,7 +663,7 @@
             this.cbImportHasDeclaration.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbImportHasDeclaration.Enabled = false;
             this.cbImportHasDeclaration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbImportHasDeclaration.Location = new System.Drawing.Point(440, 30);
+            this.cbImportHasDeclaration.Location = new System.Drawing.Point(502, 30);
             this.cbImportHasDeclaration.Name = "cbImportHasDeclaration";
             this.cbImportHasDeclaration.Size = new System.Drawing.Size(220, 24);
             this.cbImportHasDeclaration.TabIndex = 10;
@@ -663,11 +671,43 @@
             this.cbImportHasDeclaration.UseVisualStyleBackColor = true;
             this.cbImportHasDeclaration.CheckedChanged += new System.EventHandler(this.cbImportHasDeclaration_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(224, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Loại hình";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(251, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Loại hình";
+            // 
+            // txtTypeExport
+            // 
+            this.txtTypeExport.Location = new System.Drawing.Point(319, 25);
+            this.txtTypeExport.Name = "txtTypeExport";
+            this.txtTypeExport.Size = new System.Drawing.Size(142, 26);
+            this.txtTypeExport.TabIndex = 11;
+            // 
+            // txtTypeImport
+            // 
+            this.txtTypeImport.Location = new System.Drawing.Point(347, 25);
+            this.txtTypeImport.Name = "txtTypeImport";
+            this.txtTypeImport.Size = new System.Drawing.Size(100, 26);
+            this.txtTypeImport.TabIndex = 12;
+            // 
             // frmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 658);
+            this.ClientSize = new System.Drawing.Size(1039, 674);
             this.Controls.Add(this.txtExportTotalVehicles);
             this.Controls.Add(this.cbImportHasDeclaration);
             this.Controls.Add(this.lblTotalVehicles);
@@ -749,5 +789,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfContainer;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExportDate;
         private System.Windows.Forms.Button btnAddExisting;
+        private System.Windows.Forms.TextBox txtTypeExport;
+        public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTypeImport;
+        public System.Windows.Forms.Label label7;
     }
 }

@@ -111,9 +111,9 @@ namespace ECustoms.BOL
         }
 
 
-        public List<VehicleInfo> GetExportingVehicles(int mode)
+        public List<VehicleInfo> GetExportingVehicles(int mode,string search)
         {
-            return _vehicleDAL.GetExportingVehicles(mode);
+            return _vehicleDAL.GetExportingVehicles(mode,search);
         }
 
         /// <summary>

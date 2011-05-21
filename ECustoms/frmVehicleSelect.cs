@@ -20,18 +20,16 @@ namespace ECustoms
         public frmVehicleSelect()
         {
             InitializeComponent();
-            // Export not Import
-            int mode = 1;
-            LoadExportedVehichles(mode);
+           
         }
 
-        private void LoadExportedVehichles(int mode)
+        private void LoadExportedVehichles(int mode, string search)
         {
             try
             {
                 var verhichBL = new VehicleBOL();
 
-                _vehicleList = verhichBL.GetExportingVehicles(mode);
+                _vehicleList = verhichBL.GetExportingVehicles(mode, search);
                 grdVehicle.AutoGenerateColumns = false;
                 grdVehicle.DataSource = _vehicleList;
             }
@@ -88,18 +86,12 @@ namespace ECustoms
 
 
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-
-            // Import not export
-            LoadExportedVehichles(1);
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-            // Import and Export with status = 'co hang'
-            LoadExportedVehichles(2);
+            // Search
+            // Exported
+            int mode = 3;
+            LoadExportedVehichles(mode, txtPlate.Text.Trim());
         }
 
     }

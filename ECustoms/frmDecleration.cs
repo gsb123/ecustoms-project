@@ -38,6 +38,32 @@ namespace ECustoms
             _declarationBOL = new DeclarationBOL();
             BindData();
             txtDeclaraceNumber.Focus();
+            InitialPermission();
+        }
+
+        /// <summary>
+        /// Personal check
+        /// </summary>
+        private void InitialPermission()
+        {
+            //throw new NotImplementedException();
+
+            if (_userInfo.Type == UserType.Admin)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Confirm)
+            {
+                btnDelete.Enabled = false;
+                
+               
+            }
+            else if (_userInfo.Type == UserType.Input)
+            {
+
+
+            }
+
         }
 
         private void BindData()
