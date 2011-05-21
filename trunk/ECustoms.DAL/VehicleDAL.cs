@@ -83,17 +83,31 @@ namespace ECustoms.DAL
         }
 
 
-        public List<VehicleInfo> GetExportingVehicles(int mode)
+        public List<VehicleInfo> GetExportingVehicles(int mode, string search)
         {
             var result = new List<VehicleInfo>();
             VehicleInfo vehicleInfo;
             try
             {
-
-                var sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0";
-                if (mode == 2)
-                    sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng'";
-
+                var sqlCommand = string.Empty;
+                if (search.Equals(""))
+                {
+                    if (mode == 1)
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0";
+                    else if (mode == 2)
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng'";
+                    else if (mode == 3) //Vehicle is exported
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1";
+                }
+                else
+                {
+                    if (mode == 1)
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber like '%"+search+"%'";
+                    else if (mode == 2)
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND PlateNumber like '%" + search + "%'";
+                    else if (mode == 3) //Vehicle is exported
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND PlateNumber like '%" + search + "%'";
+                }
                 var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
                 foreach (DataRow dr in dataTable.Rows)
                 {

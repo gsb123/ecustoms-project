@@ -212,6 +212,34 @@ namespace ECustoms
             _vehicleBOL = new VehicleBOL();
             // Init form.
             Init();
+            InitialPermission();
+        }
+
+        /// <summary>
+        /// Personal check
+        /// </summary>
+        private void InitialPermission()
+        {
+            //throw new NotImplementedException();
+
+            if (_userInfo.Type == UserType.Admin)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Confirm)
+            {
+                // Add Mode
+                if (_mode == 0)
+                    btnDeleteVehicle.Enabled = true;
+                else
+                    btnDeleteVehicle.Enabled = false;
+            }
+            else if (_userInfo.Type == UserType.Input)
+            {
+
+
+            }
+
         }
 
         /// <summary>
@@ -446,7 +474,7 @@ namespace ECustoms
                         this.BindVehicle(_vehicleInfosTemp);
                     }
                 }
-                else if (grdVehicle.SelectedRows.Count == 1 && _mode == 1) // New mode
+                else if (grdVehicle.SelectedRows.Count == 1 && _mode == 1) // Edit mode
                 {
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
