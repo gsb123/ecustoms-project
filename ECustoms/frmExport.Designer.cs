@@ -69,11 +69,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbExportDeclaration = new System.Windows.Forms.GroupBox();
+            this.txtTypeExport = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtExportTotalVehicles = new System.Windows.Forms.MaskedTextBox();
             this.lblTotalVehicles = new System.Windows.Forms.Label();
             this.cbExportHasDeclaration = new System.Windows.Forms.CheckBox();
             this.rdoImport = new System.Windows.Forms.RadioButton();
             this.gbImportDeclaration = new System.Windows.Forms.GroupBox();
+            this.txtTypeImport = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtImportProductName = new System.Windows.Forms.TextBox();
@@ -86,10 +90,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoExport = new System.Windows.Forms.RadioButton();
             this.cbImportHasDeclaration = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtTypeExport = new System.Windows.Forms.TextBox();
-            this.txtTypeImport = new System.Windows.Forms.TextBox();
             this.groupBoxVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.gbExportDeclaration.SuspendLayout();
@@ -488,6 +488,22 @@
             this.gbExportDeclaration.TabStop = false;
             this.gbExportDeclaration.Text = "Thông tin tờ khai xuất khẩu";
             // 
+            // txtTypeExport
+            // 
+            this.txtTypeExport.Location = new System.Drawing.Point(319, 25);
+            this.txtTypeExport.Name = "txtTypeExport";
+            this.txtTypeExport.Size = new System.Drawing.Size(142, 26);
+            this.txtTypeExport.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(224, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Loại hình";
+            // 
             // txtExportTotalVehicles
             // 
             this.txtExportTotalVehicles.Location = new System.Drawing.Point(450, 4);
@@ -496,6 +512,7 @@
             this.txtExportTotalVehicles.Size = new System.Drawing.Size(66, 20);
             this.txtExportTotalVehicles.TabIndex = 3;
             this.txtExportTotalVehicles.ValidatingType = typeof(int);
+            this.txtExportTotalVehicles.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtExportTotalVehicles_MaskInputRejected);
             this.txtExportTotalVehicles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtExportTotalVehicles_KeyDown);
             this.txtExportTotalVehicles.Leave += new System.EventHandler(this.txtExportTotalVehicles_Leave);
             // 
@@ -557,6 +574,22 @@
             this.gbImportDeclaration.TabIndex = 21;
             this.gbImportDeclaration.TabStop = false;
             this.gbImportDeclaration.Text = "Thông tin tờ khai nhập khẩu";
+            // 
+            // txtTypeImport
+            // 
+            this.txtTypeImport.Location = new System.Drawing.Point(347, 25);
+            this.txtTypeImport.Name = "txtTypeImport";
+            this.txtTypeImport.Size = new System.Drawing.Size(100, 26);
+            this.txtTypeImport.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(251, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Loại hình";
             // 
             // label2
             // 
@@ -670,38 +703,6 @@
             this.cbImportHasDeclaration.Text = "Khai báo tờ khai nhập khẩu";
             this.cbImportHasDeclaration.UseVisualStyleBackColor = true;
             this.cbImportHasDeclaration.CheckedChanged += new System.EventHandler(this.cbImportHasDeclaration_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(224, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Loại hình";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(251, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Loại hình";
-            // 
-            // txtTypeExport
-            // 
-            this.txtTypeExport.Location = new System.Drawing.Point(319, 25);
-            this.txtTypeExport.Name = "txtTypeExport";
-            this.txtTypeExport.Size = new System.Drawing.Size(142, 26);
-            this.txtTypeExport.TabIndex = 11;
-            // 
-            // txtTypeImport
-            // 
-            this.txtTypeImport.Location = new System.Drawing.Point(347, 25);
-            this.txtTypeImport.Name = "txtTypeImport";
-            this.txtTypeImport.Size = new System.Drawing.Size(100, 26);
-            this.txtTypeImport.TabIndex = 12;
             // 
             // frmExport
             // 

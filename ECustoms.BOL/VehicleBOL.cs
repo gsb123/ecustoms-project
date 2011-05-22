@@ -111,9 +111,9 @@ namespace ECustoms.BOL
         }
 
 
-        public List<VehicleInfo> GetExportingVehicles(int mode,string search)
+        public List<VehicleInfo> GetExportingVehicles(int mode, int declarationID, string search)
         {
-            return _vehicleDAL.GetExportingVehicles(mode,search);
+            return _vehicleDAL.GetExportingVehicles(mode, declarationID, search);
         }
 
         /// <summary>
@@ -221,9 +221,9 @@ namespace ECustoms.BOL
 
                 return _vehicleDAL.Update(vehicleInfo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -302,11 +302,15 @@ namespace ECustoms.BOL
                 {
                     vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
                 }
+
+                if (_vehicleDAL.IsExistVehicleInDeclaration(vehicleInfo.PlateNumber, vehicleInfo.DeclarationID))
+                    throw new Exception("Biển số phương tiện đã tồn tại trong tời khai này");
+
                 return _vehicleDAL.Insert(vehicleInfo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
     }

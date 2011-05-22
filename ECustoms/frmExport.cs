@@ -126,7 +126,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
 
         }
@@ -174,7 +174,7 @@ namespace ECustoms
             declarationInfo.ModifiedDate = DateTime.Now;
             declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
             declarationInfo.ExportType = txtTypeExport.Text.Trim();
-            
+
 
             // import
             if (!string.IsNullOrEmpty(txtImportNumber.Text.Trim()))
@@ -282,8 +282,13 @@ namespace ECustoms
 
                     if (!declarationInfo.HasDeclaration)
                     {
-                        cbExportHasDeclaration.Checked = true;
+                        cbExportHasDeclaration.Checked = false;
                         gbExportDeclaration.Enabled = false;
+                    }
+                    else
+                    {
+                        cbExportHasDeclaration.Checked = true;
+                        gbExportDeclaration.Enabled = true;
                     }
 
                     txtImportNumber.Text = declarationInfo.ImportNumber.ToString();
@@ -293,8 +298,13 @@ namespace ECustoms
                     txtImportUnit.Text = declarationInfo.ImportUnit;
                     if (!declarationInfo.ImportHasDeclaration)
                     {
-                        cbImportHasDeclaration.Checked = true;
+                        cbImportHasDeclaration.Checked = false;
                         gbImportDeclaration.Enabled = false;
+                    }
+                    else
+                    {
+                        cbImportHasDeclaration.Checked = true;
+                        gbImportDeclaration.Enabled = true;
                     }
                 }
 
@@ -534,6 +544,7 @@ namespace ECustoms
                     declarationInfo.ProductName = txtExportProductName.Text;
                     declarationInfo.ProductAmount = txtExportProductAmount.Text;
                     declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
+                  
                     // Bind the gridview data to the vehicleInfo object, make sure, the vehicleInfotem dat is same as the gridview.
                     // Validate data of the gridview.
                     // Clear the tem data
@@ -676,6 +687,7 @@ namespace ECustoms
                 txtImportProductName.Text = txtExportProductName.Text;
                 txtImportProductAmount.Text = txtExportProductAmount.Text;
                 txtImportUnit.Text = txtExportUnit.Text;
+                txtTypeImport.Text = txtTypeExport.Text;
             }
         }
 
@@ -695,17 +707,30 @@ namespace ECustoms
         {
             if (e.KeyValue.Equals(13))// Enter key
             {
-                if (string.IsNullOrEmpty(txtExportTotalVehicles.Text)) return;
-                var totalVehicles = Convert.ToInt32(txtExportTotalVehicles.Text);
-                VehicleInfo vehicleInfo;
-                for (int i = 0; i < totalVehicles; i++)
+                try
                 {
-                    vehicleInfo = new VehicleInfo();
-                    // Add to the list object
-                    _vehicleInfosTemp.Add(vehicleInfo);
+
+                    if (string.IsNullOrEmpty(txtExportTotalVehicles.Text)) return;
+                    var totalVehicles = Convert.ToInt32(txtExportTotalVehicles.Text);
+
+                    if (_vehicleInfosTemp.Count > totalVehicles)
+                        throw new Exception("Bạn phải nhập số phương tiện lớn hơn số phương tiện hiện tại hoặc bạn phải xóa phương tiện đi");
+
+                    VehicleInfo vehicleInfo;
+                    var bias = totalVehicles - _vehicleInfosTemp.Count;
+                    for (int i = 0; i < bias; i++)
+                    {
+                        vehicleInfo = new VehicleInfo();
+                        // Add to the list object
+                        _vehicleInfosTemp.Add(vehicleInfo);
+                    }
+                    // Bind to datagrid
+                    BindVehicle(_vehicleInfosTemp);
                 }
-                // Bind to datagrid
-                BindVehicle(_vehicleInfosTemp);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -758,7 +783,7 @@ namespace ECustoms
 
         private void btnAddExisting_Click(object sender, EventArgs e)
         {
-            var frmSelect = new frmVehicleSelect();
+            var frmSelect = new frmVehicleSelect(_declerationID);
             frmSelect.OnSelectedVehichle += new frmVehicleSelect.OnSelectedVehicleHandler(frmSelect_OnSelectedVehichle);
             frmSelect.ShowDialog();
 
@@ -781,6 +806,11 @@ namespace ECustoms
         }
 
         private void txtImportProductName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtExportTotalVehicles_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

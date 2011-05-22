@@ -17,19 +17,22 @@ namespace ECustoms
         public event OnSelectedVehicleHandler OnSelectedVehichle;
         public delegate void OnSelectedVehicleHandler(object sender, EventArgs e);
         private List<VehicleInfo> _vehicleList;
-        public frmVehicleSelect()
+        private int _declarationID;
+        public frmVehicleSelect(int declarationID)
         {
             InitializeComponent();
-           
+            _declarationID = declarationID;
+
         }
 
-        private void LoadExportedVehichles(int mode, string search)
+
+        private void LoadExportedVehichles(int mode, int declarationID, string search)
         {
             try
             {
                 var verhichBL = new VehicleBOL();
 
-                _vehicleList = verhichBL.GetExportingVehicles(mode, search);
+                _vehicleList = verhichBL.GetExportingVehicles(mode, declarationID, search);
                 grdVehicle.AutoGenerateColumns = false;
                 grdVehicle.DataSource = _vehicleList;
             }
@@ -91,7 +94,7 @@ namespace ECustoms
             // Search
             // Exported
             int mode = 3;
-            LoadExportedVehichles(mode, txtPlate.Text.Trim());
+            LoadExportedVehichles(mode, _declarationID, txtPlate.Text.Trim());
         }
 
     }

@@ -103,7 +103,7 @@ namespace ECustoms
                         xeCohangNC = xeCohangNC + 1;
                     }
 
-                    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported") && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
+                    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
                     {
                         xeCohangXC = xeCohangXC + 1;
                     }
@@ -280,12 +280,22 @@ namespace ECustoms
                     excel.Cells[rowIndex + 1, 7] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_NAME].ToString();
                     excel.Cells[rowIndex + 1, 8] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_AMOUNT].ToString();
                     excel.Cells[rowIndex + 1, 9] = dataRow[ConstantInfo.TBL_DECLARATION_UNIT].ToString();
-                    excel.Cells[rowIndex + 1, 10] = dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString();
+                    if (!dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString().Equals("1/1/1900 12:00:00 AM") && !dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString().Equals(""))
+                        excel.Cells[rowIndex + 1, 10] = dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString();
+                    else
+                        excel.Cells[rowIndex + 1, 10] = "N/A";
                     excel.Cells[rowIndex + 1, 11] = dataRow["ImportNumber"].ToString();
                     excel.Cells[rowIndex + 1, 12] = dataRow["ImportCompanyName"].ToString();
                     excel.Cells[rowIndex + 1, 13] = dataRow["ImportProductName"].ToString();
                     excel.Cells[rowIndex + 1, 14] = dataRow["ImportProductAmount"].ToString();
-                    excel.Cells[rowIndex + 1, 15] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
+
+                    string a = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
+                    if (!dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString().Equals("1/1/1900 12:00:00 AM") && !dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString().Equals(""))
+                        excel.Cells[rowIndex + 1, 15] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
+                    else
+                        excel.Cells[rowIndex + 1, 15] = "N/A";
+
+
                     excel.Cells[rowIndex + 1, 16] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
 
                     try
