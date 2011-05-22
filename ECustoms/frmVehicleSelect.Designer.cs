@@ -122,7 +122,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = global::ECustoms.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(765, 440);
+            this.btnClose.Location = new System.Drawing.Point(153, 377);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(71, 33);
             this.btnClose.TabIndex = 14;
@@ -137,7 +137,7 @@
             this.btnAddVehichle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddVehichle.Image = global::ECustoms.Properties.Resources._001_01;
             this.btnAddVehichle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddVehichle.Location = new System.Drawing.Point(630, 440);
+            this.btnAddVehichle.Location = new System.Drawing.Point(18, 377);
             this.btnAddVehichle.Name = "btnAddVehichle";
             this.btnAddVehichle.Size = new System.Drawing.Size(129, 33);
             this.btnAddVehichle.TabIndex = 15;
@@ -150,7 +150,7 @@
             // 
             this.groupBox1.Controls.Add(this.grdVehicle);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 138);
+            this.groupBox1.Location = new System.Drawing.Point(12, 90);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(835, 281);
             this.groupBox1.TabIndex = 16;
@@ -164,7 +164,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(18, 88);
+            this.btnSearch.Location = new System.Drawing.Point(12, 42);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(111, 33);
             this.btnSearch.TabIndex = 17;
@@ -177,7 +177,7 @@
             // 
             this.lbOldPass.AutoSize = true;
             this.lbOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOldPass.Location = new System.Drawing.Point(14, 23);
+            this.lbOldPass.Location = new System.Drawing.Point(8, 9);
             this.lbOldPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbOldPass.Name = "lbOldPass";
             this.lbOldPass.Size = new System.Drawing.Size(188, 20);
@@ -187,7 +187,7 @@
             // txtPlate
             // 
             this.txtPlate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPlate.Location = new System.Drawing.Point(264, 22);
+            this.txtPlate.Location = new System.Drawing.Point(203, 12);
             this.txtPlate.Name = "txtPlate";
             this.txtPlate.Size = new System.Drawing.Size(182, 20);
             this.txtPlate.TabIndex = 19;
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 485);
+            this.ClientSize = new System.Drawing.Size(856, 417);
             this.Controls.Add(this.txtPlate);
             this.Controls.Add(this.lbOldPass);
             this.Controls.Add(this.btnSearch);
