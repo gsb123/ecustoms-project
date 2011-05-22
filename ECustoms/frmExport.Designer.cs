@@ -119,7 +119,7 @@
             this.txtExportProductName.Location = new System.Drawing.Point(152, 91);
             this.txtExportProductName.Name = "txtExportProductName";
             this.txtExportProductName.Size = new System.Drawing.Size(309, 26);
-            this.txtExportProductName.TabIndex = 7;
+            this.txtExportProductName.TabIndex = 8;
             // 
             // lblCompanyName
             // 
@@ -136,7 +136,7 @@
             this.txtExportCompanyName.Multiline = true;
             this.txtExportCompanyName.Name = "txtExportCompanyName";
             this.txtExportCompanyName.Size = new System.Drawing.Size(309, 28);
-            this.txtExportCompanyName.TabIndex = 6;
+            this.txtExportCompanyName.TabIndex = 7;
             // 
             // lblProductAmount
             // 
@@ -152,7 +152,7 @@
             this.txtExportProductAmount.Location = new System.Drawing.Point(152, 123);
             this.txtExportProductAmount.Name = "txtExportProductAmount";
             this.txtExportProductAmount.Size = new System.Drawing.Size(139, 26);
-            this.txtExportProductAmount.TabIndex = 8;
+            this.txtExportProductAmount.TabIndex = 9;
             // 
             // lblUnit
             // 
@@ -168,7 +168,7 @@
             this.txtExportUnit.Location = new System.Drawing.Point(152, 155);
             this.txtExportUnit.Name = "txtExportUnit";
             this.txtExportUnit.Size = new System.Drawing.Size(139, 26);
-            this.txtExportUnit.TabIndex = 9;
+            this.txtExportUnit.TabIndex = 10;
             this.txtExportUnit.Leave += new System.EventHandler(this.txtExportUnit_Leave);
             // 
             // groupBoxVehicle
@@ -493,7 +493,7 @@
             this.txtTypeExport.Location = new System.Drawing.Point(319, 25);
             this.txtTypeExport.Name = "txtTypeExport";
             this.txtTypeExport.Size = new System.Drawing.Size(142, 26);
-            this.txtTypeExport.TabIndex = 11;
+            this.txtTypeExport.TabIndex = 6;
             // 
             // label1
             // 
@@ -614,7 +614,7 @@
             this.txtImportProductName.Location = new System.Drawing.Point(154, 91);
             this.txtImportProductName.Name = "txtImportProductName";
             this.txtImportProductName.Size = new System.Drawing.Size(293, 26);
-            this.txtImportProductName.TabIndex = 13;
+            this.txtImportProductName.TabIndex = 14;
             this.txtImportProductName.TextChanged += new System.EventHandler(this.txtImportProductName_TextChanged);
             // 
             // label4
@@ -640,7 +640,7 @@
             this.txtImportCompanyName.Multiline = true;
             this.txtImportCompanyName.Name = "txtImportCompanyName";
             this.txtImportCompanyName.Size = new System.Drawing.Size(293, 28);
-            this.txtImportCompanyName.TabIndex = 12;
+            this.txtImportCompanyName.TabIndex = 13;
             // 
             // label5
             // 
@@ -656,14 +656,14 @@
             this.txtImportProductAmount.Location = new System.Drawing.Point(154, 123);
             this.txtImportProductAmount.Name = "txtImportProductAmount";
             this.txtImportProductAmount.Size = new System.Drawing.Size(139, 26);
-            this.txtImportProductAmount.TabIndex = 14;
+            this.txtImportProductAmount.TabIndex = 15;
             // 
             // txtImportUnit
             // 
             this.txtImportUnit.Location = new System.Drawing.Point(154, 155);
             this.txtImportUnit.Name = "txtImportUnit";
             this.txtImportUnit.Size = new System.Drawing.Size(139, 26);
-            this.txtImportUnit.TabIndex = 15;
+            this.txtImportUnit.TabIndex = 16;
             this.txtImportUnit.Leave += new System.EventHandler(this.txtImportUnit_Leave);
             // 
             // label6
