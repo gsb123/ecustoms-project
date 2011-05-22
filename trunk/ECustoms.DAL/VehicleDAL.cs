@@ -49,11 +49,13 @@ namespace ECustoms.DAL
                 parameters[13] = new SqlParameter("@ConfirmExportBy", Convert.ToInt32(vehicleInfo.ConfirmExportBy));
                 parameters[14] = new SqlParameter("@ConfirmLocalImportBy", Convert.ToInt32(vehicleInfo.ConfirmLocalImportBy));
 
+
+
                 return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_INSERTVEHICLE, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -83,7 +85,7 @@ namespace ECustoms.DAL
         }
 
 
-        public List<VehicleInfo> GetExportingVehicles(int mode, string search)
+        public List<VehicleInfo> GetExportingVehicles(int mode, int declarationID, string search)
         {
             var result = new List<VehicleInfo>();
             VehicleInfo vehicleInfo;
@@ -93,20 +95,20 @@ namespace ECustoms.DAL
                 if (search.Equals(""))
                 {
                     if (mode == 1)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND NOT DeclarationID =" + declarationID;
                     else if (mode == 2)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng'";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND NOT DeclarationID =" + declarationID;
                     else if (mode == 3) //Vehicle is exported
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND NOT DeclarationID =" + declarationID;
                 }
                 else
                 {
                     if (mode == 1)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber like '%"+search+"%'";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
                     else if (mode == 2)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND PlateNumber like '%" + search + "%'";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
                     else if (mode == 3) //Vehicle is exported
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND PlateNumber like '%" + search + "%'";
+                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
                 }
                 var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
                 foreach (DataRow dr in dataTable.Rows)
@@ -216,11 +218,26 @@ namespace ECustoms.DAL
                 }
                 return vehicleInfo;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
+
+        public bool IsExistVehicleInDeclaration(string plateNumber, int declarationID)
+        {
+            var parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@PlateNumber", plateNumber);
+            parameters[1] = new SqlParameter("@DeclarationID", declarationID);
+
+            var dataTable = _dbConnection.ExecuteSelectQuery("st_IsExistVehicleInDeclaration", parameters);
+            if (dataTable.Rows.Count == 1)
+                return true;
+
+            return false;
+
+        }
+
 
         /// <summary>
         /// Update vehicle
@@ -253,12 +270,11 @@ namespace ECustoms.DAL
                 parameters[17] = new SqlParameter("@ConfirmExportBy", Convert.ToInt32(vehicleInfo.ConfirmExportBy));
                 parameters[18] = new SqlParameter("@ConfirmLocalImportBy", Convert.ToInt32(vehicleInfo.ConfirmLocalImportBy));
 
-
                 return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_UPDATEVEHICLE, parameters);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 

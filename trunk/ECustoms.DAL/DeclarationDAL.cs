@@ -32,7 +32,7 @@ namespace ECustoms.DAL
             var result = -1;
             try
             {                
-                var parameters = new SqlParameter[16];
+                var parameters = new SqlParameter[18];
 
                 parameters[0] = new SqlParameter("@Number", declarationInfo.Number);
                 parameters[1] = new SqlParameter("@ProductName", declarationInfo.ProductName);
@@ -50,6 +50,11 @@ namespace ECustoms.DAL
                 parameters[13] = new SqlParameter("@ImportProductAmount", declarationInfo.ImportProductAmount);
                 parameters[14] = new SqlParameter("@ImportUnit", declarationInfo.ImportUnit);
                 parameters[15] = new SqlParameter("@ImportHasDeclaration", Convert.ToInt32(declarationInfo.ImportHasDeclaration));
+
+                // Phuong Added
+                parameters[16] = new SqlParameter("@ImportType", declarationInfo.ImportType);
+                parameters[17] = new SqlParameter("@ExportType", declarationInfo.ExportType);
+             
                 
 
                 result = Convert.ToInt32( _dbConnection.ExecuteScalar(ConstantInfo.SP_INSERTDECLARATION, parameters));                
@@ -120,7 +125,7 @@ namespace ECustoms.DAL
             var result = -1;
             try
             {
-                var parameters = new SqlParameter[15];
+                var parameters = new SqlParameter[17];
                 parameters[0] = new SqlParameter("@DeclerationID", declerationInfo.DeclarationID);
                 parameters[1] = new SqlParameter("@Number", declerationInfo.Number);
                 parameters[2] = new SqlParameter("@ProductName", declerationInfo.ProductName);
@@ -136,7 +141,12 @@ namespace ECustoms.DAL
                 parameters[11] = new SqlParameter("@ImportCompanyName", declerationInfo.ImportCompanyName);
                 parameters[12] = new SqlParameter("@ImportProductAmount", declerationInfo.ImportProductAmount);
                 parameters[13] = new SqlParameter("@ImportUnit", declerationInfo.ImportUnit);
-                parameters[14] = new SqlParameter("@ImportHasDeclaration", Convert.ToInt32(declerationInfo.ImportHasDeclaration));                
+                parameters[14] = new SqlParameter("@ImportHasDeclaration", Convert.ToInt32(declerationInfo.ImportHasDeclaration));
+
+                // Phuong Added
+                parameters[15] = new SqlParameter("@ImportType", declerationInfo.ImportType);
+                parameters[16] = new SqlParameter("@ExportType", declerationInfo.ExportType);
+             
 
                 result = Convert.ToInt32(_dbConnection.ExecuteScalar(ConstantInfo.SP_UPDATEDECLARATION, parameters));
                 return result;
