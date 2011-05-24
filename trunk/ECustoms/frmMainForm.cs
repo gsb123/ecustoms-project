@@ -28,6 +28,12 @@ namespace ECustoms
         {
             this.Text = "Khai báo xuất nhập cảnh" + ConstantInfo.MESSAGE_TITLE;
             InitData();
+            this.FormClosed += new FormClosedEventHandler(frmMainForm_FormClosed);
+        }
+
+        void frmMainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         /// <summary>
