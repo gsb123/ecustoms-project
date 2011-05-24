@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
@@ -17,6 +18,7 @@ namespace ECustoms
         private DeclarationBOL _declarationBOL;
         private UserInfo _userInfo;
         private Form _parrent;
+        private System.Timers.Timer aTimer;
         private List<DeclarationInfo> _listDeclarationinfo;
         public frmDecleration()
         {
@@ -30,16 +32,46 @@ namespace ECustoms
             _parrent = parrent;
         }
 
+
         private void frmDecleration_Load(object sender, EventArgs e)
         {
+            this.FormClosed += new FormClosedEventHandler(frmDecleration_FormClosed);
             this.Text = "Danh sách tờ khai" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
             _declarationBOL = new DeclarationBOL();
+            this._listDeclarationinfo = _declarationBOL.GetDecleration();
             BindData();
             txtDeclaraceNumber.Focus();
             InitialPermission();
+
+            //Start a timer
+
+            // The secret here :)
+            this.aTimer = new System.Timers.Timer();
+            this.aTimer.Elapsed += new ElapsedEventHandler(OnTimerMonitor);
+            this.aTimer.Interval = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["TimeDelay"])*1000;
+            this.aTimer.Enabled = true;
         }
+
+        void frmDecleration_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.aTimer.Enabled = false;
+
+        }
+
+        private void OnTimerMonitor(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            MonitorContacIdCallback monitorContacIdCallback = new MonitorContacIdCallback(BindData);
+            this.Invoke(monitorContacIdCallback);
+        }
+
+
+
+
+        private delegate void MonitorContacIdCallback();
+
+
 
         /// <summary>
         /// Personal check
@@ -55,8 +87,8 @@ namespace ECustoms
             else if (_userInfo.Type == UserType.Confirm)
             {
                 btnDelete.Enabled = false;
-                
-               
+
+
             }
             else if (_userInfo.Type == UserType.Input)
             {
@@ -71,6 +103,7 @@ namespace ECustoms
             grvDecleration.AutoGenerateColumns = false;
             _listDeclarationinfo = _declarationBOL.GetDecleration();
             grvDecleration.DataSource = _listDeclarationinfo;
+            // grvDecleration.DataSource = _declarationBOL.GetDecleration();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -158,7 +191,7 @@ namespace ECustoms
                 {
                     rowIndex++;
                     excel.Cells[rowIndex + 1, 1] = declarationInfo.Number;
-                    excel.Cells[rowIndex + 1, 2] = declarationInfo.ImportNumber;                    
+                    excel.Cells[rowIndex + 1, 2] = declarationInfo.ImportNumber;
                     excel.Cells[rowIndex + 1, 3] = declarationInfo.ProductName;
                     excel.Cells[rowIndex + 1, 4] = declarationInfo.ImportProductName;
                     excel.Cells[rowIndex + 1, 5] = declarationInfo.CompanyName;
@@ -227,7 +260,7 @@ namespace ECustoms
 
             if (string.IsNullOrEmpty(declarationNumber) && string.IsNullOrEmpty(companyName))
             {
-                BindData();                
+                BindData();
             }
         }
     }
