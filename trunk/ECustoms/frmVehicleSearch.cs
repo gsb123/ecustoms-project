@@ -66,7 +66,7 @@ namespace ECustoms
         {
             grdVehicle.AutoGenerateColumns = false;
             System.Data.DataTable dataTable;
-            _dtResult = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
+            _dtResult = _vehicleBOL.SearchVehicle(txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
                                                      dtpExportFrom.Value, dtpExportTo.Value);
 
             grdVehicle.DataSource = _dtResult;
@@ -77,9 +77,21 @@ namespace ECustoms
 
                 for (int i = 0; i < grdVehicle.Rows.Count; i++)
                 {
-                    if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year.Equals(1900))
+
+
+                    if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year <= 1900)
                     {
                         grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value = "";
+
+                    }
+                    if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null && grdVehicle.Rows[i].Cells["ExportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value).Year <= 1900)
+                    {
+                        grdVehicle.Rows[i].Cells["ExportDate"].Value = "";
+                    }
+
+                    if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null && grdVehicle.Rows[i].Cells["ImportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value).Year <= 1900)
+                    {
+                        grdVehicle.Rows[i].Cells["ImportDate"].Value = "";
                     }
                 }
 
@@ -124,7 +136,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.Message);
             }
 
         }
@@ -150,7 +162,7 @@ namespace ECustoms
             // Import
             if (!cbIsExport.Checked && cbIsImport.Checked)
             {
-                MessageBox.Show("Bạn phải nhập thời gian nhập cảnh.");
+                MessageBox.Show("Bạn phải nhập thời gian xuất cảnh cảnh.");
                 cbIsImport.Checked = false;
                 return;
             }
@@ -272,52 +284,58 @@ namespace ECustoms
                 {
                     rowIndex++;
                     excel.Cells[rowIndex + 1, 1] = dataRow[ConstantInfo.TBL_DECLARATION_NUMBER].ToString();
-                    excel.Cells[rowIndex + 1, 2] = dataRow[ConstantInfo.TBL_VEHICLE_PLATE_NUMBER].ToString();
-                    excel.Cells[rowIndex + 1, 3] = dataRow[ConstantInfo.TBL_VEHICLE_DRIVER_NAME].ToString();
-                    excel.Cells[rowIndex + 1, 4] = dataRow[ConstantInfo.TBL_VEHICLE_STATUS].ToString();
-                    excel.Cells[rowIndex + 1, 5] = dataRow[ConstantInfo.TBL_VEHICLE_NOTE].ToString();
-                    excel.Cells[rowIndex + 1, 6] = dataRow[ConstantInfo.TBL_DECLARATION_COMPANY_NAME].ToString();
-                    excel.Cells[rowIndex + 1, 7] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_NAME].ToString();
-                    excel.Cells[rowIndex + 1, 8] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_AMOUNT].ToString();
-                    excel.Cells[rowIndex + 1, 9] = dataRow[ConstantInfo.TBL_DECLARATION_UNIT].ToString();
-                    if (!dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString().Equals("1/1/1900 12:00:00 AM") && !dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString().Equals(""))
-                        excel.Cells[rowIndex + 1, 10] = dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString();
+                    excel.Cells[rowIndex + 1, 2] = dataRow["ExportType"].ToString();
+                    excel.Cells[rowIndex + 1, 3] = dataRow[ConstantInfo.TBL_VEHICLE_PLATE_NUMBER].ToString();
+                    excel.Cells[rowIndex + 1, 4] = dataRow[ConstantInfo.TBL_VEHICLE_DRIVER_NAME].ToString();
+                    excel.Cells[rowIndex + 1, 5] = dataRow[ConstantInfo.TBL_VEHICLE_STATUS].ToString();
+                    excel.Cells[rowIndex + 1, 6] = dataRow[ConstantInfo.TBL_VEHICLE_NOTE].ToString();
+                    excel.Cells[rowIndex + 1, 7] = dataRow[ConstantInfo.TBL_DECLARATION_COMPANY_NAME].ToString();
+                    excel.Cells[rowIndex + 1, 8] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_NAME].ToString();
+                    excel.Cells[rowIndex + 1, 9] = dataRow[ConstantInfo.TBL_DECLARATION_PRODUCT_AMOUNT].ToString();
+                    excel.Cells[rowIndex + 1, 10] = dataRow[ConstantInfo.TBL_DECLARATION_UNIT].ToString();
+                    if (!dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString().Equals("") && Convert.ToDateTime(dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE]).Year > 1900)
+                        excel.Cells[rowIndex + 1, 11] = dataRow[ConstantInfo.TBL_VEHICLE_EXPORT_DATE].ToString();
                     else
-                        excel.Cells[rowIndex + 1, 10] = "N/A";
-                    excel.Cells[rowIndex + 1, 11] = dataRow["ImportNumber"].ToString();
-                    excel.Cells[rowIndex + 1, 12] = dataRow["ImportCompanyName"].ToString();
-                    excel.Cells[rowIndex + 1, 13] = dataRow["ImportProductName"].ToString();
-                    excel.Cells[rowIndex + 1, 14] = dataRow["ImportProductAmount"].ToString();
+                        excel.Cells[rowIndex + 1, 11] = "N/A";
+                    excel.Cells[rowIndex + 1, 12] = dataRow["ImportNumber"].ToString();
+                    excel.Cells[rowIndex + 1, 13] = dataRow["ImportType"].ToString();
+
+                    excel.Cells[rowIndex + 1, 14] = dataRow["ImportCompanyName"].ToString();
+                    excel.Cells[rowIndex + 1, 15] = dataRow["ImportProductName"].ToString();
+                    excel.Cells[rowIndex + 1, 16] = dataRow["ImportProductAmount"].ToString();
 
                     string a = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
-                    if (!dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString().Equals("1/1/1900 12:00:00 AM") && !dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString().Equals(""))
-                        excel.Cells[rowIndex + 1, 15] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
+                    if (!dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString().Equals("") && Convert.ToDateTime(dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE]).Year > 1900)
+                        excel.Cells[rowIndex + 1, 17] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_DATE].ToString();
                     else
-                        excel.Cells[rowIndex + 1, 15] = "N/A";
+                        excel.Cells[rowIndex + 1, 17] = "N/A";
 
 
-                    excel.Cells[rowIndex + 1, 16] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
+                    excel.Cells[rowIndex + 1, 18] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
 
                     try
                     {
                         if (dataRow[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME] != null && Convert.ToDateTime(dataRow[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME]).Year > 1900)
                         {
-                            excel.Cells[rowIndex + 1, 17] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME].ToString();
+                            excel.Cells[rowIndex + 1, 19] = dataRow[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME].ToString();
                         }
                         else
                         {
-                            excel.Cells[rowIndex + 1, 17] = "";
+                            excel.Cells[rowIndex + 1, 19] = "N/A";
                         }
 
                     }
                     catch (Exception)
                     {
-                        excel.Cells[rowIndex + 1, 17] = "";
+                        excel.Cells[rowIndex + 1, 19] = "N/A";
                     }
 
-                    excel.Cells[rowIndex + 1, 18] = dataRow["ConfirmImportBy"].ToString();
-                    excel.Cells[rowIndex + 1, 19] = dataRow["ConfirmExportBy"].ToString();
-                    excel.Cells[rowIndex + 1, 20] = dataRow["ConfirmLocalImportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 20] = dataRow["ConfirmImportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 21] = dataRow["ConfirmExportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 22] = dataRow["ConfirmLocalImportBy"].ToString();
+
+
+
 
                     excel.Visible = true;
                     var worksheet = (Worksheet)excel.ActiveSheet;
