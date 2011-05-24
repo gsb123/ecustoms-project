@@ -136,20 +136,20 @@ namespace ECustoms.DAL
         /// 0- Not import and export
         /// </param>
         /// <returns>List vehicleInfo object</returns>
-        public DataTable SearchVehicle(bool isCompleted, string plateNumber, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo, int searchType)
+        public DataTable SearchVehicle( string plateNumber, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo, int searchType)
         {
             var result = new List<VehicleInfo>();
             VehicleInfo vehicleInfo;
             try
             {
-                var parameters = new SqlParameter[7];
-                parameters[0] = new SqlParameter("@IsCompleted", isCompleted);
-                parameters[1] = new SqlParameter("@PlateNumber", plateNumber);
-                parameters[2] = new SqlParameter("@ImportFrom", importFrom);
-                parameters[3] = new SqlParameter("@ImportTo", importTo);
-                parameters[4] = new SqlParameter("@ExportFrom", exportFrom);
-                parameters[5] = new SqlParameter("@ExportTo", exportTo);
-                parameters[6] = new SqlParameter("@SearchType", searchType);
+                var parameters = new SqlParameter[6];
+               // parameters[0] = new SqlParameter("@IsCompleted", isCompleted);
+                parameters[0] = new SqlParameter("@PlateNumber", plateNumber);
+                parameters[1] = new SqlParameter("@ImportFrom", importFrom);
+                parameters[2] = new SqlParameter("@ImportTo", importTo);
+                parameters[3] = new SqlParameter("@ExportFrom", exportFrom);
+                parameters[4] = new SqlParameter("@ExportTo", exportTo);
+                parameters[5] = new SqlParameter("@SearchType", searchType);
 
                 var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_SEARCHVEHICLE, parameters);
                 //foreach (DataRow dr in dataTable.Rows)
