@@ -90,6 +90,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoExport = new System.Windows.Forms.RadioButton();
             this.cbImportHasDeclaration = new System.Windows.Forms.CheckBox();
+            this.btnComfirmExport = new System.Windows.Forms.Button();
+            this.bntConfirmImportCH = new System.Windows.Forms.Button();
+            this.btnConfirmImportKH = new System.Windows.Forms.Button();
             this.groupBoxVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.gbExportDeclaration.SuspendLayout();
@@ -704,11 +707,44 @@
             this.cbImportHasDeclaration.UseVisualStyleBackColor = true;
             this.cbImportHasDeclaration.CheckedChanged += new System.EventHandler(this.cbImportHasDeclaration_CheckedChanged);
             // 
+            // btnComfirmExport
+            // 
+            this.btnComfirmExport.Location = new System.Drawing.Point(1009, 283);
+            this.btnComfirmExport.Name = "btnComfirmExport";
+            this.btnComfirmExport.Size = new System.Drawing.Size(171, 50);
+            this.btnComfirmExport.TabIndex = 24;
+            this.btnComfirmExport.Text = "Xác nhận xuất cảnh";
+            this.btnComfirmExport.UseVisualStyleBackColor = true;
+            this.btnComfirmExport.Click += new System.EventHandler(this.btnComfirmExport_Click);
+            // 
+            // bntConfirmImportCH
+            // 
+            this.bntConfirmImportCH.Location = new System.Drawing.Point(1009, 342);
+            this.bntConfirmImportCH.Name = "bntConfirmImportCH";
+            this.bntConfirmImportCH.Size = new System.Drawing.Size(171, 50);
+            this.bntConfirmImportCH.TabIndex = 25;
+            this.bntConfirmImportCH.Text = "Xác nhận nhập cảnh có hàng";
+            this.bntConfirmImportCH.UseVisualStyleBackColor = true;
+            this.bntConfirmImportCH.Click += new System.EventHandler(this.bntConfirmImportCH_Click);
+            // 
+            // btnConfirmImportKH
+            // 
+            this.btnConfirmImportKH.Location = new System.Drawing.Point(1009, 407);
+            this.btnConfirmImportKH.Name = "btnConfirmImportKH";
+            this.btnConfirmImportKH.Size = new System.Drawing.Size(171, 50);
+            this.btnConfirmImportKH.TabIndex = 26;
+            this.btnConfirmImportKH.Text = "Xác nhận nhập cảnh không hàng";
+            this.btnConfirmImportKH.UseVisualStyleBackColor = true;
+            this.btnConfirmImportKH.Click += new System.EventHandler(this.btnConfirmImportKH_Click);
+            // 
             // frmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 674);
+            this.ClientSize = new System.Drawing.Size(1242, 674);
+            this.Controls.Add(this.btnConfirmImportKH);
+            this.Controls.Add(this.bntConfirmImportCH);
+            this.Controls.Add(this.btnComfirmExport);
             this.Controls.Add(this.txtExportTotalVehicles);
             this.Controls.Add(this.cbImportHasDeclaration);
             this.Controls.Add(this.lblTotalVehicles);
@@ -794,5 +830,8 @@
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTypeImport;
         public System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnComfirmExport;
+        private System.Windows.Forms.Button bntConfirmImportCH;
+        private System.Windows.Forms.Button btnConfirmImportKH;
     }
 }

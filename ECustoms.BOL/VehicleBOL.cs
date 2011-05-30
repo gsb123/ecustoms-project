@@ -62,12 +62,12 @@ namespace ECustoms.BOL
                     {
                         if (!string.IsNullOrEmpty(dataRow["ImportDate"].ToString()) && Convert.ToDateTime(dataRow["ImportDate"].ToString()).Year.Equals(1900))
                         {
-                            dataRow["ImportDate"] = DBNull.Value;
+                            dataRow["ImportDate"] = DateTime.MinValue;
                         }
 
                         if (!string.IsNullOrEmpty(dataRow["ExportDate"].ToString()) && Convert.ToDateTime(dataRow["ExportDate"].ToString()).Year.Equals(1900))
                         {
-                            dataRow["ExportDate"] = DBNull.Value;
+                            dataRow["ExportDate"] = DateTime.MinValue;
                         }
 
                     }

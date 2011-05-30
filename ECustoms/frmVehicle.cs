@@ -461,13 +461,13 @@ namespace ECustoms
                     //_isImport = true;
                     _isCompleted = true;
 
-                    if (_mode == 1 || _mode == 2 || _mode == 4) // AddNew- Edit - Update mode
+                    if (_mode == 1 || _mode == 2) // AddNew- Edit - Update mode
                     {
                         foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
                         {
                             if (vehicleInfo.Count == _count)
                             {
-                                if (vehicleInfo.ConfirmExportBy == 0)
+                                if (vehicleInfo.ConfirmImportBy == 0)
                                 {
                                     _isImport = true;
                                     vehicleInfo.IsImport = _isImport;
@@ -902,7 +902,8 @@ namespace ECustoms
                 _parrent.grdVehicle.DataSource = null;
                 var listVehicle = _vehicleBOL.SelectByDeclarationID(_parrentDeclaration.DeclarationID);
                 _parrent.BindVehicle(listVehicle);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
