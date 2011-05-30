@@ -544,7 +544,7 @@ namespace ECustoms
                     declarationInfo.ProductName = txtExportProductName.Text;
                     declarationInfo.ProductAmount = txtExportProductAmount.Text;
                     declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
-                  
+
                     // Bind the gridview data to the vehicleInfo object, make sure, the vehicleInfotem dat is same as the gridview.
                     // Validate data of the gridview.
                     // Clear the tem data
@@ -815,6 +815,167 @@ namespace ECustoms
 
         }
 
+
+        #region Confirm Import or export
+
+        private void btnComfirmExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (grdVehicle.SelectedRows.Count == 1)
+                {
+
+                    var message = new StringBuilder();
+                    message.Append("Thời gian xuất cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+
+
+                    if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
+                        {
+                            if (vehicleInfo.Count == Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["Count"].Value))
+                            {
+                                vehicleInfo.ExportDate = DateTime.Now;
+                                vehicleInfo.ExportHour = DateTime.Now.ToString("HH:mm");
+
+                                if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                                    throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                                vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+                                vehicleInfo.IsExport = true;
+
+                                break;
+                            }
+
+                        }
+                        this.BindVehicle(_vehicleInfosTemp);
+
+                        MessageBox.Show("Lưu thành công!");
+                    }
+
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Bạn cần chọn 1 phương tiện");
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+
+            }
+
+        }
+
+        private void bntConfirmImportCH_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                if (grdVehicle.SelectedRows.Count == 1)
+                {
+
+                    var message = new StringBuilder();
+                    message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+
+
+                    if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
+                        {
+                            if (vehicleInfo.Count == Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["Count"].Value))
+                            {
+                                vehicleInfo.ImportDate = DateTime.Now;
+                                vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
+                                vehicleInfo.IsImport = true;
+                                vehicleInfo.HasGoodsImported = true;
+                                vehicleInfo.ImportStatus = "Nhập cảnh có hàng";
+                                if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                                    throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+                                vehicleInfo.ConfirmImportBy = _userInfo.UserID;
+
+                                break;
+                            }
+
+                        }
+                        this.BindVehicle(_vehicleInfosTemp);
+
+                        MessageBox.Show("Lưu thành công!");
+                    }
+
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Bạn cần chọn 1 phương tiện");
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+
+            }
+
+        }
+
+        private void btnConfirmImportKH_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (grdVehicle.SelectedRows.Count == 1)
+                {
+
+                    var message = new StringBuilder();
+                    message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
+
+
+                    if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
+                        {
+                            if (vehicleInfo.Count == Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["Count"].Value))
+                            {
+                                vehicleInfo.ImportDate = DateTime.Now;
+                                vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
+                                vehicleInfo.IsImport = true;
+                                vehicleInfo.HasGoodsImported = true;
+                                vehicleInfo.ImportStatus = "Nhập cảnh không có hàng";
+                                if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                                    throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
+
+                                vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+
+                                break;
+                            }
+
+                        }
+                        this.BindVehicle(_vehicleInfosTemp);
+
+                        MessageBox.Show("Lưu thành công!");
+                    }
+
+                }
+
+                else
+                {
+                    MessageBox.Show("Bạn cần chọn 1 phương tiện");
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+
+            }
+
+        }
+
+        #endregion
 
     }
 }

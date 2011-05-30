@@ -342,6 +342,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.grdVehicle);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(5, 311);
@@ -363,11 +367,12 @@
             this.VehicleID,
             this.Status,
             this.Note});
-            this.grdVehicle.Location = new System.Drawing.Point(11, 25);
+            this.grdVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdVehicle.Location = new System.Drawing.Point(3, 22);
             this.grdVehicle.MultiSelect = false;
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(819, 239);
+            this.grdVehicle.Size = new System.Drawing.Size(830, 245);
             this.grdVehicle.TabIndex = 19;
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
             // 

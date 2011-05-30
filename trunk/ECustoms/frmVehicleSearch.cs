@@ -69,6 +69,8 @@ namespace ECustoms
             _dtResult = _vehicleBOL.SearchVehicle(txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
                                                      dtpExportFrom.Value, dtpExportTo.Value);
 
+
+
             grdVehicle.DataSource = _dtResult;
 
             try
@@ -77,6 +79,7 @@ namespace ECustoms
 
                 for (int i = 0; i < grdVehicle.Rows.Count; i++)
                 {
+
 
 
                     if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year <= 1900)
@@ -93,6 +96,7 @@ namespace ECustoms
                     {
                         grdVehicle.Rows[i].Cells["ImportDate"].Value = "";
                     }
+
                 }
 
                 int xeKhongXC = 0, xeKhongNC = 0, xeCohangNC = 0, xeCohangXC = 0, xeVaoNoiDia = 0;
@@ -133,6 +137,8 @@ namespace ECustoms
                 lblCohangNC.Text = xeCohangNC.ToString();
                 lblKhonghangNC.Text = xeCohangXC.ToString();
                 lblVaonoidia.Text = xeVaoNoiDia.ToString();
+
+
             }
             catch (Exception exception)
             {
@@ -432,7 +438,7 @@ namespace ECustoms
                     if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
-                    vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+                    vehicleInfo.ConfirmImportBy = _userInfo.UserID;
 
                     _vehicleBOL.Update(vehicleInfo);
                 }
