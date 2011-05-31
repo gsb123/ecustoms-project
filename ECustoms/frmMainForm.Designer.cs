@@ -31,20 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.mnMain = new System.Windows.Forms.MenuStrip();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuitemUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuitemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuitemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuitemDeclaration = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolstripLabelWelcome = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButtonDeclarace = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonListdeclarace = new System.Windows.Forms.ToolStripButton();
-            this.menuitemUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemDeclaration = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.vehicleSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewVehiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -74,20 +75,77 @@
             this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(86, 25);
             this.hệThốngToolStripMenuItem.Text = "Hệ thống";
             // 
+            // menuitemUser
+            // 
+            this.menuitemUser.Image = global::ECustoms.Properties.Resources.Users;
+            this.menuitemUser.Name = "menuitemUser";
+            this.menuitemUser.Size = new System.Drawing.Size(248, 26);
+            this.menuitemUser.Text = "Quản lý người dùng";
+            this.menuitemUser.Click += new System.EventHandler(this.menuitemUser_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::ECustoms.Properties.Resources.change_password_icon;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(248, 26);
+            this.toolStripMenuItem1.Text = "Thay đổi mật khẩu";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // menuitemLogout
+            // 
+            this.menuitemLogout.Image = global::ECustoms.Properties.Resources.logout;
+            this.menuitemLogout.Name = "menuitemLogout";
+            this.menuitemLogout.Size = new System.Drawing.Size(248, 26);
+            this.menuitemLogout.Text = "Đăng xuất";
+            this.menuitemLogout.Click += new System.EventHandler(this.menuitemLogout_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(245, 6);
+            // 
+            // menuitemExit
+            // 
+            this.menuitemExit.Image = global::ECustoms.Properties.Resources.exit;
+            this.menuitemExit.Name = "menuitemExit";
+            this.menuitemExit.Size = new System.Drawing.Size(248, 26);
+            this.menuitemExit.Text = "Thoát Khỏi chương trình";
+            this.menuitemExit.Click += new System.EventHandler(this.menuitemExit_Click);
             // 
             // khaiBáoXuấtNhậpKhẩuToolStripMenuItem
             // 
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitemDeclaration,
             this.mnExport,
-            this.vehicleSearch});
+            this.vehicleSearch,
+            this.addNewVehiceToolStripMenuItem});
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem.Name = "khaiBáoXuấtNhậpKhẩuToolStripMenuItem";
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem.Size = new System.Drawing.Size(192, 25);
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem.Text = "Khai báo xuất nhập khẩu";
+            // 
+            // menuitemDeclaration
+            // 
+            this.menuitemDeclaration.Image = global::ECustoms.Properties.Resources.list;
+            this.menuitemDeclaration.Name = "menuitemDeclaration";
+            this.menuitemDeclaration.Size = new System.Drawing.Size(250, 26);
+            this.menuitemDeclaration.Text = "Danh sách tờ khai";
+            this.menuitemDeclaration.Click += new System.EventHandler(this.menuitemDeclaration_Click);
+            // 
+            // mnExport
+            // 
+            this.mnExport.Image = global::ECustoms.Properties.Resources.file_import1;
+            this.mnExport.Name = "mnExport";
+            this.mnExport.Size = new System.Drawing.Size(250, 26);
+            this.mnExport.Text = "Khai báo xuất nhập khẩu";
+            this.mnExport.Click += new System.EventHandler(this.mnExport_Click);
+            // 
+            // vehicleSearch
+            // 
+            this.vehicleSearch.Image = global::ECustoms.Properties.Resources.searchIcon;
+            this.vehicleSearch.Name = "vehicleSearch";
+            this.vehicleSearch.Size = new System.Drawing.Size(250, 26);
+            this.vehicleSearch.Text = "Tìm kiếm phương tiện";
+            this.vehicleSearch.Click += new System.EventHandler(this.vehicleSearch_Click);
             // 
             // toolStrip1
             // 
@@ -145,61 +203,13 @@
             this.toolStripButtonListdeclarace.ToolTipText = "Danh sách tờ khai";
             this.toolStripButtonListdeclarace.Click += new System.EventHandler(this.toolStripButtonListdeclarace_Click);
             // 
-            // menuitemUser
+            // addNewVehiceToolStripMenuItem
             // 
-            this.menuitemUser.Image = global::ECustoms.Properties.Resources.Users;
-            this.menuitemUser.Name = "menuitemUser";
-            this.menuitemUser.Size = new System.Drawing.Size(248, 26);
-            this.menuitemUser.Text = "Quản lý người dùng";
-            this.menuitemUser.Click += new System.EventHandler(this.menuitemUser_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::ECustoms.Properties.Resources.change_password_icon;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(248, 26);
-            this.toolStripMenuItem1.Text = "Thay đổi mật khẩu";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // menuitemLogout
-            // 
-            this.menuitemLogout.Image = global::ECustoms.Properties.Resources.logout;
-            this.menuitemLogout.Name = "menuitemLogout";
-            this.menuitemLogout.Size = new System.Drawing.Size(248, 26);
-            this.menuitemLogout.Text = "Đăng xuất";
-            this.menuitemLogout.Click += new System.EventHandler(this.menuitemLogout_Click);
-            // 
-            // menuitemExit
-            // 
-            this.menuitemExit.Image = global::ECustoms.Properties.Resources.exit;
-            this.menuitemExit.Name = "menuitemExit";
-            this.menuitemExit.Size = new System.Drawing.Size(248, 26);
-            this.menuitemExit.Text = "Thoát Khỏi chương trình";
-            this.menuitemExit.Click += new System.EventHandler(this.menuitemExit_Click);
-            // 
-            // menuitemDeclaration
-            // 
-            this.menuitemDeclaration.Image = global::ECustoms.Properties.Resources.list;
-            this.menuitemDeclaration.Name = "menuitemDeclaration";
-            this.menuitemDeclaration.Size = new System.Drawing.Size(250, 26);
-            this.menuitemDeclaration.Text = "Danh sách tờ khai";
-            this.menuitemDeclaration.Click += new System.EventHandler(this.menuitemDeclaration_Click);
-            // 
-            // mnExport
-            // 
-            this.mnExport.Image = global::ECustoms.Properties.Resources.file_import1;
-            this.mnExport.Name = "mnExport";
-            this.mnExport.Size = new System.Drawing.Size(250, 26);
-            this.mnExport.Text = "Khai báo xuất nhập khẩu";
-            this.mnExport.Click += new System.EventHandler(this.mnExport_Click);
-            // 
-            // vehicleSearch
-            // 
-            this.vehicleSearch.Image = global::ECustoms.Properties.Resources.searchIcon;
-            this.vehicleSearch.Name = "vehicleSearch";
-            this.vehicleSearch.Size = new System.Drawing.Size(250, 26);
-            this.vehicleSearch.Text = "Tìm kiếm phương tiện";
-            this.vehicleSearch.Click += new System.EventHandler(this.vehicleSearch_Click);
+            this.addNewVehiceToolStripMenuItem.Image = global::ECustoms.Properties.Resources._001_01;
+            this.addNewVehiceToolStripMenuItem.Name = "addNewVehiceToolStripMenuItem";
+            this.addNewVehiceToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.addNewVehiceToolStripMenuItem.Text = "Thêm phương tiện";
+            this.addNewVehiceToolStripMenuItem.Click += new System.EventHandler(this.addNewVehiceToolStripMenuItem_Click);
             // 
             // frmMainForm
             // 
@@ -241,5 +251,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripButton toolStripButtonListdeclarace;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addNewVehiceToolStripMenuItem;
     }
 }

@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmVehicleAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVehicleAdd.Designer.cs">
+      <DependentUpon>frmVehicleAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmVehicleAdd.resx">
+      <DependentUpon>frmVehicleAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\change-password-icon.png" />
+    <None Include="Resources\save_icon.gif" />
     <None Include="Resources\change-password-icon1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
