@@ -148,5 +148,10 @@ namespace ECustoms
             frmChangePassword.Show();
 
         }
+
+        private void addNewVehiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

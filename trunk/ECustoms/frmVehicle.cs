@@ -579,6 +579,9 @@ namespace ECustoms
                 grdVehicle.DataSource = null;
                 grdVehicle.DataSource = _newAddingVehicles;
 
+                //Set curent cell for poiter to bottom
+                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
+
                 // MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 ResetForm();
             }
@@ -845,6 +848,10 @@ namespace ECustoms
                 grdVehicle.DataSource = null;
                 grdVehicle.DataSource = _newAddingVehicles;
                 grdVehicle.Refresh();
+                //Set curent cell for poiter to bottom
+                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
+
+
                 _parrent.BindVehicle(_vehicleInfosTemp);
                 txtPlateNumber.Focus();
             }
@@ -858,11 +865,13 @@ namespace ECustoms
             if (string.IsNullOrEmpty(driverName) && string.IsNullOrEmpty(plateNumber))
             {
                 grdVehicle.DataSource = _newAddingVehicles;
+                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count- 1];
             }
 
             var result = _newAddingVehicles.Where(v => (v.DriverName.IndexOf(driverName, StringComparison.InvariantCultureIgnoreCase) >= 0)
                                                            && (v.PlateNumber.IndexOf(plateNumber, StringComparison.InvariantCultureIgnoreCase) >= 0)).ToList();
             grdVehicle.DataSource = result;
+            this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count- 1];
         }
 
         private void grdVehicle_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
