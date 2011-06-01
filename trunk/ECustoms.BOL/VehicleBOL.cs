@@ -52,7 +52,7 @@ namespace ECustoms.BOL
         /// <param name="exportTo">Export to date</param>
         /// <param name="isCompleted"></param>
         /// <returns>List vehicleInfo object</returns>
-        public DataTable SearchVehicle(string plateNumber, bool isExport, bool isImport, bool isNotImport, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo)
+        public DataTable SearchVehicle(bool isCompleted, string plateNumber, bool isExport, bool isImport, bool isNotImport, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ECustoms.BOL
                 {
 
 
-                    dataTable = _vehicleDAL.SearchVehicle(plateNumber, importFrom, importTo, exportFrom, exportTo, 1);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 1);
                     foreach (DataRow dataRow in dataTable.Rows)
                     {
                         if (!string.IsNullOrEmpty(dataRow["ImportDate"].ToString()) && Convert.ToDateTime(dataRow["ImportDate"].ToString()).Year.Equals(1900))
@@ -87,7 +87,7 @@ namespace ECustoms.BOL
                     importTo = new DateTime(importTo.Year, importTo.Month, importTo.Day, 23, 59, 59);
                     exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
                     exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                    dataTable = _vehicleDAL.SearchVehicle(plateNumber, importFrom, importTo, exportFrom, exportTo, 2);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 2);
                     return dataTable;
                 }
 
@@ -99,12 +99,12 @@ namespace ECustoms.BOL
                     exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
                     exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
 
-                    dataTable = _vehicleDAL.SearchVehicle(plateNumber, importFrom, importTo, exportFrom, exportTo, 3);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 3);
                     return dataTable;
                 }
                 importFrom = new DateTime(importFrom.Year, importFrom.Month, importFrom.Day, 0, 0, 0);
                 exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 23, 59, 59);
-                dataTable = _vehicleDAL.SearchVehicle(plateNumber, importFrom, importTo, exportFrom, exportTo, 4);
+                dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 4);
                 // Searctype 4- Exported and and Not Imported
                 return dataTable;
 

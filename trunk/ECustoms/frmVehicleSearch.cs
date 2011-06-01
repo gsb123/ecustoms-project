@@ -84,90 +84,72 @@ namespace ECustoms
                 }
 
 
-                //for (int i = 0; i < grdVehicle.Rows.Count; i++)
-                //{
-
-
-
-                //    if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year <= 1900)
-                //    {
-                //        grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value = "";
-
-                //    }
-                //    if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null && grdVehicle.Rows[i].Cells["ExportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value).Year <= 1900)
-                //    {
-                //        grdVehicle.Rows[i].Cells["ExportDate"].Value = "";
-                //    }
-
-                //    if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null && grdVehicle.Rows[i].Cells["ImportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value).Year <= 1900)
-                //    {
-                //        grdVehicle.Rows[i].Cells["ImportDate"].Value = "";
-                //    }
-
-                //}
-
-                int xeKhongXC = 0, xeKhongNC = 0, xeCohangNC = 0, xeCohangXC = 0, xeVaoNoiDia = 0;
-
-                //for (int i = 0; i < _dtResult.Rows.Count; i++)
-                //{
-                //    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
-                //    {
-                //        xeKhongXC = xeKhongXC + 1;
-                //    }
-
-                //    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()))
-                //    {
-                //        xeKhongNC = xeKhongNC + 1;
-                //    }
-
-
-                //    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported") && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
-                //    {
-                //        xeCohangNC = xeCohangNC + 1;
-                //    }
-
-                //    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
-                //    {
-                //        xeCohangXC = xeCohangXC + 1;
-                //    }
-
-
-                //    if (!_dtResult.Rows[i].IsNull("IsGoodsImported") && _dtResult.Rows[i]["IsGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsGoodsImported"].ToString()))
-                //    {
-                //        xeVaoNoiDia = xeVaoNoiDia + 1;
-                //    }
-
-                //}
                 /*
                  * 
-                    1-Xe không đã xuất cảnh= xe không chở hàng đã xuất cảnh + xe có số tờ khai xuất khẩu
+                     1-[Xe không xuất cảnh]=Xe không chở hàng đã xuất cảnh = xe có số tờ khai xuất khẩu
                     bằng 0 đã được xác nhận xuất cảnh.
-                    2-Xe không nhập cảnh=xe không chở hàng đã nhập cảnh + xe được xác nhận xe nhập
-                    cảnh không có hàng.
-                    3-xe có hàng xuất cảnh=xe chở hàng đã xuất cảnh + xe có số tờ khai xuất khẩu khác
+                    ( [DeclationNumber]=0&& [ComfirmExport=1] 
+
+                    2-[Xe không nhập cảnh]=xe không chở hàng đã nhập cảnh=
+                    xe được xác nhận xe nhập cảnh không có hàng.
+                    ( [HasGood]=0 && [ComfirmImport=1] 
+
+                    3-xe có hàng xuất cảnh = xe chở hàng đã xuất cảnh= xe có số tờ khai xuất khẩu khác
                     0 đã được xác nhận xuất cảnh.
+                    [DeclationNumber<>0]&& [ComfirmExport = 1]
+
                     4-xe có hàng nhập cảnh = xe chở hàng đã nhập cảnh=xe được xác nhận xe nhập cảnh
                     có hàng.
+                    [XeChoHangDaNhapKhau]  = ( [HasGood]=1 && [ComfirmImport=1] 
+
                     5-Tổng số xe đã vào nội địa = xe chở hàng dược xác nhận xe nhập cảnh có
                     hàng+được xác nhận hàng đã vào nội địa.
-                    =>xe chở hàng nhập khẩu còn tồn tại cửa khẩu = xe chở hàng đã nhập khẩu-xe đã
-                    vào nội địa; xe chở hàng xuất khẩu còn tồn tại cửa khẩu = xe đã đăng ký có số tờ khai khác
-                    0-xe đã đăng ký có số tờ khai khác 0 đã được xác nhận xuất cảnh=xe còn tồn
-                    trên màn hình tìm kiếm khi bấm vào tìm kiếm.
+                    [XeDaVaoNoiDia] = [LocalImport=1]&&[HasGood=1]&&[ConfirmImport=1]
+
+                    =>xe chở hàng nhập khẩu còn tồn tại cửa khẩu = xe chở hàng đã nhập khẩu- xe đã
+                    vào nội địa;
+                    [XeNhapKhauTonTaiCuaKhau] = [XeChoHangDaNhapKhau] – [XeDaoVaoNoiDia]
+                     xe chở hàng xuất khẩu còn tồn tại cửa khẩu
+                     = [xe đã đăng ký có số tờ khai khác 0] – [xe đã đăng ký có số tờ khai khác 0 đã được xác nhận xuất cảnh] = [xe còn tồn trên màn hình tìm kiếm khi bấm vào tìm kiếm.]
+                    [XeXuaKhauTonTaiCuaKhau] = [Xe([DeclationNumber<>0]&&[ConfirmExport=0])] - Xe([DeclationNumber<>0]&&[ConfirmExport=1])]
+
+                 * 
+                 * 
                  * 
                  * */
+
+
+                int xeKhongChoHangDaXC = 0;
+                int xeKhongChoHangDaNC = 0;
+                int xeCoHangDaXC = 0;
+                int xeNhapHangDaNC = 0;
+                int xeVaoNoiDia = 0;
+
 
                 foreach (VehicleInfo v in result)
                 {
                     // Do something here
+
+                    // Xe khong cho hang da xuat canh
+                    if (v.IsExport && v.DeclarationNumberExport == 0)
+                        xeKhongChoHangDaXC++;
+
+                    if (v.IsImport && !v.HasGoodsImported)
+                        xeKhongChoHangDaNC++;
+                    if (v.IsExport && v.DeclarationNumberExport != 0)
+                        xeCoHangDaXC++;
+                    if (v.IsImport && v.HasGoodsImported)
+                        xeNhapHangDaNC++;
+
+                    if (v.IsImport && v.HasGoodsImported && v.IsGoodsImported)
+                        xeVaoNoiDia++;
+
                 }
 
-
-
-                lblKhongXC.Text = xeKhongXC.ToString();
-                lblKhongNC.Text = xeKhongNC.ToString();
-                lblCohangNC.Text = xeCohangNC.ToString();
-                lblKhonghangNC.Text = xeCohangXC.ToString();
+                lblKhongXC.Text = xeKhongChoHangDaXC.ToString();
+                lblKhongNC.Text = xeKhongChoHangDaNC.ToString();
+                lblCohangNC.Text = xeCoHangDaXC.ToString();
+                lblKhonghangNC.Text = xeNhapHangDaNC.ToString();
                 lblVaonoidia.Text = xeVaoNoiDia.ToString();
 
 
