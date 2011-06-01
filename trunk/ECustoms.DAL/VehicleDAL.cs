@@ -91,25 +91,29 @@ namespace ECustoms.DAL
             VehicleInfo vehicleInfo;
             try
             {
-                var sqlCommand = string.Empty;
-                if (search.Equals(""))
-                {
-                    if (mode == 1)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND NOT DeclarationID =" + declarationID;
-                    else if (mode == 2)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND NOT DeclarationID =" + declarationID;
-                    else if (mode == 3) //Vehicle is exported
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND NOT DeclarationID =" + declarationID;
-                }
-                else
-                {
-                    if (mode == 1)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
-                    else if (mode == 2)
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
-                    else if (mode == 3) //Vehicle is exported
-                        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
-                }
+
+                var sqlCommand =
+                    "SELECT  TOP(1) * FROM    tblVehicle AS a WHERE a.PlateNumber='" + search + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.PlateNumber NOT IN ( SELECT   a.PlateNumber FROM     dbo.tblVehicle AS a WHERE    a.DeclarationID = " + declarationID + " ) ORDER BY a.ExportDate DESC";
+                //var sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber = '" + search + "' AND NOT DeclarationID =" + declarationID;
+                //var sqlCommand = string.Empty;
+                //if (search.Equals(""))
+                //{
+                //    if (mode == 1)
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND NOT DeclarationID =" + declarationID;
+                //    else if (mode == 2)
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND NOT DeclarationID =" + declarationID;
+                //    else if (mode == 3) //Vehicle is exported
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND NOT DeclarationID =" + declarationID;
+                //}
+                //else
+                //{
+                //    if (mode == 1)
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
+                //    else if (mode == 2)
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=1 AND ImportStatus ='Nhập cảnh có hàng' AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
+                //    else if (mode == 3) //Vehicle is exported
+                //        sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND PlateNumber like '%" + search + "%' AND NOT DeclarationID =" + declarationID;
+                //}
                 var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
                 foreach (DataRow dr in dataTable.Rows)
                 {
@@ -136,14 +140,14 @@ namespace ECustoms.DAL
         /// 0- Not import and export
         /// </param>
         /// <returns>List vehicleInfo object</returns>
-        public DataTable SearchVehicle( string plateNumber, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo, int searchType)
+        public DataTable SearchVehicle(string plateNumber, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo, int searchType)
         {
             var result = new List<VehicleInfo>();
             VehicleInfo vehicleInfo;
             try
             {
                 var parameters = new SqlParameter[6];
-               // parameters[0] = new SqlParameter("@IsCompleted", isCompleted);
+                // parameters[0] = new SqlParameter("@IsCompleted", isCompleted);
                 parameters[0] = new SqlParameter("@PlateNumber", plateNumber);
                 parameters[1] = new SqlParameter("@ImportFrom", importFrom);
                 parameters[2] = new SqlParameter("@ImportTo", importTo);
