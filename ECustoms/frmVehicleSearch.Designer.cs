@@ -88,6 +88,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnLocalConfirm = new System.Windows.Forms.Button();
+            this.cbIsCompleted = new System.Windows.Forms.CheckBox();
             this.grbConditionSearch.SuspendLayout();
             this.grbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
@@ -95,6 +96,7 @@
             // 
             // grbConditionSearch
             // 
+            this.grbConditionSearch.Controls.Add(this.cbIsCompleted);
             this.grbConditionSearch.Controls.Add(this.txtPlateNumber);
             this.grbConditionSearch.Controls.Add(this.lblPlateNumber);
             this.grbConditionSearch.Controls.Add(this.cbIsNotImport);
@@ -263,7 +265,7 @@
             this.grbResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbResult.Location = new System.Drawing.Point(12, 131);
             this.grbResult.Name = "grbResult";
-            this.grbResult.Size = new System.Drawing.Size(788, 390);
+            this.grbResult.Size = new System.Drawing.Size(801, 509);
             this.grbResult.TabIndex = 1;
             this.grbResult.TabStop = false;
             this.grbResult.Text = "Kết quả tìm kiếm";
@@ -272,7 +274,7 @@
             // 
             this.lblVaonoidia.AutoSize = true;
             this.lblVaonoidia.ForeColor = System.Drawing.Color.Red;
-            this.lblVaonoidia.Location = new System.Drawing.Point(701, 26);
+            this.lblVaonoidia.Location = new System.Drawing.Point(223, 99);
             this.lblVaonoidia.Name = "lblVaonoidia";
             this.lblVaonoidia.Size = new System.Drawing.Size(18, 20);
             this.lblVaonoidia.TabIndex = 10;
@@ -281,7 +283,7 @@
             // label8333
             // 
             this.label8333.AutoSize = true;
-            this.label8333.Location = new System.Drawing.Point(504, 26);
+            this.label8333.Location = new System.Drawing.Point(15, 99);
             this.label8333.Name = "label8333";
             this.label8333.Size = new System.Drawing.Size(191, 20);
             this.label8333.TabIndex = 9;
@@ -291,7 +293,7 @@
             // 
             this.lblKhonghangNC.AutoSize = true;
             this.lblKhonghangNC.ForeColor = System.Drawing.Color.Red;
-            this.lblKhonghangNC.Location = new System.Drawing.Point(417, 58);
+            this.lblKhonghangNC.Location = new System.Drawing.Point(503, 58);
             this.lblKhonghangNC.Name = "lblKhonghangNC";
             this.lblKhonghangNC.Size = new System.Drawing.Size(18, 20);
             this.lblKhonghangNC.TabIndex = 8;
@@ -300,7 +302,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(255, 58);
+            this.label6.Location = new System.Drawing.Point(341, 58);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(144, 20);
             this.label6.TabIndex = 7;
@@ -310,7 +312,7 @@
             // 
             this.lblCohangNC.AutoSize = true;
             this.lblCohangNC.ForeColor = System.Drawing.Color.Red;
-            this.lblCohangNC.Location = new System.Drawing.Point(417, 26);
+            this.lblCohangNC.Location = new System.Drawing.Point(503, 30);
             this.lblCohangNC.Name = "lblCohangNC";
             this.lblCohangNC.Size = new System.Drawing.Size(18, 20);
             this.lblCohangNC.TabIndex = 6;
@@ -319,7 +321,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(255, 26);
+            this.label4.Location = new System.Drawing.Point(341, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 20);
             this.label4.TabIndex = 5;
@@ -329,7 +331,7 @@
             // 
             this.lblKhongNC.AutoSize = true;
             this.lblKhongNC.ForeColor = System.Drawing.Color.Red;
-            this.lblKhongNC.Location = new System.Drawing.Point(148, 58);
+            this.lblKhongNC.Location = new System.Drawing.Point(188, 58);
             this.lblKhongNC.Name = "lblKhongNC";
             this.lblKhongNC.Size = new System.Drawing.Size(18, 20);
             this.lblKhongNC.TabIndex = 4;
@@ -348,7 +350,7 @@
             // 
             this.lblKhongXC.AutoSize = true;
             this.lblKhongXC.ForeColor = System.Drawing.Color.Red;
-            this.lblKhongXC.Location = new System.Drawing.Point(148, 26);
+            this.lblKhongXC.Location = new System.Drawing.Point(188, 26);
             this.lblKhongXC.Name = "lblKhongXC";
             this.lblKhongXC.Size = new System.Drawing.Size(18, 20);
             this.lblKhongXC.TabIndex = 2;
@@ -357,7 +359,7 @@
             // lblNotExported
             // 
             this.lblNotExported.AutoSize = true;
-            this.lblNotExported.Location = new System.Drawing.Point(11, 26);
+            this.lblNotExported.Location = new System.Drawing.Point(17, 26);
             this.lblNotExported.Name = "lblNotExported";
             this.lblNotExported.Size = new System.Drawing.Size(127, 20);
             this.lblNotExported.TabIndex = 1;
@@ -392,11 +394,11 @@
             this.ConfirmExportBy,
             this.ConfirmImportBy,
             this.ConfirmLocalImportBy});
-            this.grdVehicle.Location = new System.Drawing.Point(0, 106);
+            this.grdVehicle.Location = new System.Drawing.Point(2, 171);
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.ReadOnly = true;
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(768, 268);
+            this.grdVehicle.Size = new System.Drawing.Size(768, 325);
             this.grdVehicle.TabIndex = 0;
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
             // 
@@ -590,7 +592,7 @@
             // 
             this.btnXacNhanXuatCanh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnXacNhanXuatCanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanXuatCanh.Location = new System.Drawing.Point(806, 140);
+            this.btnXacNhanXuatCanh.Location = new System.Drawing.Point(816, 140);
             this.btnXacNhanXuatCanh.Name = "btnXacNhanXuatCanh";
             this.btnXacNhanXuatCanh.Size = new System.Drawing.Size(176, 63);
             this.btnXacNhanXuatCanh.TabIndex = 14;
@@ -602,7 +604,7 @@
             // 
             this.btnXacNhanNhapCanhCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnXacNhanNhapCanhCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanNhapCanhCoHang.Location = new System.Drawing.Point(806, 209);
+            this.btnXacNhanNhapCanhCoHang.Location = new System.Drawing.Point(816, 209);
             this.btnXacNhanNhapCanhCoHang.Name = "btnXacNhanNhapCanhCoHang";
             this.btnXacNhanNhapCanhCoHang.Size = new System.Drawing.Size(176, 63);
             this.btnXacNhanNhapCanhCoHang.TabIndex = 15;
@@ -614,7 +616,7 @@
             // 
             this.btnXacNhanXuatCanhKhongCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnXacNhanXuatCanhKhongCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanXuatCanhKhongCoHang.Location = new System.Drawing.Point(806, 278);
+            this.btnXacNhanXuatCanhKhongCoHang.Location = new System.Drawing.Point(816, 278);
             this.btnXacNhanXuatCanhKhongCoHang.Name = "btnXacNhanXuatCanhKhongCoHang";
             this.btnXacNhanXuatCanhKhongCoHang.Size = new System.Drawing.Size(176, 63);
             this.btnXacNhanXuatCanhKhongCoHang.TabIndex = 16;
@@ -629,7 +631,7 @@
             this.btnUpdateVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateVehicle.Image = global::ECustoms.Properties.Resources._001_45;
             this.btnUpdateVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateVehicle.Location = new System.Drawing.Point(270, 528);
+            this.btnUpdateVehicle.Location = new System.Drawing.Point(273, 657);
             this.btnUpdateVehicle.Name = "btnUpdateVehicle";
             this.btnUpdateVehicle.Size = new System.Drawing.Size(196, 33);
             this.btnUpdateVehicle.TabIndex = 12;
@@ -645,7 +647,7 @@
             this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.Image = global::ECustoms.Properties.Resources.excel81;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(121, 528);
+            this.btnExportExcel.Location = new System.Drawing.Point(124, 657);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(143, 33);
             this.btnExportExcel.TabIndex = 10;
@@ -661,7 +663,7 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::ECustoms.Properties.Resources.close;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(472, 527);
+            this.btnClose.Location = new System.Drawing.Point(475, 656);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(89, 33);
             this.btnClose.TabIndex = 13;
@@ -677,7 +679,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(4, 528);
+            this.btnSearch.Location = new System.Drawing.Point(7, 657);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(111, 33);
             this.btnSearch.TabIndex = 10;
@@ -690,7 +692,7 @@
             // 
             this.btnLocalConfirm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnLocalConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalConfirm.Location = new System.Drawing.Point(806, 347);
+            this.btnLocalConfirm.Location = new System.Drawing.Point(816, 347);
             this.btnLocalConfirm.Name = "btnLocalConfirm";
             this.btnLocalConfirm.Size = new System.Drawing.Size(176, 63);
             this.btnLocalConfirm.TabIndex = 17;
@@ -698,11 +700,21 @@
             this.btnLocalConfirm.UseVisualStyleBackColor = true;
             this.btnLocalConfirm.Click += new System.EventHandler(this.btnLocalConfirm_Click);
             // 
+            // cbIsCompleted
+            // 
+            this.cbIsCompleted.AutoSize = true;
+            this.cbIsCompleted.Location = new System.Drawing.Point(11, 71);
+            this.cbIsCompleted.Name = "cbIsCompleted";
+            this.cbIsCompleted.Size = new System.Drawing.Size(94, 24);
+            this.cbIsCompleted.TabIndex = 12;
+            this.cbIsCompleted.Text = "Hoàn tất ";
+            this.cbIsCompleted.UseVisualStyleBackColor = true;
+            // 
             // frmVehicleSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 573);
+            this.ClientSize = new System.Drawing.Size(999, 717);
             this.Controls.Add(this.btnLocalConfirm);
             this.Controls.Add(this.btnXacNhanXuatCanhKhongCoHang);
             this.Controls.Add(this.btnXacNhanNhapCanhCoHang);
@@ -785,5 +797,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmExportBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmImportBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmLocalImportBy;
+        private System.Windows.Forms.CheckBox cbIsCompleted;
     }
 }
