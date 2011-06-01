@@ -151,6 +151,9 @@ namespace ECustoms
 
         private void addNewVehiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var frmVehiceAdd = new frmVehicleAdd(_userInfo);
+            frmVehiceAdd.MdiParent = this;
+            frmVehiceAdd.Show();
 
         }
     }

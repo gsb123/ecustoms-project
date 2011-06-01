@@ -64,13 +64,17 @@
             this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfContainer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSaveAll = new System.Windows.Forms.Button();
             this.cbConfirmExport = new System.Windows.Forms.CheckBox();
             this.dateTimePickerExport = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerImport = new System.Windows.Forms.DateTimePicker();
             this.cbConfirmImport = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.mtxtExportHour = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtImportHour = new System.Windows.Forms.MaskedTextBox();
+            this.lblIsExport = new System.Windows.Forms.Label();
+            this.lblIsImport = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.SuspendLayout();
@@ -384,20 +388,21 @@
             this.ExportDate.Visible = false;
             this.ExportDate.Width = 110;
             // 
-            // button1
+            // btnSaveAll
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::ECustoms.Properties.Resources.save_icon;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(215, 260);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(236, 39);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Lưu toàn bộ phương tiện";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSaveAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAll.Image = global::ECustoms.Properties.Resources.save_icon;
+            this.btnSaveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveAll.Location = new System.Drawing.Point(215, 260);
+            this.btnSaveAll.Name = "btnSaveAll";
+            this.btnSaveAll.Size = new System.Drawing.Size(236, 39);
+            this.btnSaveAll.TabIndex = 21;
+            this.btnSaveAll.Text = "Lưu toàn bộ phương tiện";
+            this.btnSaveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveAll.UseVisualStyleBackColor = true;
+            this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
             // 
             // cbConfirmExport
             // 
@@ -407,22 +412,27 @@
             this.cbConfirmExport.Size = new System.Drawing.Size(15, 14);
             this.cbConfirmExport.TabIndex = 22;
             this.cbConfirmExport.UseVisualStyleBackColor = true;
+            this.cbConfirmExport.CheckedChanged += new System.EventHandler(this.cbConfirmExport_CheckedChanged);
             // 
             // dateTimePickerExport
             // 
-            this.dateTimePickerExport.Location = new System.Drawing.Point(215, 48);
+            this.dateTimePickerExport.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerExport.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerExport.Location = new System.Drawing.Point(178, 45);
             this.dateTimePickerExport.Name = "dateTimePickerExport";
-            this.dateTimePickerExport.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerExport.Size = new System.Drawing.Size(94, 20);
             this.dateTimePickerExport.TabIndex = 23;
             this.dateTimePickerExport.Visible = false;
             // 
-            // dateTimePicker2
+            // dateTimePickerImport
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(215, 86);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 25;
-            this.dateTimePicker2.Visible = false;
+            this.dateTimePickerImport.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerImport.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerImport.Location = new System.Drawing.Point(178, 84);
+            this.dateTimePickerImport.Name = "dateTimePickerImport";
+            this.dateTimePickerImport.Size = new System.Drawing.Size(94, 20);
+            this.dateTimePickerImport.TabIndex = 25;
+            this.dateTimePickerImport.Visible = false;
             // 
             // cbConfirmImport
             // 
@@ -432,6 +442,7 @@
             this.cbConfirmImport.Size = new System.Drawing.Size(15, 14);
             this.cbConfirmImport.TabIndex = 24;
             this.cbConfirmImport.UseVisualStyleBackColor = true;
+            this.cbConfirmImport.CheckedChanged += new System.EventHandler(this.cbConfirmImport_CheckedChanged);
             // 
             // label1
             // 
@@ -453,18 +464,64 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Nhập cảnh";
             // 
+            // mtxtExportHour
+            // 
+            this.mtxtExportHour.Location = new System.Drawing.Point(292, 47);
+            this.mtxtExportHour.Mask = "00:00";
+            this.mtxtExportHour.Name = "mtxtExportHour";
+            this.mtxtExportHour.Size = new System.Drawing.Size(33, 20);
+            this.mtxtExportHour.TabIndex = 28;
+            this.mtxtExportHour.ValidatingType = typeof(System.DateTime);
+            this.mtxtExportHour.Visible = false;
+            // 
+            // mtxtImportHour
+            // 
+            this.mtxtImportHour.Location = new System.Drawing.Point(293, 84);
+            this.mtxtImportHour.Mask = "00:00";
+            this.mtxtImportHour.Name = "mtxtImportHour";
+            this.mtxtImportHour.Size = new System.Drawing.Size(33, 20);
+            this.mtxtImportHour.TabIndex = 29;
+            this.mtxtImportHour.ValidatingType = typeof(System.DateTime);
+            this.mtxtImportHour.Visible = false;
+            // 
+            // lblIsExport
+            // 
+            this.lblIsExport.AutoSize = true;
+            this.lblIsExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIsExport.ForeColor = System.Drawing.Color.Red;
+            this.lblIsExport.Location = new System.Drawing.Point(174, 46);
+            this.lblIsExport.Name = "lblIsExport";
+            this.lblIsExport.Size = new System.Drawing.Size(120, 20);
+            this.lblIsExport.TabIndex = 18;
+            this.lblIsExport.Text = "Chưa xuất cảnh";
+            // 
+            // lblIsImport
+            // 
+            this.lblIsImport.AutoSize = true;
+            this.lblIsImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIsImport.ForeColor = System.Drawing.Color.Red;
+            this.lblIsImport.Location = new System.Drawing.Point(174, 84);
+            this.lblIsImport.Name = "lblIsImport";
+            this.lblIsImport.Size = new System.Drawing.Size(126, 20);
+            this.lblIsImport.TabIndex = 30;
+            this.lblIsImport.Text = "Chưa nhập cảnh";
+            // 
             // frmVehicleAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 639);
+            this.Controls.Add(this.lblIsImport);
+            this.Controls.Add(this.lblIsExport);
+            this.Controls.Add(this.mtxtImportHour);
+            this.Controls.Add(this.mtxtExportHour);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimePickerImport);
             this.Controls.Add(this.cbConfirmImport);
             this.Controls.Add(this.dateTimePickerExport);
             this.Controls.Add(this.cbConfirmExport);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSaveAll);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
@@ -521,12 +578,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberOfContainer;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExportDate;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveAll;
         private System.Windows.Forms.CheckBox cbConfirmExport;
         private System.Windows.Forms.DateTimePicker dateTimePickerExport;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerImport;
         private System.Windows.Forms.CheckBox cbConfirmImport;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox mtxtExportHour;
+        private System.Windows.Forms.MaskedTextBox mtxtImportHour;
+        private System.Windows.Forms.Label lblIsExport;
+        private System.Windows.Forms.Label lblIsImport;
     }
 }
