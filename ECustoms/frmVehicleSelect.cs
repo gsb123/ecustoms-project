@@ -94,7 +94,12 @@ namespace ECustoms
             // Search
             // Exported
             int mode = 3;
-            LoadExportedVehichles(mode, _declarationID, txtPlate.Text.Trim());
+
+            if (txtPlate.Text.Trim().Equals(""))
+                MessageBox.Show("Bạn phải nhập đầy đủ BKS");
+            else
+
+                LoadExportedVehichles(mode, _declarationID, txtPlate.Text.Trim());
         }
 
     }
