@@ -284,6 +284,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\change-password-icon.png" />
+    <Content Include="Resources\checkIcon.png" />
+    <None Include="Resources\Icon-Error-16x16-GreyBckgrnd.gif" />
+    <None Include="Resources\icon-check2-16x16.gif" />
+    <None Include="Resources\checkIcon1.png" />
     <None Include="Resources\save_icon.gif" />
     <None Include="Resources\change-password-icon1.png" />
   </ItemGroup>

@@ -129,6 +129,27 @@ namespace ECustoms.DAL
             }
         }
 
+        public bool CheckVehicle(string plateNumber)
+        {
+            var result = new List<VehicleInfo>();
+            VehicleInfo vehicleInfo;
+            try
+            {
+                DateTime now = DateTime.Now;
+                string dateTime = string.Format("{0}-{1}-{2} 00:00:00.000", now.Year, now.Month, now.Day);
+                var sqlCommand =
+                    "SELECT  TOP(1) * FROM tblVehicle AS a WHERE a.PlateNumber='" + plateNumber + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.ExportDate >" + dateTime;
+
+                var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
+                if (dataTable.Rows.Count == 0) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Search Vehicle
         /// </summary>
