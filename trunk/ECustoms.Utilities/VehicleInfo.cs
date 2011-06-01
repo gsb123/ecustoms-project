@@ -11,6 +11,8 @@ namespace ECustoms.Utilities
         #region public properties
         public int VehicleID { get; set; }
         public int DeclarationID { get; set; }
+        public int DeclarationNumberExport { set; get; }
+        public int DeclarationNumberImport { set; get; }
         private string _plateNumber = "";
         public string PlateNumber
         {
@@ -113,6 +115,23 @@ namespace ECustoms.Utilities
         #region Methods
         public void CreateFrom(DataRow dr)
         {
+
+            if (dr.Table.Columns.Contains("DeclarationNumberExport") && !dr.IsNull("DeclarationNumberExport"))
+            {
+                this.DeclarationNumberExport = Convert.ToInt32(dr["DeclarationNumberExport"]);
+            }
+            else
+                this.DeclarationNumberExport = 0;
+
+
+            if (dr.Table.Columns.Contains("DeclarationNumberImport") && !dr.IsNull("DeclarationNumberImport"))
+            {
+                this.DeclarationNumberImport = Convert.ToInt32(dr["DeclarationNumberImport"]);
+            }
+            else
+                this.DeclarationNumberImport = 0;
+
+
             if (dr.Table.Columns.Contains("ConfirmImportBy") && !dr.IsNull("ConfirmImportBy"))
             {
                 this.ConfirmImportBy = Convert.ToInt32(dr["ConfirmImportBy"]);
