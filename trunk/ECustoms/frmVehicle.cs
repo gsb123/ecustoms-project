@@ -105,14 +105,14 @@ namespace ECustoms
             // allow empty when inserting new verhicle,
             // the driver name might be filled later
 
-            /*
-            if (string.IsNullOrEmpty(txtDriverName.Text.Trim()))
+            
+            if (string.IsNullOrEmpty(txtPlateNumber.Text.Trim()))
             {
-                MessageBox.Show(ConstantInfo.MESSAGE_BLANK_DRIVER);
-                txtDriverName.Focus();
+                MessageBox.Show("BKS không được để trống!");
+                txtPlateNumber.Focus();
                 return false;
             }
-            */
+           
 
             return true;
         }
@@ -516,7 +516,7 @@ namespace ECustoms
             try
             {
                 if (!Validate()) return;
-
+                
                 // Add data to veicleInfo list
                 var vehicleInfo = new VehicleInfo();
                 vehicleInfo.DriverName = txtDriverName.Text.Trim();
