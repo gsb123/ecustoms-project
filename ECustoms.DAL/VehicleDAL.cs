@@ -138,7 +138,7 @@ namespace ECustoms.DAL
                 DateTime now = DateTime.Now;
                 string dateTime = string.Format("{0}-{1}-{2} 00:00:00.000", now.Year, now.Month, now.Day);
                 var sqlCommand =
-                    "SELECT  TOP(1) * FROM tblVehicle AS a WHERE a.PlateNumber='" + plateNumber + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.ExportDate >" + dateTime;
+                    "SELECT  TOP(1) * FROM tblVehicle AS a WHERE a.PlateNumber='" + plateNumber + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.ExportDate > '" + dateTime + "'";
 
                 var dataTable = _dbConnection.ExecuteSelectCommandText(sqlCommand);
                 if (dataTable.Rows.Count == 0) return true;

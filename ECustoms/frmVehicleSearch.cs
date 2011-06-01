@@ -66,7 +66,7 @@ namespace ECustoms
         {
             grdVehicle.AutoGenerateColumns = false;
             System.Data.DataTable dataTable;
-            _dtResult = _vehicleBOL.SearchVehicle(txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
+            _dtResult = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
                                                      dtpExportFrom.Value, dtpExportTo.Value);
 
 
@@ -122,6 +122,7 @@ namespace ECustoms
                 int xeKhongChoHangDaXC = 0;
                 int xeKhongChoHangDaNC = 0;
                 int xeCoHangDaXC = 0;
+
                 int xeNhapHangDaNC = 0;
                 int xeVaoNoiDia = 0;
 
@@ -350,9 +351,9 @@ namespace ECustoms
                         excel.Cells[rowIndex + 1, 19] = "N/A";
                     }
 
-                    excel.Cells[rowIndex + 1, 20] = dataRow["ConfirmImportBy"].ToString();
-                    excel.Cells[rowIndex + 1, 21] = dataRow["ConfirmExportBy"].ToString();
-                    excel.Cells[rowIndex + 1, 22] = dataRow["ConfirmLocalImportBy"].ToString();
+                    excel.Cells[rowIndex + 1, 20] = dataRow["ConfirmImportByName"].ToString();
+                    excel.Cells[rowIndex + 1, 21] = dataRow["ConfirmExportByName"].ToString();
+                    excel.Cells[rowIndex + 1, 22] = dataRow["ConfirmLocalImportByName"].ToString();
 
 
 

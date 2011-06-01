@@ -722,6 +722,7 @@ namespace ECustoms
                         vehicleInfo.ConfirmImportBy = _userInfo.UserID;
 
 
+                    vehicleInfo.ImportedLocalTime = new DateTime(1900, 1, 1);
 
                     vehicleInfo.IsCompleted = _isCompleted;
                     vehicleInfo.VehicleID = _vehicleID;

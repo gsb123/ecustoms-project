@@ -62,17 +62,17 @@ namespace ECustoms.BOL
                 {
 
 
-                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 1);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted, plateNumber, importFrom, importTo, exportFrom, exportTo, 1);
                     foreach (DataRow dataRow in dataTable.Rows)
                     {
                         if (!string.IsNullOrEmpty(dataRow["ImportDate"].ToString()) && Convert.ToDateTime(dataRow["ImportDate"].ToString()).Year.Equals(1900))
                         {
-                            dataRow["ImportDate"] = DateTime.MinValue;
+                            dataRow["ImportDate"] = new DateTime(1900, 1, 1);
                         }
 
                         if (!string.IsNullOrEmpty(dataRow["ExportDate"].ToString()) && Convert.ToDateTime(dataRow["ExportDate"].ToString()).Year.Equals(1900))
                         {
-                            dataRow["ExportDate"] = DateTime.MinValue;
+                            dataRow["ExportDate"] = new DateTime(1900, 1, 1);
                         }
 
                     }
@@ -87,7 +87,7 @@ namespace ECustoms.BOL
                     importTo = new DateTime(importTo.Year, importTo.Month, importTo.Day, 23, 59, 59);
                     exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
                     exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 2);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted, plateNumber, importFrom, importTo, exportFrom, exportTo, 2);
                     return dataTable;
                 }
 
@@ -99,12 +99,12 @@ namespace ECustoms.BOL
                     exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
                     exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
 
-                    dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 3);
+                    dataTable = _vehicleDAL.SearchVehicle(isCompleted, plateNumber, importFrom, importTo, exportFrom, exportTo, 3);
                     return dataTable;
                 }
                 importFrom = new DateTime(importFrom.Year, importFrom.Month, importFrom.Day, 0, 0, 0);
                 exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 23, 59, 59);
-                dataTable = _vehicleDAL.SearchVehicle(isCompleted,plateNumber, importFrom, importTo, exportFrom, exportTo, 4);
+                dataTable = _vehicleDAL.SearchVehicle(isCompleted, plateNumber, importFrom, importTo, exportFrom, exportTo, 4);
                 // Searctype 4- Exported and and Not Imported
                 return dataTable;
 
@@ -222,6 +222,11 @@ namespace ECustoms.BOL
                 if (vehicleInfo.ExportDate == null || !vehicleInfo.IsExport)
                 {
                     vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
+                }
+
+                if (!vehicleInfo.IsGoodsImported)
+                {
+                    vehicleInfo.ImportedLocalTime = new DateTime(1900, 1, 1);
                 }
 
                 return _vehicleDAL.Update(vehicleInfo);
