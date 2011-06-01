@@ -45,10 +45,6 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.lblNote = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdVehicle = new System.Windows.Forms.DataGridView();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +60,6 @@
             this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberOfContainer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSaveAll = new System.Windows.Forms.Button();
             this.cbConfirmExport = new System.Windows.Forms.CheckBox();
             this.dateTimePickerExport = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerImport = new System.Windows.Forms.DateTimePicker();
@@ -75,8 +70,17 @@
             this.mtxtImportHour = new System.Windows.Forms.MaskedTextBox();
             this.lblIsExport = new System.Windows.Forms.Label();
             this.lblIsImport = new System.Windows.Forms.Label();
+            this.btnSaveAll = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.pictureBoxValid = new System.Windows.Forms.PictureBox();
+            this.pictureBoxInvalid = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvalid)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPlateNumber
@@ -100,7 +104,7 @@
             // 
             // txtNumberOfContainer
             // 
-            this.txtNumberOfContainer.Location = new System.Drawing.Point(644, 11);
+            this.txtNumberOfContainer.Location = new System.Drawing.Point(718, 9);
             this.txtNumberOfContainer.MaxLength = 4;
             this.txtNumberOfContainer.Name = "txtNumberOfContainer";
             this.txtNumberOfContainer.Size = new System.Drawing.Size(33, 20);
@@ -110,7 +114,7 @@
             // 
             this.lblNumberOfContainer.AutoSize = true;
             this.lblNumberOfContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfContainer.Location = new System.Drawing.Point(536, 10);
+            this.lblNumberOfContainer.Location = new System.Drawing.Point(610, 8);
             this.lblNumberOfContainer.Name = "lblNumberOfContainer";
             this.lblNumberOfContainer.Size = new System.Drawing.Size(102, 20);
             this.lblNumberOfContainer.TabIndex = 2;
@@ -118,7 +122,7 @@
             // 
             // txtDriverName
             // 
-            this.txtDriverName.Location = new System.Drawing.Point(357, 10);
+            this.txtDriverName.Location = new System.Drawing.Point(431, 8);
             this.txtDriverName.Name = "txtDriverName";
             this.txtDriverName.Size = new System.Drawing.Size(173, 20);
             this.txtDriverName.TabIndex = 2;
@@ -127,7 +131,7 @@
             // 
             this.lblDriverName.AutoSize = true;
             this.lblDriverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriverName.Location = new System.Drawing.Point(276, 10);
+            this.lblDriverName.Location = new System.Drawing.Point(350, 8);
             this.lblDriverName.Name = "lblDriverName";
             this.lblDriverName.Size = new System.Drawing.Size(75, 20);
             this.lblDriverName.TabIndex = 4;
@@ -168,70 +172,6 @@
             this.lblNote.Size = new System.Drawing.Size(64, 20);
             this.lblNote.TabIndex = 14;
             this.lblNote.Text = "Ghi chú";
-            // 
-            // btnReset
-            // 
-            this.btnReset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Image = global::ECustoms.Properties.Resources._001_39;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(554, 260);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(123, 39);
-            this.btnReset.TabIndex = 17;
-            this.btnReset.Text = "Thiết lập lại";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = global::ECustoms.Properties.Resources._001_05;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(466, 260);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(73, 39);
-            this.btnDelete.TabIndex = 16;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Image = global::ECustoms.Properties.Resources._001_01;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(16, 260);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(186, 39);
-            this.btnAdd.TabIndex = 14;
-            this.btnAdd.Text = "Thêm phương tiện";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(683, 260);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(89, 39);
-            this.btnClose.TabIndex = 18;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupBox1
             // 
@@ -388,22 +328,6 @@
             this.ExportDate.Visible = false;
             this.ExportDate.Width = 110;
             // 
-            // btnSaveAll
-            // 
-            this.btnSaveAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveAll.Image = global::ECustoms.Properties.Resources.save_icon;
-            this.btnSaveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveAll.Location = new System.Drawing.Point(215, 260);
-            this.btnSaveAll.Name = "btnSaveAll";
-            this.btnSaveAll.Size = new System.Drawing.Size(236, 39);
-            this.btnSaveAll.TabIndex = 21;
-            this.btnSaveAll.Text = "Lưu toàn bộ phương tiện";
-            this.btnSaveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveAll.UseVisualStyleBackColor = true;
-            this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
-            // 
             // cbConfirmExport
             // 
             this.cbConfirmExport.AutoSize = true;
@@ -506,11 +430,113 @@
             this.lblIsImport.TabIndex = 30;
             this.lblIsImport.Text = "Chưa nhập cảnh";
             // 
+            // btnSaveAll
+            // 
+            this.btnSaveAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAll.Image = global::ECustoms.Properties.Resources.save_icon;
+            this.btnSaveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveAll.Location = new System.Drawing.Point(215, 260);
+            this.btnSaveAll.Name = "btnSaveAll";
+            this.btnSaveAll.Size = new System.Drawing.Size(236, 39);
+            this.btnSaveAll.TabIndex = 21;
+            this.btnSaveAll.Text = "Lưu toàn bộ phương tiện";
+            this.btnSaveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveAll.UseVisualStyleBackColor = true;
+            this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Image = global::ECustoms.Properties.Resources._001_39;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.Location = new System.Drawing.Point(554, 260);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(123, 39);
+            this.btnReset.TabIndex = 17;
+            this.btnReset.Text = "Thiết lập lại";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::ECustoms.Properties.Resources._001_05;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(466, 260);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(73, 39);
+            this.btnDelete.TabIndex = 16;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::ECustoms.Properties.Resources._001_01;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(16, 260);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(186, 39);
+            this.btnAdd.TabIndex = 14;
+            this.btnAdd.Text = "Thêm phương tiện";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(683, 260);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(89, 39);
+            this.btnClose.TabIndex = 18;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // pictureBoxValid
+            // 
+            this.pictureBoxValid.Image = global::ECustoms.Properties.Resources.icon_check2_16x16;
+            this.pictureBoxValid.InitialImage = global::ECustoms.Properties.Resources.checkIcon;
+            this.pictureBoxValid.Location = new System.Drawing.Point(257, 12);
+            this.pictureBoxValid.Name = "pictureBoxValid";
+            this.pictureBoxValid.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxValid.TabIndex = 32;
+            this.pictureBoxValid.TabStop = false;
+            // 
+            // pictureBoxInvalid
+            // 
+            this.pictureBoxInvalid.Image = global::ECustoms.Properties.Resources.Icon_Error_16x16_GreyBckgrnd;
+            this.pictureBoxInvalid.InitialImage = global::ECustoms.Properties.Resources.checkIcon;
+            this.pictureBoxInvalid.Location = new System.Drawing.Point(256, 12);
+            this.pictureBoxInvalid.Name = "pictureBoxInvalid";
+            this.pictureBoxInvalid.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxInvalid.TabIndex = 33;
+            this.pictureBoxInvalid.TabStop = false;
+            // 
             // frmVehicleAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 639);
+            this.Controls.Add(this.pictureBoxInvalid);
+            this.Controls.Add(this.pictureBoxValid);
             this.Controls.Add(this.lblIsImport);
             this.Controls.Add(this.lblIsExport);
             this.Controls.Add(this.mtxtImportHour);
@@ -540,8 +566,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVehicleAdd";
             this.Text = "Khai báo phương tiện";
+            this.Load += new System.EventHandler(this.frmVehicleAdd_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInvalid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,5 +618,8 @@
         private System.Windows.Forms.MaskedTextBox mtxtImportHour;
         private System.Windows.Forms.Label lblIsExport;
         private System.Windows.Forms.Label lblIsImport;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxValid;
+        private System.Windows.Forms.PictureBox pictureBoxInvalid;
     }
 }

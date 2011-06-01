@@ -78,6 +78,9 @@ namespace ECustoms
             lblIsImport.Visible = true;
             cbConfirmImport.Checked = false;
 
+            pictureBoxInvalid.Visible = false;
+            pictureBoxValid.Visible = false;
+
             // Set focus
             txtPlateNumber.Focus();
         }
@@ -136,6 +139,46 @@ namespace ECustoms
 
         }
         #region Action Handler
+
+        private void frmVehicleAdd_Load(object sender, EventArgs e)
+        {
+            this.Text = "Khai báo phương tiện" + ConstantInfo.MESSAGE_TITLE;
+            this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
+
+            txtPlateNumber.LostFocus += new EventHandler(txtPlateNumber_LostFocus);
+
+            pictureBoxInvalid.Visible = false;
+            pictureBoxValid.Visible = false;
+            InitialPermission();
+        }
+
+        void txtPlateNumber_LostFocus(object sender, EventArgs e)
+        {
+            pictureBoxValid.Visible = true;
+        }
+
+        private void InitialPermission()
+        {
+            //throw new NotImplementedException();
+
+            if (_userInfo.Type == UserType.Admin)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Confirm)
+            {
+
+            }
+            else if (_userInfo.Type == UserType.Input)
+            {
+                cbConfirmExport.Enabled = false;
+                cbConfirmImport.Enabled = false;
+                lblIsExport.Text = "Bạn không có quyền";
+                lblIsImport.Text = "Bạn không có quyền";
+
+            }
+
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -292,6 +335,8 @@ namespace ECustoms
         }
 
         #endregion
+
+
 
 
     }
