@@ -154,7 +154,18 @@ namespace ECustoms
 
         void txtPlateNumber_LostFocus(object sender, EventArgs e)
         {
-            pictureBoxValid.Visible = true;
+
+            if (_vehicleBOL.CheckVehicle(txtPlateNumber.Text.Trim()) && !txtPlateNumber.Text.Trim().Equals(""))
+            {
+                pictureBoxInvalid.Visible = false;
+                pictureBoxValid.Visible = true;
+
+            }
+            else
+            {
+                pictureBoxInvalid.Visible = true;
+                pictureBoxValid.Visible = false;
+            }
         }
 
         private void InitialPermission()

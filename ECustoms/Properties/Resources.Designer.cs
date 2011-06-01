@@ -102,6 +102,13 @@ namespace ECustoms.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap checkIcon {
+            get {
+                object obj = ResourceManager.GetObject("checkIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
@@ -182,6 +189,20 @@ namespace ECustoms.Properties {
         internal static System.Drawing.Bitmap file_import1 {
             get {
                 object obj = ResourceManager.GetObject("file import1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap icon_check2_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("icon-check2-16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Icon_Error_16x16_GreyBckgrnd {
+            get {
+                object obj = ResourceManager.GetObject("Icon-Error-16x16-GreyBckgrnd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
