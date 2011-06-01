@@ -57,13 +57,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdVehicle = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DriverName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.SuspendLayout();
@@ -221,7 +221,7 @@
             this.btnConfirmExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmExport.Location = new System.Drawing.Point(683, 12);
             this.btnConfirmExport.Name = "btnConfirmExport";
-            this.btnConfirmExport.Size = new System.Drawing.Size(210, 63);
+            this.btnConfirmExport.Size = new System.Drawing.Size(205, 52);
             this.btnConfirmExport.TabIndex = 11;
             this.btnConfirmExport.Text = "Xác nhận xuất cảnh";
             this.btnConfirmExport.UseVisualStyleBackColor = true;
@@ -230,9 +230,9 @@
             // btnConfirmImport
             // 
             this.btnConfirmImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmImport.Location = new System.Drawing.Point(683, 81);
+            this.btnConfirmImport.Location = new System.Drawing.Point(683, 68);
             this.btnConfirmImport.Name = "btnConfirmImport";
-            this.btnConfirmImport.Size = new System.Drawing.Size(210, 73);
+            this.btnConfirmImport.Size = new System.Drawing.Size(210, 52);
             this.btnConfirmImport.TabIndex = 12;
             this.btnConfirmImport.Text = "Xác nhận nhập cảnh";
             this.btnConfirmImport.UseVisualStyleBackColor = true;
@@ -350,7 +350,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(5, 311);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(836, 270);
+            this.groupBox1.Size = new System.Drawing.Size(888, 270);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Các xe vừa nhập";
@@ -372,9 +372,20 @@
             this.grdVehicle.MultiSelect = false;
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(830, 245);
+            this.grdVehicle.Size = new System.Drawing.Size(882, 245);
             this.grdVehicle.TabIndex = 19;
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(683, 126);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(210, 52);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // PlateNumber
             // 
@@ -418,18 +429,7 @@
             this.Note.DataPropertyName = "Note";
             this.Note.HeaderText = "Ghi chú";
             this.Note.Name = "Note";
-            this.Note.Width = 130;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(683, 160);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(210, 63);
-            this.btnSearch.TabIndex = 13;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.Note.Width = 198;
             // 
             // frmVehicle
             // 
