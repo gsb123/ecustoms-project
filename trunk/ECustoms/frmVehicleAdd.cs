@@ -15,7 +15,7 @@ namespace ECustoms
     {
         #region Priority
         private List<VehicleInfo> _vehicleInfosTemp = new List<VehicleInfo>();
-        private VehicleBOL _vehicleBOL;
+        private VehicleBOL _vehicleBOL = new VehicleBOL();
         private UserInfo _userInfo;
 
         public List<VehicleInfo> VehicleInfosTemp
@@ -49,6 +49,12 @@ namespace ECustoms
             if (string.IsNullOrEmpty(txtPlateNumber.Text.Trim()))
             {
                 MessageBox.Show("Biểm kiểm soát không được để trống!");
+                txtPlateNumber.Focus();
+                return false;
+            }
+            if (pictureBoxInvalid.Visible)
+            {
+                MessageBox.Show("Biểm kiểm soát đã được nhập");
                 txtPlateNumber.Focus();
                 return false;
             }
@@ -204,6 +210,7 @@ namespace ECustoms
                     VehicleInfosTemp.Add(vehicleInfo);
                     BindVehicle(VehicleInfosTemp);
 
+                    ResetForm();
                 }
 
             }
@@ -323,6 +330,10 @@ namespace ECustoms
             {
                 DeclarationBOL _declarationBOL = new DeclarationBOL();
                 var declarationInfo = GetDeclarationInfo();
+                declarationInfo.ModifiedDate = DateTime.Now;
+                declarationInfo.CreatedBy = _userInfo.UserName;
+                declarationInfo.ModifiedByID = _userInfo.UserID;
+                declarationInfo.CreatedByID = _userInfo.UserID;
                 if (VehicleInfosTemp.Count == 0)
                     throw new Exception("Phương tiện không được để trống");
                 _declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp);

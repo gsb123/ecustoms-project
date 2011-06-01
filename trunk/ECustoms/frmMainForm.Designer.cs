@@ -40,12 +40,13 @@
             this.menuitemDeclaration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnExport = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewVehiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolstripLabelWelcome = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButtonDeclarace = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonListdeclarace = new System.Windows.Forms.ToolStripButton();
-            this.addNewVehiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,8 @@
             this.toolStripMenuItem1,
             this.menuitemLogout,
             this.toolStripSeparator1,
-            this.menuitemExit});
+            this.menuitemExit,
+            this.aboutUsToolStripMenuItem});
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
             this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(86, 25);
             this.hệThốngToolStripMenuItem.Text = "Hệ thống";
@@ -147,6 +149,14 @@
             this.vehicleSearch.Text = "Tìm kiếm phương tiện";
             this.vehicleSearch.Click += new System.EventHandler(this.vehicleSearch_Click);
             // 
+            // addNewVehiceToolStripMenuItem
+            // 
+            this.addNewVehiceToolStripMenuItem.Image = global::ECustoms.Properties.Resources._001_01;
+            this.addNewVehiceToolStripMenuItem.Name = "addNewVehiceToolStripMenuItem";
+            this.addNewVehiceToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.addNewVehiceToolStripMenuItem.Text = "Thêm phương tiện";
+            this.addNewVehiceToolStripMenuItem.Click += new System.EventHandler(this.addNewVehiceToolStripMenuItem_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -203,13 +213,11 @@
             this.toolStripButtonListdeclarace.ToolTipText = "Danh sách tờ khai";
             this.toolStripButtonListdeclarace.Click += new System.EventHandler(this.toolStripButtonListdeclarace_Click);
             // 
-            // addNewVehiceToolStripMenuItem
+            // aboutUsToolStripMenuItem
             // 
-            this.addNewVehiceToolStripMenuItem.Image = global::ECustoms.Properties.Resources._001_01;
-            this.addNewVehiceToolStripMenuItem.Name = "addNewVehiceToolStripMenuItem";
-            this.addNewVehiceToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.addNewVehiceToolStripMenuItem.Text = "Thêm phương tiện";
-            this.addNewVehiceToolStripMenuItem.Click += new System.EventHandler(this.addNewVehiceToolStripMenuItem_Click);
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.aboutUsToolStripMenuItem.Text = "About Us";
             // 
             // frmMainForm
             // 
@@ -252,5 +260,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonListdeclarace;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addNewVehiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
     }
 }

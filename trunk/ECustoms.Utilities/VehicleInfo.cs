@@ -110,11 +110,15 @@ namespace ECustoms.Utilities
         public int ConfirmExportBy { set; get; }
         public int ConfirmLocalImportBy { set; get; }
 
+        public string ConfirmImportByName { set; get; }
+        public string ConfirmExportByName { set; get; }
+        public string ConfirmLocalImportByName { set; get; }
         #endregion
 
         #region Methods
         public void CreateFrom(DataRow dr)
         {
+
 
             if (dr.Table.Columns.Contains("DeclarationNumberExport") && !dr.IsNull("DeclarationNumberExport"))
             {
@@ -131,96 +135,147 @@ namespace ECustoms.Utilities
             else
                 this.DeclarationNumberImport = 0;
 
-
-            if (dr.Table.Columns.Contains("ConfirmImportBy") && !dr.IsNull("ConfirmImportBy"))
+            try
             {
-                this.ConfirmImportBy = Convert.ToInt32(dr["ConfirmImportBy"]);
+
+                if (dr.Table.Columns.Contains("ConfirmImportBy") && !dr.IsNull("ConfirmImportBy"))
+                {
+                    this.ConfirmImportBy = Convert.ToInt32(dr["ConfirmImportBy"]);
+                }
+                else this.ConfirmImportBy = 0;
+                if (dr.Table.Columns.Contains("ConfirmExportBy") && !dr.IsNull("ConfirmExportBy"))
+                {
+                    this.ConfirmExportBy = Convert.ToInt32(dr["ConfirmExportBy"]);
+                }
+                else this.ConfirmExportBy = 0;
+
+                if (dr.Table.Columns.Contains("ConfirmLocalImportBy") && !dr.IsNull("ConfirmLocalImportBy"))
+                {
+                    this.ConfirmLocalImportBy = Convert.ToInt32(dr["ConfirmLocalImportBy"]);
+                }
+                else this.ConfirmLocalImportBy = 0;
+
+                /*Name*/
+
+                if (dr.Table.Columns.Contains("ConfirmImportByName") && !dr.IsNull("ConfirmImportByName"))
+                {
+                    this.ConfirmImportByName = Convert.ToString(dr["ConfirmImportByName"]);
+                }
+                else this.ConfirmImportByName = "";
+                if (dr.Table.Columns.Contains("ConfirmExportByName") && !dr.IsNull("ConfirmExportByName"))
+                {
+                    this.ConfirmExportByName = Convert.ToString(dr["ConfirmExportByName"]);
+                }
+                else this.ConfirmExportByName = "";
+
+                if (dr.Table.Columns.Contains("ConfirmLocalImportByName") && !dr.IsNull("ConfirmLocalImportByName"))
+                {
+                    this.ConfirmLocalImportByName = Convert.ToString(dr["ConfirmLocalImportByName"]);
+                }
+                else this.ConfirmLocalImportByName = "";
+
             }
-            else this.ConfirmImportBy = 0;
-            if (dr.Table.Columns.Contains("ConfirmExportBy") && !dr.IsNull("ConfirmExportBy"))
+            catch (Exception ex)
             {
-                this.ConfirmExportBy = Convert.ToInt32(dr["ConfirmExportBy"]);
-            }
-            else this.ConfirmExportBy = 0;
-
-            if (dr.Table.Columns.Contains("ConfirmLocalImportBy") && !dr.IsNull("ConfirmLocalImportBy"))
-            {
-                this.ConfirmLocalImportBy = Convert.ToInt32(dr["ConfirmLocalImportBy"]);
-            }
-            else this.ConfirmLocalImportBy = 0;
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_VEHICLE_ID) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_VEHICLE_ID))
-            {
-                this.VehicleID = Convert.ToInt32(dr[ConstantInfo.TBL_VEHICLE_VEHICLE_ID]);
-            }
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_DECLARATION_DECLARATION_ID) && !dr.IsNull(ConstantInfo.TBL_DECLARATION_DECLARATION_ID))
-            {
-                this.DeclarationID = Convert.ToInt32(dr[ConstantInfo.TBL_DECLARATION_DECLARATION_ID]);
-            }
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_PLATE_NUMBER) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_PLATE_NUMBER))
-            {
-                this.PlateNumber = dr[ConstantInfo.TBL_VEHICLE_PLATE_NUMBER].ToString();
-            }
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER))
-            {
-                this.NumberOfContainer = Convert.ToInt32(dr[ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER]);
-            }
-
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_DRIVER_NAME) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_DRIVER_NAME))
-            {
-                this.DriverName = dr[ConstantInfo.TBL_VEHICLE_DRIVER_NAME].ToString();
-            }
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORT_DATE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORT_DATE))
-            {
-                this.ImportDate = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_IMPORT_DATE]);
+                throw;
             }
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_IMPORT) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_IMPORT))
+            try
             {
-                this.IsImport = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_IMPORT]);
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_VEHICLE_ID) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_VEHICLE_ID))
+                {
+                    this.VehicleID = Convert.ToInt32(dr[ConstantInfo.TBL_VEHICLE_VEHICLE_ID]);
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_DECLARATION_DECLARATION_ID) && !dr.IsNull(ConstantInfo.TBL_DECLARATION_DECLARATION_ID))
+                {
+                    this.DeclarationID = Convert.ToInt32(dr[ConstantInfo.TBL_DECLARATION_DECLARATION_ID]);
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_PLATE_NUMBER) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_PLATE_NUMBER))
+                {
+                    this.PlateNumber = dr[ConstantInfo.TBL_VEHICLE_PLATE_NUMBER].ToString();
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER))
+                {
+                    this.NumberOfContainer = Convert.ToInt32(dr[ConstantInfo.TBL_VEHICLE_NUMBER_OF_CONTAINER]);
+                }
+
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_DRIVER_NAME) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_DRIVER_NAME))
+                {
+                    this.DriverName = dr[ConstantInfo.TBL_VEHICLE_DRIVER_NAME].ToString();
+                }
+
+
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_IMPORT) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_IMPORT))
+                {
+                    this.IsImport = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_IMPORT]);
+                }
+
+
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_EXPORT) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_EXPORT))
+                {
+                    this.IsExport = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_EXPORT]);
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_NOTE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_NOTE))
+                {
+                    this.Note = dr[ConstantInfo.TBL_VEHICLE_NOTE].ToString();
+                }
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_STATUS) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_STATUS))
+                {
+                    this.Status = dr[ConstantInfo.TBL_VEHICLE_STATUS].ToString();
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_COMPLETED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_COMPLETED))
+                {
+                    this.IsCompleted = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_COMPLETED]);
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED))
+                {
+                    this.IsGoodsImported = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED]);
+                }
+
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS))
+                {
+                    this.ImportStatus = dr[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_EXPORT_DATE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_EXPORT_DATE))
+            try
             {
-                this.ExportDate = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_EXPORT_DATE]);
-            }
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME))
+                {
+                    this.ImportedLocalTime = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME].ToString());
+                }
+                else this.ImportedLocalTime = DateTime.MinValue;
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_EXPORT) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_EXPORT))
-            {
-                this.IsExport = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_EXPORT]);
-            }
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_EXPORT_DATE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_EXPORT_DATE))
+                {
+                    this.ExportDate = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_EXPORT_DATE]);
+                }
+                else this.ExportDate = DateTime.MinValue;
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_NOTE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_NOTE))
-            {
-                this.Note = dr[ConstantInfo.TBL_VEHICLE_NOTE].ToString();
-            }
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_STATUS) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_STATUS))
-            {
-                this.Status = dr[ConstantInfo.TBL_VEHICLE_STATUS].ToString();
-            }
+                if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORT_DATE) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORT_DATE))
+                {
+                    this.ImportDate = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_IMPORT_DATE]);
+                }
+                else this.ImportDate = DateTime.MinValue;
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_COMPLETED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_COMPLETED))
-            {
-                this.IsCompleted = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_COMPLETED]);
             }
+            catch (Exception ex)
+            {
+                throw;
 
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED))
-            {
-                this.IsGoodsImported = Convert.ToBoolean(dr[ConstantInfo.TBL_VEHICLE_IS_GOODS_IMPORTED]);
-            }
-
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORT_STATUS))
-            {
-                this.ImportStatus = dr[ConstantInfo.TBL_VEHICLE_IMPORT_STATUS].ToString();
-            }
-            if (dr.Table.Columns.Contains(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME) && !dr.IsNull(ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME))
-            {
-                this.ImportedLocalTime = Convert.ToDateTime(dr[ConstantInfo.TBL_VEHICLE_IMPORTED_LOCAL_TIME].ToString());
             }
         }
         #endregion
