@@ -32,7 +32,7 @@ namespace ECustoms.BOL
                 var declarationID = _declarationDAL.Insert(declarationInfo);
                 // Add vehicle
                 if (declarationID > 0 && vehicleInfos.Count > 0)
-                {                                        
+                {
                     for (int i = 0; i < vehicleInfos.Count; i++)
                     {
                         // Update DeclarationID
@@ -49,13 +49,13 @@ namespace ECustoms.BOL
                         }
                         else
                         {
-                            vehicleInfos[i].ImportDate = new DateTime(1900, 1,1); // Set default value
+                            vehicleInfos[i].ImportDate = new DateTime(1900, 1, 1); // Set default value
                         }
 
                         if (!string.IsNullOrEmpty(vehicleInfos[i].ExportHour) && vehicleInfos[i].ExportDate != null && vehicleInfos[i].IsExport)
                         {
                             var exporttHour = Convert.ToInt32(vehicleInfos[i].ExportHour.Split(':')[0]);
-                            var exporMinitues  = Convert.ToInt32(vehicleInfos[i].ExportHour.Split(':')[1]);
+                            var exporMinitues = Convert.ToInt32(vehicleInfos[i].ExportHour.Split(':')[1]);
                             // Add export minitues
                             vehicleInfos[i].ExportDate = vehicleInfos[i].ExportDate.Value.AddMinutes(exporMinitues - vehicleInfos[i].ExportDate.Value.Minute);
                             // Add export hour
@@ -63,9 +63,10 @@ namespace ECustoms.BOL
                         }
                         else
                         {
-                             vehicleInfos[i].ExportDate = new DateTime(1900,1,1); // Set default value
+                            vehicleInfos[i].ExportDate = new DateTime(1900, 1, 1); // Set default value
                         }
-                        _vehicleDAL.Insert(vehicleInfos[i]);
+                        if (!vehicleInfos[i].PlateNumber.Equals(""))
+                            _vehicleDAL.Insert(vehicleInfos[i]);
                     }
                 }
             }
@@ -86,7 +87,7 @@ namespace ECustoms.BOL
                 return _declarationDAL.Select();
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
@@ -103,7 +104,7 @@ namespace ECustoms.BOL
                 return _declarationDAL.DeleteByID(declerationID);
             }
             catch (Exception)
-            {                    
+            {
                 throw;
             }
         }
