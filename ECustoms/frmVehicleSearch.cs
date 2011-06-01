@@ -70,67 +70,99 @@ namespace ECustoms
                                                      dtpExportFrom.Value, dtpExportTo.Value);
 
 
-
             grdVehicle.DataSource = _dtResult;
 
             try
             {
 
-
-                for (int i = 0; i < grdVehicle.Rows.Count; i++)
+                var result = new List<VehicleInfo>();
+                foreach (DataRow dr in _dtResult.Rows)
                 {
-
-
-
-                    if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year <= 1900)
-                    {
-                        grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value = "";
-
-                    }
-                    if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null && grdVehicle.Rows[i].Cells["ExportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value).Year <= 1900)
-                    {
-                        grdVehicle.Rows[i].Cells["ExportDate"].Value = "";
-                    }
-
-                    if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null && grdVehicle.Rows[i].Cells["ImportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value).Year <= 1900)
-                    {
-                        grdVehicle.Rows[i].Cells["ImportDate"].Value = "";
-                    }
-
+                    var vehicleInfo = new VehicleInfo();
+                    vehicleInfo.CreateFrom(dr);
+                    result.Add(vehicleInfo);
                 }
+
+
+                //for (int i = 0; i < grdVehicle.Rows.Count; i++)
+                //{
+
+
+
+                //    if (grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value != null && grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value).Year <= 1900)
+                //    {
+                //        grdVehicle.Rows[i].Cells["ImportedLocalTime"].Value = "";
+
+                //    }
+                //    if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null && grdVehicle.Rows[i].Cells["ExportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value).Year <= 1900)
+                //    {
+                //        grdVehicle.Rows[i].Cells["ExportDate"].Value = "";
+                //    }
+
+                //    if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null && grdVehicle.Rows[i].Cells["ImportDate"].Value.ToString() != "" && Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value).Year <= 1900)
+                //    {
+                //        grdVehicle.Rows[i].Cells["ImportDate"].Value = "";
+                //    }
+
+                //}
 
                 int xeKhongXC = 0, xeKhongNC = 0, xeCohangNC = 0, xeCohangXC = 0, xeVaoNoiDia = 0;
 
-                for (int i = 0; i < _dtResult.Rows.Count; i++)
+                //for (int i = 0; i < _dtResult.Rows.Count; i++)
+                //{
+                //    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
+                //    {
+                //        xeKhongXC = xeKhongXC + 1;
+                //    }
+
+                //    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()))
+                //    {
+                //        xeKhongNC = xeKhongNC + 1;
+                //    }
+
+
+                //    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported") && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
+                //    {
+                //        xeCohangNC = xeCohangNC + 1;
+                //    }
+
+                //    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
+                //    {
+                //        xeCohangXC = xeCohangXC + 1;
+                //    }
+
+
+                //    if (!_dtResult.Rows[i].IsNull("IsGoodsImported") && _dtResult.Rows[i]["IsGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsGoodsImported"].ToString()))
+                //    {
+                //        xeVaoNoiDia = xeVaoNoiDia + 1;
+                //    }
+
+                //}
+                /*
+                 * 
+                    1-Xe không đã xuất cảnh= xe không chở hàng đã xuất cảnh + xe có số tờ khai xuất khẩu
+                    bằng 0 đã được xác nhận xuất cảnh.
+                    2-Xe không nhập cảnh=xe không chở hàng đã nhập cảnh + xe được xác nhận xe nhập
+                    cảnh không có hàng.
+                    3-xe có hàng xuất cảnh=xe chở hàng đã xuất cảnh + xe có số tờ khai xuất khẩu khác
+                    0 đã được xác nhận xuất cảnh.
+                    4-xe có hàng nhập cảnh = xe chở hàng đã nhập cảnh=xe được xác nhận xe nhập cảnh
+                    có hàng.
+                    5-Tổng số xe đã vào nội địa = xe chở hàng dược xác nhận xe nhập cảnh có
+                    hàng+được xác nhận hàng đã vào nội địa.
+                    =>xe chở hàng nhập khẩu còn tồn tại cửa khẩu = xe chở hàng đã nhập khẩu-xe đã
+                    vào nội địa; xe chở hàng xuất khẩu còn tồn tại cửa khẩu = xe đã đăng ký có số tờ khai khác
+                    0-xe đã đăng ký có số tờ khai khác 0 đã được xác nhận xuất cảnh=xe còn tồn
+                    trên màn hình tìm kiếm khi bấm vào tìm kiếm.
+                 * 
+                 * */
+
+                foreach (VehicleInfo v in result)
                 {
-                    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
-                    {
-                        xeKhongXC = xeKhongXC + 1;
-                    }
-
-                    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && !Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()))
-                    {
-                        xeKhongNC = xeKhongNC + 1;
-                    }
-
-
-                    if (!_dtResult.Rows[i].IsNull("IsImport") && _dtResult.Rows[i]["IsImport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsImport"].ToString()) && !_dtResult.Rows[i].IsNull("HasGoodsImported") && _dtResult.Rows[i]["HasGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["HasGoodsImported"].ToString()))
-                    {
-                        xeCohangNC = xeCohangNC + 1;
-                    }
-
-                    if (!_dtResult.Rows[i].IsNull("IsExport") && _dtResult.Rows[i]["IsExport"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsExport"].ToString()))
-                    {
-                        xeCohangXC = xeCohangXC + 1;
-                    }
-
-
-                    if (!_dtResult.Rows[i].IsNull("IsGoodsImported") && _dtResult.Rows[i]["IsGoodsImported"] != null && Convert.ToBoolean(_dtResult.Rows[i]["IsGoodsImported"].ToString()))
-                    {
-                        xeVaoNoiDia = xeVaoNoiDia + 1;
-                    }
-
+                    // Do something here
                 }
+
+
 
                 lblKhongXC.Text = xeKhongXC.ToString();
                 lblKhongNC.Text = xeKhongNC.ToString();
@@ -491,6 +523,8 @@ namespace ECustoms
                 vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
                 vehicleInfo.IsGoodsImported = true;
                 vehicleInfo.ImportedLocalTime = DateTime.Now;
+                // is completed when user is confirm is local 
+                vehicleInfo.IsCompleted = true;
 
                 if (vehicleInfo.ConfirmLocalImportBy != 0 && vehicleInfo.ConfirmLocalImportBy != _userInfo.UserID)
                     throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
