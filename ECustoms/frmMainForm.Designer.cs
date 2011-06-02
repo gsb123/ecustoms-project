@@ -36,6 +36,7 @@
             this.menuitemLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuitemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khaiBáoXuấtNhậpKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemDeclaration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnExport = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.toolStripButtonDeclarace = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonListdeclarace = new System.Windows.Forms.ToolStripButton();
-            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +113,13 @@
             this.menuitemExit.Size = new System.Drawing.Size(248, 26);
             this.menuitemExit.Text = "Thoát Khỏi chương trình";
             this.menuitemExit.Click += new System.EventHandler(this.menuitemExit_Click);
+            // 
+            // aboutUsToolStripMenuItem
+            // 
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.aboutUsToolStripMenuItem.Text = "About Us";
+            this.aboutUsToolStripMenuItem.Visible = false;
             // 
             // khaiBáoXuấtNhậpKhẩuToolStripMenuItem
             // 
@@ -212,12 +219,6 @@
             this.toolStripButtonListdeclarace.Text = "toolStripButton3";
             this.toolStripButtonListdeclarace.ToolTipText = "Danh sách tờ khai";
             this.toolStripButtonListdeclarace.Click += new System.EventHandler(this.toolStripButtonListdeclarace_Click);
-            // 
-            // aboutUsToolStripMenuItem
-            // 
-            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
-            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
-            this.aboutUsToolStripMenuItem.Text = "About Us";
             // 
             // frmMainForm
             // 
