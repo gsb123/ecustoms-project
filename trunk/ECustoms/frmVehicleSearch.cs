@@ -139,7 +139,7 @@ namespace ECustoms
                         xeCoHangDaXC++;
                     if (v.IsImport && v.HasGoodsImported)
                         xeNhapHangDaNC++;
-                    if (v.IsImport && v.HasGoodsImported && v.IsGoodsImported)
+                    if (v.IsGoodsImported)
                         xeVaoNoiDia++;
 
                 }
