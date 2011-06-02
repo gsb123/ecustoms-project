@@ -135,6 +135,18 @@ namespace ECustoms.Utilities
             else
                 this.DeclarationNumberImport = 0;
 
+
+            if (dr.Table.Columns.Contains("HasGoodsImported") && !dr.IsNull("HasGoodsImported"))
+            {
+                this.HasGoodsImported = Convert.ToBoolean(dr["HasGoodsImported"]);
+            }
+
+            if (dr.Table.Columns.Contains("IsGoodsImported") && !dr.IsNull("IsGoodsImported"))
+            {
+                this.IsGoodsImported = Convert.ToBoolean(dr["IsGoodsImported"]);
+            }
+
+
             try
             {
 

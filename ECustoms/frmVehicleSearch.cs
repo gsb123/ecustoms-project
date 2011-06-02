@@ -122,7 +122,6 @@ namespace ECustoms
                 int xeKhongChoHangDaXC = 0;
                 int xeKhongChoHangDaNC = 0;
                 int xeCoHangDaXC = 0;
-
                 int xeNhapHangDaNC = 0;
                 int xeVaoNoiDia = 0;
 
@@ -134,14 +133,12 @@ namespace ECustoms
                     // Xe khong cho hang da xuat canh
                     if (v.IsExport && v.DeclarationNumberExport == 0)
                         xeKhongChoHangDaXC++;
-
                     if (v.IsImport && !v.HasGoodsImported)
                         xeKhongChoHangDaNC++;
                     if (v.IsExport && v.DeclarationNumberExport != 0)
                         xeCoHangDaXC++;
                     if (v.IsImport && v.HasGoodsImported)
                         xeNhapHangDaNC++;
-
                     if (v.IsImport && v.HasGoodsImported && v.IsGoodsImported)
                         xeVaoNoiDia++;
 
@@ -149,8 +146,8 @@ namespace ECustoms
 
                 lblKhongXC.Text = xeKhongChoHangDaXC.ToString();
                 lblKhongNC.Text = xeKhongChoHangDaNC.ToString();
-                lblCohangNC.Text = xeCoHangDaXC.ToString();
-                lblKhonghangNC.Text = xeNhapHangDaNC.ToString();
+                lblCohangNC.Text = xeNhapHangDaNC.ToString();
+                lblCoHangXC.Text = xeCoHangDaXC.ToString();
                 lblVaonoidia.Text = xeVaoNoiDia.ToString();
 
 

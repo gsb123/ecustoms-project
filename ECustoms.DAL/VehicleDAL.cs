@@ -92,8 +92,12 @@ namespace ECustoms.DAL
             try
             {
 
+                //var sqlCommand =
+                //    "SELECT  TOP(1) * FROM    tblVehicle AS a WHERE a.PlateNumber='" + search + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.PlateNumber NOT IN ( SELECT   a.PlateNumber FROM     dbo.tblVehicle AS a WHERE    a.DeclarationID = " + declarationID + " ) ORDER BY a.ExportDate DESC";
+
                 var sqlCommand =
-                    "SELECT  TOP(1) * FROM    tblVehicle AS a WHERE a.PlateNumber='" + search + "' AND a.IsExport = 1 AND a.IsImport = 0 AND a.PlateNumber NOT IN ( SELECT   a.PlateNumber FROM     dbo.tblVehicle AS a WHERE    a.DeclarationID = " + declarationID + " ) ORDER BY a.ExportDate DESC";
+                     "SELECT  * FROM    tblVehicle AS a WHERE a.PlateNumber LIKE '%" + search + "%' AND a.IsExport = 1 AND a.IsImport = 0 AND a.PlateNumber NOT IN ( SELECT   a.PlateNumber FROM     dbo.tblVehicle AS a WHERE    a.DeclarationID = " + declarationID + " ) ORDER BY a.ExportDate DESC";
+
                 //var sqlCommand = "SELECT * FROM tblVehicle WHERE IsExport=1 AND IsImport=0 AND PlateNumber = '" + search + "' AND NOT DeclarationID =" + declarationID;
                 //var sqlCommand = string.Empty;
                 //if (search.Equals(""))
