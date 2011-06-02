@@ -240,6 +240,9 @@ namespace ECustoms
             }
             else if (_userInfo.Type == UserType.Input)
             {
+                btnComfirmExport.Enabled = false;
+                bntConfirmImportCH.Enabled = false;
+                btnConfirmImportKH.Enabled = false;
 
 
             }
