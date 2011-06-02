@@ -541,6 +541,7 @@
             // 
             // btnComfirmExport
             // 
+            this.btnComfirmExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnComfirmExport.Location = new System.Drawing.Point(970, 269);
             this.btnComfirmExport.Name = "btnComfirmExport";
             this.btnComfirmExport.Size = new System.Drawing.Size(171, 50);
@@ -551,6 +552,7 @@
             // 
             // bntConfirmImportCH
             // 
+            this.bntConfirmImportCH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntConfirmImportCH.Location = new System.Drawing.Point(970, 328);
             this.bntConfirmImportCH.Name = "bntConfirmImportCH";
             this.bntConfirmImportCH.Size = new System.Drawing.Size(171, 50);
@@ -561,6 +563,7 @@
             // 
             // btnConfirmImportKH
             // 
+            this.btnConfirmImportKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmImportKH.Location = new System.Drawing.Point(970, 393);
             this.btnConfirmImportKH.Name = "btnConfirmImportKH";
             this.btnConfirmImportKH.Size = new System.Drawing.Size(171, 50);
