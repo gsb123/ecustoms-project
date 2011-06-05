@@ -43,6 +43,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbOldPass = new System.Windows.Forms.Label();
             this.txtPlate = new System.Windows.Forms.TextBox();
+            this.rbChuaNhap = new System.Windows.Forms.RadioButton();
+            this.rBCoHang = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +65,7 @@
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.ReadOnly = true;
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(818, 372);
+            this.grdVehicle.Size = new System.Drawing.Size(818, 249);
             this.grdVehicle.TabIndex = 1;
             this.grdVehicle.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVehicle_CellDoubleClick);
             // 
@@ -192,11 +194,37 @@
             this.txtPlate.Size = new System.Drawing.Size(182, 20);
             this.txtPlate.TabIndex = 19;
             // 
+            // rbChuaNhap
+            // 
+            this.rbChuaNhap.AutoSize = true;
+            this.rbChuaNhap.Checked = true;
+            this.rbChuaNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rbChuaNhap.Location = new System.Drawing.Point(485, 14);
+            this.rbChuaNhap.Name = "rbChuaNhap";
+            this.rbChuaNhap.Size = new System.Drawing.Size(105, 24);
+            this.rbChuaNhap.TabIndex = 20;
+            this.rbChuaNhap.TabStop = true;
+            this.rbChuaNhap.Text = "Chưa nhập";
+            this.rbChuaNhap.UseVisualStyleBackColor = true;
+            // 
+            // rBCoHang
+            // 
+            this.rBCoHang.AutoSize = true;
+            this.rBCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rBCoHang.Location = new System.Drawing.Point(485, 51);
+            this.rBCoHang.Name = "rBCoHang";
+            this.rBCoHang.Size = new System.Drawing.Size(165, 24);
+            this.rBCoHang.TabIndex = 21;
+            this.rBCoHang.Text = "Nhập cảnh có hàng";
+            this.rBCoHang.UseVisualStyleBackColor = true;
+            // 
             // frmVehicleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 417);
+            this.Controls.Add(this.rBCoHang);
+            this.Controls.Add(this.rbChuaNhap);
             this.Controls.Add(this.txtPlate);
             this.Controls.Add(this.lbOldPass);
             this.Controls.Add(this.btnSearch);
@@ -229,5 +257,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lbOldPass;
         private System.Windows.Forms.TextBox txtPlate;
+        private System.Windows.Forms.RadioButton rbChuaNhap;
+        private System.Windows.Forms.RadioButton rBCoHang;
     }
 }
