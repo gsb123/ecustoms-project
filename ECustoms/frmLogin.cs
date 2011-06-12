@@ -8,22 +8,30 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmLogin : Form
     {
+        private readonly ILog logger;
         private UserBOL _userBOL;
+       
 
         public frmLogin()
         {
+             logger = LogManager.GetLogger("Ecustoms.frmLogin");
             InitializeComponent();
+            log4net.Config.DOMConfigurator.Configure();
+            
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
+                //ILog logger = LogManager.GetLogger("ECustoms.Login");
+                logger.Info("btnLogin_Click");
                 if (Validate())
                 {
                     var objUserInfo = new UserInfo
@@ -47,9 +55,9 @@ namespace ECustoms
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());                
             }
             
         }
@@ -95,28 +103,37 @@ namespace ECustoms
         {
             if (e.KeyChar == 13) // Enter key
             {
-                if (Validate())
+                try
                 {
-                    var objUserInfo = new UserInfo
+                    logger.Info("txtPassword_KeyPress");
+                    if (Validate())
                     {
-                        UserName = txtUsername.Text.Trim(),
-                        Password = txtPassword.Text.Trim()
-                    };
+                        var objUserInfo = new UserInfo
+                        {
+                            UserName = txtUsername.Text.Trim(),
+                            Password = txtPassword.Text.Trim()
+                        };
 
-                    var userInfo = _userBOL.GetUser(objUserInfo);
-                    if (userInfo != null) // Login sucessfully
-                    {
-                        // Redirect to the main form
-                        var mainForm = new frmMainForm(userInfo);
-                        mainForm.WindowState = FormWindowState.Maximized;
-                        mainForm.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show(ConstantInfo.MESSAGE_LOGIN_FAIL, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var userInfo = _userBOL.GetUser(objUserInfo);
+                        if (userInfo != null) // Login sucessfully
+                        {
+                            // Redirect to the main form
+                            var mainForm = new frmMainForm(userInfo);
+                            mainForm.WindowState = FormWindowState.Maximized;
+                            mainForm.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show(ConstantInfo.MESSAGE_LOGIN_FAIL, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+
+                    logger.Error(ex.ToString());
+                }               
             }
         }
 
