@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbEcustomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="dbEcustomModelStoreContainer">
+          <EntitySet Name="dtproperties" EntityType="dbEcustomModel.Store.dtproperties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblDeclaration" EntityType="dbEcustomModel.Store.tblDeclaration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="dbEcustomModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblVehicle" EntityType="dbEcustomModel.Store.tblVehicle" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblDeclaration_tblUser" Association="dbEcustomModel.Store.FK_tblDeclaration_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblDeclaration" EntitySet="tblDeclaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVehicle_tblDeclaration" Association="dbEcustomModel.Store.FK_tblVehicle_tblDeclaration">
+            <End Role="tblDeclaration" EntitySet="tblDeclaration" />
+            <End Role="tblVehicle" EntitySet="tblVehicle" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dtproperties">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="property" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="objectid" Type="int" />
+          <Property Name="property" Type="varchar" Nullable="false" MaxLength="64" />
+          <Property Name="value" Type="varchar" MaxLength="255" />
+          <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+          <Property Name="lvalue" Type="image" />
+          <Property Name="version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDeclaration">
+          <Key>
+            <PropertyRef Name="DeclarationID" />
+          </Key>
+          <Property Name="DeclarationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProductAmount" Type="nvarchar" MaxLength="500" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedByID" Type="int" />
+          <Property Name="ModifiedByID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="HasDeclaration" Type="bit" />
+          <Property Name="ImportProductName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImportCompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportProductAmount" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportUnit" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImportHasDeclaration" Type="bit" />
+          <Property Name="ImportNumber" Type="int" />
+          <Property Name="ImportType" Type="nvarchar" MaxLength="200" />
+          <Property Name="ExportType" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="300" />
+          <Property Name="PermissionID" Type="int" />
+          <Property Name="IsActive" Type="int" />
+        </EntityType>
+        <EntityType Name="tblVehicle">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DeclarationID" Type="int" />
+          <Property Name="PlateNumber" Type="varchar" MaxLength="50" />
+          <Property Name="NumberOfContainer" Type="int" />
+          <Property Name="DriverName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImportDate" Type="datetime" />
+          <Property Name="IsImport" Type="bit" />
+          <Property Name="ExportDate" Type="datetime" />
+          <Property Name="IsExport" Type="bit" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsCompleted" Type="bit" />
+          <Property Name="IsGoodsImported" Type="bit" />
+          <Property Name="ImportStatus" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportedLocalTime" Type="datetime" />
+          <Property Name="HasGoodsImported" Type="bit" />
+          <Property Name="ConfirmImportBy" Type="int" />
+          <Property Name="ConfirmExportBy" Type="int" />
+          <Property Name="ConfirmLocalImportBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblDeclaration_tblUser">
+          <End Role="tblUser" Type="dbEcustomModel.Store.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblDeclaration" Type="dbEcustomModel.Store.tblDeclaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblDeclaration">
+              <PropertyRef Name="CreatedByID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVehicle_tblDeclaration">
+          <End Role="tblDeclaration" Type="dbEcustomModel.Store.tblDeclaration" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblVehicle" Type="dbEcustomModel.Store.tblVehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDeclaration">
+              <PropertyRef Name="DeclarationID" />
+            </Principal>
+            <Dependent Role="tblVehicle">
+              <PropertyRef Name="DeclarationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="dt_addtosourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchSourceSafeINI" Type="varchar" Mode="In" />
+          <Parameter Name="vchProjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_addtosourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchSourceSafeINI" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchProjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_adduserobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_adduserobject_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchProperty" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_checkinobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+          <Parameter Name="txStream1" Type="text" Mode="In" />
+          <Parameter Name="txStream2" Type="text" Mode="In" />
+          <Parameter Name="txStream3" Type="text" Mode="In" />
+        </Function>
+        <Function Name="dt_checkinobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+          <Parameter Name="txStream1" Type="text" Mode="In" />
+          <Parameter Name="txStream2" Type="text" Mode="In" />
+          <Parameter Name="txStream3" Type="text" Mode="In" />
+        </Function>
+        <Function Name="dt_checkoutobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchComment" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_checkoutobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
+          <Parameter Name="iActionFlag" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_displayoaerror" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iObject" Type="int" Mode="In" />
+          <Parameter Name="iresult" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_displayoaerror_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iObject" Type="int" Mode="In" />
+          <Parameter Name="iresult" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_droppropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_dropuserobjectbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_generateansiname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_getobjwithprop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getobjwithprop_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_getpropertiesbyid_vcs_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="dt_isundersourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+          <Parameter Name="iWhoToo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_isundersourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="iWhoToo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="dt_removefromsourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_setpropertybyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="value" Type="varchar" Mode="In" />
+          <Parameter Name="lvalue" Type="image" Mode="In" />
+        </Function>
+        <Function Name="dt_setpropertybyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="property" Type="varchar" Mode="In" />
+          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
+          <Parameter Name="lvalue" Type="image" Mode="In" />
+        </Function>
+        <Function Name="dt_validateloginparams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_validateloginparams_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="dt_vcsenabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_verstamp006" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="dt_whocheckedout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="dt_whocheckedout_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chObjectType" Type="char" Mode="In" />
+          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
+          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_GetNameById" ReturnType="nvarchar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_countUserByUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_deleteDecleration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeclerationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deleteVehicleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VehicleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_getVehicleNotImportExport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_InsertDeclaration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProductAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreatedByID" Type="int" Mode="In" />
+          <Parameter Name="ModifiedByID" Type="int" Mode="In" />
+          <Parameter Name="ModifiedDate" Type="datetime" Mode="In" />
+          <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="HasDeclaration" Type="bit" Mode="In" />
+          <Parameter Name="ImportNumber" Type="int" Mode="In" />
+          <Parameter Name="ImportProductName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportCompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportProductAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportUnit" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportHasDeclaration" Type="bit" Mode="In" />
+          <Parameter Name="ImportType" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExportType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_insertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="PermissionID" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertVehicle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeclarationID" Type="int" Mode="In" />
+          <Parameter Name="PlateNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumberOfContainer" Type="int" Mode="In" />
+          <Parameter Name="DriverName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExportDate" Type="datetime" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsExport" Type="bit" Mode="In" />
+          <Parameter Name="IsCompleted" Type="bit" Mode="In" />
+          <Parameter Name="ImportDate" Type="datetime" Mode="In" />
+          <Parameter Name="IsImport" Type="bit" Mode="In" />
+          <Parameter Name="IsGoodsImported" Type="bit" Mode="In" />
+          <Parameter Name="ConfirmImportBy" Type="int" Mode="In" />
+          <Parameter Name="ConfirmExportBy" Type="int" Mode="In" />
+          <Parameter Name="ConfirmLocalImportBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_searchVehicle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsCompleted" Type="bit" Mode="In" />
+          <Parameter Name="PlateNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportFrom" Type="datetime" Mode="In" />
+          <Parameter Name="ImportTo" Type="datetime" Mode="In" />
+          <Parameter Name="ExportFrom" Type="datetime" Mode="In" />
+          <Parameter Name="ExportTo" Type="datetime" Mode="In" />
+          <Parameter Name="SearchType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_selectAllPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_SelectAllUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_selectDecleration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_selectDeclerationByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeclarationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_SelectUserByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_selectVehicleByDeclarationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeclarationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_SelectVehicleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VehicleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_updateDeclaration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeclerationID" Type="int" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="ProductName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProductAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModifiedByID" Type="int" Mode="In" />
+          <Parameter Name="ModifiedDate" Type="datetime" Mode="In" />
+          <Parameter Name="HasDeclaration" Type="bit" Mode="In" />
+          <Parameter Name="ImportNumber" Type="int" Mode="In" />
+          <Parameter Name="ImportProductName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportCompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportProductAmount" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportUnit" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportHasDeclaration" Type="bit" Mode="In" />
+          <Parameter Name="ImportType" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExportType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_updateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="PermissionID" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_updateVehicle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VehicleID" Type="int" Mode="In" />
+          <Parameter Name="PlateNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumberOfContainer" Type="int" Mode="In" />
+          <Parameter Name="DriverName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ImportDate" Type="datetime" Mode="In" />
+          <Parameter Name="ExportDate" Type="datetime" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsExport" Type="bit" Mode="In" />
+          <Parameter Name="IsImport" Type="bit" Mode="In" />
+          <Parameter Name="IsCompleted" Type="bit" Mode="In" />
+          <Parameter Name="ImportedLocalTime" Type="datetime" Mode="In" />
+          <Parameter Name="ImportStatus" Type="nvarchar" Mode="In" />
+          <Parameter Name="HasGoodsImported" Type="bit" Mode="In" />
+          <Parameter Name="IsGoodsImported" Type="bit" Mode="In" />
+          <Parameter Name="DeclarationID" Type="int" Mode="In" />
+          <Parameter Name="ConfirmImportBy" Type="int" Mode="In" />
+          <Parameter Name="ConfirmExportBy" Type="int" Mode="In" />
+          <Parameter Name="ConfirmLocalImportBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_IsExistVehicleInDeclaration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PlateNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeclarationID" Type="int" Mode="In" />
+        </Function>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'dbEcustom.dbo.tblPermission' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="tblPermission">
+        <Property Name="PermissionID" Type="int" />
+        <Property Name="Permission" Type="nvarchar" MaxLength="250" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbEcustomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="dbEcustomEntities">
+          <EntitySet Name="dtproperties" EntityType="dbEcustomModel.dtproperty" />
+          <EntitySet Name="tblDeclarations" EntityType="dbEcustomModel.tblDeclaration" />
+          <EntitySet Name="tblUsers" EntityType="dbEcustomModel.tblUser" />
+          <EntitySet Name="tblVehicles" EntityType="dbEcustomModel.tblVehicle" />
+          <AssociationSet Name="FK_tblDeclaration_tblUser" Association="dbEcustomModel.FK_tblDeclaration_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblDeclaration" EntitySet="tblDeclarations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVehicle_tblDeclaration" Association="dbEcustomModel.FK_tblVehicle_tblDeclaration">
+            <End Role="tblDeclaration" EntitySet="tblDeclarations" />
+            <End Role="tblVehicle" EntitySet="tblVehicles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="dtproperty">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="property" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="objectid" Type="Int32" />
+          <Property Name="property" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="value" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="uvalue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDeclaration">
+          <Key>
+            <PropertyRef Name="DeclarationID" />
+          </Key>
+          <Property Name="DeclarationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ProductAmount" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Unit" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedByID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="HasDeclaration" Type="Boolean" />
+          <Property Name="ImportProductName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ImportCompanyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ImportProductAmount" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ImportUnit" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ImportHasDeclaration" Type="Boolean" />
+          <Property Name="ImportNumber" Type="Int32" />
+          <Property Name="ImportType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ExportType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUser" Relationship="dbEcustomModel.FK_tblDeclaration_tblUser" FromRole="tblDeclaration" ToRole="tblUser" />
+          <NavigationProperty Name="tblVehicles" Relationship="dbEcustomModel.FK_tblVehicle_tblDeclaration" FromRole="tblDeclaration" ToRole="tblVehicle" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="PermissionID" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+          <NavigationProperty Name="tblDeclarations" Relationship="dbEcustomModel.FK_tblDeclaration_tblUser" FromRole="tblUser" ToRole="tblDeclaration" />
+        </EntityType>
+        <EntityType Name="tblVehicle">
+          <Key>
+            <PropertyRef Name="VehicleID" />
+          </Key>
+          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlateNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NumberOfContainer" Type="Int32" />
+          <Property Name="DriverName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ImportDate" Type="DateTime" />
+          <Property Name="IsImport" Type="Boolean" />
+          <Property Name="ExportDate" Type="DateTime" />
+          <Property Name="IsExport" Type="Boolean" />
+          <Property Name="Note" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsCompleted" Type="Boolean" />
+          <Property Name="IsGoodsImported" Type="Boolean" />
+          <Property Name="ImportStatus" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ImportedLocalTime" Type="DateTime" />
+          <Property Name="HasGoodsImported" Type="Boolean" />
+          <Property Name="ConfirmImportBy" Type="Int32" />
+          <Property Name="ConfirmExportBy" Type="Int32" />
+          <Property Name="ConfirmLocalImportBy" Type="Int32" />
+          <NavigationProperty Name="tblDeclaration" Relationship="dbEcustomModel.FK_tblVehicle_tblDeclaration" FromRole="tblVehicle" ToRole="tblDeclaration" />
+        </EntityType>
+        <Association Name="FK_tblDeclaration_tblUser">
+          <End Role="tblUser" Type="dbEcustomModel.tblUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblDeclaration" Type="dbEcustomModel.tblDeclaration" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_tblVehicle_tblDeclaration">
+          <End Role="tblDeclaration" Type="dbEcustomModel.tblDeclaration" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblVehicle" Type="dbEcustomModel.tblVehicle" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="dbEcustomModelStoreContainer" CdmEntityContainer="dbEcustomEntities">
+          <EntitySetMapping Name="dtproperties"><EntityTypeMapping TypeName="dbEcustomModel.dtproperty"><MappingFragment StoreEntitySet="dtproperties">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="objectid" ColumnName="objectid" />
+            <ScalarProperty Name="property" ColumnName="property" />
+            <ScalarProperty Name="value" ColumnName="value" />
+            <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+            <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+            <ScalarProperty Name="version" ColumnName="version" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblDeclarations"><EntityTypeMapping TypeName="dbEcustomModel.tblDeclaration"><MappingFragment StoreEntitySet="tblDeclaration">
+            <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+            <ScalarProperty Name="Number" ColumnName="Number" />
+            <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+            <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+            <ScalarProperty Name="ProductAmount" ColumnName="ProductAmount" />
+            <ScalarProperty Name="Unit" ColumnName="Unit" />
+            <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="HasDeclaration" ColumnName="HasDeclaration" />
+            <ScalarProperty Name="ImportProductName" ColumnName="ImportProductName" />
+            <ScalarProperty Name="ImportCompanyName" ColumnName="ImportCompanyName" />
+            <ScalarProperty Name="ImportProductAmount" ColumnName="ImportProductAmount" />
+            <ScalarProperty Name="ImportUnit" ColumnName="ImportUnit" />
+            <ScalarProperty Name="ImportHasDeclaration" ColumnName="ImportHasDeclaration" />
+            <ScalarProperty Name="ImportNumber" ColumnName="ImportNumber" />
+            <ScalarProperty Name="ImportType" ColumnName="ImportType" />
+            <ScalarProperty Name="ExportType" ColumnName="ExportType" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblUsers"><EntityTypeMapping TypeName="dbEcustomModel.tblUser"><MappingFragment StoreEntitySet="tblUser">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Sex" ColumnName="Sex" />
+            <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblVehicles"><EntityTypeMapping TypeName="dbEcustomModel.tblVehicle"><MappingFragment StoreEntitySet="tblVehicle">
+            <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+            <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+            <ScalarProperty Name="NumberOfContainer" ColumnName="NumberOfContainer" />
+            <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+            <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+            <ScalarProperty Name="IsImport" ColumnName="IsImport" />
+            <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+            <ScalarProperty Name="IsExport" ColumnName="IsExport" />
+            <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+            <ScalarProperty Name="IsGoodsImported" ColumnName="IsGoodsImported" />
+            <ScalarProperty Name="ImportStatus" ColumnName="ImportStatus" />
+            <ScalarProperty Name="ImportedLocalTime" ColumnName="ImportedLocalTime" />
+            <ScalarProperty Name="HasGoodsImported" ColumnName="HasGoodsImported" />
+            <ScalarProperty Name="ConfirmImportBy" ColumnName="ConfirmImportBy" />
+            <ScalarProperty Name="ConfirmExportBy" ColumnName="ConfirmExportBy" />
+            <ScalarProperty Name="ConfirmLocalImportBy" ColumnName="ConfirmLocalImportBy" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_tblDeclaration_tblUser" TypeName="dbEcustomModel.FK_tblDeclaration_tblUser" StoreEntitySet="tblDeclaration">
+            <EndProperty Name="tblUser">
+              <ScalarProperty Name="UserID" ColumnName="CreatedByID" />
+            </EndProperty>
+            <EndProperty Name="tblDeclaration">
+              <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+            </EndProperty>
+            <Condition ColumnName="CreatedByID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_tblVehicle_tblDeclaration" TypeName="dbEcustomModel.FK_tblVehicle_tblDeclaration" StoreEntitySet="tblVehicle">
+            <EndProperty Name="tblDeclaration">
+              <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+            </EndProperty>
+            <EndProperty Name="tblVehicle">
+              <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+            </EndProperty>
+            <Condition ColumnName="DeclarationID" IsNull="false" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ModelEcustoms">
+        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="0.75" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="4.8648079427083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="1.875" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblVehicle" Width="1.5" PointX="5.25" PointY="1.125" Height="4.6725065104166656" IsExpanded="true" />
+        <AssociationConnector Association="dbEcustomModel.FK_tblDeclaration_tblUser" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.5381982421875" />
+          <ConnectorPoint PointX="3" PointY="3.5381982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbEcustomModel.FK_tblVehicle_tblDeclaration" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="3.4612532552083328" />
+          <ConnectorPoint PointX="5.25" PointY="3.4612532552083328" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
