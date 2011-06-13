@@ -91,6 +91,7 @@ namespace ECustoms.Utilities
 
         public bool IsGoodsImported { get; set; }
 
+        // Nhập cảnh có hàng
         public bool HasGoodsImported { get; set; }
         private DateTime _importedLocalTime = new DateTime(1900, 1, 1);
         public DateTime ImportedLocalTime
