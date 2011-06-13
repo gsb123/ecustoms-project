@@ -947,22 +947,21 @@ namespace ECustoms
                                 vehicleInfo.ImportDate = DateTime.Now;
                                 vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
                                 vehicleInfo.IsImport = true;
-                                vehicleInfo.HasGoodsImported = true;
+                                // Nhập cảnh không hàng
+                                vehicleInfo.HasGoodsImported = false;
                                 vehicleInfo.ImportStatus = "Nhập cảnh không có hàng";
                                 if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
                                     throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
-                                vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+                                vehicleInfo.ConfirmImportBy = _userInfo.UserID;
 
                                 break;
                             }
-
                         }
                         this.BindVehicle(_vehicleInfosTemp);
 
                         MessageBox.Show("Lưu thành công!");
                     }
-
                 }
 
                 else
