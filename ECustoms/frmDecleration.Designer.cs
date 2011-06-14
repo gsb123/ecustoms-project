@@ -400,9 +400,8 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Location = new System.Drawing.Point(6, 22);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(51, 20);
+            this.lblHeader.Size = new System.Drawing.Size(0, 20);
             this.lblHeader.TabIndex = 1;
-            this.lblHeader.Text = "label1";
             // 
             // listViewVehicle
             // 
