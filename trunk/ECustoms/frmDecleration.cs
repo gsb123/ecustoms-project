@@ -10,11 +10,14 @@ using ECustoms.BOL;
 using ECustoms.Utilities;
 using Microsoft.Office.Interop.Excel;
 using Point = System.Drawing.Point;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmDecleration : Form
     {
+        private readonly ILog logger = LogManager.GetLogger("Ecustoms.frmDecleration");
+
         private DeclarationBOL _declarationBOL;
         private UserInfo _userInfo;
         private Form _parrent;
@@ -224,19 +227,7 @@ namespace ECustoms
 
         private void grvDecleration_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex >= 0)
-                {
-                    frmExport frmExport = new frmExport(_userInfo, 1, Convert.ToInt32(grvDecleration.Rows[e.RowIndex].Cells[0].Value));
-                    frmExport.MdiParent = _parrent;
-                    frmExport.Show();
-                }
-            }
-            catch (Exception exception)
-            {
-                //MessageBox.Show(exception.ToString());
-            }
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -262,6 +253,72 @@ namespace ECustoms
             {
                 BindData();
             }
+        }
+
+        private void grvDecleration_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void grvDecleration_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void grvDecleration_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                // Return if select to the gridview header
+                if (e.RowIndex == 0) return;
+                logger.Info("grvDecleration_CellMouseClick");               
+                lblHeader.Visible = true;
+                var exportNumber = grvDecleration.Rows[e.RowIndex].Cells["Number"].Value;
+                var importNumber = grvDecleration.Rows[e.RowIndex].Cells["ImportNumber"].Value;
+                lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
+                // Get List vehicle 
+                var declaractionID = Convert.ToInt32(grvDecleration.Rows[e.RowIndex].Cells["DeclarationID"].Value);
+                var vehicleBOL = new VehicleBOL();
+                var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
+                var listVehicleInfo = new List<string>();
+                StringBuilder vehicleInfo;
+                // return if does not any vehicle
+                if (listVehicle.Count <= 0) return;
+                for (int i = 0; i < listVehicle.Count; i++) {
+                    var currentVehicle = listVehicle[i];
+                    vehicleInfo = new StringBuilder();
+                    vehicleInfo.Append("Xe " + i + "; ");
+                    // Exported information
+                    if (currentVehicle.IsExport) // Exported
+                        vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                    else // not exported
+                        vehicleInfo.Append(" Chưa XC;");
+                    // Import Information
+                    if (currentVehicle.IsImport) // Imported
+                        vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                    else // not imported
+                        vehicleInfo.Append(" Chưa NC;");
+                    // hasGoodsImport
+                    if (currentVehicle.HasGoodsImported)
+                        vehicleInfo.Append(" Có chở hàng NK");
+                    else
+                        vehicleInfo.Append(" Không chở hàng NK");
+                    // Go to local
+                    if (currentVehicle.IsGoodsImported)
+                        vehicleInfo.Append(" Đã vào nội địa");
+                    else 
+                        vehicleInfo.Append(" Chưa vào nội địa");
+                    // Add data to listView
+
+                    listViewVehicle.Items.Add(vehicleInfo.ToString());                                       
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());                
+            }
+            
         }
     }
 }
