@@ -106,6 +106,9 @@ namespace ECustoms
             grvDecleration.AutoGenerateColumns = false;
             _listDeclarationinfo = _declarationBOL.GetDecleration();
             grvDecleration.DataSource = _listDeclarationinfo;
+            if (_listDeclarationinfo.Count > 0) {
+                SetVehicleInfo(grvDecleration.Rows[0]);
+            }
             // grvDecleration.DataSource = _declarationBOL.GetDecleration();
         }
 
@@ -252,7 +255,7 @@ namespace ECustoms
             if (string.IsNullOrEmpty(declarationNumber) && string.IsNullOrEmpty(companyName))
             {
                 BindData();
-            }
+            }            
         }
 
         private void grvDecleration_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -268,57 +271,65 @@ namespace ECustoms
         private void grvDecleration_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
-            {
-                // Return if select to the gridview header
-                if (e.RowIndex == 0) return;
-                logger.Info("grvDecleration_CellMouseClick");               
-                lblHeader.Visible = true;
-                var exportNumber = grvDecleration.Rows[e.RowIndex].Cells["Number"].Value;
-                var importNumber = grvDecleration.Rows[e.RowIndex].Cells["ImportNumber"].Value;
-                lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
-                // Get List vehicle 
-                var declaractionID = Convert.ToInt32(grvDecleration.Rows[e.RowIndex].Cells["DeclarationID"].Value);
-                var vehicleBOL = new VehicleBOL();
-                var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
-                var listVehicleInfo = new List<string>();
-                StringBuilder vehicleInfo;
-                // return if does not any vehicle
-                if (listVehicle.Count <= 0) return;
-                for (int i = 0; i < listVehicle.Count; i++) {
-                    var currentVehicle = listVehicle[i];
-                    vehicleInfo = new StringBuilder();
-                    vehicleInfo.Append("Xe " + i + "; ");
-                    // Exported information
-                    if (currentVehicle.IsExport) // Exported
-                        vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
-                    else // not exported
-                        vehicleInfo.Append(" Chưa XC;");
-                    // Import Information
-                    if (currentVehicle.IsImport) // Imported
-                        vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
-                    else // not imported
-                        vehicleInfo.Append(" Chưa NC;");
-                    // hasGoodsImport
-                    if (currentVehicle.HasGoodsImported)
-                        vehicleInfo.Append(" Có chở hàng NK");
-                    else
-                        vehicleInfo.Append(" Không chở hàng NK");
-                    // Go to local
-                    if (currentVehicle.IsGoodsImported)
-                        vehicleInfo.Append(" Đã vào nội địa");
-                    else 
-                        vehicleInfo.Append(" Chưa vào nội địa");
-                    // Add data to listView
-
-                    listViewVehicle.Items.Add(vehicleInfo.ToString());                                       
-                }
+            {               
+                logger.Info("grvDecleration_CellMouseClick");
+                SetVehicleInfo(grvDecleration.Rows[e.RowIndex]);
                 
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());                
-            }
-            
+            }            
+        }
+
+        /// <summary>
+        /// Set Vehicel
+        /// </summary>
+        /// <param name="row"></param>
+        private void SetVehicleInfo(DataGridViewRow row) {
+            // Clear result
+            listViewVehicle.Clear();
+            lblHeader.Visible = true;
+
+            var exportNumber = row.Cells["Number"].Value;
+            var importNumber = row.Cells["ImportNumber"].Value;
+            lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
+            // Get List vehicle 
+            var declaractionID = Convert.ToInt32(row.Cells["DeclarationID"].Value);
+            var vehicleBOL = new VehicleBOL();
+            var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
+            StringBuilder vehicleInfo;
+            // return if does not any vehicle
+            if (listVehicle.Count <= 0) return;
+            for (int i = 0; i < listVehicle.Count; i++)
+            {
+                var currentVehicle = listVehicle[i];
+                vehicleInfo = new StringBuilder();
+                vehicleInfo.Append("Xe " + i + "; ");
+                // Exported information
+                if (currentVehicle.IsExport) // Exported
+                    vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                else // not exported
+                    vehicleInfo.Append(" Chưa XC;");
+                // Import Information
+                if (currentVehicle.IsImport) // Imported
+                    vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                else // not imported
+                    vehicleInfo.Append(" Chưa NC;");
+                // hasGoodsImport
+                if (currentVehicle.HasGoodsImported)
+                    vehicleInfo.Append(" Có chở hàng NK;");
+                else
+                    vehicleInfo.Append(" Không chở hàng NK;");
+                // Go to local
+                if (currentVehicle.IsGoodsImported)
+                    vehicleInfo.Append(" Đã vào nội địa");
+                else
+                    vehicleInfo.Append(" Chưa vào nội địa");
+
+                // Add data to listView
+                listViewVehicle.Items.Add(vehicleInfo.ToString());
+            }                
         }
     }
 }
