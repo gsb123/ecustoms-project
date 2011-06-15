@@ -16,14 +16,11 @@
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ConstantInfo.cs" caret="329" fromTop="11" />
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="2828" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="0" fromTop="0" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.Designer.cs" caret="0" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSelect.Designer.cs" caret="0" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.Designer.cs" caret="0" fromTop="0" />
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DbConnection.cs" caret="503" fromTop="14" />
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DeclarationDAL.cs" caret="599" fromTop="20" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmDecleration.cs" caret="1858" fromTop="11" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="184" fromTop="2" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="959" fromTop="16" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmMainForm.cs" caret="4765" fromTop="18" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:UserBOL.cs" caret="1144" fromTop="37" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSelect.cs" caret="967" fromTop="17" />
@@ -35,17 +32,12 @@
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6312" fromTop="10" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="1123" fromTop="22" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5095" fromTop="0" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/d:Properties/f:AssemblyInfo.cs" caret="1442" fromTop="35" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.Designer.cs" caret="0" fromTop="0" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="1548" fromTop="17" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="833" fromTop="8" />
     </RecentFiles>
     <RecentEdits>
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="6577" fromTop="24" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="2647" fromTop="14" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.cs" caret="6975" fromTop="14" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="20095" fromTop="7" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="3512" fromTop="21" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="3444" fromTop="18" />
-      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:DeclarationBOL.cs" caret="4638" fromTop="23" />
-      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:DeclarationBOL.cs" caret="3557" fromTop="23" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="10899" fromTop="24" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="10893" fromTop="16" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="4411" fromTop="13" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5951" fromTop="23" />
@@ -67,6 +59,15 @@
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="1123" fromTop="13" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5233" fromTop="28" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5334" fromTop="33" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="868" fromTop="15" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3846" fromTop="42" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3376" fromTop="32" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3232" fromTop="17" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="1345" fromTop="20" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/d:Properties/f:AssemblyInfo.cs" caret="1493" fromTop="35" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="2177" fromTop="26" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="670" fromTop="23" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="340" fromTop="15" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
