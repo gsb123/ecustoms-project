@@ -48,6 +48,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\_Reference\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="ReportPrinting, Version=0.50.4183.16514, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Reference\ReportPrinting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmVehicleAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +137,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmVehicleAdd.resx">
       <DependentUpon>frmVehicleAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +302,7 @@
   <ItemGroup>
     <Content Include="Resources\change-password-icon.png" />
     <Content Include="Resources\checkIcon.png" />
+    <None Include="Resources\print-icon.png" />
     <None Include="Resources\Icon-Error-16x16-GreyBckgrnd.gif" />
     <None Include="Resources\icon-check2-16x16.gif" />
     <None Include="Resources\checkIcon1.png" />

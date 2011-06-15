@@ -39,7 +39,7 @@ namespace ECustoms
         /// <summary>
         /// Init data
         /// </summary>
-        private void  InitData()
+        private void InitData()
         {
             toolstripLabelWelcome.Text = string.Format(ConstantInfo.MESSAGE_WELCOME, _userInfo.Name);
             // Show decleration form
@@ -61,7 +61,7 @@ namespace ECustoms
         private void mnExport_Click(object sender, EventArgs e)
         {
             var frmExport = new frmExport(_userInfo, 0);
-            frmExport.MdiParent = this;            
+            frmExport.MdiParent = this;
             frmExport.Show();
         }
 
@@ -94,7 +94,7 @@ namespace ECustoms
         private void menuitemUser_Click(object sender, EventArgs e)
         {
             var frmUser = new frmUser();
-            frmUser.MdiParent = this;            
+            frmUser.MdiParent = this;
             frmUser.Show();
         }
 
@@ -155,6 +155,13 @@ namespace ECustoms
             frmVehiceAdd.MdiParent = this;
             frmVehiceAdd.Show();
 
+        }
+
+        private void tMenuItemReport_Click(object sender, EventArgs e)
+        {
+            var frmReport = new frmReport();
+            frmReport.MdiParent = this;
+            frmReport.Show();
         }
     }
 }
