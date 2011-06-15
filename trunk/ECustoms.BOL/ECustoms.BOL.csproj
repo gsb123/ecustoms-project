@@ -50,6 +50,7 @@
     <Compile Include="DeclarationBOL.cs" />
     <Compile Include="PermissionBOL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportBOL.cs" />
     <Compile Include="UserBOL.cs" />
     <Compile Include="VehicleBOL.cs" />
   </ItemGroup>
