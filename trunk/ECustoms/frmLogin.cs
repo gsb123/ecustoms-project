@@ -14,15 +14,15 @@ namespace ECustoms
 {
     public partial class frmLogin : Form
     {
-        private readonly ILog logger;
+        //private readonly ILog logger;
         private UserBOL _userBOL;
-       
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmLogin");
 
         public frmLogin()
         {
-             logger = LogManager.GetLogger("Ecustoms.frmLogin");
+            // logger = LogManager.GetLogger("Ecustoms.frmLogin");
             InitializeComponent();
-            log4net.Config.DOMConfigurator.Configure();
+            //log4net.Config.DOMConfigurator.Configure();
             
         }
 
@@ -57,7 +57,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
+                
             }
             
         }
