@@ -19,18 +19,14 @@ namespace ECustoms
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmLogin");
 
         public frmLogin()
-        {
-            // logger = LogManager.GetLogger("Ecustoms.frmLogin");
-            InitializeComponent();
-            //log4net.Config.DOMConfigurator.Configure();
-            
+        {            
+            InitializeComponent();                        
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            {
-                //ILog logger = LogManager.GetLogger("ECustoms.Login");
+            {                
                 logger.Info("btnLogin_Click");
                 if (Validate())
                 {
@@ -57,8 +53,7 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
-                
+                logger.Error(ex.ToString());                
             }
             
         }
