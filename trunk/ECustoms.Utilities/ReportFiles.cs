@@ -12,6 +12,8 @@ namespace ECustoms.Utilities
     {
         #region IReportMaker Members
 
+        private DataTable _dt;
+
         public void MakeDocument(ReportDocument reportDocument)
         {
             TextStyle.ResetStyles();
@@ -28,28 +30,51 @@ namespace ECustoms.Utilities
             TextStyle.TableRow.MarginNear = 0.1f;
             TextStyle.TableRow.MarginFar = 0.1f;
             TextStyle.TableRow.MarginTop = 0.05f;
-
+          
             ReportBuilder builder = new ReportBuilder(reportDocument);
             builder.StartLinearLayout(Direction.Vertical);
 
             Pen innerPen = new Pen(Color.Green, 0.02f);
 
             //DataView dv = SampleReportMaker1.GetDataView();
-            DataView dv = null;
-            builder.AddPageHeader(String.Empty, "This is test 11 - Tables with lines", "page %p");
-
-            builder.AddText("Table with lines using default lines\n");
+            DataView dv = _dt.DefaultView;
+            builder.AddPageHeader(String.Empty, "Reporting", "page %p");
+            builder.PageHeader.MarginRight = 0;
+            builder.PageHeader.UseFullWidth = true;
+            builder.CurrentContainer.UseFullWidth = true;
+            //builder.AddText("Table with lines using default lines\n");
             // Following line sets up the pen used for lins for tables
             builder.DefaultTablePen = reportDocument.ThinPen;
             builder.AddTable(dv, true);
             builder.CurrentSection.HorizontalAlignment = HorizontalAlignment.Center;
-            builder.AddColumn("FirstName", "First Name", 1.8f, true, true);
-            builder.AddColumn("LastName", "Last Name", 1.8f, true, true);
-            builder.AddColumn("Birthdate", "Birthdate", 1.8f, true, true);
+
+
+            foreach (DataColumn column in _dt.Columns)
+            {
+                //Console.WriteLine(column.ColumnName);
+
+                //builder.AddColumn(column.ColumnName, column.ColumnName, 1.8f, true, true);
+                builder.AddColumn(column.ColumnName, column.ColumnName, 1f, true, true);
+
+            }
+
+            //builder.AddTable(dv, true);
+            //builder.AddAllColumns(1.0f, true, true);
+            //builder.CurrentSection.MarginLeft = 0.0f;
+            //builder.CurrentSection.MarginRight = 0.0f;
+            //builder.CurrentSection.MaxWidth = 100f;
+            //builder.CurrentSection.MarginBottom = 0.2f;
+
+
             builder.FinishLinearLayout();
 
         }
 
         #endregion
+
+        public ReportFiles(DataTable dataTable)
+        {
+            _dt = dataTable;
+        }
     }
 }
