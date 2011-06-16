@@ -25,11 +25,18 @@ namespace ECustoms.BOL
         /// </summary>
         /// <param name="declarationInfo"></param>
         /// <param name="vehicleInfos"></param>
-        public void AddDeclaration(DeclarationInfo declarationInfo, List<VehicleInfo> vehicleInfos)
+        public int AddDeclaration(tblDeclaration declarationInfo, List<VehicleInfo> vehicleInfos, int userID)
         {
+            var result = -1;
             try
             {
-                var declarationID = _declarationDAL.Insert(declarationInfo);
+                var db = new dbEcustomEntities();
+                declarationInfo.tblUser = db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
+                db.AddTotblDeclarations(declarationInfo);
+                db.SaveChanges();
+                // Return if insert fail
+                if(declarationInfo.DeclarationID <= 0) return - 1;
+                var declarationID = declarationInfo.DeclarationID;
                 // Add vehicle
                 if (declarationID > 0 && vehicleInfos.Count > 0)
                 {
@@ -69,6 +76,7 @@ namespace ECustoms.BOL
                             _vehicleDAL.Insert(vehicleInfos[i]);
                     }
                 }
+                return result;
             }
             catch (Exception)
             {

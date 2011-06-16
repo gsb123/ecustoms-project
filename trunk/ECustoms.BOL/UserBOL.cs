@@ -123,6 +123,11 @@ namespace ECustoms.BOL
             }
         }
 
+        public static tblUser GetByID(int userID) {
+            var db = new dbEcustomEntities();
+            return db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
+        }
+
         /// <summary>
         /// Update user
         /// </summary>
