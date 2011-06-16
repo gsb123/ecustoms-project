@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -119,7 +120,7 @@ namespace ECustoms
                     }
                 }
                 // TODO: Need to check return value
-                _declarationBOL.AddDeclaration(declarationInfo, listVehicleInfo);
+                _declarationBOL.AddDeclaration(declarationInfo, listVehicleInfo, _userInfo.UserID);
                 MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 // Reset form
                 ResetForm();
@@ -157,9 +158,9 @@ namespace ECustoms
         /// Get Declaration from Controls
         /// </summary>
         /// <returns></returns>
-        private DeclarationInfo GetDeclarationInfo()
+        private tblDeclaration GetDeclarationInfo()
         {
-            var declarationInfo = new DeclarationInfo();
+            var declarationInfo = new DAL.tblDeclaration();
             if (!string.IsNullOrEmpty(txtExportNumber.Text))
             {
                 declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text.Trim());
@@ -168,8 +169,7 @@ namespace ECustoms
             declarationInfo.ProductName = txtExportProductName.Text;
             declarationInfo.CompanyName = txtExportCompanyName.Text;
             declarationInfo.ProductAmount = txtExportProductAmount.Text.Trim();
-            declarationInfo.Unit = txtExportUnit.Text.Trim();
-            declarationInfo.CreatedByID = _userInfo.UserID;
+            declarationInfo.Unit = txtExportUnit.Text.Trim();            
             declarationInfo.ModifiedByID = _userInfo.UserID;
             declarationInfo.ModifiedDate = DateTime.Now;
             declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
@@ -350,8 +350,9 @@ namespace ECustoms
                     var declerationInfo = GetDeclarationInfo();
                     // Set DeclerationID
                     declerationInfo.DeclarationID = this._declerationID;
-                    // Update Decleration 
-                    _declarationBOL.UpdateDecleration(declerationInfo);
+                    // Update Decleration
+                    // TODO: need to update
+                    //_declarationBOL.UpdateDecleration(declerationInfo);
                     // update vehicle list
                     var vehicleBL = new VehicleBOL();
 

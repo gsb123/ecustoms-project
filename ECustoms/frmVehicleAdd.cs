@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.Utilities;
 using ECustoms.BOL;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -330,13 +331,12 @@ namespace ECustoms
             {
                 DeclarationBOL _declarationBOL = new DeclarationBOL();
                 var declarationInfo = GetDeclarationInfo();
-                declarationInfo.ModifiedDate = DateTime.Now;
-                declarationInfo.CreatedBy = _userInfo.UserName;
+                declarationInfo.ModifiedDate = DateTime.Now;                
                 declarationInfo.ModifiedByID = _userInfo.UserID;
-                declarationInfo.CreatedByID = _userInfo.UserID;
+                declarationInfo.tblUser = UserBOL.GetByID(_userInfo.UserID);
                 if (VehicleInfosTemp.Count == 0)
                     throw new Exception("Phương tiện không được để trống");
-                _declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp);
+                _declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp, _userInfo.UserID);
                 MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 // Reset form
                 ResetForm();
@@ -348,9 +348,9 @@ namespace ECustoms
 
         }
 
-        private DeclarationInfo GetDeclarationInfo()
+        private tblDeclaration GetDeclarationInfo()
         {
-            var declarationInfo = new DeclarationInfo();
+            var declarationInfo = new tblDeclaration();
             declarationInfo.Number = 0;
             declarationInfo.ImportNumber = 0;
             return declarationInfo;
