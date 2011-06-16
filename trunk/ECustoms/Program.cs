@@ -15,7 +15,7 @@ namespace ECustoms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmReport()); 
+            Application.Run(new frmLogin()); 
         }
     }
 }

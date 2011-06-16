@@ -18,19 +18,23 @@ namespace ECustoms.Utilities
         {
             TextStyle.ResetStyles();
 
-            TextStyle.Normal.Size = 10;
+            TextStyle.Normal.Size = 5.5f;
+
+
             TextStyle.Heading1.Size = 16;
             TextStyle.Heading1.Bold = false;
-            TextStyle.TableHeader.BackgroundBrush = Brushes.Blue;
-            TextStyle.TableHeader.Brush = Brushes.LightGoldenrodYellow;
-            TextStyle.TableHeader.MarginNear = 0.1f;
-            TextStyle.TableHeader.MarginFar = 0.1f;
-            TextStyle.TableHeader.MarginTop = 0.05f;
-            TextStyle.TableHeader.MarginBottom = 0.05f;
-            TextStyle.TableRow.MarginNear = 0.1f;
-            TextStyle.TableRow.MarginFar = 0.1f;
-            TextStyle.TableRow.MarginTop = 0.05f;
-          
+            TextStyle.TableHeader.BackgroundBrush = Brushes.Gray;
+            TextStyle.TableHeader.Brush = Brushes.White;
+            //TextStyle.TableHeader.MarginNear = 0.1f;
+            //TextStyle.TableHeader.MarginFar = 0.1f;
+            //TextStyle.TableHeader.MarginTop = 0.05f;
+            //TextStyle.TableHeader.MarginBottom = 0.05f;
+            //TextStyle.TableRow.MarginNear = 0.1f;
+            //TextStyle.TableRow.MarginFar = 0.1f;
+            //TextStyle.TableRow.MarginTop = 0.05f;
+
+
+
             ReportBuilder builder = new ReportBuilder(reportDocument);
             builder.StartLinearLayout(Direction.Vertical);
 
@@ -64,6 +68,9 @@ namespace ECustoms.Utilities
             //builder.CurrentSection.MarginRight = 0.0f;
             //builder.CurrentSection.MaxWidth = 100f;
             //builder.CurrentSection.MarginBottom = 0.2f;
+
+
+            builder.CurrentDocument.Body.UseFullWidth = true;
 
 
             builder.FinishLinearLayout();
