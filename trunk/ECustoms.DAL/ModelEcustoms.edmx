@@ -4,9 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbEcustomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="dbEcustomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="dbEcustomModelStoreContainer">
           <EntitySet Name="dtproperties" EntityType="dbEcustomModel.Store.dtproperties" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log" EntityType="dbEcustomModel.Store.Log" store:Type="Tables" store:Schema="dbo" store:Name="Log">
+            <DefiningQuery>SELECT 
+      [Log].[Id] AS [Id], 
+      [Log].[Date] AS [Date], 
+      [Log].[Thread] AS [Thread], 
+      [Log].[Level] AS [Level], 
+      [Log].[Logger] AS [Logger], 
+      [Log].[Message] AS [Message], 
+      [Log].[Exception] AS [Exception]
+      FROM [dbo].[Log] AS [Log]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="tblDeclaration" EntityType="dbEcustomModel.Store.tblDeclaration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUser" EntityType="dbEcustomModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblVehicle" EntityType="dbEcustomModel.Store.tblVehicle" store:Type="Tables" Schema="dbo" />
@@ -32,6 +43,26 @@
           <Property Name="lvalue" Type="image" />
           <Property Name="version" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'dbEcustom.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Level" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Logger" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="Exception" Type="varchar" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="tblDeclaration">
           <Key>
             <PropertyRef Name="DeclarationID" />
@@ -47,14 +78,18 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="HasDeclaration" Type="bit" />
-          <Property Name="ImportProductName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="ImportProductName" Type="nvarchar" MaxLength="500" />
           <Property Name="ImportCompanyName" Type="nvarchar" MaxLength="500" />
           <Property Name="ImportProductAmount" Type="nvarchar" MaxLength="500" />
-          <Property Name="ImportUnit" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImportUnit" Type="nvarchar" MaxLength="500" />
           <Property Name="ImportHasDeclaration" Type="bit" />
           <Property Name="ImportNumber" Type="int" />
-          <Property Name="ImportType" Type="nvarchar" MaxLength="200" />
-          <Property Name="ExportType" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImportType" Type="nvarchar" MaxLength="500" />
+          <Property Name="ExportType" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportCompanyCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportRegisterDate" Type="datetime" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -426,13 +461,13 @@
         <Property Name="PermissionID" Type="int" />
         <Property Name="Permission" Type="nvarchar" MaxLength="250" />
       </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbEcustomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="dbEcustomEntities">
           <EntitySet Name="dtproperties" EntityType="dbEcustomModel.dtproperty" />
+          <EntitySet Name="Logs" EntityType="dbEcustomModel.Log" />
           <EntitySet Name="tblDeclarations" EntityType="dbEcustomModel.tblDeclaration" />
           <EntitySet Name="tblUsers" EntityType="dbEcustomModel.tblUser" />
           <EntitySet Name="tblVehicles" EntityType="dbEcustomModel.tblVehicle" />
@@ -450,36 +485,57 @@
             <PropertyRef Name="id" />
             <PropertyRef Name="property" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="objectid" Type="Int32" />
-          <Property Name="property" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
-          <Property Name="value" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="uvalue" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="version" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="objectid" />
+          <Property Type="String" Name="property" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="value" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="uvalue" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="lvalue" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="version" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Thread" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Level" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Logger" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Exception" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblDeclaration">
           <Key>
             <PropertyRef Name="DeclarationID" />
           </Key>
-          <Property Name="DeclarationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="Int32" />
-          <Property Name="ProductName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="ProductAmount" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Unit" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ModifiedByID" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" />
-          <Property Name="CreatedDate" Type="DateTime" />
-          <Property Name="HasDeclaration" Type="Boolean" />
-          <Property Name="ImportProductName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="ImportCompanyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="ImportProductAmount" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="ImportUnit" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ImportHasDeclaration" Type="Boolean" />
-          <Property Name="ImportNumber" Type="Int32" />
-          <Property Name="ImportType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ExportType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="DeclarationID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Number" />
+          <Property Type="String" Name="ProductName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductAmount" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ModifiedByID" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="Boolean" Name="HasDeclaration" />
+          <Property Type="String" Name="CompanyCode" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="RegisterDate" />
+          <Property Type="String" Name="ImportProductName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportCompanyName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportProductAmount" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportUnit" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ImportHasDeclaration" />
+          <Property Type="Int32" Name="ImportNumber" />
+          <Property Type="String" Name="ImportType" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExportType" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportCompanyCode" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ImportRegisterDate" />
           <NavigationProperty Name="tblUser" Relationship="dbEcustomModel.FK_tblDeclaration_tblUser" FromRole="tblDeclaration" ToRole="tblUser" />
           <NavigationProperty Name="tblVehicles" Relationship="dbEcustomModel.FK_tblVehicle_tblDeclaration" FromRole="tblDeclaration" ToRole="tblVehicle" />
         </EntityType>
@@ -487,54 +543,50 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Sex" Type="Int32" />
-          <Property Name="Birthday" Type="DateTime" />
-          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
-          <Property Name="PermissionID" Type="Int32" />
-          <Property Name="IsActive" Type="Int32" />
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Sex" />
+          <Property Type="DateTime" Name="Birthday" />
+          <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PermissionID" />
+          <Property Type="Int32" Name="IsActive" />
           <NavigationProperty Name="tblDeclarations" Relationship="dbEcustomModel.FK_tblDeclaration_tblUser" FromRole="tblUser" ToRole="tblDeclaration" />
         </EntityType>
         <EntityType Name="tblVehicle">
           <Key>
             <PropertyRef Name="VehicleID" />
           </Key>
-          <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PlateNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="NumberOfContainer" Type="Int32" />
-          <Property Name="DriverName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="ImportDate" Type="DateTime" />
-          <Property Name="IsImport" Type="Boolean" />
-          <Property Name="ExportDate" Type="DateTime" />
-          <Property Name="IsExport" Type="Boolean" />
-          <Property Name="Note" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="Status" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="IsCompleted" Type="Boolean" />
-          <Property Name="IsGoodsImported" Type="Boolean" />
-          <Property Name="ImportStatus" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="ImportedLocalTime" Type="DateTime" />
-          <Property Name="HasGoodsImported" Type="Boolean" />
-          <Property Name="ConfirmImportBy" Type="Int32" />
-          <Property Name="ConfirmExportBy" Type="Int32" />
-          <Property Name="ConfirmLocalImportBy" Type="Int32" />
+          <Property Type="Int32" Name="VehicleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PlateNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NumberOfContainer" />
+          <Property Type="String" Name="DriverName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ImportDate" />
+          <Property Type="Boolean" Name="IsImport" />
+          <Property Type="DateTime" Name="ExportDate" />
+          <Property Type="Boolean" Name="IsExport" />
+          <Property Type="String" Name="Note" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Status" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsCompleted" />
+          <Property Type="Boolean" Name="IsGoodsImported" />
+          <Property Type="String" Name="ImportStatus" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ImportedLocalTime" />
+          <Property Type="Boolean" Name="HasGoodsImported" />
+          <Property Type="Int32" Name="ConfirmImportBy" />
+          <Property Type="Int32" Name="ConfirmExportBy" />
+          <Property Type="Int32" Name="ConfirmLocalImportBy" />
           <NavigationProperty Name="tblDeclaration" Relationship="dbEcustomModel.FK_tblVehicle_tblDeclaration" FromRole="tblVehicle" ToRole="tblDeclaration" />
         </EntityType>
         <Association Name="FK_tblDeclaration_tblUser">
-          <End Role="tblUser" Type="dbEcustomModel.tblUser" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tblDeclaration" Type="dbEcustomModel.tblDeclaration" Multiplicity="*" />
+          <End Type="dbEcustomModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+          <End Type="dbEcustomModel.tblDeclaration" Role="tblDeclaration" Multiplicity="*" />
         </Association>
         <Association Name="FK_tblVehicle_tblDeclaration">
-          <End Role="tblDeclaration" Type="dbEcustomModel.tblDeclaration" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tblVehicle" Type="dbEcustomModel.tblVehicle" Multiplicity="*" />
+          <End Type="dbEcustomModel.tblDeclaration" Role="tblDeclaration" Multiplicity="0..1" />
+          <End Type="dbEcustomModel.tblVehicle" Role="tblVehicle" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -542,83 +594,116 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
         <EntityContainerMapping StorageEntityContainer="dbEcustomModelStoreContainer" CdmEntityContainer="dbEcustomEntities">
-          <EntitySetMapping Name="dtproperties"><EntityTypeMapping TypeName="dbEcustomModel.dtproperty"><MappingFragment StoreEntitySet="dtproperties">
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="objectid" ColumnName="objectid" />
-            <ScalarProperty Name="property" ColumnName="property" />
-            <ScalarProperty Name="value" ColumnName="value" />
-            <ScalarProperty Name="uvalue" ColumnName="uvalue" />
-            <ScalarProperty Name="lvalue" ColumnName="lvalue" />
-            <ScalarProperty Name="version" ColumnName="version" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tblDeclarations"><EntityTypeMapping TypeName="dbEcustomModel.tblDeclaration"><MappingFragment StoreEntitySet="tblDeclaration">
-            <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
-            <ScalarProperty Name="Number" ColumnName="Number" />
-            <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-            <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-            <ScalarProperty Name="ProductAmount" ColumnName="ProductAmount" />
-            <ScalarProperty Name="Unit" ColumnName="Unit" />
-            <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
-            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-            <ScalarProperty Name="HasDeclaration" ColumnName="HasDeclaration" />
-            <ScalarProperty Name="ImportProductName" ColumnName="ImportProductName" />
-            <ScalarProperty Name="ImportCompanyName" ColumnName="ImportCompanyName" />
-            <ScalarProperty Name="ImportProductAmount" ColumnName="ImportProductAmount" />
-            <ScalarProperty Name="ImportUnit" ColumnName="ImportUnit" />
-            <ScalarProperty Name="ImportHasDeclaration" ColumnName="ImportHasDeclaration" />
-            <ScalarProperty Name="ImportNumber" ColumnName="ImportNumber" />
-            <ScalarProperty Name="ImportType" ColumnName="ImportType" />
-            <ScalarProperty Name="ExportType" ColumnName="ExportType" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tblUsers"><EntityTypeMapping TypeName="dbEcustomModel.tblUser"><MappingFragment StoreEntitySet="tblUser">
-            <ScalarProperty Name="UserID" ColumnName="UserID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Sex" ColumnName="Sex" />
-            <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-            <ScalarProperty Name="Address" ColumnName="Address" />
-            <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-            <ScalarProperty Name="UserName" ColumnName="UserName" />
-            <ScalarProperty Name="Password" ColumnName="Password" />
-            <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
-            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tblVehicles"><EntityTypeMapping TypeName="dbEcustomModel.tblVehicle"><MappingFragment StoreEntitySet="tblVehicle">
-            <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
-            <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
-            <ScalarProperty Name="NumberOfContainer" ColumnName="NumberOfContainer" />
-            <ScalarProperty Name="DriverName" ColumnName="DriverName" />
-            <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
-            <ScalarProperty Name="IsImport" ColumnName="IsImport" />
-            <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
-            <ScalarProperty Name="IsExport" ColumnName="IsExport" />
-            <ScalarProperty Name="Note" ColumnName="Note" />
-            <ScalarProperty Name="Status" ColumnName="Status" />
-            <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
-            <ScalarProperty Name="IsGoodsImported" ColumnName="IsGoodsImported" />
-            <ScalarProperty Name="ImportStatus" ColumnName="ImportStatus" />
-            <ScalarProperty Name="ImportedLocalTime" ColumnName="ImportedLocalTime" />
-            <ScalarProperty Name="HasGoodsImported" ColumnName="HasGoodsImported" />
-            <ScalarProperty Name="ConfirmImportBy" ColumnName="ConfirmImportBy" />
-            <ScalarProperty Name="ConfirmExportBy" ColumnName="ConfirmExportBy" />
-            <ScalarProperty Name="ConfirmLocalImportBy" ColumnName="ConfirmLocalImportBy" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="dtproperties">
+            <EntityTypeMapping TypeName="dbEcustomModel.dtproperty">
+              <MappingFragment StoreEntitySet="dtproperties">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+                <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="objectid" ColumnName="objectid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="dbEcustomModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDeclarations">
+            <EntityTypeMapping TypeName="dbEcustomModel.tblDeclaration">
+              <MappingFragment StoreEntitySet="tblDeclaration">
+                <ScalarProperty Name="ImportRegisterDate" ColumnName="ImportRegisterDate" />
+                <ScalarProperty Name="ImportCompanyCode" ColumnName="ImportCompanyCode" />
+                <ScalarProperty Name="ExportType" ColumnName="ExportType" />
+                <ScalarProperty Name="ImportType" ColumnName="ImportType" />
+                <ScalarProperty Name="ImportNumber" ColumnName="ImportNumber" />
+                <ScalarProperty Name="ImportHasDeclaration" ColumnName="ImportHasDeclaration" />
+                <ScalarProperty Name="ImportUnit" ColumnName="ImportUnit" />
+                <ScalarProperty Name="ImportProductAmount" ColumnName="ImportProductAmount" />
+                <ScalarProperty Name="ImportCompanyName" ColumnName="ImportCompanyName" />
+                <ScalarProperty Name="ImportProductName" ColumnName="ImportProductName" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="HasDeclaration" ColumnName="HasDeclaration" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ProductAmount" ColumnName="ProductAmount" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="dbEcustomModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVehicles">
+            <EntityTypeMapping TypeName="dbEcustomModel.tblVehicle">
+              <MappingFragment StoreEntitySet="tblVehicle">
+                <ScalarProperty Name="ConfirmLocalImportBy" ColumnName="ConfirmLocalImportBy" />
+                <ScalarProperty Name="ConfirmExportBy" ColumnName="ConfirmExportBy" />
+                <ScalarProperty Name="ConfirmImportBy" ColumnName="ConfirmImportBy" />
+                <ScalarProperty Name="HasGoodsImported" ColumnName="HasGoodsImported" />
+                <ScalarProperty Name="ImportedLocalTime" ColumnName="ImportedLocalTime" />
+                <ScalarProperty Name="ImportStatus" ColumnName="ImportStatus" />
+                <ScalarProperty Name="IsGoodsImported" ColumnName="IsGoodsImported" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsExport" ColumnName="IsExport" />
+                <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+                <ScalarProperty Name="IsImport" ColumnName="IsImport" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="NumberOfContainer" ColumnName="NumberOfContainer" />
+                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+                <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="FK_tblDeclaration_tblUser" TypeName="dbEcustomModel.FK_tblDeclaration_tblUser" StoreEntitySet="tblDeclaration">
-            <EndProperty Name="tblUser">
-              <ScalarProperty Name="UserID" ColumnName="CreatedByID" />
-            </EndProperty>
             <EndProperty Name="tblDeclaration">
               <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+            </EndProperty>
+            <EndProperty Name="tblUser">
+              <ScalarProperty Name="UserID" ColumnName="CreatedByID" />
             </EndProperty>
             <Condition ColumnName="CreatedByID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_tblVehicle_tblDeclaration" TypeName="dbEcustomModel.FK_tblVehicle_tblDeclaration" StoreEntitySet="tblVehicle">
-            <EndProperty Name="tblDeclaration">
-              <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
-            </EndProperty>
             <EndProperty Name="tblVehicle">
               <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+            </EndProperty>
+            <EndProperty Name="tblDeclaration">
+              <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
             </EndProperty>
             <Condition ColumnName="DeclarationID" IsNull="false" />
           </AssociationSetMapping>
@@ -643,17 +728,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ModelEcustoms">
-        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="0.75" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="4.8648079427083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="1.875" Height="3.3263964843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbEcustomModel.tblVehicle" Width="1.5" PointX="5.25" PointY="1.125" Height="4.6725065104166656" IsExpanded="true" />
-        <AssociationConnector Association="dbEcustomModel.FK_tblDeclaration_tblUser" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="3.5381982421875" />
-          <ConnectorPoint PointX="3" PointY="3.5381982421875" />
+        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="7.75" PointY="0.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="dbEcustomModel.Log" Width="1.5" PointX="0.75" PointY="7.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="5.634013671874996" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="2.25" Height="3.326396484375" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblVehicle" Width="1.5" PointX="5.25" PointY="1.625" Height="4.672506510416671" />
+        <AssociationConnector Association="dbEcustomModel.FK_tblDeclaration_tblUser" >
+          <ConnectorPoint PointX="2.25" PointY="3.9131982421875" />
+          <ConnectorPoint PointX="3" PointY="3.9131982421875" />
         </AssociationConnector>
-        <AssociationConnector Association="dbEcustomModel.FK_tblVehicle_tblDeclaration" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="3.4612532552083328" />
-          <ConnectorPoint PointX="5.25" PointY="3.4612532552083328" />
+        <AssociationConnector Association="dbEcustomModel.FK_tblVehicle_tblDeclaration" >
+          <ConnectorPoint PointX="4.5" PointY="3.9612532552083355" />
+          <ConnectorPoint PointX="5.25" PointY="3.9612532552083355" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

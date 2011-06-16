@@ -14,6 +14,7 @@ namespace ECustoms
 {
     public partial class frmExport : Form
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmExport");
         private DeclarationBOL _declarationBOL;
         private VehicleBOL _vehicleBOL;
         private UserInfo _userInfo;
@@ -161,34 +162,38 @@ namespace ECustoms
         private tblDeclaration GetDeclarationInfo()
         {
             var declarationInfo = new DAL.tblDeclaration();
+            
             if (!string.IsNullOrEmpty(txtExportNumber.Text))
             {
                 declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text.Trim());
             }
 
-            declarationInfo.ProductName = txtExportProductName.Text;
+            declarationInfo.ExportType = txtTypeExport.Text.Trim();
             declarationInfo.CompanyName = txtExportCompanyName.Text;
+            declarationInfo.CompanyCode = txtExportCompanyCode.Text;
+            declarationInfo.RegisterDate = dtpExportRegisterDate.Value;
             declarationInfo.ProductAmount = txtExportProductAmount.Text.Trim();
             declarationInfo.Unit = txtExportUnit.Text.Trim();            
-            declarationInfo.ModifiedByID = _userInfo.UserID;
-            declarationInfo.ModifiedDate = DateTime.Now;
+            declarationInfo.ProductName = txtExportProductName.Text;
             declarationInfo.HasDeclaration = cbExportHasDeclaration.Checked;
-            declarationInfo.ExportType = txtTypeExport.Text.Trim();
-
-
+            
             // import
             if (!string.IsNullOrEmpty(txtImportNumber.Text.Trim()))
             {
                 declarationInfo.ImportNumber = Convert.ToInt32(txtImportNumber.Text.Trim());
             }
-            declarationInfo.ImportProductName = txtImportProductName.Text;
+
+            declarationInfo.ImportType = txtTypeImport.Text.Trim();
             declarationInfo.ImportCompanyName = txtImportCompanyName.Text;
+            declarationInfo.ImportCompanyCode = txtImportCompanyCode.Text;
+            declarationInfo.ImportRegisterDate = dtpImportRegisterDate.Value;
             declarationInfo.ImportProductAmount = txtImportProductAmount.Text.Trim();
             declarationInfo.ImportUnit = txtImportUnit.Text.Trim();
-            declarationInfo.ModifiedByID = _userInfo.UserID;
-            declarationInfo.ModifiedDate = DateTime.Now;
+            declarationInfo.ImportProductName = txtImportProductName.Text;
             declarationInfo.ImportHasDeclaration = cbImportHasDeclaration.Checked;
-            declarationInfo.ImportType = txtTypeImport.Text.Trim();
+                                    
+            declarationInfo.ModifiedDate = DateTime.Now;                        
+            declarationInfo.ModifiedByID = _userInfo.UserID;
 
             return declarationInfo;
         }
@@ -351,8 +356,7 @@ namespace ECustoms
                     // Set DeclerationID
                     declerationInfo.DeclarationID = this._declerationID;
                     // Update Decleration
-                    // TODO: need to update
-                    //_declarationBOL.UpdateDecleration(declerationInfo);
+                    DeclarationBOL.Update(declerationInfo);                   
                     // update vehicle list
                     var vehicleBL = new VehicleBOL();
 
@@ -368,7 +372,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(exception.ToString());
             }
 
         }
