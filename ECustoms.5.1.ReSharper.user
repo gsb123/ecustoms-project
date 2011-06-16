@@ -38,20 +38,17 @@
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1846" fromTop="19" />
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:ReportDAL.cs" caret="1088" fromTop="21" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="996" fromTop="22" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2507" fromTop="26" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="391" fromTop="0" />
     </RecentFiles>
     <RecentEdits>
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2389" fromTop="35" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1044" fromTop="25" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2392" fromTop="19" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1580" fromTop="29" />
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="313" fromTop="10" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2634" fromTop="21" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2129" fromTop="29" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2129" fromTop="30" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2793" fromTop="21" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2288" fromTop="29" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2288" fromTop="30" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2376" fromTop="40" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2364" fromTop="28" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1890" fromTop="23" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2049" fromTop="23" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="492" fromTop="9" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="474" fromTop="16" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="6190" fromTop="16" />
@@ -67,10 +64,13 @@
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="2452" fromTop="34" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="1327" fromTop="24" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="1278" fromTop="25" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2619" fromTop="22" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2257" fromTop="14" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1882" fromTop="6" />
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1083" fromTop="19" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2460" fromTop="22" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2098" fromTop="14" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1723" fromTop="6" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="862" fromTop="14" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="435" fromTop="7" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1618" fromTop="21" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
