@@ -9,13 +9,7 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmAddUser.cs" caret="6247" fromTop="19" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmUser.cs" caret="3631" fromTop="19" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:UserInfo.cs" caret="948" fromTop="21" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:VehicleInfo.cs" caret="2052" fromTop="0" />
-      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ConstantInfo.cs" caret="329" fromTop="11" />
       <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:DeclerationInfo.cs" caret="2828" fromTop="0" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="0" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSelect.Designer.cs" caret="0" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleSearch.Designer.cs" caret="0" fromTop="0" />
       <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:DbConnection.cs" caret="503" fromTop="14" />
@@ -29,45 +23,54 @@
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:DeclarationBOL.cs" caret="3526" fromTop="19" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicle.cs" caret="1614" fromTop="22" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="18" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6312" fromTop="10" />
       <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="1123" fromTop="22" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5095" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/d:Properties/f:AssemblyInfo.cs" caret="1442" fromTop="35" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.Designer.cs" caret="0" fromTop="0" />
       <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="1548" fromTop="17" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="833" fromTop="8" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="515" fromTop="16" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="9789" fromTop="34" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:PermissionBOL.cs" caret="551" fromTop="17" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmAddUser.cs" caret="1781" fromTop="20" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/d:Enums/f:ReportType.cs" caret="627" fromTop="17" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.Designer.cs" caret="7446" fromTop="27" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="474" fromTop="16" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1846" fromTop="19" />
+      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:ReportDAL.cs" caret="1088" fromTop="21" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="996" fromTop="22" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2507" fromTop="26" />
     </RecentFiles>
     <RecentEdits>
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="10893" fromTop="16" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="4411" fromTop="13" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5951" fromTop="23" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="21" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="17" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.Designer.cs" caret="32694" fromTop="21" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="4878" fromTop="22" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="2225" fromTop="38" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="10899" fromTop="0" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="7102" fromTop="40" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6311" fromTop="13" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6795" fromTop="19" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6937" fromTop="22" />
-      <File id="8AC95DDB-A7DD-40D6-A0ED-323D9B601B99/f:VehicleDAL.cs" caret="6988" fromTop="23" />
-      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="4724" fromTop="13" />
-      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:VehicleBOL.cs" caret="1123" fromTop="13" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5233" fromTop="28" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmVehicleAdd.cs" caret="5334" fromTop="33" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="868" fromTop="15" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3846" fromTop="42" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3376" fromTop="32" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="3232" fromTop="17" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:App.config" caret="1345" fromTop="20" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/d:Properties/f:AssemblyInfo.cs" caret="1493" fromTop="35" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="2177" fromTop="26" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="670" fromTop="23" />
-      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmLogin.cs" caret="340" fromTop="15" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2389" fromTop="35" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1044" fromTop="25" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2392" fromTop="19" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1580" fromTop="29" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="313" fromTop="10" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2634" fromTop="21" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2129" fromTop="29" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2129" fromTop="30" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2376" fromTop="40" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2364" fromTop="28" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1890" fromTop="23" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="492" fromTop="9" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="474" fromTop="16" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:Program.cs" caret="6190" fromTop="16" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2384" fromTop="32" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2384" fromTop="37" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1799" fromTop="7" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1799" fromTop="28" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="1862" fromTop="29" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.Designer.cs" caret="7446" fromTop="29" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2132" fromTop="24" />
+      <File id="CFBE420D-493D-448E-916A-D74A9672722E/f:frmReport.cs" caret="2392" fromTop="19" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="1343" fromTop="23" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="2452" fromTop="34" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="1327" fromTop="24" />
+      <File id="0494EB3E-3E10-4058-B8B0-0B461E84D154/f:ReportBOL.cs" caret="1278" fromTop="25" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1083" fromTop="19" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2460" fromTop="22" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="2098" fromTop="14" />
+      <File id="DC919A57-770A-453A-A7F8-FD4F37491957/f:ReportFiles.cs" caret="1723" fromTop="6" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
