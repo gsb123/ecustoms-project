@@ -32,6 +32,9 @@ namespace ECustoms.BOL
             {
                 var db = new dbEcustomEntities();
                 declarationInfo.tblUser = db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
+                // Set Created date and Last modified date
+                declarationInfo.CreatedDate = DateTime.Now;
+                declarationInfo.ModifiedDate = DateTime.Now;
                 db.AddTotblDeclarations(declarationInfo);
                 db.SaveChanges();
                 // Return if insert fail

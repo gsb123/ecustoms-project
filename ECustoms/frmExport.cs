@@ -150,9 +150,9 @@ namespace ECustoms
                 // Reset form
                 ResetForm();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
             }
 
         }
@@ -710,7 +710,6 @@ namespace ECustoms
             cbExportHasDeclaration.Enabled = false;
             gbExportDeclaration.Enabled = false;
             cbImportHasDeclaration.Checked = true;
-            grdVehicle.TabIndex = 16;
             btnAddExisting.Enabled = true;
 
             var declarationInfo = DeclarationBOL.SelectByID(this._declerationID);
@@ -724,6 +723,8 @@ namespace ECustoms
                 txtImportProductAmount.Text = txtExportProductAmount.Text;
                 txtImportUnit.Text = txtExportUnit.Text;
                 txtTypeImport.Text = txtTypeExport.Text;
+                txtImportCompanyCode.Text = txtExportCompanyCode.Text;
+                dtpImportRegisterDate.Value = dtpExportRegisterDate.Value;
             }
         }
 
