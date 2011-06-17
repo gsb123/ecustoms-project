@@ -23,7 +23,7 @@ namespace ECustoms
         private UserInfo _userInfo;
         private Form _parrent;
         private System.Timers.Timer aTimer;
-        private List<DeclarationInfo> _listDeclarationinfo;
+        private List<ViewAllDeclaration> _listDeclarationinfo;
         public frmDecleration()
         {
             InitializeComponent();
@@ -44,7 +44,8 @@ namespace ECustoms
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
             _declarationBOL = new DeclarationBOL();
-            this._listDeclarationinfo = _declarationBOL.GetDecleration();
+
+            this._listDeclarationinfo = DeclarationBOL.SelectAllFromView();
             BindData();
             txtDeclaraceNumber.Focus();
             InitialPermission();
@@ -104,17 +105,17 @@ namespace ECustoms
             var declarationNumber = txtDeclaraceNumber.Text.Trim();
             var companyName = txtCompanyName.Text.Trim();
             List<ViewAllDeclaration> result = null;
-            var db = new dbEcustomEntities();
-            List<ViewAllDeclaration> listDeclaration = db.ViewAllDeclarations.ToList();
+            
+            
             if (string.IsNullOrEmpty(txtDeclaraceNumber.Text) && string.IsNullOrEmpty(txtCompanyName.Text))
             {
-                result = listDeclaration;
+                result = _listDeclarationinfo;
             }
             else if (string.IsNullOrEmpty(txtCompanyName.Text)) { //has nunber, not has copany name
-                result = listDeclaration.Where(d => d.Number.ToString().Contains(declarationNumber) || d.ImportNumber.ToString().Contains(declarationNumber)).ToList();
+                result = _listDeclarationinfo.Where(d => d.Number.ToString().Contains(declarationNumber) || d.ImportNumber.ToString().Contains(declarationNumber)).ToList();
             }
             else if (string.IsNullOrEmpty(txtDeclaraceNumber.Text)) { // has company name, has not number
-                result = listDeclaration.Where(d => (d.CompanyName != null) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
+                result = _listDeclarationinfo.Where(d => (d.CompanyName != null) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
             }
             grvDecleration.AutoGenerateColumns = false;
             grvDecleration.DataSource = result;
@@ -208,33 +209,37 @@ namespace ECustoms
                     excel.Cells[1, columnIndex] = grvDecleration.Columns[i].HeaderText;
                     ((Range)excel.Cells[1, columnIndex]).Font.Bold = true;
                 }
-                int rowIndex = 0;
+                int rowIndex = 0;                
                 foreach (var declarationInfo in _listDeclarationinfo)
                 {
                     rowIndex++;
                     excel.Cells[rowIndex + 1, 1] = declarationInfo.Number;
-                    excel.Cells[rowIndex + 1, 2] = declarationInfo.ImportNumber;
-                    excel.Cells[rowIndex + 1, 3] = declarationInfo.ProductName;
-                    excel.Cells[rowIndex + 1, 4] = declarationInfo.ImportProductName;
-                    excel.Cells[rowIndex + 1, 5] = declarationInfo.CompanyName;
-                    excel.Cells[rowIndex + 1, 6] = declarationInfo.ImportCompanyName;
-                    excel.Cells[rowIndex + 1, 7] = declarationInfo.ProductAmount;
-                    excel.Cells[rowIndex + 1, 8] = declarationInfo.ImportProductAmount;
-                    excel.Cells[rowIndex + 1, 9] = declarationInfo.Unit;
-                    excel.Cells[rowIndex + 1, 10] = declarationInfo.ImportUnit;
-                    excel.Cells[rowIndex + 1, 11] = declarationInfo.ModifiedDate;
-                    excel.Cells[rowIndex + 1, 12] = declarationInfo.CreatedBy;
-                    excel.Cells[rowIndex + 1, 13] = declarationInfo.CreatedDate;
-
+                    excel.Cells[rowIndex + 1, 2] = declarationInfo.CompanyCode;
+                    excel.Cells[rowIndex + 1, 3] = declarationInfo.RegisterDate;
+                    excel.Cells[rowIndex + 1, 4] = declarationInfo.ImportNumber;
+                    excel.Cells[rowIndex + 1, 5] = declarationInfo.ImportCompanyCode;
+                    excel.Cells[rowIndex + 1, 6] = declarationInfo.ImportRegisterDate;
+                    excel.Cells[rowIndex + 1, 7] = declarationInfo.ProductName;
+                    excel.Cells[rowIndex + 1, 8] = declarationInfo.ImportProductName;
+                    excel.Cells[rowIndex + 1, 9] = declarationInfo.CompanyName;
+                    excel.Cells[rowIndex + 1, 10] = declarationInfo.ImportCompanyName;
+                    excel.Cells[rowIndex + 1, 11] = declarationInfo.ProductAmount;
+                    excel.Cells[rowIndex + 1, 12] = declarationInfo.ImportProductAmount;
+                    excel.Cells[rowIndex + 1, 13] = declarationInfo.Unit;
+                    excel.Cells[rowIndex + 1, 14] = declarationInfo.ImportUnit;                    
+                    excel.Cells[rowIndex + 1, 15] = declarationInfo.ModifiedDate;
+                    excel.Cells[rowIndex + 1, 16] = declarationInfo.ModifiedBy;
+                    excel.Cells[rowIndex + 1, 17] = declarationInfo.CreatedBy;
+                    excel.Cells[rowIndex + 1, 18] = declarationInfo.CreatedDate;
                 }
                 excel.Visible = true;
                 var worksheet = (Worksheet)excel.ActiveSheet;
                 worksheet.Activate();
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());                
             }
 
         }
