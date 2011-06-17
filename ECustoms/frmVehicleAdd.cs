@@ -336,7 +336,8 @@ namespace ECustoms
                 declarationInfo.tblUser = UserBOL.GetByID(_userInfo.UserID);
                 if (VehicleInfosTemp.Count == 0)
                     throw new Exception("Phương tiện không được để trống");
-                _declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp, _userInfo.UserID);
+                // TODO: Need to check- vuongdd comment ---------------------------------------------------------------
+                ///_declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp, _userInfo.UserID);
                 MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 // Reset form
                 ResetForm();

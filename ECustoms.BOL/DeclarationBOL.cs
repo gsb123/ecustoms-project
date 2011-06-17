@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ECustoms.DAL;
 using ECustoms.Utilities;
+using System.Data.Objects.DataClasses;
 
 namespace ECustoms.BOL
 {
@@ -23,7 +24,7 @@ namespace ECustoms.BOL
         /// </summary>
         /// <param name="declarationInfo"></param>
         /// <param name="vehicleInfos"></param>
-        public int AddDeclaration(tblDeclaration declarationInfo, List<VehicleInfo> vehicleInfos, int userID)
+        public int AddDeclaration(tblDeclaration declarationInfo, List<tblVehicle> vehicleInfos, int userID)
         {
             var result = -1;
             try
@@ -39,43 +40,11 @@ namespace ECustoms.BOL
                 if(declarationInfo.DeclarationID <= 0) return - 1;
                 var declarationID = declarationInfo.DeclarationID;
                 // Add vehicle
-                if (declarationID > 0 && vehicleInfos.Count > 0)
+                foreach (var vehicle in vehicleInfos)
                 {
-                    for (int i = 0; i < vehicleInfos.Count; i++)
-                    {
-                        // Update DeclarationID
-                        vehicleInfos[i].DeclarationID = declarationID;
-                        // get hour and miniutes
-                        if (!string.IsNullOrEmpty(vehicleInfos[i].ImportHour) && vehicleInfos[i].ImportDate != null && vehicleInfos[i].IsImport) // if it is imported
-                        {
-                            var importHour = Convert.ToInt32(vehicleInfos[i].ImportHour.Split(':')[0]);
-                            var importMinitues = Convert.ToInt32(vehicleInfos[i].ImportHour.Split(':')[1]);
-                            // add import our
-                            vehicleInfos[i].ImportDate = vehicleInfos[i].ImportDate.Value.AddHours(importHour - vehicleInfos[i].ImportDate.Value.Hour);
-                            // Add imort minutes
-                            vehicleInfos[i].ImportDate = vehicleInfos[i].ImportDate.Value.AddMinutes(importMinitues - vehicleInfos[i].ImportDate.Value.Minute);
-                        }
-                        else
-                        {
-                            vehicleInfos[i].ImportDate = new DateTime(1900, 1, 1); // Set default value
-                        }
-
-                        if (!string.IsNullOrEmpty(vehicleInfos[i].ExportHour) && vehicleInfos[i].ExportDate != null && vehicleInfos[i].IsExport)
-                        {
-                            var exporttHour = Convert.ToInt32(vehicleInfos[i].ExportHour.Split(':')[0]);
-                            var exporMinitues = Convert.ToInt32(vehicleInfos[i].ExportHour.Split(':')[1]);
-                            // Add export minitues
-                            vehicleInfos[i].ExportDate = vehicleInfos[i].ExportDate.Value.AddMinutes(exporMinitues - vehicleInfos[i].ExportDate.Value.Minute);
-                            // Add export hour
-                            vehicleInfos[i].ExportDate = vehicleInfos[i].ExportDate.Value.AddHours(exporttHour - vehicleInfos[i].ExportDate.Value.Hour);
-                        }
-                        else
-                        {
-                            vehicleInfos[i].ExportDate = new DateTime(1900, 1, 1); // Set default value
-                        }
-                        if (!vehicleInfos[i].PlateNumber.Equals(""))
-                            _vehicleDAL.Insert(vehicleInfos[i]);
-                    }
+                    vehicle.tblDeclaration = declarationInfo;
+                    db.AddTotblVehicles(vehicle);
+                    db.SaveChanges();
                 }
                 return result;
             }
@@ -85,7 +54,6 @@ namespace ECustoms.BOL
             }
         }
 
-       
         /// <summary>
         /// Delete Decleration by ID
         /// </summary>
