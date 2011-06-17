@@ -102,6 +102,8 @@ namespace ECustoms
         /// </summary>
         private void BindData()
         {
+            // Get declaration from database
+            _listDeclarationinfo = DeclarationBOL.SelectAllFromView();
             var declarationNumber = txtDeclaraceNumber.Text.Trim();
             var companyName = txtCompanyName.Text.Trim();
             List<ViewAllDeclaration> result = null;
