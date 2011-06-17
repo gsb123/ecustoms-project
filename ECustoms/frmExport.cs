@@ -276,7 +276,7 @@ namespace ECustoms
                 btnReset.Enabled = false;
 
                 // Get Decleration information
-                var declarationInfo = _declarationBOL.SelectByID(this._declerationID);
+                var declarationInfo = DeclarationBOL.SelectByID(this._declerationID);
                 // Bind Declaration to controls
                 if (declarationInfo != null)
                 {
@@ -287,8 +287,9 @@ namespace ECustoms
                     txtExportUnit.Text = declarationInfo.Unit;
                     txtTypeExport.Text = declarationInfo.ExportType;
                     txtTypeImport.Text = declarationInfo.ImportType;
-
-                    if (!declarationInfo.HasDeclaration)
+                    txtExportCompanyCode.Text = declarationInfo.CompanyCode;
+                    dtpExportRegisterDate.Value = declarationInfo.RegisterDate.Value;
+                    if (declarationInfo.HasDeclaration != null && !declarationInfo.HasDeclaration.Value)
                     {
                         cbExportHasDeclaration.Checked = false;
                         gbExportDeclaration.Enabled = false;
@@ -304,7 +305,10 @@ namespace ECustoms
                     txtImportCompanyName.Text = declarationInfo.ImportCompanyName;
                     txtImportProductAmount.Text = declarationInfo.ImportProductAmount;
                     txtImportUnit.Text = declarationInfo.ImportUnit;
-                    if (!declarationInfo.ImportHasDeclaration)
+                    txtImportCompanyCode.Text = declarationInfo.ImportCompanyCode;
+                    dtpImportRegisterDate.Value = declarationInfo.ImportRegisterDate.Value;
+
+                    if (declarationInfo.ImportHasDeclaration != null && !declarationInfo.ImportHasDeclaration.Value)
                     {
                         cbImportHasDeclaration.Checked = false;
                         gbImportDeclaration.Enabled = false;
@@ -399,7 +403,7 @@ namespace ECustoms
         {
             try
             {
-                var declarationInfo = new DeclarationInfo();
+                var declarationInfo = new tblDeclaration();
                 if (!string.IsNullOrEmpty(txtExportNumber.Text))
                 {
                     declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text);
@@ -417,7 +421,7 @@ namespace ECustoms
                 }
                 else
                 {
-                    declarationInfo = _declarationBOL.SelectByID(_declerationID);
+                    declarationInfo = DeclarationBOL.SelectByID(_declerationID);
                     if (!string.IsNullOrEmpty(txtExportNumber.Text))
                     {
                         declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text);
@@ -443,7 +447,7 @@ namespace ECustoms
         {
             try
             {
-                var declarationInfo = new DeclarationInfo();
+                var declarationInfo = new tblDeclaration();
                 if (!string.IsNullOrEmpty(txtExportNumber.Text))
                 {
                     declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text);
@@ -543,7 +547,7 @@ namespace ECustoms
                 if (e.RowIndex >= 0 && grdVehicle.SelectedRows.Count == 1)
                 {
 
-                    var declarationInfo = new DeclarationInfo();
+                    var declarationInfo = new tblDeclaration();
                     if (!string.IsNullOrEmpty(txtExportNumber.Text))
                     {
                         declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text);
@@ -685,7 +689,7 @@ namespace ECustoms
             grdVehicle.TabIndex = 16;
             btnAddExisting.Enabled = true;
 
-            var declarationInfo = _declarationBOL.SelectByID(this._declerationID);
+            var declarationInfo = DeclarationBOL.SelectByID(this._declerationID);
 
 
             if (_mode == 0 || (declarationInfo != null && declarationInfo.ImportNumber < 1))

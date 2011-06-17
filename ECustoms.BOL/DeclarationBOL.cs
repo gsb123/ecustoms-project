@@ -141,11 +141,12 @@ namespace ECustoms.BOL
         /// </summary>
         /// <param name="declarationID">DeclarationID</param>
         /// <returns>DeclarationInfo object</returns>
-        public DeclarationInfo SelectByID(int declarationID)
+        public static tblDeclaration SelectByID(int declarationID)
         {
             try
             {
-                return _declarationDAL.SelectByID(declarationID);
+                var db = new dbEcustomEntities();
+                return db.tblDeclarations.Where(g => g.DeclarationID == declarationID).FirstOrDefault();                
             }
             catch (Exception)
             {
@@ -192,10 +193,9 @@ namespace ECustoms.BOL
             return db.SaveChanges();            
         }
 
-        public static List<tblDeclaration> Search(int number, string companyName) {
+        public static List<ViewAllDeclaration> SelectAllFromView() {
             var db = new dbEcustomEntities();
-            //return db.tblDeclarations.Where(g => (g.Number.Equals(number) || g.ImportNumber.Equals== number ) && (g.CompanyName.Contains(companyName) || g.ImportCompanyName.Contains(companyName))).ToList();
-            return null;
+            return db.ViewAllDeclarations.ToList();
         }
     }
 }

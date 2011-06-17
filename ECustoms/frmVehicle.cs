@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.Utilities;
 using ECustoms.BOL;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -22,7 +23,7 @@ namespace ECustoms
         private int _declarationID;
         private bool _isExport = false;
         private bool _isImport = false;
-        private DeclarationInfo _parrentDeclaration;
+        private tblDeclaration _parrentDeclaration;
         private UserInfo _userInfo;
         private bool _isCompleted = false;
         private int _count;
@@ -57,7 +58,7 @@ namespace ECustoms
 
         }
 
-        public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, DeclarationInfo declarationInfo, UserInfo userInfo)
+        public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, tblDeclaration declarationInfo, UserInfo userInfo)
         {
             InitializeComponent();
             grdVehicle.AutoGenerateColumns = false;
@@ -71,7 +72,7 @@ namespace ECustoms
             //InitialPermission();
         }
 
-        public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, int count, DeclarationInfo parrentDeclaration, UserInfo userInfo)
+        public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, int count, tblDeclaration parrentDeclaration, UserInfo userInfo)
         {
             InitializeComponent();
             grdVehicle.AutoGenerateColumns = false;
@@ -379,7 +380,7 @@ namespace ECustoms
             {
                 var message = new StringBuilder();
                 message.Append("Thời gian xuất cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
-                if (_parrentDeclaration != null && _parrentDeclaration.HasDeclaration)
+                if (_parrentDeclaration != null && _parrentDeclaration.HasDeclaration.Value)
                 {
                     message.Append("; Số tờ khai: " + _parrentDeclaration.Number);
                     message.Append("; Ngày khai: " + DateTime.Now.ToString("dd/MM/yyy HH:mm"));
@@ -443,7 +444,7 @@ namespace ECustoms
             {
                 var message = new StringBuilder();
                 message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
-                if (_parrentDeclaration != null && _parrentDeclaration.HasDeclaration)
+                if (_parrentDeclaration != null && _parrentDeclaration.HasDeclaration.Value)
                 {
                     message.Append("; Số tờ khai: " + _parrentDeclaration.Number);
                     message.Append("; Ngày khai: " + DateTime.Now.ToString("dd/MM/yyy HH:mm"));
