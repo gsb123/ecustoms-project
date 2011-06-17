@@ -191,5 +191,11 @@ namespace ECustoms.BOL
            
             return db.SaveChanges();            
         }
+
+        public static List<tblDeclaration> Search(int number, string companyName) {
+            var db = new dbEcustomEntities();
+            //return db.tblDeclarations.Where(g => (g.Number.Equals(number) || g.ImportNumber.Equals== number ) && (g.CompanyName.Contains(companyName) || g.ImportCompanyName.Contains(companyName))).ToList();
+            return null;
+        }
     }
 }
