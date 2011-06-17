@@ -87,22 +87,7 @@ namespace ECustoms.BOL
             }
         }
 
-        /// <summary>
-        /// Get DeclerationInfo
-        /// </summary>
-        /// <returns></returns>
-        public List<DeclarationInfo> GetDecleration()
-        {
-            try
-            {
-                return _declarationDAL.Select();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
+       
         /// <summary>
         /// Delete Decleration by ID
         /// </summary>
@@ -113,25 +98,6 @@ namespace ECustoms.BOL
             try
             {
                 return _declarationDAL.DeleteByID(declerationID);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Update Decleration table
-        /// </summary>
-        /// <param name="declerationInfo">Decleration updated information</param>
-        /// <returns>Number of rows are effected</returns>
-        public int UpdateDecleration(DeclarationInfo declerationInfo)
-        {
-            var result = -1;
-            try
-            {
-                result = _declarationDAL.UpdateByID(declerationInfo);
-                return result;
             }
             catch (Exception)
             {

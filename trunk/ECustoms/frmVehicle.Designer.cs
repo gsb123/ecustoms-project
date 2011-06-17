@@ -221,7 +221,7 @@
             this.btnConfirmExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmExport.Location = new System.Drawing.Point(683, 12);
             this.btnConfirmExport.Name = "btnConfirmExport";
-            this.btnConfirmExport.Size = new System.Drawing.Size(205, 52);
+            this.btnConfirmExport.Size = new System.Drawing.Size(210, 52);
             this.btnConfirmExport.TabIndex = 11;
             this.btnConfirmExport.Text = "Xác nhận xuất cảnh";
             this.btnConfirmExport.UseVisualStyleBackColor = true;
