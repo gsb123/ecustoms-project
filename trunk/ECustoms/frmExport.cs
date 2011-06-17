@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
 using ECustoms.DAL;
+using System.Data.Objects.DataClasses;
 
 namespace ECustoms
 {
@@ -51,77 +52,70 @@ namespace ECustoms
             {
                 if (!Validate()) return;
                 var declarationInfo = GetDeclarationInfo();
-                var listVehicleInfo = new List<VehicleInfo>();
-                VehicleInfo vehicleInfo;
+                var listVehicleInfo = new List<tblVehicle>();
+                tblVehicle vehicleInfo;
                 // Validate Vehicle information
                 if (grdVehicle.Rows.Count > 0)
                 {
                     for (int i = 0; i < grdVehicle.Rows.Count; i++)
                     {
-                        vehicleInfo = new VehicleInfo();
+                        vehicleInfo = new tblVehicle();
                         if (grdVehicle.Rows[i].Cells["PlateNumber"].Value != null)
-                        {
                             vehicleInfo.PlateNumber = grdVehicle.Rows[i].Cells["PlateNumber"].Value.ToString();
-                            if (grdVehicle.Rows[i].Cells["NumberOfContainer"].Value != null)
-                            {
-                                vehicleInfo.NumberOfContainer = Convert.ToInt32(grdVehicle.Rows[i].Cells["NumberOfContainer"].Value);
-                            }
+                        if (grdVehicle.Rows[i].Cells["NumberOfContainer"].Value != null)
+                            vehicleInfo.NumberOfContainer = Convert.ToInt32(grdVehicle.Rows[i].Cells["NumberOfContainer"].Value);
 
-                            if (grdVehicle.Rows[i].Cells["DriverName"].Value != null)
-                            {
-                                vehicleInfo.DriverName = grdVehicle.Rows[i].Cells["DriverName"].Value.ToString();
-                            }
+                        if (grdVehicle.Rows[i].Cells["DriverName"].Value != null)
+                            vehicleInfo.DriverName = grdVehicle.Rows[i].Cells["DriverName"].Value.ToString();
 
-                            if (grdVehicle.Rows[i].Cells["ExportHour"].Value != null)
-                            {
-                                vehicleInfo.ExportHour = grdVehicle.Rows[i].Cells["ExportHour"].Value.ToString();
-                            }
+                        if (grdVehicle.Rows[i].Cells["IsExport"].Value != null)
+                            vehicleInfo.IsExport = Convert.ToBoolean(grdVehicle.Rows[i].Cells["IsExport"].Value);
 
-                            if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null)
+                        // Set Export Date
+                        if (vehicleInfo.IsExport.Value) {
+                            if (grdVehicle.Rows[i].Cells["ExportDate"].Value != null && grdVehicle.Rows[i].Cells["ExportHour"].Value != null)
                             {
-                                vehicleInfo.ExportDate = Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value);
+                                var exportDate = Convert.ToDateTime(grdVehicle.Rows[i].Cells["ExportDate"].Value);
+                                var exportHour = Convert.ToInt32(grdVehicle.Rows[i].Cells["ExportHour"].Value.ToString().Split(':')[0]);
+                                var exportMinitues = Convert.ToInt32(grdVehicle.Rows[i].Cells["ExportHour"].Value.ToString().Split(':')[1]);
+                                // Set export hour
+                                vehicleInfo.ExportDate = exportDate.AddHours(exportHour - exportDate.Hour);
+                                // Set Minitues
+                                vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddMinutes(exportMinitues - vehicleInfo.ExportDate.Value.Minute);
                             }
-
-                            if (grdVehicle.Rows[i].Cells["ImportHour"].Value != null)
-                            {
-                                vehicleInfo.ImportHour = grdVehicle.Rows[i].Cells["ImportHour"].Value.ToString();
-                            }
-
-                            if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null)
-                            {
-                                vehicleInfo.ImportDate = Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value);
-                            }
-
-                            if (grdVehicle.Rows[i].Cells["Note"].Value != null)
-                            {
-                                vehicleInfo.Note = grdVehicle.Rows[i].Cells["Note"].Value.ToString();
-                            }
-                            if (grdVehicle.Rows[i].Cells["Status"].Value != null)
-                            {
-                                vehicleInfo.Status = grdVehicle.Rows[i].Cells["Status"].Value.ToString();
-                            }
-
-                            if (grdVehicle.Rows[i].Cells["IsExport"].Value != null)
-                            {
-                                vehicleInfo.IsExport = Convert.ToBoolean(grdVehicle.Rows[i].Cells["IsExport"].Value);
-                            }
-
-                            if (grdVehicle.Rows[i].Cells["IsImport"].Value != null)
-                            {
-                                vehicleInfo.IsImport = Convert.ToBoolean(grdVehicle.Rows[i].Cells["IsImport"].Value);
-                            }
-                            if (!string.IsNullOrEmpty(txtImportNumber.Text) && Convert.ToInt32(txtImportNumber.Text) > 0)
-                            {
-                                vehicleInfo.HasGoodsImported = true;
-                            }
-                            else
-                            {
-                                vehicleInfo.HasGoodsImported = false;
-                            }
-
-                            listVehicleInfo.Add(vehicleInfo);
                         }
-                    }
+
+                        if (grdVehicle.Rows[i].Cells["IsImport"].Value != null)
+                            vehicleInfo.IsImport = Convert.ToBoolean(grdVehicle.Rows[i].Cells["IsImport"].Value);
+
+                        // Set Import Date
+                        if (vehicleInfo.IsImport.Value) {
+                            if (grdVehicle.Rows[i].Cells["ImportDate"].Value != null && grdVehicle.Rows[i].Cells["ImportHour"].Value != null)
+                            {
+                                var importDate = Convert.ToDateTime(grdVehicle.Rows[i].Cells["ImportDate"].Value);
+                                var importHour = Convert.ToInt32(grdVehicle.Rows[i].Cells["ImportHour"].Value.ToString().Split(':')[0]);
+                                var importMinitues = Convert.ToInt32(grdVehicle.Rows[i].Cells["ImportHour"].Value.ToString().Split(':')[1]);
+                                // Set import hour
+                                vehicleInfo.ImportDate = importDate.AddHours(importHour - importDate.Hour);
+                                // Set Minitues
+                                vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddMinutes(importMinitues - vehicleInfo.ImportDate.Value.Minute);
+                            }
+
+                        }
+
+                        if (grdVehicle.Rows[i].Cells["Note"].Value != null)
+                            vehicleInfo.Note = grdVehicle.Rows[i].Cells["Note"].Value.ToString();
+                        if (grdVehicle.Rows[i].Cells["Status"].Value != null)
+                            vehicleInfo.Status = grdVehicle.Rows[i].Cells["Status"].Value.ToString();
+                            
+                        if (!string.IsNullOrEmpty(txtImportNumber.Text) && Convert.ToInt32(txtImportNumber.Text) > 0)
+                            vehicleInfo.HasGoodsImported = true;
+                        else
+                            vehicleInfo.HasGoodsImported = false;
+                        // Add to list vehicles
+                        listVehicleInfo.Add(vehicleInfo);
+                        
+                    } // End for
                 }
                 // TODO: Need to check return value
                 _declarationBOL.AddDeclaration(declarationInfo, listVehicleInfo, _userInfo.UserID);
