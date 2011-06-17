@@ -9,14 +9,12 @@ namespace ECustoms.BOL
 {
     public class DeclarationBOL
     {
-        private readonly string _dbConnectionString;
-        private readonly DeclarationDAL _declarationDAL;
+        private readonly string _dbConnectionString;        
         private readonly VehicleDAL _vehicleDAL;
 
         public DeclarationBOL()
         {
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
-            _declarationDAL = new DeclarationDAL(_dbConnectionString);
+            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];            
             _vehicleDAL = new VehicleDAL(_dbConnectionString);
         }
 
@@ -93,16 +91,12 @@ namespace ECustoms.BOL
         /// </summary>
         /// <param name="declerationID">DeclerationID</param>
         /// <returns>Number of rows are effected</returns>
-        public int DeleteByID(int declerationID)
+        public static int DeleteByID(int declerationID)
         {
-            try
-            {
-                return _declarationDAL.DeleteByID(declerationID);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var db = new dbEcustomEntities();
+            var declaration = db.tblDeclarations.Where(g => g.DeclarationID == declerationID).FirstOrDefault();
+            db.DeleteObject(declaration);
+            return db.SaveChanges();
         }
 
         /// <summary>

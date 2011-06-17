@@ -135,7 +135,6 @@ namespace ECustoms
         {
             try
             {
-                //TODO: Need to delete multiple instanse one time
                 if (grvDecleration.SelectedRows.Count > 0)
                 {
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -144,7 +143,7 @@ namespace ECustoms
                         for (int i = 0; i < grvDecleration.SelectedRows.Count; i++)
                         {
                             var declerationID = Convert.ToInt32(grvDecleration.SelectedRows[i].Cells[0].Value);
-                            _declarationBOL.DeleteByID(declerationID);
+                            DeclarationBOL.DeleteByID(declerationID);
                         }
                         MessageBox.Show("Xóa xong");
                         BindData();
@@ -157,7 +156,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                logger.Error(exception.ToString());
             }
 
         }

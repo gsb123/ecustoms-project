@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnection.cs" />
-    <Compile Include="DeclarationDAL.cs" />
     <Compile Include="ModelEcustoms.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
