@@ -22,16 +22,19 @@ namespace ECustoms
         private int _declerationID;
         private List<VehicleInfo> _vehicleInfosTemp = new List<VehicleInfo>(); // This variable is used to store data in the gridview
         private bool _hasDeclaration;
+        // This variable to let you know wthis form is opened from what form
+        private Form _parent;
         public frmExport()
         {
             InitializeComponent();
         }
 
-        public frmExport(UserInfo userInfo, int mode)
+        public frmExport(UserInfo userInfo, int mode, Form parrent)
         {
             InitializeComponent();
             _userInfo = userInfo;
             _mode = mode;
+            _parent = parrent;
         }
 
         public frmExport(UserInfo userInfo, int mode, int declerationID)
@@ -123,6 +126,27 @@ namespace ECustoms
                 // TODO: Need to check return value
                 _declarationBOL.AddDeclaration(declarationInfo, listVehicleInfo, _userInfo.UserID);
                 MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
+
+                switch (this._parent.Name.ToUpper())
+                {
+                    case "FRMDECLERATION":
+                        { 
+                            // close the form
+                            this.Close();
+                            // Bind data to the gridivew
+                            ((frmDecleration)_parent).BindData();
+                        }
+                        break;
+                    case "FRMMAINFORM":
+                        { 
+                        // Just close from if this form is opened from main from
+                        this.Close();
+                    }
+                        break;
+                    default:
+                        break;
+                }
+
                 // Reset form
                 ResetForm();
             }

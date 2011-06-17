@@ -100,7 +100,7 @@ namespace ECustoms
         /// Bind data by search codition
         /// This methold will be called after refresh time ( from web.config)
         /// </summary>
-        private void BindData()
+        public void BindData()
         {
             // Get declaration from database
             _listDeclarationinfo = DeclarationBOL.SelectAllFromView();
@@ -191,7 +191,7 @@ namespace ECustoms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var frmExport = new frmExport(_userInfo, 0);
+            var frmExport = new frmExport(_userInfo, 0, this);
             frmExport.MdiParent = _parrent;
             frmExport.Show();
         }
