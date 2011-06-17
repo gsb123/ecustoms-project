@@ -57,13 +57,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdVehicle = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DriverName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.SuspendLayout();
@@ -83,23 +83,23 @@
             this.txtPlateNumber.Location = new System.Drawing.Point(131, 9);
             this.txtPlateNumber.MaxLength = 12;
             this.txtPlateNumber.Name = "txtPlateNumber";
-            this.txtPlateNumber.Size = new System.Drawing.Size(73, 20);
+            this.txtPlateNumber.Size = new System.Drawing.Size(98, 20);
             this.txtPlateNumber.TabIndex = 1;
             this.txtPlateNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlateNumber_KeyPress);
             // 
             // txtNumberOfContainer
             // 
-            this.txtNumberOfContainer.Location = new System.Drawing.Point(644, 11);
-            this.txtNumberOfContainer.MaxLength = 4;
+            this.txtNumberOfContainer.Location = new System.Drawing.Point(594, 8);
+            this.txtNumberOfContainer.MaxLength = 12;
             this.txtNumberOfContainer.Name = "txtNumberOfContainer";
-            this.txtNumberOfContainer.Size = new System.Drawing.Size(33, 20);
+            this.txtNumberOfContainer.Size = new System.Drawing.Size(83, 20);
             this.txtNumberOfContainer.TabIndex = 3;
             // 
             // lblNumberOfContainer
             // 
             this.lblNumberOfContainer.AutoSize = true;
             this.lblNumberOfContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfContainer.Location = new System.Drawing.Point(536, 10);
+            this.lblNumberOfContainer.Location = new System.Drawing.Point(486, 6);
             this.lblNumberOfContainer.Name = "lblNumberOfContainer";
             this.lblNumberOfContainer.Size = new System.Drawing.Size(102, 20);
             this.lblNumberOfContainer.TabIndex = 2;
@@ -107,7 +107,7 @@
             // 
             // txtDriverName
             // 
-            this.txtDriverName.Location = new System.Drawing.Point(357, 10);
+            this.txtDriverName.Location = new System.Drawing.Point(307, 6);
             this.txtDriverName.Name = "txtDriverName";
             this.txtDriverName.Size = new System.Drawing.Size(173, 20);
             this.txtDriverName.TabIndex = 2;
@@ -116,7 +116,7 @@
             // 
             this.lblDriverName.AutoSize = true;
             this.lblDriverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriverName.Location = new System.Drawing.Point(276, 10);
+            this.lblDriverName.Location = new System.Drawing.Point(226, 8);
             this.lblDriverName.Name = "lblDriverName";
             this.lblDriverName.Size = new System.Drawing.Size(75, 20);
             this.lblDriverName.TabIndex = 4;
@@ -376,17 +376,6 @@
             this.grdVehicle.TabIndex = 19;
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(683, 126);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(210, 52);
-            this.btnSearch.TabIndex = 13;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // PlateNumber
             // 
             this.PlateNumber.DataPropertyName = "PlateNumber";
@@ -430,6 +419,17 @@
             this.Note.HeaderText = "Ghi chú";
             this.Note.Name = "Note";
             this.Note.Width = 198;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(683, 126);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(210, 52);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmVehicle
             // 
