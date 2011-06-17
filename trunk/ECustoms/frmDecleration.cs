@@ -11,6 +11,7 @@ using ECustoms.Utilities;
 using Microsoft.Office.Interop.Excel;
 using Point = System.Drawing.Point;
 using log4net;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -69,9 +70,6 @@ namespace ECustoms
             this.Invoke(monitorContacIdCallback);
         }
 
-
-
-
         private delegate void MonitorContacIdCallback();
 
 
@@ -90,26 +88,44 @@ namespace ECustoms
             else if (_userInfo.Type == UserType.Confirm)
             {
                 btnDelete.Enabled = false;
-
-
             }
             else if (_userInfo.Type == UserType.Input)
             {
-
-
             }
 
         }
 
+        /// <summary>
+        /// Bind data by search codition
+        /// This methold will be called after refresh time ( from web.config)
+        /// </summary>
         private void BindData()
         {
+            var declarationNumber = txtDeclaraceNumber.Text.Trim();
+            var companyName = txtCompanyName.Text.Trim();
+            List<ViewAllDeclaration> result = null;
+            var db = new dbEcustomEntities();
+            List<ViewAllDeclaration> listDeclaration = db.ViewAllDeclarations.ToList();
+            if (string.IsNullOrEmpty(txtDeclaraceNumber.Text) && string.IsNullOrEmpty(txtCompanyName.Text))
+            {
+                result = listDeclaration;
+            }
+            else if (string.IsNullOrEmpty(txtCompanyName.Text)) { //has nunber, not has copany name
+                result = listDeclaration.Where(d => d.Number.ToString().Contains(declarationNumber) || d.ImportNumber.ToString().Contains(declarationNumber)).ToList();
+            }
+            else if (string.IsNullOrEmpty(txtDeclaraceNumber.Text)) { // has company name, has not number
+                result = listDeclaration.Where(d => (d.CompanyName != null) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
+            }
             grvDecleration.AutoGenerateColumns = false;
-            _listDeclarationinfo = _declarationBOL.GetDecleration();
-            grvDecleration.DataSource = _listDeclarationinfo;
-            if (_listDeclarationinfo.Count > 0) {
+            grvDecleration.DataSource = result;
+
+            if (result != null && result.Count > 0)
+            {
                 SetVehicleInfo(grvDecleration.Rows[0]);
             }
-            // grvDecleration.DataSource = _declarationBOL.GetDecleration();
+            else {  // No result
+                lblHeader.Text = "";
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -235,27 +251,20 @@ namespace ECustoms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
+
+            BindData();
+        }
+
+        private void BindSearch() 
+        {
             var declarationNumber = txtDeclaraceNumber.Text.Trim();
             var companyName = txtCompanyName.Text.Trim();
-            List<DeclarationInfo> result = null;
-            if (!string.IsNullOrEmpty(declarationNumber))
-            {
-                result = _listDeclarationinfo.Where(d => d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber))
-                    .ToList();
-            }
-
-            if (!string.IsNullOrEmpty(companyName) && _listDeclarationinfo != null)
-            {
-                result = _listDeclarationinfo.Where(d => d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))
-                       .ToList();
-            }
-
+            List<tblDeclaration> result = null;
+            var db = new dbEcustomEntities();
+            List<tblDeclaration> listDeclaration = db.tblDeclarations.ToList();
+            result = listDeclaration.Where(d => (d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber)) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
             grvDecleration.DataSource = result;
-
-            if (string.IsNullOrEmpty(declarationNumber) && string.IsNullOrEmpty(companyName))
-            {
-                BindData();
-            }            
         }
 
         private void grvDecleration_CellContentClick(object sender, DataGridViewCellEventArgs e)

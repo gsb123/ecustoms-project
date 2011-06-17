@@ -21,6 +21,37 @@
           <EntitySet Name="tblDeclaration" EntityType="dbEcustomModel.Store.tblDeclaration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUser" EntityType="dbEcustomModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblVehicle" EntityType="dbEcustomModel.Store.tblVehicle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ViewAllDeclaration" EntityType="dbEcustomModel.Store.ViewAllDeclaration" store:Type="Views" store:Schema="dbo" store:Name="ViewAllDeclaration">
+            <DefiningQuery>SELECT 
+      [ViewAllDeclaration].[DeclarationID] AS [DeclarationID], 
+      [ViewAllDeclaration].[Number] AS [Number], 
+      [ViewAllDeclaration].[ProductName] AS [ProductName], 
+      [ViewAllDeclaration].[CompanyName] AS [CompanyName], 
+      [ViewAllDeclaration].[ProductAmount] AS [ProductAmount], 
+      [ViewAllDeclaration].[Unit] AS [Unit], 
+      [ViewAllDeclaration].[CreatedByID] AS [CreatedByID], 
+      [ViewAllDeclaration].[ModifiedByID] AS [ModifiedByID], 
+      [ViewAllDeclaration].[ModifiedDate] AS [ModifiedDate], 
+      [ViewAllDeclaration].[CreatedDate] AS [CreatedDate], 
+      [ViewAllDeclaration].[HasDeclaration] AS [HasDeclaration], 
+      [ViewAllDeclaration].[CompanyCode] AS [CompanyCode], 
+      [ViewAllDeclaration].[RegisterDate] AS [RegisterDate], 
+      [ViewAllDeclaration].[ImportProductName] AS [ImportProductName], 
+      [ViewAllDeclaration].[ImportCompanyName] AS [ImportCompanyName], 
+      [ViewAllDeclaration].[ImportProductAmount] AS [ImportProductAmount], 
+      [ViewAllDeclaration].[ImportUnit] AS [ImportUnit], 
+      [ViewAllDeclaration].[ImportHasDeclaration] AS [ImportHasDeclaration], 
+      [ViewAllDeclaration].[ImportNumber] AS [ImportNumber], 
+      [ViewAllDeclaration].[ImportType] AS [ImportType], 
+      [ViewAllDeclaration].[ExportType] AS [ExportType], 
+      [ViewAllDeclaration].[ImportCompanyCode] AS [ImportCompanyCode], 
+      [ViewAllDeclaration].[ImportRegisterDate] AS [ImportRegisterDate], 
+      [ViewAllDeclaration].[UserID] AS [UserID], 
+      [ViewAllDeclaration].[Name] AS [Name], 
+      [ViewAllDeclaration].[CreatedBy] AS [CreatedBy], 
+      [ViewAllDeclaration].[ModifiedBy] AS [ModifiedBy]
+      FROM [dbo].[ViewAllDeclaration] AS [ViewAllDeclaration]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_tblDeclaration_tblUser" Association="dbEcustomModel.Store.FK_tblDeclaration_tblUser">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblDeclaration" EntitySet="tblDeclaration" />
@@ -130,6 +161,42 @@
           <Property Name="ConfirmImportBy" Type="int" />
           <Property Name="ConfirmExportBy" Type="int" />
           <Property Name="ConfirmLocalImportBy" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'dbEcustom.dbo.ViewAllDeclaration' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ViewAllDeclaration">
+          <Key>
+            <PropertyRef Name="DeclarationID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="DeclarationID" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProductAmount" Type="nvarchar" MaxLength="500" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedByID" Type="int" />
+          <Property Name="ModifiedByID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="HasDeclaration" Type="bit" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="ImportProductName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportCompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportProductAmount" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportUnit" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportHasDeclaration" Type="bit" />
+          <Property Name="ImportNumber" Type="int" />
+          <Property Name="ImportType" Type="nvarchar" MaxLength="500" />
+          <Property Name="ExportType" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportCompanyCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImportRegisterDate" Type="datetime" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_tblDeclaration_tblUser">
           <End Role="tblUser" Type="dbEcustomModel.Store.tblUser" Multiplicity="0..1">
@@ -471,6 +538,7 @@
           <EntitySet Name="tblDeclarations" EntityType="dbEcustomModel.tblDeclaration" />
           <EntitySet Name="tblUsers" EntityType="dbEcustomModel.tblUser" />
           <EntitySet Name="tblVehicles" EntityType="dbEcustomModel.tblVehicle" />
+          <EntitySet Name="ViewAllDeclarations" EntityType="dbEcustomModel.ViewAllDeclaration" />
           <AssociationSet Name="FK_tblDeclaration_tblUser" Association="dbEcustomModel.FK_tblDeclaration_tblUser">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblDeclaration" EntitySet="tblDeclarations" />
@@ -579,6 +647,39 @@
           <Property Type="Int32" Name="ConfirmExportBy" />
           <Property Type="Int32" Name="ConfirmLocalImportBy" />
           <NavigationProperty Name="tblDeclaration" Relationship="dbEcustomModel.FK_tblVehicle_tblDeclaration" FromRole="tblVehicle" ToRole="tblDeclaration" />
+        </EntityType>
+        <EntityType Name="ViewAllDeclaration">
+          <Key>
+            <PropertyRef Name="DeclarationID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="DeclarationID" Nullable="false" />
+          <Property Type="Int32" Name="Number" />
+          <Property Type="String" Name="ProductName" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductAmount" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Unit" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreatedByID" />
+          <Property Type="Int32" Name="ModifiedByID" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="Boolean" Name="HasDeclaration" />
+          <Property Type="String" Name="CompanyCode" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="RegisterDate" />
+          <Property Type="String" Name="ImportProductName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportCompanyName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportProductAmount" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportUnit" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ImportHasDeclaration" />
+          <Property Type="Int32" Name="ImportNumber" />
+          <Property Type="String" Name="ImportType" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExportType" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImportCompanyCode" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ImportRegisterDate" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ModifiedBy" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblDeclaration_tblUser">
           <End Type="dbEcustomModel.tblUser" Role="tblUser" Multiplicity="0..1" />
@@ -689,6 +790,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ViewAllDeclarations">
+            <EntityTypeMapping TypeName="dbEcustomModel.ViewAllDeclaration">
+              <MappingFragment StoreEntitySet="ViewAllDeclaration">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ImportRegisterDate" ColumnName="ImportRegisterDate" />
+                <ScalarProperty Name="ImportCompanyCode" ColumnName="ImportCompanyCode" />
+                <ScalarProperty Name="ExportType" ColumnName="ExportType" />
+                <ScalarProperty Name="ImportType" ColumnName="ImportType" />
+                <ScalarProperty Name="ImportNumber" ColumnName="ImportNumber" />
+                <ScalarProperty Name="ImportHasDeclaration" ColumnName="ImportHasDeclaration" />
+                <ScalarProperty Name="ImportUnit" ColumnName="ImportUnit" />
+                <ScalarProperty Name="ImportProductAmount" ColumnName="ImportProductAmount" />
+                <ScalarProperty Name="ImportCompanyName" ColumnName="ImportCompanyName" />
+                <ScalarProperty Name="ImportProductName" ColumnName="ImportProductName" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="HasDeclaration" ColumnName="HasDeclaration" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ProductAmount" ColumnName="ProductAmount" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="FK_tblDeclaration_tblUser" TypeName="dbEcustomModel.FK_tblDeclaration_tblUser" StoreEntitySet="tblDeclaration">
             <EndProperty Name="tblDeclaration">
               <ScalarProperty Name="DeclarationID" ColumnName="DeclarationID" />
@@ -728,11 +862,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ModelEcustoms">
-        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="7.75" PointY="0.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="7.75" PointY="0.75" Height="2.3648893229166665" />
         <EntityTypeShape EntityType="dbEcustomModel.Log" Width="1.5" PointX="0.75" PointY="7.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="5.634013671874996" />
-        <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="2.25" Height="3.326396484375" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="5.634013671875" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="2.25" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="dbEcustomModel.tblVehicle" Width="1.5" PointX="5.25" PointY="1.625" Height="4.672506510416671" />
+        <EntityTypeShape EntityType="dbEcustomModel.ViewAllDeclaration" Width="1.5" PointX="2.75" PointY="7.75" Height="6.2109179687500031" />
         <AssociationConnector Association="dbEcustomModel.FK_tblDeclaration_tblUser" >
           <ConnectorPoint PointX="2.25" PointY="3.9131982421875" />
           <ConnectorPoint PointX="3" PointY="3.9131982421875" />
