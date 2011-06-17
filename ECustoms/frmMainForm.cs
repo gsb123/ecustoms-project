@@ -60,7 +60,7 @@ namespace ECustoms
 
         private void mnExport_Click(object sender, EventArgs e)
         {
-            var frmExport = new frmExport(_userInfo, 0);
+            var frmExport = new frmExport(_userInfo, 0, this);
             frmExport.MdiParent = this;
             frmExport.Show();
         }
@@ -101,7 +101,7 @@ namespace ECustoms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            var frmExport = new frmExport(_userInfo, 0);
+            var frmExport = new frmExport(_userInfo, 0, this);
             frmExport.MdiParent = this;
             frmExport.Show();
         }
@@ -122,7 +122,7 @@ namespace ECustoms
 
         private void toolStripButtonDeclarace_Click(object sender, EventArgs e)
         {
-            var frmExport = new frmExport(_userInfo, 0);
+            var frmExport = new frmExport(_userInfo, 0, this);
             frmExport.MdiParent = this;
             frmExport.Show();
         }
