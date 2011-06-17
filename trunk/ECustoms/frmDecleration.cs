@@ -217,10 +217,10 @@ namespace ECustoms
                     rowIndex++;
                     excel.Cells[rowIndex + 1, 1] = declarationInfo.Number;
                     excel.Cells[rowIndex + 1, 2] = declarationInfo.CompanyCode;
-                    excel.Cells[rowIndex + 1, 3] = declarationInfo.RegisterDate;
+                    excel.Cells[rowIndex + 1, 3] = declarationInfo.RegisterDate.Value.ToString("dd/MM/yyyy hh:mm");
                     excel.Cells[rowIndex + 1, 4] = declarationInfo.ImportNumber;
                     excel.Cells[rowIndex + 1, 5] = declarationInfo.ImportCompanyCode;
-                    excel.Cells[rowIndex + 1, 6] = declarationInfo.ImportRegisterDate;
+                    excel.Cells[rowIndex + 1, 6] =  declarationInfo.ImportRegisterDate.Value.ToString("dd/MM/yyyy hh:mm");
                     excel.Cells[rowIndex + 1, 7] = declarationInfo.ProductName;
                     excel.Cells[rowIndex + 1, 8] = declarationInfo.ImportProductName;
                     excel.Cells[rowIndex + 1, 9] = declarationInfo.CompanyName;
@@ -228,11 +228,11 @@ namespace ECustoms
                     excel.Cells[rowIndex + 1, 11] = declarationInfo.ProductAmount;
                     excel.Cells[rowIndex + 1, 12] = declarationInfo.ImportProductAmount;
                     excel.Cells[rowIndex + 1, 13] = declarationInfo.Unit;
-                    excel.Cells[rowIndex + 1, 14] = declarationInfo.ImportUnit;                    
-                    excel.Cells[rowIndex + 1, 15] = declarationInfo.ModifiedDate;
+                    excel.Cells[rowIndex + 1, 14] = declarationInfo.ImportUnit;
+                    excel.Cells[rowIndex + 1, 15] = declarationInfo.ModifiedDate.Value.ToString("dd/MM/yyyy hh:mm");
                     excel.Cells[rowIndex + 1, 16] = declarationInfo.ModifiedBy;
                     excel.Cells[rowIndex + 1, 17] = declarationInfo.CreatedBy;
-                    excel.Cells[rowIndex + 1, 18] = declarationInfo.CreatedDate;
+                    excel.Cells[rowIndex + 1, 18] = declarationInfo.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm");
                 }
                 excel.Visible = true;
                 var worksheet = (Worksheet)excel.ActiveSheet;
