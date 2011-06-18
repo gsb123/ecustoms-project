@@ -32,6 +32,7 @@ namespace ECustoms
             cbReportType.Items.Add(new Item("Phương tiện chở hàng xuất khẩu", 3));
             cbReportType.Items.Add(new Item("Phương tiện chở hàng nhập khẩu", 4));
             cbReportType.Items.Add(new Item("Phương tiện hoàn thành thủ tục Hải quan vào nội địa", 5));
+            cbReportType.SelectedIndex = 0;
 
 
         }
@@ -64,15 +65,22 @@ namespace ECustoms
             // Get data file here
             ReportBOL facade = new ReportBOL();
             //testing
-            DataTable reportTable = facade.GetReportTable(ReportType.ExportAndHasItem, DateTime.Now, DateTime.Now);
+
+            ReportType type = (ReportType)(cbReportType.SelectedIndex + 1);
+            DateTime from = dtpExportFrom.Value;
+            DateTime to = dtpExportTo.Value;
+            string reportName = cbReportType.SelectedText;
+            DataTable reportTable = facade.GetReportTable(type, from, to);
             dataGridView1.DataSource = reportTable;
-            this.reportDocument1.ReportMaker = GetReportMaker(reportTable);
-            //this.printControlToolBar1.Preview(null, null);
+            this.reportDocument1.ReportMaker = GetReportMaker(reportTable, reportName);
+
         }
 
-        IReportMaker GetReportMaker(DataTable reportTable)
+
+
+        IReportMaker GetReportMaker(DataTable reportTable, string reportName)
         {
-            IReportMaker reportFiles = new ReportFiles(reportTable);
+            IReportMaker reportFiles = new ReportFiles(reportTable, reportName);
             return reportFiles;
         }
 
