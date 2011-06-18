@@ -331,13 +331,39 @@ namespace ECustoms
             {
                 DeclarationBOL _declarationBOL = new DeclarationBOL();
                 var declarationInfo = GetDeclarationInfo();
-                declarationInfo.ModifiedDate = DateTime.Now;                
+                declarationInfo.ModifiedDate = DateTime.Now;
                 declarationInfo.ModifiedByID = _userInfo.UserID;
                 declarationInfo.tblUser = UserBOL.GetByID(_userInfo.UserID);
                 if (VehicleInfosTemp.Count == 0)
                     throw new Exception("Phương tiện không được để trống");
-                // TODO: Need to check- vuongdd comment ---------------------------------------------------------------
-                ///_declarationBOL.AddDeclaration(declarationInfo, VehicleInfosTemp, _userInfo.UserID);
+
+                List<tblVehicle> listVehicle = new List<tblVehicle>();
+                foreach (VehicleInfo info in VehicleInfosTemp)
+                {
+                    tblVehicle vehicleInfo = new tblVehicle();
+                    vehicleInfo.DriverName = info.DriverName;
+                    vehicleInfo.PlateNumber = info.PlateNumber;
+
+                    vehicleInfo.NumberOfContainer = info.NumberOfContainer;
+
+
+                    vehicleInfo.ExportDate = info.ExportDate;
+                    vehicleInfo.ConfirmExportBy = info.ConfirmExportBy;
+
+                    vehicleInfo.ImportDate = info.ImportDate;
+                    vehicleInfo.ConfirmImportBy = info.ConfirmImportBy;
+
+                    vehicleInfo.Status = vehicleInfo.Status;
+                    vehicleInfo.Note = vehicleInfo.Note;
+                    vehicleInfo.VehicleID = info.VehicleID;
+                    vehicleInfo.IsExport = info.IsExport;
+                    vehicleInfo.IsImport = info.IsImport;
+                    vehicleInfo.IsCompleted = info.IsCompleted;
+                    listVehicle.Add(vehicleInfo);
+                }
+                _declarationBOL.AddDeclaration(declarationInfo, listVehicle, _userInfo.UserID);
+
+
                 MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 // Reset form
                 ResetForm();
@@ -352,8 +378,31 @@ namespace ECustoms
         private tblDeclaration GetDeclarationInfo()
         {
             var declarationInfo = new tblDeclaration();
+
             declarationInfo.Number = 0;
             declarationInfo.ImportNumber = 0;
+            declarationInfo.ExportType = "";
+            declarationInfo.CompanyName = "";
+            declarationInfo.CompanyCode = "";
+            declarationInfo.RegisterDate = DateTime.Now;
+            declarationInfo.ProductAmount = "";
+            declarationInfo.Unit = "";
+            declarationInfo.ProductName = "";
+            //declarationInfo.HasDeclaration = Name
+
+
+            declarationInfo.ImportType = "";
+            declarationInfo.ImportCompanyName = "";
+            declarationInfo.ImportCompanyCode = "";
+            declarationInfo.ImportRegisterDate = DateTime.Now;
+            declarationInfo.ImportProductAmount = "";
+            declarationInfo.ImportUnit = "";
+            declarationInfo.ImportProductName = "";
+            //declarationInfo.ImportHasDeclaration = cbImportHasDeclaration.Checked;
+
+            declarationInfo.ModifiedDate = DateTime.Now;
+            declarationInfo.ModifiedByID = _userInfo.UserID;
+
             return declarationInfo;
         }
 
