@@ -312,7 +312,7 @@ namespace ECustoms
             lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
             // Get List vehicle 
             var declaractionID = Convert.ToInt32(row.Cells["DeclarationID"].Value);
-            var vehicleBOL = new VehicleBOL();
+            var vehicleBOL = new VehicleFactory();
             var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
             StringBuilder vehicleInfo;
             // return if does not any vehicle

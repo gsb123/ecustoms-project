@@ -17,7 +17,7 @@ namespace ECustoms
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmExport");
         private DeclarationBOL _declarationBOL;
-        private VehicleBOL _vehicleBOL;
+        private VehicleFactory _vehicleBOL;
         private UserInfo _userInfo;
         private int _mode;
         private int _declerationID;
@@ -236,7 +236,7 @@ namespace ECustoms
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
             _declarationBOL = new DeclarationBOL();
-            _vehicleBOL = new VehicleBOL();
+            _vehicleBOL = new VehicleFactory();
             // Init form.
             Init();
             InitialPermission();
@@ -380,7 +380,7 @@ namespace ECustoms
                     // Update Decleration
                     DeclarationBOL.Update(declerationInfo);                   
                     // update vehicle list
-                    var vehicleBL = new VehicleBOL();
+                    var vehicleBL = new VehicleFactory();
 
                     foreach (var v in this._vehicleInfosTemp)
                     {
@@ -526,7 +526,7 @@ namespace ECustoms
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        VehicleBOL.DeleteByID(Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value));
+                        VehicleFactory.DeleteByID(Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value));
                         // Get Vehicle by DeclarationID
                         var listVehicle = _vehicleBOL.SelectByDeclarationID(this._declerationID);
                         BindVehicle(listVehicle);
