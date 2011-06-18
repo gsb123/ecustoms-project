@@ -16,7 +16,7 @@ namespace ECustoms
     {
         #region Priority
         private List<VehicleInfo> _vehicleInfosTemp = new List<VehicleInfo>();
-        private VehicleBOL _vehicleBOL = new VehicleBOL();
+        private VehicleFactory _vehicleBOL = new VehicleFactory();
         private UserInfo _userInfo;
 
         public List<VehicleInfo> VehicleInfosTemp
@@ -25,7 +25,7 @@ namespace ECustoms
             set { _vehicleInfosTemp = value; }
         }
 
-        public VehicleBOL VehicleBol
+        public VehicleFactory VehicleBol
         {
             get { return _vehicleBOL; }
             set { _vehicleBOL = value; }

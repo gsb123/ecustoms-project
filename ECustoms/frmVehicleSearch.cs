@@ -14,7 +14,7 @@ namespace ECustoms
 {
     public partial class frmVehicleSearch : Form
     {
-        private VehicleBOL _vehicleBOL;
+        private VehicleFactory _vehicleBOL;
         private UserInfo _userInfo;
         private System.Data.DataTable _dtResult;
         public frmVehicleSearch()
@@ -56,7 +56,7 @@ namespace ECustoms
             this.Text = "Tìm kiếm" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
-            _vehicleBOL = new VehicleBOL();
+            _vehicleBOL = new VehicleFactory();
             //Init data
             BindData();
             txtPlateNumber.Focus();

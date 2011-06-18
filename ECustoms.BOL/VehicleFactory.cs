@@ -8,12 +8,12 @@ using ECustoms.Utilities;
 
 namespace ECustoms.BOL
 {
-    public class VehicleBOL
+    public class VehicleFactory
     {        
         private readonly string _dbConnectionString;
         private readonly VehicleDAL _vehicleDAL;
 
-        public VehicleBOL()
+        public VehicleFactory()
         {
             _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
             _vehicleDAL = new VehicleDAL(_dbConnectionString);
@@ -182,6 +182,11 @@ namespace ECustoms.BOL
             }
         }
 
+        public static tblVehicle GetByID(int vehicleID) {
+            var db = new dbEcustomEntities();
+            return db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
+        }
+
         /// <summary>
         /// Update vehicle
         /// </summary>
@@ -235,6 +240,20 @@ namespace ECustoms.BOL
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Update Vehicle
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
+        public static int UpdateVehicle(tblVehicle vehicle ) {
+            var db = new dbEcustomEntities();
+            // Get orgin vehicle
+            var vehicleOrgin = db.tblVehicles.Where(g => g.VehicleID == vehicle.VehicleID).FirstOrDefault();
+            db.Attach(vehicleOrgin);
+            db.ApplyPropertyChanges("tblVehicles", vehicle);
+            return db.SaveChanges();
         }
 
         /// <summary>

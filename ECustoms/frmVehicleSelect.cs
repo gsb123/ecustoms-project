@@ -30,7 +30,7 @@ namespace ECustoms
         {
             try
             {
-                var verhichBL = new VehicleBOL();
+                var verhichBL = new VehicleFactory();
 
                 _vehicleList = verhichBL.GetExportingVehicles(mode, declarationID, search);
                 grdVehicle.AutoGenerateColumns = false;
@@ -56,7 +56,7 @@ namespace ECustoms
         {
             try
             {
-                var verhicleBL = new VehicleBOL();
+                var verhicleBL = new VehicleFactory();
                 if (grdVehicle.SelectedRows.Count == 1)
                 {
                     var vehicleInfo = verhicleBL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
