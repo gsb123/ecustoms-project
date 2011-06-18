@@ -69,7 +69,7 @@ namespace ECustoms
             ReportType type = (ReportType)(cbReportType.SelectedIndex + 1);
             DateTime from = dtpExportFrom.Value;
             DateTime to = dtpExportTo.Value;
-            string reportName = cbReportType.SelectedText;
+            string reportName = cbReportType.SelectedItem.ToString();
             DataTable reportTable = facade.GetReportTable(type, from, to);
             dataGridView1.DataSource = reportTable;
             this.reportDocument1.ReportMaker = GetReportMaker(reportTable, reportName);
