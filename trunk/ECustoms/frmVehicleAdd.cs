@@ -332,8 +332,7 @@ namespace ECustoms
                 DeclarationBOL _declarationBOL = new DeclarationBOL();
                 var declarationInfo = GetDeclarationInfo();
                 declarationInfo.ModifiedDate = DateTime.Now;
-                declarationInfo.ModifiedByID = _userInfo.UserID;
-                declarationInfo.tblUser = UserBOL.GetByID(_userInfo.UserID);
+                declarationInfo.ModifiedByID = _userInfo.UserID;                
                 if (VehicleInfosTemp.Count == 0)
                     throw new Exception("Phương tiện không được để trống");
 
