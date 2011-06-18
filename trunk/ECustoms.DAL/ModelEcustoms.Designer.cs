@@ -11,9 +11,11 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbEcustomModel", "FK_tblDeclaration_tblUser", "tblUser", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ECustoms.DAL.tblUser), "tblDeclaration", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ECustoms.DAL.tblDeclaration))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbEcustomModel", "FK_tblVehicle_tblDeclaration", "tblDeclaration", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ECustoms.DAL.tblDeclaration), "tblVehicle", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ECustoms.DAL.tblVehicle))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbEcustomModel", "tblUserInGroup", "tblGroup", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ECustoms.DAL.tblGroup), "tblUser", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ECustoms.DAL.tblUser))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("dbEcustomModel", "FK_tblRoleInGroup_tblGroup", "tblGroup", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ECustoms.DAL.tblGroup), "tblRoleInGroup", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ECustoms.DAL.tblRoleInGroup))]
 
 // Original file name:
-// Generation date: 6/17/2011 12:46:58 PM
+// Generation date: 6/19/2011 12:41:53 AM
 namespace ECustoms.DAL
 {
     
@@ -47,23 +49,6 @@ namespace ECustoms.DAL
             this.OnContextCreated();
         }
         partial void OnContextCreated();
-        /// <summary>
-        /// There are no comments for dtproperties in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<dtproperty> dtproperties
-        {
-            get
-            {
-                if ((this._dtproperties == null))
-                {
-                    this._dtproperties = base.CreateQuery<dtproperty>("[dtproperties]");
-                }
-                return this._dtproperties;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<dtproperty> _dtproperties;
         /// <summary>
         /// There are no comments for Logs in the schema.
         /// </summary>
@@ -150,13 +135,39 @@ namespace ECustoms.DAL
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<ViewAllDeclaration> _ViewAllDeclarations;
         /// <summary>
-        /// There are no comments for dtproperties in the schema.
+        /// There are no comments for tblGroups in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddTodtproperties(dtproperty dtproperty)
+        public global::System.Data.Objects.ObjectQuery<tblGroup> tblGroups
         {
-            base.AddObject("dtproperties", dtproperty);
+            get
+            {
+                if ((this._tblGroups == null))
+                {
+                    this._tblGroups = base.CreateQuery<tblGroup>("[tblGroups]");
+                }
+                return this._tblGroups;
+            }
         }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<tblGroup> _tblGroups;
+        /// <summary>
+        /// There are no comments for tblRoleInGroups in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<tblRoleInGroup> tblRoleInGroups
+        {
+            get
+            {
+                if ((this._tblRoleInGroups == null))
+                {
+                    this._tblRoleInGroups = base.CreateQuery<tblRoleInGroup>("[tblRoleInGroups]");
+                }
+                return this._tblRoleInGroups;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<tblRoleInGroup> _tblRoleInGroups;
         /// <summary>
         /// There are no comments for Logs in the schema.
         /// </summary>
@@ -197,223 +208,22 @@ namespace ECustoms.DAL
         {
             base.AddObject("ViewAllDeclarations", viewAllDeclaration);
         }
-    }
-    /// <summary>
-    /// There are no comments for dbEcustomModel.dtproperty in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// id
-    /// property
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="dbEcustomModel", Name="dtproperty")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class dtproperty : global::System.Data.Objects.DataClasses.EntityObject
-    {
         /// <summary>
-        /// Create a new dtproperty object.
+        /// There are no comments for tblGroups in the schema.
         /// </summary>
-        /// <param name="id">Initial value of id.</param>
-        /// <param name="property">Initial value of property.</param>
-        /// <param name="version">Initial value of version.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static dtproperty Createdtproperty(int id, string property, int version)
+        public void AddTotblGroups(tblGroup tblGroup)
         {
-            dtproperty dtproperty = new dtproperty();
-            dtproperty.id = id;
-            dtproperty.property = property;
-            dtproperty.version = version;
-            return dtproperty;
+            base.AddObject("tblGroups", tblGroup);
         }
         /// <summary>
-        /// There are no comments for property id in the schema.
+        /// There are no comments for tblRoleInGroups in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public int id
+        public void AddTotblRoleInGroups(tblRoleInGroup tblRoleInGroup)
         {
-            get
-            {
-                return this._id;
-            }
-            set
-            {
-                this.OnidChanging(value);
-                this.ReportPropertyChanging("id");
-                this._id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("id");
-                this.OnidChanged();
-            }
+            base.AddObject("tblRoleInGroups", tblRoleInGroup);
         }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private int _id;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnidChanging(int value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnidChanged();
-        /// <summary>
-        /// There are no comments for property objectid in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Nullable<int> objectid
-        {
-            get
-            {
-                return this._objectid;
-            }
-            set
-            {
-                this.OnobjectidChanging(value);
-                this.ReportPropertyChanging("objectid");
-                this._objectid = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("objectid");
-                this.OnobjectidChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Nullable<int> _objectid;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnobjectidChanging(global::System.Nullable<int> value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnobjectidChanged();
-        /// <summary>
-        /// There are no comments for property property in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string property
-        {
-            get
-            {
-                return this._property;
-            }
-            set
-            {
-                this.OnpropertyChanging(value);
-                this.ReportPropertyChanging("property");
-                this._property = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("property");
-                this.OnpropertyChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _property;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnpropertyChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnpropertyChanged();
-        /// <summary>
-        /// There are no comments for property value in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string value
-        {
-            get
-            {
-                return this._value;
-            }
-            set
-            {
-                this.OnvalueChanging(value);
-                this.ReportPropertyChanging("value");
-                this._value = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("value");
-                this.OnvalueChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _value;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnvalueChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnvalueChanged();
-        /// <summary>
-        /// There are no comments for property uvalue in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string uvalue
-        {
-            get
-            {
-                return this._uvalue;
-            }
-            set
-            {
-                this.OnuvalueChanging(value);
-                this.ReportPropertyChanging("uvalue");
-                this._uvalue = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("uvalue");
-                this.OnuvalueChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _uvalue;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnuvalueChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnuvalueChanged();
-        /// <summary>
-        /// There are no comments for property lvalue in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public byte[] lvalue
-        {
-            get
-            {
-                return global::System.Data.Objects.DataClasses.StructuralObject.GetValidValue(this._lvalue);
-            }
-            set
-            {
-                this.OnlvalueChanging(value);
-                this.ReportPropertyChanging("lvalue");
-                this._lvalue = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("lvalue");
-                this.OnlvalueChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private byte[] _lvalue;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnlvalueChanging(byte[] value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnlvalueChanged();
-        /// <summary>
-        /// There are no comments for property version in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public int version
-        {
-            get
-            {
-                return this._version;
-            }
-            set
-            {
-                this.OnversionChanging(value);
-                this.ReportPropertyChanging("version");
-                this._version = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("version");
-                this.OnversionChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private int _version;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnversionChanging(int value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnversionChanged();
     }
     /// <summary>
     /// There are no comments for dbEcustomModel.Log in the schema.
@@ -1658,6 +1468,28 @@ namespace ECustoms.DAL
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<tblDeclaration>("dbEcustomModel.FK_tblDeclaration_tblUser", "tblDeclaration", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for tblGroups in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbEcustomModel", "tblUserInGroup", "tblGroup")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<tblGroup> tblGroups
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<tblGroup>("dbEcustomModel.tblUserInGroup", "tblGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<tblGroup>("dbEcustomModel.tblUserInGroup", "tblGroup", value);
                 }
             }
         }
@@ -2964,5 +2796,276 @@ namespace ECustoms.DAL
         partial void OnModifiedByChanging(string value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnModifiedByChanged();
+    }
+    /// <summary>
+    /// There are no comments for dbEcustomModel.tblGroup in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// GroupID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="dbEcustomModel", Name="tblGroup")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class tblGroup : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new tblGroup object.
+        /// </summary>
+        /// <param name="groupID">Initial value of GroupID.</param>
+        /// <param name="name">Initial value of Name.</param>
+        /// <param name="description">Initial value of Description.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static tblGroup CreatetblGroup(int groupID, string name, string description)
+        {
+            tblGroup tblGroup = new tblGroup();
+            tblGroup.GroupID = groupID;
+            tblGroup.Name = name;
+            tblGroup.Description = description;
+            return tblGroup;
+        }
+        /// <summary>
+        /// There are no comments for property GroupID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int GroupID
+        {
+            get
+            {
+                return this._GroupID;
+            }
+            set
+            {
+                this.OnGroupIDChanging(value);
+                this.ReportPropertyChanging("GroupID");
+                this._GroupID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("GroupID");
+                this.OnGroupIDChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _GroupID;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnGroupIDChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnGroupIDChanged();
+        /// <summary>
+        /// There are no comments for property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _Name;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnNameChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for property Description in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string Description
+        {
+            get
+            {
+                return this._Description;
+            }
+            set
+            {
+                this.OnDescriptionChanging(value);
+                this.ReportPropertyChanging("Description");
+                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Description");
+                this.OnDescriptionChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _Description;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnDescriptionChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnDescriptionChanged();
+        /// <summary>
+        /// There are no comments for tblUsers in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbEcustomModel", "tblUserInGroup", "tblUser")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<tblUser> tblUsers
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<tblUser>("dbEcustomModel.tblUserInGroup", "tblUser");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<tblUser>("dbEcustomModel.tblUserInGroup", "tblUser", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for tblRoleInGroups in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbEcustomModel", "FK_tblRoleInGroup_tblGroup", "tblRoleInGroup")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<tblRoleInGroup> tblRoleInGroups
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<tblRoleInGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblRoleInGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<tblRoleInGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblRoleInGroup", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for dbEcustomModel.tblRoleInGroup in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// GroupID
+    /// RoleID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="dbEcustomModel", Name="tblRoleInGroup")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class tblRoleInGroup : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new tblRoleInGroup object.
+        /// </summary>
+        /// <param name="groupID">Initial value of GroupID.</param>
+        /// <param name="roleID">Initial value of RoleID.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static tblRoleInGroup CreatetblRoleInGroup(int groupID, int roleID)
+        {
+            tblRoleInGroup tblRoleInGroup = new tblRoleInGroup();
+            tblRoleInGroup.GroupID = groupID;
+            tblRoleInGroup.RoleID = roleID;
+            return tblRoleInGroup;
+        }
+        /// <summary>
+        /// There are no comments for property GroupID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int GroupID
+        {
+            get
+            {
+                return this._GroupID;
+            }
+            set
+            {
+                this.OnGroupIDChanging(value);
+                this.ReportPropertyChanging("GroupID");
+                this._GroupID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("GroupID");
+                this.OnGroupIDChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _GroupID;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnGroupIDChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnGroupIDChanged();
+        /// <summary>
+        /// There are no comments for property RoleID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int RoleID
+        {
+            get
+            {
+                return this._RoleID;
+            }
+            set
+            {
+                this.OnRoleIDChanging(value);
+                this.ReportPropertyChanging("RoleID");
+                this._RoleID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("RoleID");
+                this.OnRoleIDChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _RoleID;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnRoleIDChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnRoleIDChanged();
+        /// <summary>
+        /// There are no comments for tblGroup in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("dbEcustomModel", "FK_tblRoleInGroup_tblGroup", "tblGroup")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public tblGroup tblGroup
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<tblGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblGroup").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<tblGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for tblGroup in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<tblGroup> tblGroupReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<tblGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<tblGroup>("dbEcustomModel.FK_tblRoleInGroup_tblGroup", "tblGroup", value);
+                }
+            }
+        }
     }
 }

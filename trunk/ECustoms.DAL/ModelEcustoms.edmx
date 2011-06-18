@@ -6,7 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="dbEcustomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="dbEcustomModelStoreContainer">
-          <EntitySet Name="dtproperties" EntityType="dbEcustomModel.Store.dtproperties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Log" EntityType="dbEcustomModel.Store.Log" store:Type="Tables" store:Schema="dbo" store:Name="Log">
             <DefiningQuery>SELECT 
       [Log].[Id] AS [Id], 
@@ -19,7 +18,10 @@
       FROM [dbo].[Log] AS [Log]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="tblDeclaration" EntityType="dbEcustomModel.Store.tblDeclaration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblGroup" EntityType="dbEcustomModel.Store.tblGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblRoleInGroup" EntityType="dbEcustomModel.Store.tblRoleInGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblUser" EntityType="dbEcustomModel.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserInGroup" EntityType="dbEcustomModel.Store.tblUserInGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblVehicle" EntityType="dbEcustomModel.Store.tblVehicle" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ViewAllDeclaration" EntityType="dbEcustomModel.Store.ViewAllDeclaration" store:Type="Views" store:Schema="dbo" store:Name="ViewAllDeclaration">
             <DefiningQuery>SELECT 
@@ -56,24 +58,23 @@
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblDeclaration" EntitySet="tblDeclaration" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblRoleInGroup_tblGroup" Association="dbEcustomModel.Store.FK_tblRoleInGroup_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblRoleInGroup" EntitySet="tblRoleInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserInGroup_tblGroup" Association="dbEcustomModel.Store.FK_tblUserInGroup_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblUserInGroup" EntitySet="tblUserInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserInGroup_tblUser" Association="dbEcustomModel.Store.FK_tblUserInGroup_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblUserInGroup" EntitySet="tblUserInGroup" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblVehicle_tblDeclaration" Association="dbEcustomModel.Store.FK_tblVehicle_tblDeclaration">
             <End Role="tblDeclaration" EntitySet="tblDeclaration" />
             <End Role="tblVehicle" EntitySet="tblVehicle" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="dtproperties">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="property" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="objectid" Type="int" />
-          <Property Name="property" Type="varchar" Nullable="false" MaxLength="64" />
-          <Property Name="value" Type="varchar" MaxLength="255" />
-          <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
-          <Property Name="lvalue" Type="image" />
-          <Property Name="version" Type="int" Nullable="false" />
-        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'dbEcustom.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -122,6 +123,22 @@
           <Property Name="ImportCompanyCode" Type="nvarchar" MaxLength="500" />
           <Property Name="ImportRegisterDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblRoleInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -137,6 +154,14 @@
           <Property Name="Password" Type="nvarchar" MaxLength="300" />
           <Property Name="PermissionID" Type="int" />
           <Property Name="IsActive" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUserInGroup">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblVehicle">
           <Key>
@@ -212,6 +237,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblRoleInGroup_tblGroup">
+          <End Role="tblGroup" Type="dbEcustomModel.Store.tblGroup" Multiplicity="1" />
+          <End Role="tblRoleInGroup" Type="dbEcustomModel.Store.tblRoleInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblRoleInGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserInGroup_tblGroup">
+          <End Role="tblGroup" Type="dbEcustomModel.Store.tblGroup" Multiplicity="1" />
+          <End Role="tblUserInGroup" Type="dbEcustomModel.Store.tblUserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblUserInGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserInGroup_tblUser">
+          <End Role="tblUser" Type="dbEcustomModel.Store.tblUser" Multiplicity="1" />
+          <End Role="tblUserInGroup" Type="dbEcustomModel.Store.tblUserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserInGroup">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblVehicle_tblDeclaration">
           <End Role="tblDeclaration" Type="dbEcustomModel.Store.tblDeclaration" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -226,155 +287,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="dt_addtosourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchSourceSafeINI" Type="varchar" Mode="In" />
-          <Parameter Name="vchProjectName" Type="varchar" Mode="In" />
-          <Parameter Name="vchComment" Type="varchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_addtosourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchSourceSafeINI" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchProjectName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="dt_adduserobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="dt_adduserobject_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchProperty" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_checkinobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
-          <Parameter Name="vchComment" Type="varchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
-          <Parameter Name="iActionFlag" Type="int" Mode="In" />
-          <Parameter Name="txStream1" Type="text" Mode="In" />
-          <Parameter Name="txStream2" Type="text" Mode="In" />
-          <Parameter Name="txStream3" Type="text" Mode="In" />
-        </Function>
-        <Function Name="dt_checkinobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
-          <Parameter Name="iActionFlag" Type="int" Mode="In" />
-          <Parameter Name="txStream1" Type="text" Mode="In" />
-          <Parameter Name="txStream2" Type="text" Mode="In" />
-          <Parameter Name="txStream3" Type="text" Mode="In" />
-        </Function>
-        <Function Name="dt_checkoutobject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
-          <Parameter Name="vchComment" Type="varchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
-          <Parameter Name="iActionFlag" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_checkoutobject_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchComment" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-          <Parameter Name="iVCSFlags" Type="int" Mode="In" />
-          <Parameter Name="iActionFlag" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_displayoaerror" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="iObject" Type="int" Mode="In" />
-          <Parameter Name="iresult" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_displayoaerror_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="iObject" Type="int" Mode="In" />
-          <Parameter Name="iresult" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_droppropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_dropuserobjectbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_generateansiname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="name" Type="varchar" Mode="InOut" />
-        </Function>
-        <Function Name="dt_getobjwithprop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="value" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_getobjwithprop_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="dt_getpropertiesbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_getpropertiesbyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_getpropertiesbyid_vcs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="value" Type="varchar" Mode="InOut" />
-        </Function>
-        <Function Name="dt_getpropertiesbyid_vcs_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="value" Type="nvarchar" Mode="InOut" />
-        </Function>
-        <Function Name="dt_isundersourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-          <Parameter Name="iWhoToo" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_isundersourcecontrol_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-          <Parameter Name="iWhoToo" Type="int" Mode="In" />
-        </Function>
-        <Function Name="dt_removefromsourcecontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="dt_setpropertybyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="value" Type="varchar" Mode="In" />
-          <Parameter Name="lvalue" Type="image" Mode="In" />
-        </Function>
-        <Function Name="dt_setpropertybyid_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="property" Type="varchar" Mode="In" />
-          <Parameter Name="uvalue" Type="nvarchar" Mode="In" />
-          <Parameter Name="lvalue" Type="image" Mode="In" />
-        </Function>
-        <Function Name="dt_validateloginparams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_validateloginparams_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="dt_vcsenabled" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="dt_verstamp006" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="dt_whocheckedout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="varchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="varchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="dt_whocheckedout_u" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="chObjectType" Type="char" Mode="In" />
-          <Parameter Name="vchObjectName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchLoginName" Type="nvarchar" Mode="In" />
-          <Parameter Name="vchPassword" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="fn_GetNameById" ReturnType="nvarchar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
@@ -517,23 +429,18 @@
           <Parameter Name="ConfirmExportBy" Type="int" Mode="In" />
           <Parameter Name="ConfirmLocalImportBy" Type="int" Mode="In" />
         </Function>
+        <Function Name="st_GetUserRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
         <Function Name="st_IsExistVehicleInDeclaration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PlateNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="DeclarationID" Type="int" Mode="In" />
         </Function>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'dbEcustom.dbo.tblPermission' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="tblPermission">
-        <Property Name="PermissionID" Type="int" />
-        <Property Name="Permission" Type="nvarchar" MaxLength="250" />
-      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbEcustomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="dbEcustomEntities">
-          <EntitySet Name="dtproperties" EntityType="dbEcustomModel.dtproperty" />
           <EntitySet Name="Logs" EntityType="dbEcustomModel.Log" />
           <EntitySet Name="tblDeclarations" EntityType="dbEcustomModel.tblDeclaration" />
           <EntitySet Name="tblUsers" EntityType="dbEcustomModel.tblUser" />
@@ -547,20 +454,17 @@
             <End Role="tblDeclaration" EntitySet="tblDeclarations" />
             <End Role="tblVehicle" EntitySet="tblVehicles" />
           </AssociationSet>
+          <EntitySet Name="tblGroups" EntityType="dbEcustomModel.tblGroup" />
+          <EntitySet Name="tblRoleInGroups" EntityType="dbEcustomModel.tblRoleInGroup" />
+          <AssociationSet Name="tblUserInGroup" Association="dbEcustomModel.tblUserInGroup">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRoleInGroup_tblGroup" Association="dbEcustomModel.FK_tblRoleInGroup_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblRoleInGroup" EntitySet="tblRoleInGroups" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="dtproperty">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="property" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="objectid" />
-          <Property Type="String" Name="property" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="value" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="uvalue" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Binary" Name="lvalue" MaxLength="Max" FixedLength="false" />
-          <Property Type="Int32" Name="version" Nullable="false" />
-        </EntityType>
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="Id" />
@@ -623,6 +527,7 @@
           <Property Type="Int32" Name="PermissionID" />
           <Property Type="Int32" Name="IsActive" />
           <NavigationProperty Name="tblDeclarations" Relationship="dbEcustomModel.FK_tblDeclaration_tblUser" FromRole="tblUser" ToRole="tblDeclaration" />
+          <NavigationProperty Name="tblGroups" Relationship="dbEcustomModel.tblUserInGroup" FromRole="tblUser" ToRole="tblGroup" />
         </EntityType>
         <EntityType Name="tblVehicle">
           <Key>
@@ -689,25 +594,48 @@
           <End Type="dbEcustomModel.tblDeclaration" Role="tblDeclaration" Multiplicity="0..1" />
           <End Type="dbEcustomModel.tblVehicle" Role="tblVehicle" Multiplicity="*" />
         </Association>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="dbEcustomModel.tblUserInGroup" FromRole="tblGroup" ToRole="tblUser" />
+          <NavigationProperty Name="tblRoleInGroups" Relationship="dbEcustomModel.FK_tblRoleInGroup_tblGroup" FromRole="tblGroup" ToRole="tblRoleInGroup" />
+        </EntityType>
+        <EntityType Name="tblRoleInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <NavigationProperty Name="tblGroup" Relationship="dbEcustomModel.FK_tblRoleInGroup_tblGroup" FromRole="tblRoleInGroup" ToRole="tblGroup" />
+        </EntityType>
+        <Association Name="tblUserInGroup">
+          <End Type="dbEcustomModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+          <End Type="dbEcustomModel.tblUser" Role="tblUser" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_tblRoleInGroup_tblGroup">
+          <End Type="dbEcustomModel.tblGroup" Role="tblGroup" Multiplicity="1" />
+          <End Type="dbEcustomModel.tblRoleInGroup" Role="tblRoleInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblRoleInGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+          
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
         <EntityContainerMapping StorageEntityContainer="dbEcustomModelStoreContainer" CdmEntityContainer="dbEcustomEntities">
-          <EntitySetMapping Name="dtproperties">
-            <EntityTypeMapping TypeName="dbEcustomModel.dtproperty">
-              <MappingFragment StoreEntitySet="dtproperties">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
-                <ScalarProperty Name="uvalue" ColumnName="uvalue" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="property" ColumnName="property" />
-                <ScalarProperty Name="objectid" ColumnName="objectid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Logs">
             <EntityTypeMapping TypeName="dbEcustomModel.Log">
               <MappingFragment StoreEntitySet="Log">
@@ -841,6 +769,40 @@
             </EndProperty>
             <Condition ColumnName="DeclarationID" IsNull="false" />
           </AssociationSetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="dbEcustomModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoleInGroups">
+            <EntityTypeMapping TypeName="dbEcustomModel.tblRoleInGroup">
+              <MappingFragment StoreEntitySet="tblRoleInGroup">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblUserInGroup" TypeName="dbEcustomModel.tblUserInGroup" StoreEntitySet="tblUserInGroup">
+            <EndProperty Name="tblUser">
+              <ScalarProperty Name="UserID" ColumnName="UserID" />
+            </EndProperty>
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_tblRoleInGroup_tblGroup" TypeName="dbEcustomModel.FK_tblRoleInGroup_tblGroup" StoreEntitySet="tblRoleInGroup">
+            <EndProperty Name="tblRoleInGroup">
+              <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -861,20 +823,35 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="ModelEcustoms">
-        <EntityTypeShape EntityType="dbEcustomModel.dtproperty" Width="1.5" PointX="7.75" PointY="0.75" Height="2.3648893229166665" />
+      <Diagram Name="ModelEcustoms" ShowGrid="true">
         <EntityTypeShape EntityType="dbEcustomModel.Log" Width="1.5" PointX="0.75" PointY="7.75" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="dbEcustomModel.tblDeclaration" Width="1.5" PointX="3" PointY="1.125" Height="5.634013671875" />
         <EntityTypeShape EntityType="dbEcustomModel.tblUser" Width="1.5" PointX="0.75" PointY="2.25" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="dbEcustomModel.tblVehicle" Width="1.5" PointX="5.25" PointY="1.625" Height="4.672506510416671" />
         <EntityTypeShape EntityType="dbEcustomModel.ViewAllDeclaration" Width="1.5" PointX="2.75" PointY="7.75" Height="6.2109179687500031" />
         <AssociationConnector Association="dbEcustomModel.FK_tblDeclaration_tblUser" >
-          <ConnectorPoint PointX="2.25" PointY="3.9131982421875" />
-          <ConnectorPoint PointX="3" PointY="3.9131982421875" />
+          <ConnectorPoint PointX="2.25" PointY="4.0093489583333328" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="4.0093489583333319" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="4.0093489583333328" />
+          <ConnectorPoint PointX="3" PointY="4.0093489583333328" />
         </AssociationConnector>
         <AssociationConnector Association="dbEcustomModel.FK_tblVehicle_tblDeclaration" >
           <ConnectorPoint PointX="4.5" PointY="3.9612532552083355" />
           <ConnectorPoint PointX="5.25" PointY="3.9612532552083355" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="dbEcustomModel.tblGroup" Width="1.5" PointX="0.75" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="dbEcustomModel.tblRoleInGroup" Width="1.5" PointX="7.375" PointY="6.375" Height="1.4033821614583317" />
+        <AssociationConnector Association="dbEcustomModel.tblUserInGroup" >
+          <ConnectorPoint PointX="1.5" PointY="0.75" />
+          <ConnectorPoint PointX="1.5" PointY="0.5" />
+          <ConnectorPoint PointX="1.5" PointY="0.5" />
+          <ConnectorPoint PointX="1.5" PointY="2.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbEcustomModel.FK_tblRoleInGroup_tblGroup" >
+          <ConnectorPoint PointX="2.25" PointY="2.7302864583333335" />
+          <ConnectorPoint PointX="2.625" PointY="3.1052864583333335" />
+          <ConnectorPoint PointX="2.625" PointY="7.2545068359375" />
+          <ConnectorPoint PointX="7.375" PointY="7.2545068359375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
