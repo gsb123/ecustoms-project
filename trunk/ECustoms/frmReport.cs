@@ -27,11 +27,11 @@ namespace ECustoms
 
 
             // Put some stuff in the combo box
-            cbReportType.Items.Add(new Item("Phương tiện xuất cảnh xe không ", 1));
-            cbReportType.Items.Add(new Item("Phương tiện nhập cảnh xe không ", 2));
-            cbReportType.Items.Add(new Item("Phương tiện chở hàng xuất khẩu", 3));
-            cbReportType.Items.Add(new Item("Phương tiện chở hàng nhập khẩu", 4));
-            cbReportType.Items.Add(new Item("Phương tiện hoàn thành thủ tục Hải quan vào nội địa", 5));
+            cbReportType.Items.Add("Phương tiện xuất cảnh xe không");
+            cbReportType.Items.Add("Phương tiện nhập cảnh xe không ");
+            cbReportType.Items.Add("Phương tiện chở hàng xuất khẩu");
+            cbReportType.Items.Add("Phương tiện chở hàng nhập khẩu");
+            cbReportType.Items.Add("Phương tiện hoàn thành thủ tục Hải quan vào nội địa");
             cbReportType.SelectedIndex = 0;
 
 

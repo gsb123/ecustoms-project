@@ -34,7 +34,7 @@ namespace ECustoms.BOL
                 userInfo.UserName =userInfo.UserName;
                 return _userDAL.GetUser(userInfo);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
