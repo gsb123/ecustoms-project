@@ -526,12 +526,11 @@ namespace ECustoms
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        _vehicleBOL.DeleteByID(Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value));
+                        VehicleBOL.DeleteByID(Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value));
                         // Get Vehicle by DeclarationID
                         var listVehicle = _vehicleBOL.SelectByDeclarationID(this._declerationID);
                         BindVehicle(listVehicle);
                     }
-
                 }
                 else
                 {

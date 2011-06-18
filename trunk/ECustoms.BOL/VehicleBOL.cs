@@ -9,7 +9,7 @@ using ECustoms.Utilities;
 namespace ECustoms.BOL
 {
     public class VehicleBOL
-    {
+    {        
         private readonly string _dbConnectionString;
         private readonly VehicleDAL _vehicleDAL;
 
@@ -242,11 +242,14 @@ namespace ECustoms.BOL
         /// </summary>
         /// <param name="vehicleID">Vehicle ID</param>
         /// <returns>Number of rows are effected</returns>
-        public int DeleteByID(int vehicleID)
+        public static int DeleteByID(int vehicleID)
         {
             try
             {
-                return _vehicleDAL.DeleteByID(vehicleID);
+                var db = new dbEcustomEntities();
+                var vehicle = db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
+                db.DeleteObject(vehicle);
+                return db.SaveChanges();
             }
             catch (Exception)
             {

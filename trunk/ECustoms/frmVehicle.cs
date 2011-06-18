@@ -762,7 +762,7 @@ namespace ECustoms
                 {
                     if (MessageBox.Show("Bạn có chắc chắn muốn xóa?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        _vehicleBOL.DeleteByID(_vehicleID);
+                        VehicleBOL.DeleteByID(_vehicleID);
                         // Get Vehicle by DeclarationID
                         var listVehicle = _vehicleBOL.SelectByDeclarationID(_declarationID);
                         _parrent.BindVehicle(listVehicle);
