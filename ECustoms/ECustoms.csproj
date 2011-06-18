@@ -260,9 +260,6 @@
     <None Include="Resources\Logo50.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Excel-File.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\exce.png" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +304,7 @@
   <ItemGroup>
     <Content Include="Resources\change-password-icon.png" />
     <Content Include="Resources\checkIcon.png" />
+    <None Include="Resources\Icon.bmp" />
     <None Include="Resources\print-icon.png" />
     <None Include="Resources\Icon-Error-16x16-GreyBckgrnd.gif" />
     <None Include="Resources\icon-check2-16x16.gif" />

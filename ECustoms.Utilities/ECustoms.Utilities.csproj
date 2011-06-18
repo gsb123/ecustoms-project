@@ -55,6 +55,7 @@
     <Compile Include="ConstantInfo.cs" />
     <Compile Include="DeclerationInfo.cs" />
     <Compile Include="Enums\ReportType.cs" />
+    <Compile Include="Enums\RoleType.cs" />
     <Compile Include="PermissionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportFiles.cs" />
