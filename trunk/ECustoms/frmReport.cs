@@ -67,10 +67,13 @@ namespace ECustoms
             //testing
 
             ReportType type = (ReportType)(cbReportType.SelectedIndex + 1);
-            DateTime from = dtpExportFrom.Value;
-            DateTime to = dtpExportTo.Value;
+            DateTime fromExport = dtpExportFrom.Value;
+            DateTime toExport = dtpExportTo.Value;
+            DateTime fromImport = dtpImportFrom.Value;
+            DateTime toImport = dtpImportTo.Value;
+
             string reportName = cbReportType.SelectedItem.ToString();
-            DataTable reportTable = facade.GetReportTable(type, from, to);
+            DataTable reportTable = facade.GetReportTable(type, fromExport,toExport,fromImport, toImport);
             dataGridView1.DataSource = reportTable;
             this.reportDocument1.ReportMaker = GetReportMaker(reportTable, reportName);
 
@@ -83,6 +86,13 @@ namespace ECustoms
             IReportMaker reportFiles = new ReportFiles(reportTable, reportName);
             return reportFiles;
         }
+
+        private void frmReport_Load(object sender, EventArgs e)
+        {
+
+        }
+
+     
 
     }
 

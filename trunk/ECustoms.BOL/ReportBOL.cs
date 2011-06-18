@@ -22,7 +22,7 @@ namespace ECustoms.BOL
             _reportDAL = new ReportDAL(_dbConnectionString);
         }
 
-        public DataTable GetReportTable(ReportType reportType, DateTime dateFrom, DateTime dateTo)
+        public DataTable GetReportTable(ReportType reportType, DateTime dateFromExport, DateTime dateToExport, DateTime dateFromImport, DateTime dateToImport)
         {
 
             //DataTable dt = new DataTable("People");
@@ -36,9 +36,13 @@ namespace ECustoms.BOL
             //    dt.Rows.Add(new Object[] { "Roosevelt\nWinston", "Roosevelt\n Winston", "Roosevelt Winston", "Roosevelt Winston", "Roosevelt", "Roosevelt", "Roosevelt",  new DateTime(1998, 11, 27).ToString(), "Roosevelt", "Roosevelt", "Roosevelt", "Roosevelt", new DateTime(1998, 11, 27).ToString(), "Roosevelt", new DateTime(1998, 11, 27) });
             //}
 
-            DateTime from = new DateTime(dateFrom.Year, dateFrom.Month, dateFrom.Day, 0, 0, 0);
-            DateTime to = new DateTime(dateTo.Year, dateTo.Month, dateTo.Day, 23, 59, 59);
-            return _reportDAL.GetReportTable(reportType, from, to);
+            DateTime fromExport = new DateTime(dateFromExport.Year, dateFromExport.Month, dateFromExport.Day, 0, 0, 0);
+            DateTime toExport = new DateTime(dateToExport.Year, dateToExport.Month, dateToExport.Day, 23, 59, 59);
+
+            DateTime fromImport = new DateTime(dateFromImport.Year, dateFromImport.Month, dateFromImport.Day, 0, 0, 0);
+            DateTime toImport = new DateTime(dateToImport.Year, dateToImport.Month, dateToImport.Day, 23, 59, 59);
+
+            return _reportDAL.GetReportTable(reportType, fromExport, toExport, fromImport,fromImport);
         }
 
     }

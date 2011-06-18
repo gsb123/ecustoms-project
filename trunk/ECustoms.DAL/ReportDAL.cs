@@ -31,18 +31,17 @@ namespace ECustoms.DAL
         /// <summary>
         /// Get Report Table
         /// </summary>
-        /// <param name="reportType"></param>
-        /// <param name="dateFrom"></param>
-        /// <param name="dateTo"></param>
-        /// <returns></returns>
-        public DataTable GetReportTable(ReportType reportType, DateTime dateFrom, DateTime dateTo)
+
+        public DataTable GetReportTable(ReportType reportType, DateTime dateFromExport, DateTime dateToExport, DateTime dateFromImport, DateTime dateToImport)
         {
             try
             {
-                var parameters = new SqlParameter[3];
+                var parameters = new SqlParameter[5];
                 parameters[0] = new SqlParameter("@ReportType", (int)reportType);
-                parameters[1] = new SqlParameter("@DateFrom", dateFrom);
-                parameters[2] = new SqlParameter("@DateTo", dateTo);
+                parameters[1] = new SqlParameter("@DateFromExport", dateFromExport);
+                parameters[2] = new SqlParameter("@DateToExport", dateToExport);
+                parameters[3] = new SqlParameter("@DateFromImport", dateFromImport);
+                parameters[4] = new SqlParameter("@DateToImport", dateToImport);
                 var dataTable = _dbConnection.ExecuteSelectQuery("st_GetReportTable", parameters);
 
                 return dataTable;

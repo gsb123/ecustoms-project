@@ -151,13 +151,6 @@ namespace ECustoms.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Excel_File {
-            get {
-                object obj = ResourceManager.GetObject("Excel-File", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap excel8 {
             get {
                 object obj = ResourceManager.GetObject("excel8", resourceCulture);
