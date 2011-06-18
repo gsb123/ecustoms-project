@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Excel;
 using Point = System.Drawing.Point;
 using log4net;
 using ECustoms.DAL;
+using System.Configuration;
 
 namespace ECustoms
 {
@@ -267,7 +268,7 @@ namespace ECustoms
             var declarationNumber = txtDeclaraceNumber.Text.Trim();
             var companyName = txtCompanyName.Text.Trim();
             List<tblDeclaration> result = null;
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             
             List<tblDeclaration> listDeclaration = db.tblDeclarations.ToList();
             result = listDeclaration.Where(d => (d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber)) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();

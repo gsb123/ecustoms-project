@@ -396,7 +396,6 @@ namespace ECustoms
             {
                 logger.Error(exception.ToString());
             }
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)

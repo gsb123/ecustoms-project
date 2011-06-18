@@ -18,7 +18,7 @@ namespace ECustoms.BOL
 
         public ReportBOL()
         {
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
+            _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _reportDAL = new ReportDAL(_dbConnectionString);
         }
 

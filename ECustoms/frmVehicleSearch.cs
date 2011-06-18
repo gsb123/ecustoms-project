@@ -408,19 +408,18 @@ namespace ECustoms
                 var message = new StringBuilder();
                 message.Append("Thời gian xuất cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
-                var vehicleInfo = _vehicleBOL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
+                var vehicleInfo = VehicleFactory.GetByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
 
                 if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    vehicleInfo.ExportDate = DateTime.Now;
-                    vehicleInfo.ExportHour = DateTime.Now.ToString("HH:mm");
+                    vehicleInfo.ExportDate = DateTime.Now;                    
 
                     if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
                     vehicleInfo.ConfirmExportBy = _userInfo.UserID;
                     vehicleInfo.IsExport = true;
-                    _vehicleBOL.Update(vehicleInfo);
+                    VehicleFactory.UpdateVehicle(vehicleInfo);
                 }
                 // Bind to grid
                 BindData();
@@ -438,21 +437,21 @@ namespace ECustoms
                 var message = new StringBuilder();
                 message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
-                var vehicleInfo = _vehicleBOL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
+                var vehicle = VehicleFactory.GetByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
+                //var vehicle = VehicleFactory.GetByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
 
                 if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    vehicleInfo.ImportDate = DateTime.Now;
-                    vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
-                    vehicleInfo.IsImport = true;
-                    vehicleInfo.HasGoodsImported = true;
-                    vehicleInfo.ImportStatus = "Nhập cảnh có hàng";
-                    if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                    vehicle.ImportDate = DateTime.Now;
+                    //vehicle.ImportHour = DateTime.Now.ToString("HH:mm");
+                    vehicle.IsImport = true;
+                    vehicle.HasGoodsImported = true;
+                    vehicle.ImportStatus = "Nhập cảnh có hàng";
+                    if (vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
-                    vehicleInfo.ConfirmImportBy = _userInfo.UserID;
-
-                    _vehicleBOL.Update(vehicleInfo);
+                    vehicle.ConfirmImportBy = _userInfo.UserID;
+                    VehicleFactory.UpdateVehicle(vehicle);
                 }
                 // Bind data to gridview
                 BindData();
@@ -470,20 +469,19 @@ namespace ECustoms
                 var message = new StringBuilder();
                 message.Append("Thời gian nhập cảnh: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
 
-                var vehicleInfo = _vehicleBOL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
+                var vehicle = VehicleFactory.GetByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
 
                 if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    vehicleInfo.ImportDate = DateTime.Now;
-                    vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
-                    vehicleInfo.IsImport = true;
-                    vehicleInfo.HasGoodsImported = false;
-                    if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                    vehicle.ImportDate = DateTime.Now;                    
+                    vehicle.IsImport = true;
+                    vehicle.HasGoodsImported = false;
+                    if (vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
-                    vehicleInfo.ConfirmImportBy = _userInfo.UserID;
-                    vehicleInfo.ImportStatus = "Nhập cảnh không có hàng";
-                    _vehicleBOL.Update(vehicleInfo);
+                    vehicle.ConfirmImportBy = _userInfo.UserID;
+                    vehicle.ImportStatus = "Nhập cảnh không có hàng";
+                    VehicleFactory.UpdateVehicle(vehicle);
                 }
                 // Bind data
                 BindData();
@@ -498,9 +496,8 @@ namespace ECustoms
         {
             try
             {
-                var vehicleInfo = _vehicleBOL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
-                vehicleInfo.ImportDate = DateTime.Now;
-                vehicleInfo.ImportHour = DateTime.Now.ToString("HH:mm");
+                var vehicleInfo = VehicleFactory.GetByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
+                vehicleInfo.ImportDate = DateTime.Now;                
                 vehicleInfo.IsGoodsImported = true;
                 vehicleInfo.ImportedLocalTime = DateTime.Now;
                 // is completed when user is confirm is local 
@@ -511,7 +508,7 @@ namespace ECustoms
 
                 vehicleInfo.ConfirmLocalImportBy = _userInfo.UserID;
 
-                _vehicleBOL.Update(vehicleInfo);
+                VehicleFactory.UpdateVehicle(vehicleInfo);
                 // Bind data to gridview
                 BindData();
             }
