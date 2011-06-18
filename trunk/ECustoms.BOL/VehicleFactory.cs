@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using ECustoms.DAL;
 using ECustoms.Utilities;
+using System.Configuration;
 
 namespace ECustoms.BOL
 {
@@ -15,7 +16,7 @@ namespace ECustoms.BOL
 
         public VehicleFactory()
         {
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
+            _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _vehicleDAL = new VehicleDAL(_dbConnectionString);
         }
 
@@ -183,7 +184,7 @@ namespace ECustoms.BOL
         }
 
         public static tblVehicle GetByID(int vehicleID) {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             return db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
         }
 
@@ -196,7 +197,6 @@ namespace ECustoms.BOL
         {
             try
             {
-
                 // get hour and miniutes
                 if (!string.IsNullOrEmpty(vehicleInfo.ImportHour) && vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
                 {
@@ -248,7 +248,7 @@ namespace ECustoms.BOL
         /// <param name="vehicle"></param>
         /// <returns></returns>
         public static int UpdateVehicle(tblVehicle vehicle ) {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             // Get orgin vehicle
             var vehicleOrgin = db.tblVehicles.Where(g => g.VehicleID == vehicle.VehicleID).FirstOrDefault();
             db.Attach(vehicleOrgin);
@@ -265,7 +265,7 @@ namespace ECustoms.BOL
         {
             try
             {
-                var db = new dbEcustomEntities();
+                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
                 var vehicle = db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
                 db.DeleteObject(vehicle);
                 return db.SaveChanges();

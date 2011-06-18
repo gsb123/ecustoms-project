@@ -14,7 +14,7 @@ namespace ECustoms.BOL
 
         public PermissionBOL()
         {
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
+            _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _permissionDAL = new PermissionDAL(_dbConnectionString);
         }
 

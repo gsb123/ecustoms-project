@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ECustoms.DAL;
 using ECustoms.Utilities;
+using System.Configuration;
 
 namespace ECustoms.BOL
 {
@@ -16,7 +17,7 @@ namespace ECustoms.BOL
         public UserBOL()
         {
             // Get connectionString from the config file
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];
+            _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _userDAL = new UserDAL(_dbConnectionString);
         }
 
@@ -124,7 +125,7 @@ namespace ECustoms.BOL
         }
 
         public static tblUser GetByID(int userID) {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             return db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
         }
 

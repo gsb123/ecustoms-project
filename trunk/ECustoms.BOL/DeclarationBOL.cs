@@ -5,6 +5,7 @@ using System.Text;
 using ECustoms.DAL;
 using ECustoms.Utilities;
 using System.Data.Objects.DataClasses;
+using System.Configuration;
 
 namespace ECustoms.BOL
 {
@@ -15,7 +16,7 @@ namespace ECustoms.BOL
 
         public DeclarationBOL()
         {
-            _dbConnectionString = System.Configuration.ConfigurationSettings.AppSettings["connectionString"];            
+            _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _vehicleDAL = new VehicleDAL(_dbConnectionString);
         }
 
@@ -28,8 +29,9 @@ namespace ECustoms.BOL
         {
             var result = -1;
             try
-            {
-                var db = new dbEcustomEntities();
+            {                
+                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+
                 declarationInfo.tblUser = db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
                 // Set Created date and Last modified date
                 declarationInfo.CreatedDate = DateTime.Now;
@@ -61,7 +63,7 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public static int DeleteByID(int declerationID)
         {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             var declaration = db.tblDeclarations.Where(g => g.DeclarationID == declerationID).FirstOrDefault();
             db.DeleteObject(declaration);
             return db.SaveChanges();
@@ -76,7 +78,7 @@ namespace ECustoms.BOL
         {
             try
             {
-                var db = new dbEcustomEntities();
+                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
                 return db.tblDeclarations.Where(g => g.DeclarationID == declarationID).FirstOrDefault();                
             }
             catch (Exception)
@@ -92,7 +94,7 @@ namespace ECustoms.BOL
         /// <param name="modifiedByID"></param>
         /// <returns></returns>
         public static int Update(tblDeclaration declaration) {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             declaration.ModifiedDate = DateTime.Now;
             // Get orgin object
             var objOrginDeclaration = db.tblDeclarations.Where(g => g.DeclarationID.Equals(declaration.DeclarationID)).FirstOrDefault();
@@ -102,7 +104,7 @@ namespace ECustoms.BOL
         }
 
         public static List<ViewAllDeclaration> SelectAllFromView() {
-            var db = new dbEcustomEntities();
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
             return db.ViewAllDeclarations.ToList();
         }
     }
