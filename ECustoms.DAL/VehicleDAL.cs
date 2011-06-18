@@ -311,36 +311,16 @@ namespace ECustoms.DAL
             }
         }
 
-        /// <summary>
-        /// Delete vehicle by ID
-        /// </summary>
-        /// <param name="vehicleID">Vehicle ID</param>
-        /// <returns>Number of rows are effected</returns>
-        public int DeleteByID(int vehicleID)
-        {
-            var parameters = new SqlParameter[1];
-            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
-            return _dbConnection.ExecuteNonQuery(ConstantInfo.SP_DELETEVEHICLEBYID, parameters);
-
-        }
-
-
-
         public int UpdateLocalConfirm(int vehicleID, int userId)
         {
-
-
             var parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@VehicleID", vehicleID);
             parameters[1] = new SqlParameter("@UserId", userId);
             return _dbConnection.ExecuteNonQuery("sp_UpdateLocalConfirm", parameters);
-
         }
 
         public int UpdateImportConfirm(int vehicleID, int userId)
         {
-
-
             var parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@VehicleID", vehicleID);
             parameters[1] = new SqlParameter("@UserId", userId);
