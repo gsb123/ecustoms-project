@@ -66,7 +66,6 @@
             // dtpExportTo
             // 
             this.dtpExportTo.CustomFormat = "dd/MM/yyyy";
-            this.dtpExportTo.Enabled = false;
             this.dtpExportTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpExportTo.Location = new System.Drawing.Point(234, 53);
             this.dtpExportTo.Name = "dtpExportTo";
@@ -76,7 +75,6 @@
             // dtpExportFrom
             // 
             this.dtpExportFrom.CustomFormat = "dd/MM/yyyy";
-            this.dtpExportFrom.Enabled = false;
             this.dtpExportFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpExportFrom.Location = new System.Drawing.Point(48, 53);
             this.dtpExportFrom.Name = "dtpExportFrom";
@@ -113,7 +111,7 @@
             this.cbReportType.FormattingEnabled = true;
             this.cbReportType.Location = new System.Drawing.Point(474, 54);
             this.cbReportType.Name = "cbReportType";
-            this.cbReportType.Size = new System.Drawing.Size(121, 21);
+            this.cbReportType.Size = new System.Drawing.Size(261, 21);
             this.cbReportType.TabIndex = 14;
             // 
             // label2

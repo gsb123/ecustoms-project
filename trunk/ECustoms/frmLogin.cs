@@ -27,7 +27,7 @@ namespace ECustoms
         {
             try
             {                
-                logger.Info("btnLogin_Click");
+                //logger.Info("btnLogin_Click");
                 if (Validate())
                 {
                     var objUserInfo = new UserInfo
