@@ -93,34 +93,11 @@ namespace ECustoms.BOL
         /// <returns></returns>
         public static int Update(tblDeclaration declaration) {
             var db = new dbEcustomEntities();
-            var objDeclaration = db.tblDeclarations.Where(g => g.DeclarationID.Equals(declaration.DeclarationID)).FirstOrDefault();
-            // Set to the new object
-            // Export
-            objDeclaration.Number = declaration.Number;
-            objDeclaration.ExportType = declaration.ExportType;
-            objDeclaration.CompanyName = declaration.CompanyName;
-            objDeclaration.CompanyCode = declaration.CompanyCode;
-            objDeclaration.RegisterDate = declaration.RegisterDate;
-            objDeclaration.ProductAmount = declaration.ProductAmount;
-            objDeclaration.Unit = declaration.Unit;
-            objDeclaration.ProductName = declaration.ProductName;            
-            
-            // Import
-            objDeclaration.ImportNumber = declaration.ImportNumber;
-            objDeclaration.ImportType = declaration.ImportType;
-            objDeclaration.ImportCompanyName = declaration.ImportCompanyName;
-            objDeclaration.ImportCompanyCode = declaration.ImportCompanyCode;
-            objDeclaration.ImportRegisterDate = declaration.ImportRegisterDate;
-            objDeclaration.ImportProductAmount = declaration.ImportProductAmount;
-            objDeclaration.ImportUnit = declaration.ImportUnit;
-            objDeclaration.ImportProductName = declaration.ImportProductName;            
-            objDeclaration.ModifiedByID = declaration.ModifiedByID;
-            objDeclaration.ModifiedDate = DateTime.Now;
-
-            objDeclaration.HasDeclaration = declaration.HasDeclaration;
-            objDeclaration.ImportHasDeclaration = declaration.ImportHasDeclaration;
-            objDeclaration.ModifiedByID = declaration.ModifiedByID;
-           
+            declaration.ModifiedDate = DateTime.Now;
+            // Get orgin object
+            var objOrginDeclaration = db.tblDeclarations.Where(g => g.DeclarationID.Equals(declaration.DeclarationID)).FirstOrDefault();
+            db.Attach(objOrginDeclaration);
+            db.ApplyPropertyChanges("tblDeclarations", declaration);
             return db.SaveChanges();            
         }
 
