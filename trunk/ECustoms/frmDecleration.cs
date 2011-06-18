@@ -268,6 +268,7 @@ namespace ECustoms
             var companyName = txtCompanyName.Text.Trim();
             List<tblDeclaration> result = null;
             var db = new dbEcustomEntities();
+            
             List<tblDeclaration> listDeclaration = db.tblDeclarations.ToList();
             result = listDeclaration.Where(d => (d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber)) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
             grvDecleration.DataSource = result;
