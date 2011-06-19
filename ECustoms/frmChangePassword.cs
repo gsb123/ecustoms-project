@@ -47,9 +47,9 @@ namespace ECustoms
                     this.Close();
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 

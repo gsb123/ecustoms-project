@@ -55,7 +55,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString());
             }
         }
 
@@ -76,7 +76,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString());
             }
         }
 
@@ -106,7 +106,7 @@ namespace ECustoms
             }
             catch (Exception exception)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(exception.ToString());
             }
         }
     }

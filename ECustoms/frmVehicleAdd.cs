@@ -267,9 +267,9 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn 1 phương tiện cần xóa.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(ex.Message);
 
             }
 
@@ -367,9 +367,9 @@ namespace ECustoms
                 // Reset form
                 ResetForm();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }

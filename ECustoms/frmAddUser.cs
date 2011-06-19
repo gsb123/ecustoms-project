@@ -118,9 +118,9 @@ namespace ECustoms
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -181,9 +181,9 @@ namespace ECustoms
                 MessageBox.Show(ConstantInfo.MESSAGE_UPDATE_SUCESSFULLY);
                 this.Close();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
         }
