@@ -63,7 +63,7 @@ namespace ECustoms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Get data file here
-            ReportBOL facade = new ReportBOL();
+            ReportFactory facade = new ReportFactory();
             //testing
 
             ReportType type = (ReportType)(cbReportType.SelectedIndex + 1);

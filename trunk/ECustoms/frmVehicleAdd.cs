@@ -329,7 +329,7 @@ namespace ECustoms
         {
             try
             {
-                DeclarationBOL _declarationBOL = new DeclarationBOL();
+                DeclarationFactory _declarationBOL = new DeclarationFactory();
                 var declarationInfo = GetDeclarationInfo();
                 declarationInfo.ModifiedDate = DateTime.Now;
                 declarationInfo.ModifiedByID = _userInfo.UserID;                

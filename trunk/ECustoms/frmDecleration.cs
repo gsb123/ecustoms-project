@@ -20,7 +20,7 @@ namespace ECustoms
     {
         private readonly ILog logger = LogManager.GetLogger("Ecustoms.frmDecleration");
 
-        private DeclarationBOL _declarationBOL;
+        private DeclarationFactory _declarationBOL;
         private UserInfo _userInfo;
         private Form _parrent;
         private System.Timers.Timer aTimer;
@@ -44,9 +44,9 @@ namespace ECustoms
             this.Text = "Danh sách tờ khai" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
-            _declarationBOL = new DeclarationBOL();
+            _declarationBOL = new DeclarationFactory();
 
-            this._listDeclarationinfo = DeclarationBOL.SelectAllFromView();
+            this._listDeclarationinfo = DeclarationFactory.SelectAllFromView();
             BindData();
             txtDeclaraceNumber.Focus();
             InitialPermission();
@@ -104,7 +104,7 @@ namespace ECustoms
         public void BindData()
         {
             // Get declaration from database
-            _listDeclarationinfo = DeclarationBOL.SelectAllFromView();
+            _listDeclarationinfo = DeclarationFactory.SelectAllFromView();
             var declarationNumber = txtDeclaraceNumber.Text.Trim();
             var companyName = txtCompanyName.Text.Trim();
             List<ViewAllDeclaration> result = null;
@@ -144,7 +144,7 @@ namespace ECustoms
                         for (int i = 0; i < grvDecleration.SelectedRows.Count; i++)
                         {
                             var declerationID = Convert.ToInt32(grvDecleration.SelectedRows[i].Cells[0].Value);
-                            DeclarationBOL.DeleteByID(declerationID);
+                            DeclarationFactory.DeleteByID(declerationID);
                         }
                         MessageBox.Show("Xóa xong");
                         BindData();

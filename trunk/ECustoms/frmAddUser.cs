@@ -18,8 +18,8 @@ namespace ECustoms
         private frmUser _parrent;
         private int _mode;
         private int _userID;
-        private UserBOL _userBOL;
-        private PermissionBOL _permissionBOL;
+        private UserFactory _userBOL;
+        private PermissionFactory _permissionBOL;
         public frmAddUser()
         {
             InitializeComponent();
@@ -50,8 +50,8 @@ namespace ECustoms
             this.Text = "Thông tin người dùng" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
-            _userBOL = new UserBOL();
-            _permissionBOL = new PermissionBOL();
+            _userBOL = new UserFactory();
+            _permissionBOL = new PermissionFactory();
             Init();
         }
 

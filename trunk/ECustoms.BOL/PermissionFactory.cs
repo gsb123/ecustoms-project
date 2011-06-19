@@ -7,12 +7,12 @@ using ECustoms.Utilities;
 
 namespace ECustoms.BOL
 {
-    public class PermissionBOL
+    public class PermissionFactory
     {
         private readonly string _dbConnectionString;
         private readonly PermissionDAL _permissionDAL;
 
-        public PermissionBOL()
+        public PermissionFactory()
         {
             _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _permissionDAL = new PermissionDAL(_dbConnectionString);

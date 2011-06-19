@@ -16,7 +16,7 @@ namespace ECustoms
     public partial class frmExport : Form
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmExport");
-        private DeclarationBOL _declarationBOL;
+        private DeclarationFactory _declarationBOL;
         private VehicleFactory _vehicleBOL;
         private UserInfo _userInfo;
         private int _mode;
@@ -235,7 +235,7 @@ namespace ECustoms
             this.Text = "Khai báo xuất nhập cảnh" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
-            _declarationBOL = new DeclarationBOL();
+            _declarationBOL = new DeclarationFactory();
             _vehicleBOL = new VehicleFactory();
             // Init form.
             Init();
@@ -294,7 +294,7 @@ namespace ECustoms
                 btnReset.Enabled = false;
 
                 // Get Decleration information
-                var declarationInfo = DeclarationBOL.SelectByID(this._declerationID);
+                var declarationInfo = DeclarationFactory.SelectByID(this._declerationID);
                 // Bind Declaration to controls
                 if (declarationInfo != null)
                 {
@@ -378,7 +378,7 @@ namespace ECustoms
                     // Set DeclerationID
                     declerationInfo.DeclarationID = this._declerationID;
                     // Update Decleration
-                    DeclarationBOL.Update(declerationInfo);                   
+                    DeclarationFactory.Update(declerationInfo);                   
                     // update vehicle list
                     var vehicleBL = new VehicleFactory();
 
@@ -438,7 +438,7 @@ namespace ECustoms
                 }
                 else
                 {
-                    declarationInfo = DeclarationBOL.SelectByID(_declerationID);
+                    declarationInfo = DeclarationFactory.SelectByID(_declerationID);
                     if (!string.IsNullOrEmpty(txtExportNumber.Text))
                     {
                         declarationInfo.Number = Convert.ToInt32(txtExportNumber.Text);
@@ -704,7 +704,7 @@ namespace ECustoms
             cbImportHasDeclaration.Checked = true;
             btnAddExisting.Enabled = true;
 
-            var declarationInfo = DeclarationBOL.SelectByID(this._declerationID);
+            var declarationInfo = DeclarationFactory.SelectByID(this._declerationID);
 
 
             if (_mode == 0 || (declarationInfo != null && declarationInfo.ImportNumber < 1))

@@ -13,7 +13,7 @@ namespace ECustoms
 {
     public partial class frmUser : Form
     {
-        private UserBOL _userBOL;
+        private UserFactory _userBOL;
 
         public frmUser()
         {
@@ -25,7 +25,7 @@ namespace ECustoms
             this.Text = "Quản lý người dùng" + ConstantInfo.MESSAGE_TITLE;
             // Show form to the center
             this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);            
-            _userBOL = new UserBOL();
+            _userBOL = new UserFactory();
             grvUser.AutoGenerateColumns = false;
             BindData(_userBOL.SelectAll());
         }

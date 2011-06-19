@@ -15,7 +15,7 @@ namespace ECustoms
     public partial class frmLogin : Form
     {
         //private readonly ILog logger;
-        private UserBOL _userBOL;
+        private UserFactory _userBOL;
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmLogin");
 
         public frmLogin()
@@ -87,7 +87,7 @@ namespace ECustoms
         private void frmLogin_Load(object sender, EventArgs e)
         {
             this.Text = "Đăng nhập" + ConstantInfo.MESSAGE_TITLE;
-            _userBOL = new UserBOL();
+            _userBOL = new UserFactory();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
