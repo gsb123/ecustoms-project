@@ -71,6 +71,12 @@
     <Compile Include="frmAddGroup.Designer.cs">
       <DependentUpon>frmAddGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGroupList.Designer.cs">
+      <DependentUpon>frmGroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddGroup.resx">
       <DependentUpon>frmAddGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGroupList.resx">
+      <DependentUpon>frmGroupList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>

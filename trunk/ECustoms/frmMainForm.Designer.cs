@@ -49,6 +49,7 @@
             this.vehicleSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewVehiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tMenuItemReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             this.hệThốngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuitemUser,
+            this.toolStripMenuItem2,
             this.toolStripMenuItem1,
             this.menuitemLogout,
             this.toolStripSeparator1,
@@ -83,12 +85,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(245, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(261, 6);
             // 
             // aboutUsToolStripMenuItem
             // 
             this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
-            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
             this.aboutUsToolStripMenuItem.Text = "About Us";
             this.aboutUsToolStripMenuItem.Visible = false;
             // 
@@ -171,7 +173,7 @@
             // 
             this.menuitemUser.Image = global::ECustoms.Properties.Resources.Users;
             this.menuitemUser.Name = "menuitemUser";
-            this.menuitemUser.Size = new System.Drawing.Size(248, 26);
+            this.menuitemUser.Size = new System.Drawing.Size(264, 26);
             this.menuitemUser.Text = "Quản lý người dùng";
             this.menuitemUser.Click += new System.EventHandler(this.menuitemUser_Click);
             // 
@@ -179,7 +181,7 @@
             // 
             this.toolStripMenuItem1.Image = global::ECustoms.Properties.Resources.change_password_icon;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(248, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(264, 26);
             this.toolStripMenuItem1.Text = "Thay đổi mật khẩu";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -187,7 +189,7 @@
             // 
             this.menuitemLogout.Image = global::ECustoms.Properties.Resources.logout;
             this.menuitemLogout.Name = "menuitemLogout";
-            this.menuitemLogout.Size = new System.Drawing.Size(248, 26);
+            this.menuitemLogout.Size = new System.Drawing.Size(264, 26);
             this.menuitemLogout.Text = "Đăng xuất";
             this.menuitemLogout.Click += new System.EventHandler(this.menuitemLogout_Click);
             // 
@@ -195,7 +197,7 @@
             // 
             this.menuitemExit.Image = global::ECustoms.Properties.Resources.exit;
             this.menuitemExit.Name = "menuitemExit";
-            this.menuitemExit.Size = new System.Drawing.Size(248, 26);
+            this.menuitemExit.Size = new System.Drawing.Size(264, 26);
             this.menuitemExit.Text = "Thoát Khỏi chương trình";
             this.menuitemExit.Click += new System.EventHandler(this.menuitemExit_Click);
             // 
@@ -235,9 +237,17 @@
             // 
             this.tMenuItemReport.Image = global::ECustoms.Properties.Resources.print_icon;
             this.tMenuItemReport.Name = "tMenuItemReport";
-            this.tMenuItemReport.Size = new System.Drawing.Size(152, 26);
+            this.tMenuItemReport.Size = new System.Drawing.Size(151, 26);
             this.tMenuItemReport.Text = "In báo cáo";
             this.tMenuItemReport.Click += new System.EventHandler(this.tMenuItemReport_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::ECustoms.Properties.Resources.Users;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(264, 26);
+            this.toolStripMenuItem2.Text = "Quản lý nhóm người dùng";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // frmMainForm
             // 
@@ -283,5 +293,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuReport;
         private System.Windows.Forms.ToolStripMenuItem tMenuItemReport;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

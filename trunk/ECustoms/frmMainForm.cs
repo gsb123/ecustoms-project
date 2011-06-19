@@ -163,5 +163,13 @@ namespace ECustoms
             frmReport.MdiParent = this;
             frmReport.Show();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var frm = new frmGroupList();
+            frm.MdiParent = this;
+            frm.Show();
+
+        }
     }
 }
