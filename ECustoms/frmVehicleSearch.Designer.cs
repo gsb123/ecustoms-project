@@ -58,6 +58,14 @@
             this.lblKhongXC = new System.Windows.Forms.Label();
             this.lblNotExported = new System.Windows.Forms.Label();
             this.grdVehicle = new System.Windows.Forms.DataGridView();
+            this.btnXacNhanXuatCanh = new System.Windows.Forms.Button();
+            this.btnXacNhanNhapCanhCoHang = new System.Windows.Forms.Button();
+            this.btnXacNhanXuatCanhKhongCoHang = new System.Windows.Forms.Button();
+            this.btnUpdateVehicle = new System.Windows.Forms.Button();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnLocalConfirm = new System.Windows.Forms.Button();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,17 +86,9 @@
             this.ImportStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImportedLocalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConfirmExportBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConfirmImportBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConfirmLocalImportBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnXacNhanXuatCanh = new System.Windows.Forms.Button();
-            this.btnXacNhanNhapCanhCoHang = new System.Windows.Forms.Button();
-            this.btnXacNhanXuatCanhKhongCoHang = new System.Windows.Forms.Button();
-            this.btnUpdateVehicle = new System.Windows.Forms.Button();
-            this.btnExportExcel = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnLocalConfirm = new System.Windows.Forms.Button();
+            this.ConfirmExportByName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConfirmImportByName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConfirmLocalImportByName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbConditionSearch.SuspendLayout();
             this.grbResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
@@ -402,9 +402,9 @@
             this.ImportStatus,
             this.ImportedLocalTime,
             this.VehicleID,
-            this.ConfirmExportBy,
-            this.ConfirmImportBy,
-            this.ConfirmLocalImportBy});
+            this.ConfirmExportByName,
+            this.ConfirmImportByName,
+            this.ConfirmLocalImportByName});
             this.grdVehicle.Location = new System.Drawing.Point(10, 117);
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.ReadOnly = true;
@@ -412,6 +412,118 @@
             this.grdVehicle.Size = new System.Drawing.Size(768, 325);
             this.grdVehicle.TabIndex = 0;
             this.grdVehicle.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdVehicle_CellMouseDoubleClick);
+            // 
+            // btnXacNhanXuatCanh
+            // 
+            this.btnXacNhanXuatCanh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXacNhanXuatCanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXacNhanXuatCanh.Location = new System.Drawing.Point(796, 143);
+            this.btnXacNhanXuatCanh.Name = "btnXacNhanXuatCanh";
+            this.btnXacNhanXuatCanh.Size = new System.Drawing.Size(176, 52);
+            this.btnXacNhanXuatCanh.TabIndex = 14;
+            this.btnXacNhanXuatCanh.Text = "Xác nhận xuất cảnh";
+            this.btnXacNhanXuatCanh.UseVisualStyleBackColor = true;
+            this.btnXacNhanXuatCanh.Click += new System.EventHandler(this.btnXacNhanXuatCanh_Click);
+            // 
+            // btnXacNhanNhapCanhCoHang
+            // 
+            this.btnXacNhanNhapCanhCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXacNhanNhapCanhCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXacNhanNhapCanhCoHang.Location = new System.Drawing.Point(796, 201);
+            this.btnXacNhanNhapCanhCoHang.Name = "btnXacNhanNhapCanhCoHang";
+            this.btnXacNhanNhapCanhCoHang.Size = new System.Drawing.Size(176, 52);
+            this.btnXacNhanNhapCanhCoHang.TabIndex = 15;
+            this.btnXacNhanNhapCanhCoHang.Text = "Xác nhận nhập cảnh có hàng";
+            this.btnXacNhanNhapCanhCoHang.UseVisualStyleBackColor = true;
+            this.btnXacNhanNhapCanhCoHang.Click += new System.EventHandler(this.btnXacNhanNhapCanhCoHang_Click);
+            // 
+            // btnXacNhanXuatCanhKhongCoHang
+            // 
+            this.btnXacNhanXuatCanhKhongCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnXacNhanXuatCanhKhongCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXacNhanXuatCanhKhongCoHang.Location = new System.Drawing.Point(796, 259);
+            this.btnXacNhanXuatCanhKhongCoHang.Name = "btnXacNhanXuatCanhKhongCoHang";
+            this.btnXacNhanXuatCanhKhongCoHang.Size = new System.Drawing.Size(176, 52);
+            this.btnXacNhanXuatCanhKhongCoHang.TabIndex = 16;
+            this.btnXacNhanXuatCanhKhongCoHang.Text = "Xác nhận nhập cảnh không có hàng";
+            this.btnXacNhanXuatCanhKhongCoHang.UseVisualStyleBackColor = true;
+            this.btnXacNhanXuatCanhKhongCoHang.Click += new System.EventHandler(this.btnXacNhanXuatCanhKhongCoHang_Click);
+            // 
+            // btnUpdateVehicle
+            // 
+            this.btnUpdateVehicle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnUpdateVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateVehicle.Image = global::ECustoms.Properties.Resources._001_45;
+            this.btnUpdateVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateVehicle.Location = new System.Drawing.Point(271, 590);
+            this.btnUpdateVehicle.Name = "btnUpdateVehicle";
+            this.btnUpdateVehicle.Size = new System.Drawing.Size(196, 33);
+            this.btnUpdateVehicle.TabIndex = 12;
+            this.btnUpdateVehicle.Text = "Cập nhật phương tiện";
+            this.btnUpdateVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdateVehicle.UseVisualStyleBackColor = true;
+            this.btnUpdateVehicle.Click += new System.EventHandler(this.btnUpdateVehicle_Click);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportExcel.Image = global::ECustoms.Properties.Resources.excel81;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(122, 590);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(143, 33);
+            this.btnExportExcel.TabIndex = 10;
+            this.btnExportExcel.Text = "Export tờ khai";
+            this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(473, 589);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(89, 33);
+            this.btnClose.TabIndex = 13;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(5, 590);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(111, 33);
+            this.btnSearch.TabIndex = 10;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnLocalConfirm
+            // 
+            this.btnLocalConfirm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLocalConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLocalConfirm.Location = new System.Drawing.Point(799, 317);
+            this.btnLocalConfirm.Name = "btnLocalConfirm";
+            this.btnLocalConfirm.Size = new System.Drawing.Size(176, 52);
+            this.btnLocalConfirm.TabIndex = 17;
+            this.btnLocalConfirm.Text = "Xác nhận hàng vào nội địa";
+            this.btnLocalConfirm.UseVisualStyleBackColor = true;
+            this.btnLocalConfirm.Click += new System.EventHandler(this.btnLocalConfirm_Click);
             // 
             // Number
             // 
@@ -577,141 +689,29 @@
             this.VehicleID.ReadOnly = true;
             this.VehicleID.Visible = false;
             // 
-            // ConfirmExportBy
+            // ConfirmExportByName
             // 
-            this.ConfirmExportBy.DataPropertyName = "ConfirmExportByName";
-            this.ConfirmExportBy.HeaderText = "Xác nhận xuất";
-            this.ConfirmExportBy.Name = "ConfirmExportBy";
-            this.ConfirmExportBy.ReadOnly = true;
-            this.ConfirmExportBy.Width = 150;
+            this.ConfirmExportByName.DataPropertyName = "ConfirmExportByName";
+            this.ConfirmExportByName.HeaderText = "Xác nhận xuất";
+            this.ConfirmExportByName.Name = "ConfirmExportByName";
+            this.ConfirmExportByName.ReadOnly = true;
+            this.ConfirmExportByName.Width = 150;
             // 
-            // ConfirmImportBy
+            // ConfirmImportByName
             // 
-            this.ConfirmImportBy.DataPropertyName = "ConfirmImportByName";
-            this.ConfirmImportBy.HeaderText = "Xác nhận nhập";
-            this.ConfirmImportBy.Name = "ConfirmImportBy";
-            this.ConfirmImportBy.ReadOnly = true;
-            this.ConfirmImportBy.Width = 200;
+            this.ConfirmImportByName.DataPropertyName = "ConfirmImportByName";
+            this.ConfirmImportByName.HeaderText = "Xác nhận nhập";
+            this.ConfirmImportByName.Name = "ConfirmImportByName";
+            this.ConfirmImportByName.ReadOnly = true;
+            this.ConfirmImportByName.Width = 200;
             // 
-            // ConfirmLocalImportBy
+            // ConfirmLocalImportByName
             // 
-            this.ConfirmLocalImportBy.DataPropertyName = "ConfirmLocalImportByName";
-            this.ConfirmLocalImportBy.HeaderText = "Xác nhận hàng nội địa";
-            this.ConfirmLocalImportBy.Name = "ConfirmLocalImportBy";
-            this.ConfirmLocalImportBy.ReadOnly = true;
-            this.ConfirmLocalImportBy.Width = 200;
-            // 
-            // btnXacNhanXuatCanh
-            // 
-            this.btnXacNhanXuatCanh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnXacNhanXuatCanh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanXuatCanh.Location = new System.Drawing.Point(796, 143);
-            this.btnXacNhanXuatCanh.Name = "btnXacNhanXuatCanh";
-            this.btnXacNhanXuatCanh.Size = new System.Drawing.Size(176, 52);
-            this.btnXacNhanXuatCanh.TabIndex = 14;
-            this.btnXacNhanXuatCanh.Text = "Xác nhận xuất cảnh";
-            this.btnXacNhanXuatCanh.UseVisualStyleBackColor = true;
-            this.btnXacNhanXuatCanh.Click += new System.EventHandler(this.btnXacNhanXuatCanh_Click);
-            // 
-            // btnXacNhanNhapCanhCoHang
-            // 
-            this.btnXacNhanNhapCanhCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnXacNhanNhapCanhCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanNhapCanhCoHang.Location = new System.Drawing.Point(796, 201);
-            this.btnXacNhanNhapCanhCoHang.Name = "btnXacNhanNhapCanhCoHang";
-            this.btnXacNhanNhapCanhCoHang.Size = new System.Drawing.Size(176, 52);
-            this.btnXacNhanNhapCanhCoHang.TabIndex = 15;
-            this.btnXacNhanNhapCanhCoHang.Text = "Xác nhận nhập cảnh có hàng";
-            this.btnXacNhanNhapCanhCoHang.UseVisualStyleBackColor = true;
-            this.btnXacNhanNhapCanhCoHang.Click += new System.EventHandler(this.btnXacNhanNhapCanhCoHang_Click);
-            // 
-            // btnXacNhanXuatCanhKhongCoHang
-            // 
-            this.btnXacNhanXuatCanhKhongCoHang.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnXacNhanXuatCanhKhongCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhanXuatCanhKhongCoHang.Location = new System.Drawing.Point(796, 259);
-            this.btnXacNhanXuatCanhKhongCoHang.Name = "btnXacNhanXuatCanhKhongCoHang";
-            this.btnXacNhanXuatCanhKhongCoHang.Size = new System.Drawing.Size(176, 52);
-            this.btnXacNhanXuatCanhKhongCoHang.TabIndex = 16;
-            this.btnXacNhanXuatCanhKhongCoHang.Text = "Xác nhận nhập cảnh không có hàng";
-            this.btnXacNhanXuatCanhKhongCoHang.UseVisualStyleBackColor = true;
-            this.btnXacNhanXuatCanhKhongCoHang.Click += new System.EventHandler(this.btnXacNhanXuatCanhKhongCoHang_Click);
-            // 
-            // btnUpdateVehicle
-            // 
-            this.btnUpdateVehicle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnUpdateVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateVehicle.Image = global::ECustoms.Properties.Resources._001_45;
-            this.btnUpdateVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateVehicle.Location = new System.Drawing.Point(271, 590);
-            this.btnUpdateVehicle.Name = "btnUpdateVehicle";
-            this.btnUpdateVehicle.Size = new System.Drawing.Size(196, 33);
-            this.btnUpdateVehicle.TabIndex = 12;
-            this.btnUpdateVehicle.Text = "Cập nhật phương tiện";
-            this.btnUpdateVehicle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdateVehicle.UseVisualStyleBackColor = true;
-            this.btnUpdateVehicle.Click += new System.EventHandler(this.btnUpdateVehicle_Click);
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportExcel.Image = global::ECustoms.Properties.Resources.excel81;
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(122, 590);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(143, 33);
-            this.btnExportExcel.TabIndex = 10;
-            this.btnExportExcel.Text = "Export tờ khai";
-            this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(473, 589);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(89, 33);
-            this.btnClose.TabIndex = 13;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(5, 590);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(111, 33);
-            this.btnSearch.TabIndex = 10;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // btnLocalConfirm
-            // 
-            this.btnLocalConfirm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnLocalConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLocalConfirm.Location = new System.Drawing.Point(799, 317);
-            this.btnLocalConfirm.Name = "btnLocalConfirm";
-            this.btnLocalConfirm.Size = new System.Drawing.Size(176, 52);
-            this.btnLocalConfirm.TabIndex = 17;
-            this.btnLocalConfirm.Text = "Xác nhận hàng vào nội địa";
-            this.btnLocalConfirm.UseVisualStyleBackColor = true;
-            this.btnLocalConfirm.Click += new System.EventHandler(this.btnLocalConfirm_Click);
+            this.ConfirmLocalImportByName.DataPropertyName = "ConfirmLocalImportByName";
+            this.ConfirmLocalImportByName.HeaderText = "Xác nhận hàng nội địa";
+            this.ConfirmLocalImportByName.Name = "ConfirmLocalImportByName";
+            this.ConfirmLocalImportByName.ReadOnly = true;
+            this.ConfirmLocalImportByName.Width = 200;
             // 
             // frmVehicleSearch
             // 
@@ -798,8 +798,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportedLocalTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmExportBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmImportBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmLocalImportBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmExportByName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmImportByName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConfirmLocalImportByName;
     }
 }
