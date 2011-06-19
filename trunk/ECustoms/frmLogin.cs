@@ -16,7 +16,7 @@ namespace ECustoms
     {
         //private readonly ILog logger;
         private UserFactory _userBOL;
-        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger("Ecustoms.frmLogin");
+        private static log4net.ILog logger;
 
         public frmLogin()
         {            
@@ -86,6 +86,7 @@ namespace ECustoms
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            logger =  log4net.LogManager.GetLogger("Ecustoms.frmLogin");
             this.Text = "Đăng nhập" + ConstantInfo.MESSAGE_TITLE;
             _userBOL = new UserFactory();
         }

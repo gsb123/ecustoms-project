@@ -127,6 +127,7 @@
             this.cbIsCompleted.TabIndex = 12;
             this.cbIsCompleted.Text = "Hoàn tất ";
             this.cbIsCompleted.UseVisualStyleBackColor = true;
+            this.cbIsCompleted.CheckedChanged += new System.EventHandler(this.cbIsCompleted_CheckedChanged);
             // 
             // txtPlateNumber
             // 
