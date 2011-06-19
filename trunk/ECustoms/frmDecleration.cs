@@ -155,9 +155,10 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn tờ khai.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                logger.Error(exception.ToString());
+                logger.Error(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -177,9 +178,9 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn 1 tờ khai cần cập nhật.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.ToString());                
             }
 
         }
@@ -241,7 +242,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -295,7 +297,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }            
         }
 

@@ -28,32 +28,26 @@ namespace ECustoms.BOL
         public int AddDeclaration(tblDeclaration declarationInfo, List<tblVehicle> vehicleInfos, int userID)
         {
             var result = -1;
-            try
-            {                
-                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+                          
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
 
-                declarationInfo.tblUser = db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
-                // Set Created date and Last modified date
-                declarationInfo.CreatedDate = DateTime.Now;
-                declarationInfo.ModifiedDate = DateTime.Now;
-                db.AddTotblDeclarations(declarationInfo);
-                db.SaveChanges();
-                // Return if insert fail
-                if(declarationInfo.DeclarationID <= 0) return - 1;
-                var declarationID = declarationInfo.DeclarationID;
-                // Add vehicle
-                foreach (var vehicle in vehicleInfos)
-                {
-                    vehicle.tblDeclaration = declarationInfo;
-                    db.AddTotblVehicles(vehicle);
-                    db.SaveChanges();
-                }
-                return result;
-            }
-            catch (Exception)
+            declarationInfo.tblUser = db.tblUsers.Where(g => g.UserID.Equals(userID)).FirstOrDefault();
+            // Set Created date and Last modified date
+            declarationInfo.CreatedDate = DateTime.Now;
+            declarationInfo.ModifiedDate = DateTime.Now;
+            db.AddTotblDeclarations(declarationInfo);
+            db.SaveChanges();
+            // Return if insert fail
+            if(declarationInfo.DeclarationID <= 0) return - 1;
+            var declarationID = declarationInfo.DeclarationID;
+            // Add vehicle
+            foreach (var vehicle in vehicleInfos)
             {
-                throw;
+                vehicle.tblDeclaration = declarationInfo;
+                db.AddTotblVehicles(vehicle);
+                db.SaveChanges();
             }
+            return result;                        
         }
 
         /// <summary>
@@ -75,16 +69,9 @@ namespace ECustoms.BOL
         /// <param name="declarationID">DeclarationID</param>
         /// <returns>DeclarationInfo object</returns>
         public static tblDeclaration SelectByID(int declarationID)
-        {
-            try
-            {
-                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
-                return db.tblDeclarations.Where(g => g.DeclarationID == declarationID).FirstOrDefault();                
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        {            
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+            return db.tblDeclarations.Where(g => g.DeclarationID == declarationID).FirstOrDefault();                            
         }
 
         /// <summary>

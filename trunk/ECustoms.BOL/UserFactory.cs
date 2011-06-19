@@ -28,17 +28,10 @@ namespace ECustoms.BOL
         /// <returns></returns>
         public UserInfo GetUser(UserInfo userInfo)
         {
-            try
-            {
-                // Encode the password & username
-                userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName =userInfo.UserName;
-                return _userDAL.GetUser(userInfo);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            // Encode the password & username
+            userInfo.Password = Common.Encode(userInfo.Password);
+            userInfo.UserName =userInfo.UserName;
+            return _userDAL.GetUser(userInfo);
         }
 
         /// <summary>
@@ -47,14 +40,7 @@ namespace ECustoms.BOL
         /// <returns></returns>
         public List<UserInfo> SelectAll()
         {
-            try
-            {
-                return _userDAL.SelectAll();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+           return _userDAL.SelectAll();
         }
 
         /// <summary>
@@ -64,22 +50,11 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public int Insert(UserInfo userInfo)
         {
-            try
-            {
-
-
-                // Encode password & username
-                userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName = userInfo.UserName;
-
-                return _userDAL.Insert(userInfo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            // Encode password & username
+            userInfo.Password = Common.Encode(userInfo.Password);
+            userInfo.UserName = userInfo.UserName;
+            return _userDAL.Insert(userInfo);
         }
-
 
         /// <summary>
         /// Check if the username is exising or not
@@ -88,23 +63,15 @@ namespace ECustoms.BOL
         /// <returns>Number of roows are found</returns>
         public bool IsUserExisting(string username)
         {
-            try
+            var result = false;
+            var count = _userDAL.CountByUserName(username);
+            if (count > 0)
             {
-                var result = false;
-                var count = _userDAL.CountByUserName(username);
-                if (count > 0)
-                {
-                    result = true;
-                }
-                if (count == 0) result = false;
-
-                return result;
+                result = true;
             }
-            catch (Exception)
-            {
+            if (count == 0) result = false;
 
-                throw;
-            }
+            return result;
         }
 
         /// <summary>
@@ -114,14 +81,7 @@ namespace ECustoms.BOL
         /// <returns>UserInfo object</returns>
         public UserInfo SelectByID(int userID)
         {
-            try
-            {
-                return _userDAL.SelectByID(userID);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+           return _userDAL.SelectByID(userID);
         }
 
         public static tblUser GetByID(int userID) {
@@ -136,17 +96,10 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public int Update(UserInfo userInfo)
         {
-            try
-            {
-                // Encode password & username
-                userInfo.Password = Common.Encode(userInfo.Password);
-                userInfo.UserName = userInfo.UserName;
-                return _userDAL.Update(userInfo);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            // Encode password & username
+            userInfo.Password = Common.Encode(userInfo.Password);
+            userInfo.UserName = userInfo.UserName;
+            return _userDAL.Update(userInfo);
         }
 
         /// <summary>
@@ -156,14 +109,7 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public int DeleteByID(int UserID)
         {
-            try
-            {
-                return _userDAL.DeleteByID(UserID);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return _userDAL.DeleteByID(UserID);
         }
 
     }

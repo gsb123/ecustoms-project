@@ -36,9 +36,9 @@ namespace ECustoms
                 grdVehicle.AutoGenerateColumns = false;
                 grdVehicle.DataSource = _vehicleList;
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -70,9 +70,9 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn 1 phương.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(ex.Message);
                 //throw;
             }
         }

@@ -23,15 +23,8 @@ namespace ECustoms.BOL
         /// </summary>
         /// <returns>List permissionInfo objects</returns>
         public List<PermissionInfo> GetAllPermission()
-        {
-            try
-            {
-                return _permissionDAL.SelectAll();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        {           
+           return _permissionDAL.SelectAll();            
         }
     }
 }

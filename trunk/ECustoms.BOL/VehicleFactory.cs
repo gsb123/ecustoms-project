@@ -20,22 +20,6 @@ namespace ECustoms.BOL
             _vehicleDAL = new VehicleDAL(_dbConnectionString);
         }
 
-        /// <summary>
-        /// Get list Vehicle whihc not import or export
-        /// </summary>
-        /// <returns>List vehicle objects</returns>
-        public List<VehicleInfo> SelectVehicleNotImportExport()
-        {
-            try
-            {
-                return _vehicleDAL.SelectVehicleNotImportExport();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public bool CheckVehicle(string plateNumber)
         {
             return _vehicleDAL.CheckVehicle(plateNumber);
@@ -55,63 +39,55 @@ namespace ECustoms.BOL
         /// <returns>List vehicleInfo object</returns>
         public List<ViewAllVehicle> SearchVehicle(bool isCompleted, string plateNumber, bool isExport, bool isImport, bool isNotImport, DateTime importFrom, DateTime importTo, DateTime exportFrom, DateTime exportTo)
         {
-            try
-            {
-                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
 
-                if (isCompleted) {  // Da hoan thanh
-                    if (isExport) {  // Da xuat                        
-                        if (isImport)
-                        { // da nhap theo thoi gian
-                            // Lay nhung ban ghi da hoan thanh theo export va import
-                            importFrom = new DateTime(importFrom.Year, importFrom.Month, importFrom.Day, 0, 0, 0);
-                            importTo = new DateTime(importTo.Year, importTo.Month, importTo.Day, 23, 59, 59);
-                            exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
-                            exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                            return db.ViewAllVehicles.Where(g => (g.IsExport == true && g.ExportDate >= exportFrom && g.ExportDate <= exportTo) && (g.IsImport == true && g.ImportDate >= importFrom && g.ImportDate <= importTo)).ToList();
-                        }
-                        else { // Khong quan tam toi thoi gian nhap
-                            // Chi lay nhung ban ghi da xuat va isImprot = true
-                            exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
-                            exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                            return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == true)  && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
-                        }
+            if (isCompleted) {  // Da hoan thanh
+                if (isExport) {  // Da xuat                        
+                    if (isImport)
+                    { // da nhap theo thoi gian
+                        // Lay nhung ban ghi da hoan thanh theo export va import
+                        importFrom = new DateTime(importFrom.Year, importFrom.Month, importFrom.Day, 0, 0, 0);
+                        importTo = new DateTime(importTo.Year, importTo.Month, importTo.Day, 23, 59, 59);
+                        exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
+                        exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
+                        return db.ViewAllVehicles.Where(g => (g.IsExport == true && g.ExportDate >= exportFrom && g.ExportDate <= exportTo) && (g.IsImport == true && g.ImportDate >= importFrom && g.ImportDate <= importTo)).ToList();
                     }
-                    else {  // da xuat = uncheck
-                        // Lay tat ca ban ghi ma da hoan tat, khong quan tam toi thoi gian
-                        return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == true)).ToList(); 
+                    else { // Khong quan tam toi thoi gian nhap
+                        // Chi lay nhung ban ghi da xuat va isImprot = true
+                        exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
+                        exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
+                        return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == true)  && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
                     }
                 }
-                else {  // compted = uncheck
-                    if (isExport)
-                    {  // Da xuat
-                        if (isNotImport)// chua nhap canh
-                        {
-                            // chi lay nhung ban ghi da xuat, ma chua nhap
-                            exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
-                            exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                            return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == false) && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
-                        }
-                        else
-                        { // chi lay ban ghi da xuat canh, khong quan tam da nhap  hay chua
-                            // chi lay nhung ban ghi da xuat, ma chua nhap
-                            exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
-                            exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
-                            return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
-                        }
+                else {  // da xuat = uncheck
+                    // Lay tat ca ban ghi ma da hoan tat, khong quan tam toi thoi gian
+                    return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == true)).ToList(); 
+                }
+            }
+            else {  // compted = uncheck
+                if (isExport)
+                {  // Da xuat
+                    if (isNotImport)// chua nhap canh
+                    {
+                        // chi lay nhung ban ghi da xuat, ma chua nhap
+                        exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
+                        exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
+                        return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.IsImport == false) && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
                     }
-                    else {   
-                        // lay tat ban ghi chua xuat, chua nhap
-                        return db.ViewAllVehicles.Where(g => (g.IsExport == null || g.IsExport == false) && (g.IsImport == null || g.IsImport == false)).ToList();                    
-                    }                    
-                }                                
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                    else
+                    { // chi lay ban ghi da xuat canh, khong quan tam da nhap  hay chua
+                        // chi lay nhung ban ghi da xuat, ma chua nhap
+                        exportFrom = new DateTime(exportFrom.Year, exportFrom.Month, exportFrom.Day, 0, 0, 0);
+                        exportTo = new DateTime(exportTo.Year, exportTo.Month, exportTo.Day, 23, 59, 59);
+                        return db.ViewAllVehicles.Where(g => (g.IsExport == true) && (g.ExportDate >= exportFrom) && (g.ExportDate <= exportTo)).ToList(); 
+                    }
+                }
+                else {   
+                    // lay tat ban ghi chua xuat, chua nhap
+                    return db.ViewAllVehicles.Where(g => (g.IsExport == null || g.IsExport == false) && (g.IsImport == null || g.IsImport == false)).ToList();                    
+                }                    
+            }                                
         }
-
 
         public List<VehicleInfo> GetExportingVehicles(int mode, int declarationID, string search)
         {
@@ -125,36 +101,29 @@ namespace ECustoms.BOL
         /// <returns>List VehicleInfo objects</returns>
         public List<VehicleInfo> SelectByDeclarationID(int declarationID)
         {
-            try
+            var vehicleInfos = _vehicleDAL.SelectByDeclarationID(declarationID);
+            foreach (var vehicleInfo in vehicleInfos)
             {
-                var vehicleInfos = _vehicleDAL.SelectByDeclarationID(declarationID);
-                foreach (var vehicleInfo in vehicleInfos)
+                if (vehicleInfo.ImportDate != null)
                 {
-                    if (vehicleInfo.ImportDate != null)
-                    {
-                        vehicleInfo.ImportHour = vehicleInfo.ImportDate.Value.ToString("hh:mm");
-                    }
-
-                    if (vehicleInfo.ImportDate == null || vehicleInfo.ImportDate.Value.Year.Equals(1900))
-                    {
-                        vehicleInfo.ImportDate = null;
-                        vehicleInfo.ImportHour = "";
-                    }
-                    if (vehicleInfo.ExportDate != null)
-                        vehicleInfo.ExportHour = vehicleInfo.ExportDate.Value.ToString("hh:mm");
-
-                    if (vehicleInfo.ExportDate == null || vehicleInfo.ExportDate.Value.Year.Equals(1900))
-                    {
-                        vehicleInfo.ExportDate = null;
-                        vehicleInfo.ExportHour = "";
-                    }
+                    vehicleInfo.ImportHour = vehicleInfo.ImportDate.Value.ToString("hh:mm");
                 }
-                return vehicleInfos;
+
+                if (vehicleInfo.ImportDate == null || vehicleInfo.ImportDate.Value.Year.Equals(1900))
+                {
+                    vehicleInfo.ImportDate = null;
+                    vehicleInfo.ImportHour = "";
+                }
+                if (vehicleInfo.ExportDate != null)
+                    vehicleInfo.ExportHour = vehicleInfo.ExportDate.Value.ToString("hh:mm");
+
+                if (vehicleInfo.ExportDate == null || vehicleInfo.ExportDate.Value.Year.Equals(1900))
+                {
+                    vehicleInfo.ExportDate = null;
+                    vehicleInfo.ExportHour = "";
+                }
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return vehicleInfos;
         }
 
         /// <summary>
@@ -164,19 +133,12 @@ namespace ECustoms.BOL
         /// <returns></returns>
         public VehicleInfo SelectByID(int vehicleID)
         {
-            try
-            {
-                var vehicleInfo = _vehicleDAL.SelectByID(vehicleID);
-                if (vehicleInfo.ExportDate != null)
-                    vehicleInfo.ExportHour = vehicleInfo.ExportDate.Value.ToString("hh:mm");
-                if (vehicleInfo.ImportDate != null)
-                    vehicleInfo.ImportHour = vehicleInfo.ImportDate.Value.ToString("hh:mm");
-                return vehicleInfo;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var vehicleInfo = _vehicleDAL.SelectByID(vehicleID);
+            if (vehicleInfo.ExportDate != null)
+                vehicleInfo.ExportHour = vehicleInfo.ExportDate.Value.ToString("hh:mm");
+            if (vehicleInfo.ImportDate != null)
+                vehicleInfo.ImportHour = vehicleInfo.ImportDate.Value.ToString("hh:mm");
+            return vehicleInfo;
         }
 
         public static tblVehicle GetByID(int vehicleID) {
@@ -191,51 +153,44 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public int Update(VehicleInfo vehicleInfo)
         {
-            try
+            // get hour and miniutes
+            if (!string.IsNullOrEmpty(vehicleInfo.ImportHour) && vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
             {
-                // get hour and miniutes
-                if (!string.IsNullOrEmpty(vehicleInfo.ImportHour) && vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
-                {
-                    var importHour = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[0]);
-                    var importMinitues = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[1]);
-                    // add import our
-                    vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddHours(importHour - vehicleInfo.ImportDate.Value.Hour);
-                    // Add imort minutes
-                    vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddMinutes(importMinitues - vehicleInfo.ImportDate.Value.Minute);
-                }
-
-                if (!string.IsNullOrEmpty(vehicleInfo.ExportHour) && vehicleInfo.ExportDate != null && vehicleInfo.IsExport)
-                {
-                    var exporttHour = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[0]);
-                    var exporMinitues = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[1]);
-                    // Add export minitues
-                    vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddMinutes(exporMinitues - vehicleInfo.ExportDate.Value.Minute);
-                    // Add export hour
-                    vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddHours(exporttHour - vehicleInfo.ExportDate.Value.Hour);
-                }
-
-
-                if (vehicleInfo.ImportDate == null || !vehicleInfo.IsImport)
-                {
-                    vehicleInfo.ImportDate = new DateTime(1900, 1, 1);
-                }
-
-                if (vehicleInfo.ExportDate == null || !vehicleInfo.IsExport)
-                {
-                    vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
-                }
-
-                if (!vehicleInfo.IsGoodsImported)
-                {
-                    vehicleInfo.ImportedLocalTime = new DateTime(1900, 1, 1);
-                }
-
-                return _vehicleDAL.Update(vehicleInfo);
+                var importHour = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[0]);
+                var importMinitues = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[1]);
+                // add import our
+                vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddHours(importHour - vehicleInfo.ImportDate.Value.Hour);
+                // Add imort minutes
+                vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddMinutes(importMinitues - vehicleInfo.ImportDate.Value.Minute);
             }
-            catch (Exception ex)
+
+            if (!string.IsNullOrEmpty(vehicleInfo.ExportHour) && vehicleInfo.ExportDate != null && vehicleInfo.IsExport)
             {
-                throw ex;
+                var exporttHour = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[0]);
+                var exporMinitues = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[1]);
+                // Add export minitues
+                vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddMinutes(exporMinitues - vehicleInfo.ExportDate.Value.Minute);
+                // Add export hour
+                vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddHours(exporttHour - vehicleInfo.ExportDate.Value.Hour);
             }
+
+
+            if (vehicleInfo.ImportDate == null || !vehicleInfo.IsImport)
+            {
+                vehicleInfo.ImportDate = new DateTime(1900, 1, 1);
+            }
+
+            if (vehicleInfo.ExportDate == null || !vehicleInfo.IsExport)
+            {
+                vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
+            }
+
+            if (!vehicleInfo.IsGoodsImported)
+            {
+                vehicleInfo.ImportedLocalTime = new DateTime(1900, 1, 1);
+            }
+
+            return _vehicleDAL.Update(vehicleInfo);
         }
 
         /// <summary>
@@ -259,38 +214,12 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effected</returns>
         public static int DeleteByID(int vehicleID)
         {
-            try
-            {
-                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
-                var vehicle = db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
-                db.DeleteObject(vehicle);
-                return db.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+            var vehicle = db.tblVehicles.Where(g => g.VehicleID == vehicleID).FirstOrDefault();
+            db.DeleteObject(vehicle);
+            return db.SaveChanges();
         }
-
-
-        public int UpdateExportConfirm(int vehicleID, int userId)
-        {
-
-            return _vehicleDAL.UpdateExportConfirm(vehicleID, userId);
-
-        }
-
-        public int UpdateImportConfirm(int vehicleID, int userId)
-        {
-            return _vehicleDAL.UpdateImportConfirm(vehicleID, userId);
-
-        }
-        public int UpdateLocalConfirm(int vehicleID, int userId)
-        {
-
-            return _vehicleDAL.UpdateLocalConfirm(vehicleID, userId);
-
-        }
+        
         /// <summary>
         /// Insert vehicel
         /// </summary>
@@ -298,48 +227,41 @@ namespace ECustoms.BOL
         /// <returns>Number of rows are effectd</returns>
         public int Insert(VehicleInfo vehicleInfo)
         {
-            try
+            
+            // get hour and miniutes
+            if (!string.IsNullOrEmpty(vehicleInfo.ImportHour) && vehicleInfo.ImportDate != null)
             {
-
-                // get hour and miniutes
-                if (!string.IsNullOrEmpty(vehicleInfo.ImportHour) && vehicleInfo.ImportDate != null)
-                {
-                    var importHour = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[0]);
-                    var importMinitues = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[1]);
-                    // add import our
-                    vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddHours(importHour - vehicleInfo.ImportDate.Value.Hour);
-                    // Add imort minutes
-                    vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddMinutes(importMinitues - vehicleInfo.ImportDate.Value.Minute);
-                }
-
-                if (!string.IsNullOrEmpty(vehicleInfo.ExportHour) && vehicleInfo.ExportDate != null)
-                {
-                    var exporttHour = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[0]);
-                    var exporMinitues = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[1]);
-                    // Add export minitues
-                    vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddMinutes(exporMinitues - vehicleInfo.ExportDate.Value.Minute);
-                    // Add export hour
-                    vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddHours(exporttHour - vehicleInfo.ExportDate.Value.Hour);
-                }
-
-                if (vehicleInfo.ImportDate == null)
-                {
-                    vehicleInfo.ImportDate = new DateTime(1900, 1, 1);
-                }
-                if (vehicleInfo.ExportDate == null)
-                {
-                    vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
-                }
-
-                if (_vehicleDAL.IsExistVehicleInDeclaration(vehicleInfo.PlateNumber, vehicleInfo.DeclarationID))
-                    throw new Exception("Biển số phương tiện đã tồn tại trong tời khai này");
-
-                return _vehicleDAL.Insert(vehicleInfo);
+                var importHour = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[0]);
+                var importMinitues = Convert.ToInt32(vehicleInfo.ImportHour.Split(':')[1]);
+                // add import our
+                vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddHours(importHour - vehicleInfo.ImportDate.Value.Hour);
+                // Add imort minutes
+                vehicleInfo.ImportDate = vehicleInfo.ImportDate.Value.AddMinutes(importMinitues - vehicleInfo.ImportDate.Value.Minute);
             }
-            catch (Exception ex)
+
+            if (!string.IsNullOrEmpty(vehicleInfo.ExportHour) && vehicleInfo.ExportDate != null)
             {
-                throw ex;
+                var exporttHour = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[0]);
+                var exporMinitues = Convert.ToInt32(vehicleInfo.ExportHour.Split(':')[1]);
+                // Add export minitues
+                vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddMinutes(exporMinitues - vehicleInfo.ExportDate.Value.Minute);
+                // Add export hour
+                vehicleInfo.ExportDate = vehicleInfo.ExportDate.Value.AddHours(exporttHour - vehicleInfo.ExportDate.Value.Hour);
             }
+
+            if (vehicleInfo.ImportDate == null)
+            {
+                vehicleInfo.ImportDate = new DateTime(1900, 1, 1);
+            }
+            if (vehicleInfo.ExportDate == null)
+            {
+                vehicleInfo.ExportDate = new DateTime(1900, 1, 1);
+            }
+
+            if (_vehicleDAL.IsExistVehicleInDeclaration(vehicleInfo.PlateNumber, vehicleInfo.DeclarationID))
+                throw new Exception("Biển số phương tiện đã tồn tại trong tời khai này");
+
+            return _vehicleDAL.Insert(vehicleInfo);
         }
     }
 }

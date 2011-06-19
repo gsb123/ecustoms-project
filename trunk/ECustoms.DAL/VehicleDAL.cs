@@ -58,32 +58,7 @@ namespace ECustoms.DAL
                 throw ex;
             }
         }
-
-        /// <summary>
-        /// Get list Vehicle whihc not import or export
-        /// </summary>
-        /// <returns>List vehicle objects</returns>
-        public List<VehicleInfo> SelectVehicleNotImportExport()
-        {
-            var result = new List<VehicleInfo>();
-            VehicleInfo vehicleInfo;
-            try
-            {
-                var dataTable = _dbConnection.ExecuteSelectQuery(ConstantInfo.SP_GETVEHICLENOTIMPORTEXPORT);
-                foreach (DataRow dr in dataTable.Rows)
-                {
-                    vehicleInfo = new VehicleInfo();
-                    vehicleInfo.CreateFrom(dr);
-                    result.Add(vehicleInfo);
-                }
-                return result;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
+        
 
         public List<VehicleInfo> GetExportingVehicles(int mode, int declarationID, string search)
         {
@@ -310,31 +285,7 @@ namespace ECustoms.DAL
                 throw ex;
             }
         }
-
-        public int UpdateLocalConfirm(int vehicleID, int userId)
-        {
-            var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
-            parameters[1] = new SqlParameter("@UserId", userId);
-            return _dbConnection.ExecuteNonQuery("sp_UpdateLocalConfirm", parameters);
-        }
-
-        public int UpdateImportConfirm(int vehicleID, int userId)
-        {
-            var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
-            parameters[1] = new SqlParameter("@UserId", userId);
-            return _dbConnection.ExecuteNonQuery("sp_UpdateImportConfirm", parameters);
-
-        }
-        public int UpdateExportConfirm(int vehicleID, int userId)
-        {
-
-            var parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@VehicleID", vehicleID);
-            parameters[1] = new SqlParameter("@UserId", userId);
-            return _dbConnection.ExecuteNonQuery("sp_UpdateExportConfirm", parameters);
-
-        }
+        
+        
     }
 }
