@@ -406,9 +406,9 @@ namespace ECustoms
 
                 if (MessageBox.Show(message.ToString(), "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    vehicleInfo.ExportDate = DateTime.Now;                    
+                    vehicleInfo.ExportDate = DateTime.Now;
 
-                    if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                    if (vehicleInfo.ConfirmExportBy != null && vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
                     vehicleInfo.ConfirmExportBy = _userInfo.UserID;
@@ -441,7 +441,7 @@ namespace ECustoms
                     vehicle.IsImport = true;
                     vehicle.HasGoodsImported = true;
                     vehicle.ImportStatus = "Nhập cảnh có hàng";
-                    if (vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
+                    if (vehicle.ConfirmImportBy != null && vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
                     vehicle.ConfirmImportBy = _userInfo.UserID;
@@ -470,7 +470,7 @@ namespace ECustoms
                     vehicle.ImportDate = DateTime.Now;                    
                     vehicle.IsImport = true;
                     vehicle.HasGoodsImported = false;
-                    if (vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
+                    if (vehicle.ConfirmImportBy != null && vehicle.ConfirmImportBy != 0 && vehicle.ConfirmImportBy != _userInfo.UserID)
                         throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
                     vehicle.ConfirmImportBy = _userInfo.UserID;
@@ -497,7 +497,7 @@ namespace ECustoms
                 // is completed when user is confirm is local 
                 vehicleInfo.IsCompleted = true;
 
-                if (vehicleInfo.ConfirmLocalImportBy != 0 && vehicleInfo.ConfirmLocalImportBy != _userInfo.UserID)
+                if (vehicleInfo.ConfirmLocalImportBy != null && vehicleInfo.ConfirmLocalImportBy != 0 && vehicleInfo.ConfirmLocalImportBy != _userInfo.UserID)
                     throw new Exception("Phương tiện đã được xác nhận bởi một người dùng khác!");
 
                 vehicleInfo.ConfirmLocalImportBy = _userInfo.UserID;
