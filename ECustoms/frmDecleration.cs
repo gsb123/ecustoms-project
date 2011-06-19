@@ -129,6 +129,7 @@ namespace ECustoms
             }
             else {  // No result
                 lblHeader.Text = "";
+                listViewVehicle.Clear();
             }
         }
 
