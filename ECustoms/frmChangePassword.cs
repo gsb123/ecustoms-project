@@ -14,7 +14,7 @@ namespace ECustoms
     public partial class frmChangePassword : Form
     {
         private UserInfo _userInfo;
-        private UserBOL _userBOL = new UserBOL();
+        private UserFactory _userBOL = new UserFactory();
         public frmChangePassword(UserInfo userInfor)
         {
             InitializeComponent();

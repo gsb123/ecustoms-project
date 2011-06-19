@@ -9,12 +9,12 @@ using System.Configuration;
 
 namespace ECustoms.BOL
 {
-    public class DeclarationBOL
+    public class DeclarationFactory
     {
         private readonly string _dbConnectionString;        
         private readonly VehicleDAL _vehicleDAL;
 
-        public DeclarationBOL()
+        public DeclarationFactory()
         {
             _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _vehicleDAL = new VehicleDAL(_dbConnectionString);

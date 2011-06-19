@@ -11,12 +11,12 @@ namespace ECustoms.BOL
     /// <summary>
     /// Get datatable for reporting.
     /// </summary>
-    public class ReportBOL
+    public class ReportFactory
     {
         private readonly string _dbConnectionString;
         private readonly ReportDAL _reportDAL;
 
-        public ReportBOL()
+        public ReportFactory()
         {
             _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
             _reportDAL = new ReportDAL(_dbConnectionString);

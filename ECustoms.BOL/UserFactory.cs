@@ -8,13 +8,13 @@ using System.Configuration;
 
 namespace ECustoms.BOL
 {
-    public class UserBOL
+    public class UserFactory
     {
         private readonly string _dbConnectionString;
 
         private readonly UserDAL _userDAL;
 
-        public UserBOL()
+        public UserFactory()
         {
             // Get connectionString from the config file
             _dbConnectionString = Utilities.Common.Decrypt(System.Configuration.ConfigurationSettings.AppSettings["connectionString"], true);
