@@ -33,10 +33,6 @@
             this.printControlToolBar1 = new ReportPrinting.PrintControlToolBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpImportTo = new System.Windows.Forms.DateTimePicker();
-            this.dtpImportFrom = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbReportType = new System.Windows.Forms.ComboBox();
@@ -73,10 +69,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dtpImportTo);
-            this.groupBox1.Controls.Add(this.dtpImportFrom);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbReportType);
@@ -92,46 +84,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(261, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 20);
-            this.label4.TabIndex = 25;
-            this.label4.Text = "NC Tới:";
-            // 
-            // dtpImportTo
-            // 
-            this.dtpImportTo.CustomFormat = "dd/MM/yyyy";
-            this.dtpImportTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtpImportTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpImportTo.Location = new System.Drawing.Point(336, 57);
-            this.dtpImportTo.Name = "dtpImportTo";
-            this.dtpImportTo.Size = new System.Drawing.Size(118, 26);
-            this.dtpImportTo.TabIndex = 24;
-            // 
-            // dtpImportFrom
-            // 
-            this.dtpImportFrom.CustomFormat = "dd/MM/yyyy";
-            this.dtpImportFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtpImportFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpImportFrom.Location = new System.Drawing.Point(336, 16);
-            this.dtpImportFrom.Name = "dtpImportFrom";
-            this.dtpImportFrom.Size = new System.Drawing.Size(118, 26);
-            this.dtpImportFrom.TabIndex = 23;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(264, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 20);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "NC Từ:";
-            // 
             // btnSearch
             // 
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -139,7 +91,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(510, 17);
+            this.btnSearch.Location = new System.Drawing.Point(113, 105);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(111, 33);
             this.btnSearch.TabIndex = 21;
@@ -152,7 +104,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(7, 100);
+            this.label3.Location = new System.Drawing.Point(284, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 20);
             this.label3.TabIndex = 20;
@@ -162,7 +114,7 @@
             // 
             this.cbReportType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbReportType.FormattingEnabled = true;
-            this.cbReportType.Location = new System.Drawing.Point(113, 97);
+            this.cbReportType.Location = new System.Drawing.Point(400, 16);
             this.cbReportType.Name = "cbReportType";
             this.cbReportType.Size = new System.Drawing.Size(261, 28);
             this.cbReportType.TabIndex = 19;
@@ -173,9 +125,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(37, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 20);
+            this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 18;
-            this.label2.Text = "XC Tới:";
+            this.label2.Text = "Tới:";
             // 
             // dtpExportTo
             // 
@@ -201,11 +153,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(40, 23);
+            this.label1.Location = new System.Drawing.Point(40, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 20);
+            this.label1.Size = new System.Drawing.Size(31, 20);
             this.label1.TabIndex = 13;
-            this.label1.Text = "XC Từ:";
+            this.label1.Text = "Từ:";
             // 
             // frmReport
             // 
@@ -239,9 +191,5 @@
         private System.Windows.Forms.DateTimePicker dtpExportTo;
         private System.Windows.Forms.DateTimePicker dtpExportFrom;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpImportTo;
-        private System.Windows.Forms.DateTimePicker dtpImportFrom;
-        private System.Windows.Forms.Label label5;
     }
 }
