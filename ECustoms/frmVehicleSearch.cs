@@ -9,6 +9,7 @@ using ECustoms.Utilities;
 using Microsoft.Office.Interop.Excel;
 using Point = System.Drawing.Point;
 using System.Data;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -64,25 +65,17 @@ namespace ECustoms
 
         private void BindData()
         {
-            grdVehicle.AutoGenerateColumns = false;
-            System.Data.DataTable dataTable;
-            _dtResult = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
+            grdVehicle.AutoGenerateColumns = false;  
+            List<ViewAllVehicle> result;
+             result = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
                                                      dtpExportFrom.Value, dtpExportTo.Value);
 
 
-            grdVehicle.DataSource = _dtResult;
+            grdVehicle.DataSource = result;
 
             try
             {
-
-                var result = new List<VehicleInfo>();
-                foreach (DataRow dr in _dtResult.Rows)
-                {
-                    var vehicleInfo = new VehicleInfo();
-                    vehicleInfo.CreateFrom(dr);
-                    result.Add(vehicleInfo);
-                }
-
+                
 
                 /*
                  * 
@@ -126,20 +119,20 @@ namespace ECustoms
                 int xeVaoNoiDia = 0;
 
 
-                foreach (VehicleInfo v in result)
+                foreach (var v in result)
                 {
                     // Do something here
 
                     // Xe khong cho hang da xuat canh
-                    if (v.IsExport && v.DeclarationNumberExport == 0)
+                    if (v.IsExport != null &&  v.IsExport.Value && v.Number == 0)
                         xeKhongChoHangDaXC++;
-                    if (v.IsImport && !v.HasGoodsImported)
+                    if (v.IsImport != null && v.IsImport.Value && v.HasGoodsImported != null &&  !v.HasGoodsImported.Value)
                         xeKhongChoHangDaNC++;
-                    if (v.IsExport && v.DeclarationNumberExport != 0)
+                    if (v.IsExport != null && v.IsExport.Value && v.DeclarationNumberExport != 0)
                         xeCoHangDaXC++;
-                    if (v.IsImport && v.HasGoodsImported)
+                    if (v.IsImport !=null &&  v.IsImport.Value && v.HasGoodsImported !=null && v.HasGoodsImported.Value)
                         xeNhapHangDaNC++;
-                    if (v.IsGoodsImported)
+                    if (v.IsGoodsImported !=null &&  v.IsGoodsImported.Value)
                         xeVaoNoiDia++;
 
                 }
@@ -185,17 +178,18 @@ namespace ECustoms
                 return;
             }
 
-            if (cbIsImport.Checked && cbIsExport.Checked)
+            if (cbIsImport.Checked && cbIsExport.Checked) // completed
             {
                 EnabledImport(true);
                 cbIsNotImport.Checked = false;
                 cbIsNotImport.Enabled = false;
+                cbIsCompleted.Checked = true;
 
             }
-            else
+            else if(!cbIsCompleted.Checked)
             {
                 EnabledImport(false);
-                cbIsNotImport.Enabled = true;
+                cbIsNotImport.Enabled = true;                
             }
         }
 
@@ -236,11 +230,11 @@ namespace ECustoms
         }
 
         private void cbIsNotImport_CheckedChanged(object sender, EventArgs e)
-        {
+        {           
             // Import
             if (!cbIsExport.Checked && cbIsNotImport.Checked)
             {
-                MessageBox.Show("Bạn phải nhập thời gian nhập cảnh.");
+                MessageBox.Show("Bạn phải nhập thời gian xuất cảnh.");
                 cbIsNotImport.Checked = false;
                 return;
             }
@@ -515,6 +509,16 @@ namespace ECustoms
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void cbIsCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbIsCompleted.Checked) {
+                cbIsNotImport.Checked = false;
+                cbIsNotImport.Enabled = false;
+            } else {                
+                cbIsNotImport.Enabled = true;
             }
         }
 
