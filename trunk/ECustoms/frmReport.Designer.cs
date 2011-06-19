@@ -40,8 +40,10 @@
             this.dtpExportTo = new System.Windows.Forms.DateTimePicker();
             this.dtpExportFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // reportDocument1
@@ -62,9 +64,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 198);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(737, 294);
+            this.dataGridView1.Size = new System.Drawing.Size(715, 257);
             this.dataGridView1.TabIndex = 1;
             // 
             // groupBox1
@@ -79,10 +81,10 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.groupBox1.Location = new System.Drawing.Point(12, 48);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(737, 144);
+            this.groupBox1.Size = new System.Drawing.Size(727, 144);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tìm kiếm";
+            this.groupBox1.Text = "Điều kiện tìm kiếm";
             // 
             // btnSearch
             // 
@@ -91,7 +93,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(113, 105);
+            this.btnSearch.Location = new System.Drawing.Point(6, 105);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(111, 33);
             this.btnSearch.TabIndex = 21;
@@ -104,7 +106,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(284, 19);
+            this.label3.Location = new System.Drawing.Point(6, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 20);
             this.label3.TabIndex = 20;
@@ -114,16 +116,16 @@
             // 
             this.cbReportType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbReportType.FormattingEnabled = true;
-            this.cbReportType.Location = new System.Drawing.Point(400, 16);
+            this.cbReportType.Location = new System.Drawing.Point(122, 28);
             this.cbReportType.Name = "cbReportType";
-            this.cbReportType.Size = new System.Drawing.Size(261, 28);
+            this.cbReportType.Size = new System.Drawing.Size(292, 28);
             this.cbReportType.TabIndex = 19;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(37, 61);
+            this.label2.Location = new System.Drawing.Point(246, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 18;
@@ -134,7 +136,7 @@
             this.dtpExportTo.CustomFormat = "dd/MM/yyyy";
             this.dtpExportTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpExportTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpExportTo.Location = new System.Drawing.Point(113, 55);
+            this.dtpExportTo.Location = new System.Drawing.Point(296, 68);
             this.dtpExportTo.Name = "dtpExportTo";
             this.dtpExportTo.Size = new System.Drawing.Size(118, 26);
             this.dtpExportTo.TabIndex = 17;
@@ -144,7 +146,7 @@
             this.dtpExportFrom.CustomFormat = "dd/MM/yyyy";
             this.dtpExportFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpExportFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpExportFrom.Location = new System.Drawing.Point(113, 16);
+            this.dtpExportFrom.Location = new System.Drawing.Point(122, 67);
             this.dtpExportFrom.Name = "dtpExportFrom";
             this.dtpExportFrom.Size = new System.Drawing.Size(118, 26);
             this.dtpExportFrom.TabIndex = 16;
@@ -153,20 +155,31 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(40, 22);
+            this.label1.Location = new System.Drawing.Point(6, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 20);
             this.label1.TabIndex = 13;
             this.label1.Text = "Từ:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 210);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(727, 292);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Kết quả";
+            // 
             // frmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 504);
+            this.ClientSize = new System.Drawing.Size(747, 504);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.printControlToolBar1);
-            this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReport";
             this.Text = "In báo cáo";
@@ -174,6 +187,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -191,5 +205,6 @@
         private System.Windows.Forms.DateTimePicker dtpExportTo;
         private System.Windows.Forms.DateTimePicker dtpExportFrom;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
