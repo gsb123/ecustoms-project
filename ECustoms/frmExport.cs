@@ -108,10 +108,12 @@ namespace ECustoms
                         if (grdVehicle.Rows[i].Cells["Status"].Value != null)
                             vehicleInfo.Status = grdVehicle.Rows[i].Cells["Status"].Value.ToString();
                             
+                        // TODO: Có thể thiếu trường HasGoodExport
                         if (!string.IsNullOrEmpty(txtImportNumber.Text) && Convert.ToInt32(txtImportNumber.Text) > 0)
                             vehicleInfo.HasGoodsImported = true;
                         else
-                            vehicleInfo.HasGoodsImported = false;
+                            vehicleInfo.HasGoodsImported = false;                        
+
                         // Add to list vehicles
                         listVehicleInfo.Add(vehicleInfo);
                         
@@ -311,13 +313,9 @@ namespace ECustoms
                     {
                         cbExportHasDeclaration.Checked = false;
                         gbExportDeclaration.Enabled = false;
+                        gbImportDeclaration.Enabled = false;
                     }
-                    else
-                    {
-                        cbExportHasDeclaration.Checked = true;
-                        gbExportDeclaration.Enabled = true;
-                    }
-
+                    
                     txtImportNumber.Text = declarationInfo.ImportNumber.ToString();
                     txtImportProductName.Text = declarationInfo.ImportProductName;
                     txtImportCompanyName.Text = declarationInfo.ImportCompanyName;
@@ -331,12 +329,8 @@ namespace ECustoms
                         cbImportHasDeclaration.Checked = false;
                         gbImportDeclaration.Enabled = false;
                     }
-                    else
-                    {
-                        cbImportHasDeclaration.Checked = true;
-                        gbImportDeclaration.Enabled = true;
-                    }
-                }
+
+                  }
 
                 // Get Vehicle by DeclarationID
                 var listVehicle = _vehicleBOL.SelectByDeclarationID(this._declerationID);
@@ -706,8 +700,8 @@ namespace ECustoms
 
             var declarationInfo = DeclarationFactory.SelectByID(this._declerationID);
 
-
-            if (_mode == 0 || (declarationInfo != null && declarationInfo.ImportNumber < 1))
+            // Move all data from export form to import form if it is not existing
+            if (_mode == 0 || (declarationInfo != null && (declarationInfo.ImportNumber != null || declarationInfo.ImportNumber < 1)))
             {
                 txtImportNumber.Text = txtExportNumber.Text;
                 txtImportCompanyName.Text = txtExportCompanyName.Text;

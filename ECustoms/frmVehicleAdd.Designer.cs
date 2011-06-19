@@ -106,17 +106,17 @@
             // 
             // txtNumberOfContainer
             // 
-            this.txtNumberOfContainer.Location = new System.Drawing.Point(675, 33);
-            this.txtNumberOfContainer.MaxLength = 4;
+            this.txtNumberOfContainer.Location = new System.Drawing.Point(654, 30);
+            this.txtNumberOfContainer.MaxLength = 12;
             this.txtNumberOfContainer.Name = "txtNumberOfContainer";
-            this.txtNumberOfContainer.Size = new System.Drawing.Size(33, 26);
+            this.txtNumberOfContainer.Size = new System.Drawing.Size(83, 26);
             this.txtNumberOfContainer.TabIndex = 3;
             // 
             // lblNumberOfContainer
             // 
             this.lblNumberOfContainer.AutoSize = true;
             this.lblNumberOfContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfContainer.Location = new System.Drawing.Point(567, 33);
+            this.lblNumberOfContainer.Location = new System.Drawing.Point(546, 30);
             this.lblNumberOfContainer.Name = "lblNumberOfContainer";
             this.lblNumberOfContainer.Size = new System.Drawing.Size(102, 20);
             this.lblNumberOfContainer.TabIndex = 2;
@@ -124,7 +124,7 @@
             // 
             // txtDriverName
             // 
-            this.txtDriverName.Location = new System.Drawing.Point(388, 31);
+            this.txtDriverName.Location = new System.Drawing.Point(367, 27);
             this.txtDriverName.Name = "txtDriverName";
             this.txtDriverName.Size = new System.Drawing.Size(173, 26);
             this.txtDriverName.TabIndex = 2;
@@ -133,7 +133,7 @@
             // 
             this.lblDriverName.AutoSize = true;
             this.lblDriverName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDriverName.Location = new System.Drawing.Point(298, 31);
+            this.lblDriverName.Location = new System.Drawing.Point(286, 31);
             this.lblDriverName.Name = "lblDriverName";
             this.lblDriverName.Size = new System.Drawing.Size(75, 20);
             this.lblDriverName.TabIndex = 4;
@@ -154,7 +154,7 @@
             this.txtStatus.Location = new System.Drawing.Point(130, 131);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(581, 50);
+            this.txtStatus.Size = new System.Drawing.Size(607, 50);
             this.txtStatus.TabIndex = 9;
             // 
             // txtNote
@@ -162,7 +162,7 @@
             this.txtNote.Location = new System.Drawing.Point(130, 187);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(581, 55);
+            this.txtNote.Size = new System.Drawing.Size(607, 55);
             this.txtNote.TabIndex = 10;
             // 
             // lblNote

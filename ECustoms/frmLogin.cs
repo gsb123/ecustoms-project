@@ -25,6 +25,7 @@ namespace ECustoms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             try
             {                
                 //logger.Info("btnLogin_Click");
@@ -85,8 +86,7 @@ namespace ECustoms
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
-        {
-            logger =  log4net.LogManager.GetLogger("Ecustoms.frmLogin");
+        {                                    
             this.Text = "Đăng nhập" + ConstantInfo.MESSAGE_TITLE;
             _userBOL = new UserFactory();
         }
