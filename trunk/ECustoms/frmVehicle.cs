@@ -602,12 +602,12 @@ namespace ECustoms
                     vehicle.Status = txtStatus.Text;
                     vehicle.Note = txtNote.Text;
                     vehicle.IsExport = _isExport;
-                    vehicle.IsImport = _isImport;                    
-                    
-                    if (vehicle.ConfirmExportBy.Value == 0 && vehicle.IsExport.Value)
+                    vehicle.IsImport = _isImport;
+
+                    if ((vehicle.ConfirmExportBy == null) || (vehicle.ConfirmExportBy.Value == 0 && vehicle.IsExport.Value))
                         vehicle.ConfirmExportBy = _userInfo.UserID;
 
-                    if (vehicle.ConfirmImportBy.Value == 0 && vehicle.IsImport.Value)
+                    if ((vehicle.ConfirmImportBy == null) || (vehicle.ConfirmImportBy.Value == 0 && vehicle.IsImport.Value))
                         vehicle.ConfirmImportBy = _userInfo.UserID;
 
                     vehicle.ImportedLocalTime = new DateTime(1900, 1, 1);
