@@ -16,7 +16,7 @@ namespace ECustoms
     {
         //private readonly ILog logger;
         private UserFactory _userBOL;
-        private static log4net.ILog logger;
+        private static log4net.ILog logger =  LogManager.GetLogger("Ecustoms.frmLogin");
 
         public frmLogin()
         {            
