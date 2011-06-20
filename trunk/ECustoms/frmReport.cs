@@ -72,9 +72,16 @@ namespace ECustoms
 
             string reportName = cbReportType.SelectedItem.ToString();
             DataTable reportTable = facade.GetReportTable(type, fromExport, toExport);
+            
             dataGridView1.DataSource = reportTable;
+            for (int i = 0; i < dataGridView1.Columns.Count; i++) {
+                if (i != 0) {
+                    dataGridView1.Columns[i].Width = 200;                
+                }
+                
+            }
+            
             this.reportDocument1.ReportMaker = GetReportMaker(reportTable, reportName);
-
         }
 
 

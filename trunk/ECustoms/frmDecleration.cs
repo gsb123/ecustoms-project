@@ -40,24 +40,34 @@ namespace ECustoms
 
         private void frmDecleration_Load(object sender, EventArgs e)
         {
-            this.FormClosed += new FormClosedEventHandler(frmDecleration_FormClosed);
-            this.Text = "Danh sách tờ khai" + ConstantInfo.MESSAGE_TITLE;
-            // Show form to the center
-            this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
-            _declarationBOL = new DeclarationFactory();
+            try
+            {
+                this.FormClosed += new FormClosedEventHandler(frmDecleration_FormClosed);
+                this.Text = "Danh sách tờ khai" + ConstantInfo.MESSAGE_TITLE;
+                // Show form to the center
+                this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
+                _declarationBOL = new DeclarationFactory();
 
-            this._listDeclarationinfo = DeclarationFactory.SelectAllFromView();
-            BindData();
-            txtDeclaraceNumber.Focus();
-            InitialPermission();
+                this._listDeclarationinfo = DeclarationFactory.SelectAllFromView();
+                BindData();
+                txtDeclaraceNumber.Focus();
+                InitialPermission();
 
-            //Start a timer
+                //Start a timer
 
-            // The secret here :)
-            this.aTimer = new System.Timers.Timer();
-            this.aTimer.Elapsed += new ElapsedEventHandler(OnTimerMonitor);
-            this.aTimer.Interval = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["TimeDelay"])*1000;
-            this.aTimer.Enabled = true;
+                // The secret here :)
+                this.aTimer = new System.Timers.Timer();
+                this.aTimer.Elapsed += new ElapsedEventHandler(OnTimerMonitor);
+                this.aTimer.Interval = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["TimeDelay"]) * 1000;
+                this.aTimer.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         void frmDecleration_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,34 +113,45 @@ namespace ECustoms
         /// </summary>
         public void BindData()
         {
-            // Get declaration from database
-            _listDeclarationinfo = DeclarationFactory.SelectAllFromView();
-            var declarationNumber = txtDeclaraceNumber.Text.Trim();
-            var companyName = txtCompanyName.Text.Trim();
-            List<ViewAllDeclaration> result = null;
-            
-            
-            if (string.IsNullOrEmpty(txtDeclaraceNumber.Text) && string.IsNullOrEmpty(txtCompanyName.Text))
+            try
             {
-                result = _listDeclarationinfo;
-            }
-            else if (string.IsNullOrEmpty(txtCompanyName.Text)) { //has nunber, not has copany name
-                result = _listDeclarationinfo.Where(d => d.Number.ToString().Contains(declarationNumber) || d.ImportNumber.ToString().Contains(declarationNumber)).ToList();
-            }
-            else if (string.IsNullOrEmpty(txtDeclaraceNumber.Text)) { // has company name, has not number
-                result = _listDeclarationinfo.Where(d => (d.CompanyName != null) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
-            }
-            grvDecleration.AutoGenerateColumns = false;
-            grvDecleration.DataSource = result;
+                // Get declaration from database
+                _listDeclarationinfo = DeclarationFactory.SelectAllFromView();
+                var declarationNumber = txtDeclaraceNumber.Text.Trim();
+                var companyName = txtCompanyName.Text.Trim();
+                List<ViewAllDeclaration> result = null;
 
-            if (result != null && result.Count > 0)
+
+                if (string.IsNullOrEmpty(txtDeclaraceNumber.Text) && string.IsNullOrEmpty(txtCompanyName.Text))
+                {
+                    result = _listDeclarationinfo;
+                }
+                else if (string.IsNullOrEmpty(txtCompanyName.Text))
+                { //has nunber, not has copany name
+                    result = _listDeclarationinfo.Where(d => d.Number.ToString().Contains(declarationNumber) || d.ImportNumber.ToString().Contains(declarationNumber)).ToList();
+                }
+                else if (string.IsNullOrEmpty(txtDeclaraceNumber.Text))
+                { // has company name, has not number
+                    result = _listDeclarationinfo.Where(d => (d.CompanyName != null) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
+                }
+                grvDecleration.AutoGenerateColumns = false;
+                grvDecleration.DataSource = result;
+
+                if (result != null && result.Count > 0)
+                {
+                    SetVehicleInfo(grvDecleration.Rows[0]);
+                }
+                else
+                {  // No result
+                    lblHeader.Text = "";
+                    listViewVehicle.Clear();
+                }
+            }
+            catch (Exception ex)
             {
-                SetVehicleInfo(grvDecleration.Rows[0]);
-            }
-            else {  // No result
-                lblHeader.Text = "";
-                listViewVehicle.Clear();
-            }
+
+                logger.Error(ex.ToString());
+            }            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -181,6 +202,7 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 MessageBox.Show(ex.ToString());                
             }
 
@@ -268,14 +290,23 @@ namespace ECustoms
 
         private void BindSearch() 
         {
-            var declarationNumber = txtDeclaraceNumber.Text.Trim();
-            var companyName = txtCompanyName.Text.Trim();
-            List<tblDeclaration> result = null;
-            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+            try
+            {
+                var declarationNumber = txtDeclaraceNumber.Text.Trim();
+                var companyName = txtCompanyName.Text.Trim();
+                List<tblDeclaration> result = null;
+                var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+
+                List<tblDeclaration> listDeclaration = db.tblDeclarations.ToList();
+                result = listDeclaration.Where(d => (d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber)) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
+                grvDecleration.DataSource = result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                logger.Error(ex.ToString());
+            }
             
-            List<tblDeclaration> listDeclaration = db.tblDeclarations.ToList();
-            result = listDeclaration.Where(d => (d.Number.ToString().Equals(declarationNumber) || d.ImportNumber.ToString().Equals(declarationNumber)) && (d.CompanyName.Contains(companyName) || d.ImportCompanyName.Contains(companyName))).ToList();
-            grvDecleration.DataSource = result;
         }
 
         private void grvDecleration_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -308,49 +339,57 @@ namespace ECustoms
         /// </summary>
         /// <param name="row"></param>
         private void SetVehicleInfo(DataGridViewRow row) {
-            // Clear result
-            listViewVehicle.Clear();
-            lblHeader.Visible = true;
-
-            var exportNumber = row.Cells["Number"].Value;
-            var importNumber = row.Cells["ImportNumber"].Value;
-            lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
-            // Get List vehicle 
-            var declaractionID = Convert.ToInt32(row.Cells["DeclarationID"].Value);
-            var vehicleBOL = new VehicleFactory();
-            var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
-            StringBuilder vehicleInfo;
-            // return if does not any vehicle
-            if (listVehicle.Count <= 0) return;
-            for (int i = 0; i < listVehicle.Count; i++)
+            try
             {
-                var currentVehicle = listVehicle[i];
-                vehicleInfo = new StringBuilder();
-                vehicleInfo.Append("Xe " + i + "; ");
-                // Exported information
-                if (currentVehicle.IsExport) // Exported
-                    vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
-                else // not exported
-                    vehicleInfo.Append(" Chưa XC;");
-                // Import Information
-                if (currentVehicle.IsImport) // Imported
-                    vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
-                else // not imported
-                    vehicleInfo.Append(" Chưa NC;");
-                // hasGoodsImport
-                if (currentVehicle.HasGoodsImported)
-                    vehicleInfo.Append(" Có chở hàng NK;");
-                else
-                    vehicleInfo.Append(" Không chở hàng NK;");
-                // Go to local
-                if (currentVehicle.IsGoodsImported)
-                    vehicleInfo.Append(" Đã vào nội địa");
-                else
-                    vehicleInfo.Append(" Chưa vào nội địa");
+                // Clear result
+                listViewVehicle.Clear();
+                lblHeader.Visible = true;
 
-                // Add data to listView
-                listViewVehicle.Items.Add(vehicleInfo.ToString());
-            }                
+                var exportNumber = row.Cells["Number"].Value;
+                var importNumber = row.Cells["ImportNumber"].Value;
+                lblHeader.Text = "Thông tin về phương tiện chở hàng cho tờ khai xuất " + exportNumber + "; Tờ khai nhập " + importNumber + ":";
+                // Get List vehicle 
+                var declaractionID = Convert.ToInt32(row.Cells["DeclarationID"].Value);
+                var vehicleBOL = new VehicleFactory();
+                var listVehicle = vehicleBOL.SelectByDeclarationID(declaractionID);
+                StringBuilder vehicleInfo;
+                // return if does not any vehicle
+                if (listVehicle.Count <= 0) return;
+                for (int i = 0; i < listVehicle.Count; i++)
+                {
+                    var currentVehicle = listVehicle[i];
+                    vehicleInfo = new StringBuilder();
+                    vehicleInfo.Append("Xe " + i + "; ");
+                    // Exported information
+                    if (currentVehicle.IsExport) // Exported
+                        vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                    else // not exported
+                        vehicleInfo.Append(" Chưa XC;");
+                    // Import Information
+                    if (currentVehicle.IsImport) // Imported
+                        vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                    else // not imported
+                        vehicleInfo.Append(" Chưa NC;");
+                    // hasGoodsImport
+                    if (currentVehicle.HasGoodsImported)
+                        vehicleInfo.Append(" Có chở hàng NK;");
+                    else
+                        vehicleInfo.Append(" Không chở hàng NK;");
+                    // Go to local
+                    if (currentVehicle.IsGoodsImported)
+                        vehicleInfo.Append(" Đã vào nội địa");
+                    else
+                        vehicleInfo.Append(" Chưa vào nội địa");
+
+                    // Add data to listView
+                    listViewVehicle.Items.Add(vehicleInfo.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+                            
         }
     }
 }

@@ -79,7 +79,7 @@
             this.groupBox1.Controls.Add(this.dtpExportFrom);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.groupBox1.Location = new System.Drawing.Point(12, 48);
+            this.groupBox1.Location = new System.Drawing.Point(12, 54);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(727, 144);
             this.groupBox1.TabIndex = 16;
@@ -118,25 +118,25 @@
             this.cbReportType.FormattingEnabled = true;
             this.cbReportType.Location = new System.Drawing.Point(122, 28);
             this.cbReportType.Name = "cbReportType";
-            this.cbReportType.Size = new System.Drawing.Size(292, 28);
+            this.cbReportType.Size = new System.Drawing.Size(372, 28);
             this.cbReportType.TabIndex = 19;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(246, 73);
+            this.label2.Location = new System.Drawing.Point(272, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 20);
+            this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Tới:";
+            this.label2.Text = "Thơi gian tới:";
             // 
             // dtpExportTo
             // 
             this.dtpExportTo.CustomFormat = "dd/MM/yyyy";
             this.dtpExportTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpExportTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpExportTo.Location = new System.Drawing.Point(296, 68);
+            this.dtpExportTo.Location = new System.Drawing.Point(376, 68);
             this.dtpExportTo.Name = "dtpExportTo";
             this.dtpExportTo.Size = new System.Drawing.Size(118, 26);
             this.dtpExportTo.TabIndex = 17;
@@ -157,9 +157,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label1.Location = new System.Drawing.Point(6, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 20);
+            this.label1.Size = new System.Drawing.Size(95, 20);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Từ:";
+            this.label1.Text = "Thời gian từ:";
             // 
             // groupBox2
             // 
