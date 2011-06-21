@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
 using log4net;
+using ECustoms.DAL;
 
 namespace ECustoms
 {
@@ -18,12 +19,12 @@ namespace ECustoms
         public event OnSelectedVehicleHandler OnSelectedVehichle;
         public delegate void OnSelectedVehicleHandler(object sender, EventArgs e);
         private List<VehicleInfo> _vehicleList;
+        private List<tblVehicle> _vehicles;
         private int _declarationID;
         public frmVehicleSelect(int declarationID)
         {
             InitializeComponent();
             _declarationID = declarationID;
-
         }
 
         private void LoadExportedVehichles(int mode, int declarationID, string search)
@@ -61,10 +62,14 @@ namespace ECustoms
                 if (grdVehicle.SelectedRows.Count == 1)
                 {
                     var vehicleInfo = verhicleBL.SelectByID(int.Parse(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value.ToString()));
-                    OnSelectedVehichle(this, new SelectedVehichleEventArgs() { Vehicle = vehicleInfo });
-                    _vehicleList = _vehicleList.Where(v => v.VehicleID != vehicleInfo.VehicleID).ToList(); ;
-                    grdVehicle.AutoGenerateColumns = false;
-                    grdVehicle.DataSource = _vehicleList;
+                    try
+                    {
+                        OnSelectedVehichle(this, new SelectedVehichleEventArgs() { Vehicle = vehicleInfo });
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Phương tiện này đã tồn tại trong tờ khai!");
+                    }
                 }
                 else
                 {
@@ -86,24 +91,25 @@ namespace ECustoms
         private void frmVehicleSelect_Load(object sender, EventArgs e)
         {
             this.Text = "Thêm từ phương tiện đã xuất khẩu" + ConstantInfo.MESSAGE_TITLE;
+            BindData();
+        }
+
+        private void BindData() {
+            _vehicles = VehicleFactory.GetExported();
+            grdVehicle.AutoGenerateColumns = false;
+            grdVehicle.DataSource = _vehicles;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // Search
-            // Exported
-            //int mode = 3;
-
-            if (txtPlate.Text.Trim().Equals(""))
-                MessageBox.Show("Bạn phải nhập đầy đủ BKS");
+            if (string.IsNullOrEmpty(txtPlate.Text))
+            {
+                BindData();
+            }
             else
             {
-                int mode = 0;
-                if (rbChuaNhap.Checked)
-                    mode = 1;
-                else mode = 2;
-
-                LoadExportedVehichles(mode, _declarationID, txtPlate.Text.Trim());
+                _vehicles = _vehicles.Where(g => g.PlateNumber.ToUpper().Contains(txtPlate.Text.ToUpper())).ToList();
+                grdVehicle.DataSource = _vehicles;
             }
         }
     }

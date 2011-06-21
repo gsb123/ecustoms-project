@@ -68,6 +68,7 @@
             this.btnLocalConfirm = new System.Windows.Forms.Button();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExportType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DriverName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -384,6 +385,7 @@
             this.grdVehicle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
             this.ExportType,
+            this.RegisterDate,
             this.PlateNumber,
             this.DriverName,
             this.Status,
@@ -540,6 +542,14 @@
             this.ExportType.Name = "ExportType";
             this.ExportType.ReadOnly = true;
             this.ExportType.Width = 150;
+            // 
+            // RegisterDate
+            // 
+            this.RegisterDate.DataPropertyName = "RegisterDate";
+            this.RegisterDate.HeaderText = "Ngày đăng ký";
+            this.RegisterDate.Name = "RegisterDate";
+            this.RegisterDate.ReadOnly = true;
+            this.RegisterDate.Width = 170;
             // 
             // PlateNumber
             // 
@@ -780,6 +790,7 @@
         private System.Windows.Forms.CheckBox cbIsCompleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn Number;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExportType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegisterDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlateNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DriverName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;

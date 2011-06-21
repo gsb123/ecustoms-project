@@ -31,20 +31,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVehicleSelect));
             this.grdVehicle = new System.Windows.Forms.DataGridView();
-            this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DriverName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddVehichle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbOldPass = new System.Windows.Forms.Label();
             this.txtPlate = new System.Windows.Forms.TextBox();
-            this.rbChuaNhap = new System.Windows.Forms.RadioButton();
-            this.rBCoHang = new System.Windows.Forms.RadioButton();
+            this.PlateNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DriverName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VehicleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdVehicle)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -65,9 +63,85 @@
             this.grdVehicle.Name = "grdVehicle";
             this.grdVehicle.ReadOnly = true;
             this.grdVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdVehicle.Size = new System.Drawing.Size(818, 249);
+            this.grdVehicle.Size = new System.Drawing.Size(884, 340);
             this.grdVehicle.TabIndex = 1;
             this.grdVehicle.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdVehicle_CellDoubleClick);
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(147, 452);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(71, 33);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnAddVehichle
+            // 
+            this.btnAddVehichle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAddVehichle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddVehichle.Image = global::ECustoms.Properties.Resources._001_01;
+            this.btnAddVehichle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddVehichle.Location = new System.Drawing.Point(12, 452);
+            this.btnAddVehichle.Name = "btnAddVehichle";
+            this.btnAddVehichle.Size = new System.Drawing.Size(129, 33);
+            this.btnAddVehichle.TabIndex = 15;
+            this.btnAddVehichle.Text = "Thêm phương tiện";
+            this.btnAddVehichle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddVehichle.UseVisualStyleBackColor = true;
+            this.btnAddVehichle.Click += new System.EventHandler(this.btnAddVehichle_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.grdVehicle);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 74);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(895, 372);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thêm từ phương tiện đã xuất khẩu";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(18, 35);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(111, 33);
+            this.btnSearch.TabIndex = 17;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lbOldPass
+            // 
+            this.lbOldPass.AutoSize = true;
+            this.lbOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOldPass.Location = new System.Drawing.Point(18, 9);
+            this.lbOldPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOldPass.Name = "lbOldPass";
+            this.lbOldPass.Size = new System.Drawing.Size(150, 20);
+            this.lbOldPass.TabIndex = 18;
+            this.lbOldPass.Text = "Biển số phương tiện";
+            // 
+            // txtPlate
+            // 
+            this.txtPlate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtPlate.Location = new System.Drawing.Point(175, 9);
+            this.txtPlate.Name = "txtPlate";
+            this.txtPlate.Size = new System.Drawing.Size(182, 20);
+            this.txtPlate.TabIndex = 19;
             // 
             // PlateNumber
             // 
@@ -75,7 +149,7 @@
             this.PlateNumber.HeaderText = "Biển kiểm soát";
             this.PlateNumber.Name = "PlateNumber";
             this.PlateNumber.ReadOnly = true;
-            this.PlateNumber.Width = 155;
+            this.PlateNumber.Width = 140;
             // 
             // DriverName
             // 
@@ -83,7 +157,7 @@
             this.DriverName.HeaderText = "Tên lái xe";
             this.DriverName.Name = "DriverName";
             this.DriverName.ReadOnly = true;
-            this.DriverName.Width = 200;
+            this.DriverName.Width = 150;
             // 
             // ExportDate
             // 
@@ -93,7 +167,7 @@
             this.ExportDate.HeaderText = "Ngày xuất cảnh";
             this.ExportDate.Name = "ExportDate";
             this.ExportDate.ReadOnly = true;
-            this.ExportDate.Width = 170;
+            this.ExportDate.Width = 150;
             // 
             // VehicleID
             // 
@@ -109,7 +183,7 @@
             this.Status.HeaderText = "Diễn giải";
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
-            this.Status.Width = 150;
+            this.Status.Width = 200;
             // 
             // Note
             // 
@@ -117,114 +191,13 @@
             this.Note.HeaderText = "Ghi chú";
             this.Note.Name = "Note";
             this.Note.ReadOnly = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::ECustoms.Properties.Resources.close;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(153, 377);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(71, 33);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnAddVehichle
-            // 
-            this.btnAddVehichle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnAddVehichle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddVehichle.Image = global::ECustoms.Properties.Resources._001_01;
-            this.btnAddVehichle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddVehichle.Location = new System.Drawing.Point(18, 377);
-            this.btnAddVehichle.Name = "btnAddVehichle";
-            this.btnAddVehichle.Size = new System.Drawing.Size(129, 33);
-            this.btnAddVehichle.TabIndex = 15;
-            this.btnAddVehichle.Text = "Thêm phương tiện";
-            this.btnAddVehichle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddVehichle.UseVisualStyleBackColor = true;
-            this.btnAddVehichle.Click += new System.EventHandler(this.btnAddVehichle_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.grdVehicle);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 90);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(835, 281);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thêm từ phương tiện đã xuất khẩu";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Image = global::ECustoms.Properties.Resources.search41;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(12, 42);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(111, 33);
-            this.btnSearch.TabIndex = 17;
-            this.btnSearch.Text = "Tìm kiếm";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // lbOldPass
-            // 
-            this.lbOldPass.AutoSize = true;
-            this.lbOldPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOldPass.Location = new System.Drawing.Point(8, 9);
-            this.lbOldPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbOldPass.Name = "lbOldPass";
-            this.lbOldPass.Size = new System.Drawing.Size(188, 20);
-            this.lbOldPass.TabIndex = 18;
-            this.lbOldPass.Text = "Hãy nhập số xe cần thêm";
-            // 
-            // txtPlate
-            // 
-            this.txtPlate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPlate.Location = new System.Drawing.Point(203, 12);
-            this.txtPlate.Name = "txtPlate";
-            this.txtPlate.Size = new System.Drawing.Size(182, 20);
-            this.txtPlate.TabIndex = 19;
-            // 
-            // rbChuaNhap
-            // 
-            this.rbChuaNhap.AutoSize = true;
-            this.rbChuaNhap.Checked = true;
-            this.rbChuaNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rbChuaNhap.Location = new System.Drawing.Point(485, 14);
-            this.rbChuaNhap.Name = "rbChuaNhap";
-            this.rbChuaNhap.Size = new System.Drawing.Size(105, 24);
-            this.rbChuaNhap.TabIndex = 20;
-            this.rbChuaNhap.TabStop = true;
-            this.rbChuaNhap.Text = "Chưa nhập";
-            this.rbChuaNhap.UseVisualStyleBackColor = true;
-            // 
-            // rBCoHang
-            // 
-            this.rBCoHang.AutoSize = true;
-            this.rBCoHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.rBCoHang.Location = new System.Drawing.Point(485, 51);
-            this.rBCoHang.Name = "rBCoHang";
-            this.rBCoHang.Size = new System.Drawing.Size(165, 24);
-            this.rBCoHang.TabIndex = 21;
-            this.rBCoHang.Text = "Nhập cảnh có hàng";
-            this.rBCoHang.UseVisualStyleBackColor = true;
+            this.Note.Width = 200;
             // 
             // frmVehicleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 417);
-            this.Controls.Add(this.rBCoHang);
-            this.Controls.Add(this.rbChuaNhap);
+            this.ClientSize = new System.Drawing.Size(912, 496);
             this.Controls.Add(this.txtPlate);
             this.Controls.Add(this.lbOldPass);
             this.Controls.Add(this.btnSearch);
@@ -248,16 +221,14 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAddVehichle;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lbOldPass;
+        private System.Windows.Forms.TextBox txtPlate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlateNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DriverName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExportDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Label lbOldPass;
-        private System.Windows.Forms.TextBox txtPlate;
-        private System.Windows.Forms.RadioButton rbChuaNhap;
-        private System.Windows.Forms.RadioButton rBCoHang;
     }
 }
