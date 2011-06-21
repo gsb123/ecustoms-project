@@ -147,8 +147,6 @@ namespace ECustoms.BOL
                     }
                 }    
             }
-
-
                                         
         }
 
@@ -326,5 +324,14 @@ namespace ECustoms.BOL
 
             return _vehicleDAL.Insert(vehicleInfo);
         }
+
+        /// <summary>
+        ///  Get all Exported vehicle
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblVehicle> GetExported() {
+            var db = new dbEcustomEntities(Utilities.Common.Decrypt(ConfigurationManager.ConnectionStrings["dbEcustomEntities"].ConnectionString, true));
+            return db.tblVehicles.Where(g => g.IsExport == true).ToList();
+        }        
     }
 }
