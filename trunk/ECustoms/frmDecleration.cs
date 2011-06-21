@@ -236,22 +236,24 @@ namespace ECustoms
                     rowIndex++;
                     excel.Cells[rowIndex + 1, 1] = declarationInfo.Number != null  ? declarationInfo.Number : 0 ;
                     excel.Cells[rowIndex + 1, 2] = declarationInfo.CompanyCode != null ? declarationInfo.CompanyCode : "" ;
-                    excel.Cells[rowIndex + 1, 3] = declarationInfo.RegisterDate != null ? declarationInfo.RegisterDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
-                    excel.Cells[rowIndex + 1, 4] = declarationInfo.ImportNumber != null ? declarationInfo.ImportNumber : 0;
-                    excel.Cells[rowIndex + 1, 5] = declarationInfo.ImportCompanyCode != null ? declarationInfo.ImportCompanyCode : "";
-                    excel.Cells[rowIndex + 1, 6] = declarationInfo.ImportRegisterDate != null ? declarationInfo.ImportRegisterDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
-                    excel.Cells[rowIndex + 1, 7] = declarationInfo.ProductName != null ? declarationInfo.ProductName : "";
-                    excel.Cells[rowIndex + 1, 8] = declarationInfo.ImportProductName != null ? declarationInfo.ImportProductName : "";
-                    excel.Cells[rowIndex + 1, 9] = declarationInfo.CompanyName != null ? declarationInfo.CompanyName : "";
-                    excel.Cells[rowIndex + 1, 10] = declarationInfo.ImportCompanyName != null ? declarationInfo.ImportCompanyName : "";
-                    excel.Cells[rowIndex + 1, 11] = declarationInfo.ProductAmount != null ? declarationInfo.ProductAmount : "";
-                    excel.Cells[rowIndex + 1, 12] = declarationInfo.ImportProductAmount != null ? declarationInfo.ImportProductAmount : "";
-                    excel.Cells[rowIndex + 1, 13] = declarationInfo.Unit != null ?declarationInfo.Unit : "";
-                    excel.Cells[rowIndex + 1, 14] = declarationInfo.ImportUnit != null ? declarationInfo.ImportUnit : "";
-                    excel.Cells[rowIndex + 1, 15] = declarationInfo.ModifiedDate != null ? declarationInfo.ModifiedDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
-                    excel.Cells[rowIndex + 1, 16] = declarationInfo.ModifiedBy != null ? declarationInfo.ModifiedBy : "";
-                    excel.Cells[rowIndex + 1, 17] = declarationInfo.CreatedBy != null ? declarationInfo.CreatedBy : "";
-                    excel.Cells[rowIndex + 1, 18] = declarationInfo.CreatedDate != null ? declarationInfo.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm")  : "";
+                    excel.Cells[rowIndex + 1, 3] = declarationInfo.ExportType != null ? declarationInfo.ExportType : "";
+                    excel.Cells[rowIndex + 1, 4] = declarationInfo.RegisterDate != null ? declarationInfo.RegisterDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
+                    excel.Cells[rowIndex + 1, 5] = declarationInfo.ImportNumber != null ? declarationInfo.ImportNumber : 0;
+                    excel.Cells[rowIndex + 1, 6] = declarationInfo.ImportCompanyCode != null ? declarationInfo.ImportCompanyCode : "";
+                    excel.Cells[rowIndex + 1, 7] = declarationInfo.ImportType != null ? declarationInfo.ImportType: "";
+                    excel.Cells[rowIndex + 1, 8] = declarationInfo.ImportRegisterDate != null ? declarationInfo.ImportRegisterDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
+                    excel.Cells[rowIndex + 1, 9] = declarationInfo.ProductName != null ? declarationInfo.ProductName : "";
+                    excel.Cells[rowIndex + 1, 10] = declarationInfo.ImportProductName != null ? declarationInfo.ImportProductName : "";
+                    excel.Cells[rowIndex + 1, 11] = declarationInfo.CompanyName != null ? declarationInfo.CompanyName : "";
+                    excel.Cells[rowIndex + 1, 12] = declarationInfo.ImportCompanyName != null ? declarationInfo.ImportCompanyName : "";
+                    excel.Cells[rowIndex + 1, 13] = declarationInfo.ProductAmount != null ? declarationInfo.ProductAmount : "";
+                    excel.Cells[rowIndex + 1, 14] = declarationInfo.ImportProductAmount != null ? declarationInfo.ImportProductAmount : "";
+                    excel.Cells[rowIndex + 1, 15] = declarationInfo.Unit != null ?declarationInfo.Unit : "";
+                    excel.Cells[rowIndex + 1, 16] = declarationInfo.ImportUnit != null ? declarationInfo.ImportUnit : "";
+                    excel.Cells[rowIndex + 1, 17] = declarationInfo.ModifiedDate != null ? declarationInfo.ModifiedDate.Value.ToString("dd/MM/yyyy hh:mm") : "";
+                    excel.Cells[rowIndex + 1, 18] = declarationInfo.ModifiedBy != null ? declarationInfo.ModifiedBy : "";
+                    excel.Cells[rowIndex + 1, 19] = declarationInfo.CreatedBy != null ? declarationInfo.CreatedBy : "";
+                    excel.Cells[rowIndex + 1, 20] = declarationInfo.CreatedDate != null ? declarationInfo.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm")  : "";
                 }
                 excel.Visible = true;
                 var worksheet = (Worksheet)excel.ActiveSheet;
@@ -384,8 +386,8 @@ namespace ECustoms
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-                            
         }
 
         private void grvDecleration_CellMouseDoubleClick_1(object sender, DataGridViewCellMouseEventArgs e)
