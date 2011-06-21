@@ -63,17 +63,14 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-
                 logger.Error(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-            
         }
 
         void frmDecleration_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.aTimer.Enabled = false;
-
         }
 
         private void OnTimerMonitor(object sender, System.Timers.ElapsedEventArgs e)
@@ -83,8 +80,6 @@ namespace ECustoms
         }
 
         private delegate void MonitorContacIdCallback();
-
-
 
         /// <summary>
         /// Personal check
@@ -103,8 +98,8 @@ namespace ECustoms
             }
             else if (_userInfo.Type == UserType.Input)
             {
+                //TODO:
             }
-
         }
 
         /// <summary>
@@ -149,8 +144,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-
                 logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }            
         }
 
@@ -180,7 +175,7 @@ namespace ECustoms
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
 
         }
@@ -203,7 +198,7 @@ namespace ECustoms
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
-                MessageBox.Show(ex.ToString());                
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());              
             }
 
         }
@@ -266,7 +261,7 @@ namespace ECustoms
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
 
         }
@@ -303,7 +298,7 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
                 logger.Error(ex.ToString());
             }
             
@@ -321,6 +316,7 @@ namespace ECustoms
 
         private void grvDecleration_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             try
             {               
                 logger.Info("grvDecleration_CellMouseClick");
@@ -330,7 +326,7 @@ namespace ECustoms
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }            
         }
 
@@ -359,15 +355,15 @@ namespace ECustoms
                 {
                     var currentVehicle = listVehicle[i];
                     vehicleInfo = new StringBuilder();
-                    vehicleInfo.Append("Xe " + i + "; ");
+                    vehicleInfo.Append("Xe " + currentVehicle.PlateNumber + "; ");
                     // Exported information
                     if (currentVehicle.IsExport) // Exported
-                        vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                        vehicleInfo.Append("Đã xuất cảnh ngày " + currentVehicle.ExportDate.Value.ToString("dd/MM/yyyy HH:mm"));
                     else // not exported
                         vehicleInfo.Append(" Chưa XC;");
                     // Import Information
                     if (currentVehicle.IsImport) // Imported
-                        vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/mm/yyyy hh:MM"));
+                        vehicleInfo.Append(" Đã NC ngày " + currentVehicle.ImportDate.Value.ToString("dd/MM/yyyy HH:MM"));
                     else // not imported
                         vehicleInfo.Append(" Chưa NC;");
                     // hasGoodsImport

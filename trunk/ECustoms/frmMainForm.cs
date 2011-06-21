@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ECustoms.Utilities;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmMainForm : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmMainForm");
         private UserInfo _userInfo;
         public frmMainForm()
         {
@@ -41,21 +43,30 @@ namespace ECustoms
         /// </summary>
         private void InitData()
         {
-            toolstripLabelWelcome.Text = string.Format(ConstantInfo.MESSAGE_WELCOME, _userInfo.Name);
-            // Show decleration form
-            var frmDecleration = new frmDecleration(_userInfo, this);
-            frmDecleration.MdiParent = this;
-            frmDecleration.Show();
+            try
+            {
+                toolstripLabelWelcome.Text = string.Format(ConstantInfo.MESSAGE_WELCOME, _userInfo.Name);
+                // Show decleration form
+                var frmDecleration = new frmDecleration(_userInfo, this);
+                frmDecleration.MdiParent = this;
+                frmDecleration.Show();
 
-            //Set permission
-            if (_userInfo.PermissionID == 2)
-            {
-                menuitemUser.Visible = true;
+                //Set permission
+                if (_userInfo.PermissionID == 2)
+                {
+                    menuitemUser.Visible = true;
+                }
+                else
+                {
+                    menuitemUser.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                menuitemUser.Visible = false;
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
+            
         }
 
         private void mnExport_Click(object sender, EventArgs e)
@@ -169,7 +180,6 @@ namespace ECustoms
             var frm = new frmGroupList();
             frm.MdiParent = this;
             frm.Show();
-
         }
     }
 }

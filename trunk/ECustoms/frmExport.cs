@@ -308,7 +308,7 @@ namespace ECustoms
                     txtTypeExport.Text = declarationInfo.ExportType;
                     txtTypeImport.Text = declarationInfo.ImportType;
                     txtExportCompanyCode.Text = declarationInfo.CompanyCode;
-                    dtpExportRegisterDate.Value = declarationInfo.RegisterDate.Value;
+                    dtpExportRegisterDate.Value = declarationInfo.RegisterDate != null ? declarationInfo.RegisterDate.Value : DateTime.Now;
                     if (declarationInfo.HasDeclaration != null && !declarationInfo.HasDeclaration.Value)
                     {
                         cbExportHasDeclaration.Checked = false;
@@ -322,7 +322,7 @@ namespace ECustoms
                     txtImportProductAmount.Text = declarationInfo.ImportProductAmount;
                     txtImportUnit.Text = declarationInfo.ImportUnit;
                     txtImportCompanyCode.Text = declarationInfo.ImportCompanyCode;
-                    dtpImportRegisterDate.Value = declarationInfo.ImportRegisterDate.Value;
+                    dtpImportRegisterDate.Value = declarationInfo.ImportRegisterDate != null ? declarationInfo.ImportRegisterDate.Value : DateTime.Now;
 
                     if (declarationInfo.ImportHasDeclaration != null && !declarationInfo.ImportHasDeclaration.Value)
                     {

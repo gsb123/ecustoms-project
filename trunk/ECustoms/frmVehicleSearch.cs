@@ -10,11 +10,13 @@ using Microsoft.Office.Interop.Excel;
 using Point = System.Drawing.Point;
 using System.Data;
 using ECustoms.DAL;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmVehicleSearch : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmVehicleSearch");
         private VehicleFactory _vehicleBOL;
         private UserInfo _userInfo;
         private System.Data.DataTable _dtResult;
@@ -48,9 +50,7 @@ namespace ECustoms
                 btnXacNhanNhapCanhCoHang.Visible = false;
                 btnXacNhanXuatCanhKhongCoHang.Visible = false;
                 btnLocalConfirm.Visible = false;
-
             }
-
         }
         private void frmVehicleSearch_Load(object sender, EventArgs e)
         {
@@ -65,18 +65,14 @@ namespace ECustoms
 
         private void BindData()
         {
-            grdVehicle.AutoGenerateColumns = false;  
-            List<ViewAllVehicle> result;
-             result = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
-                                                     dtpExportFrom.Value, dtpExportTo.Value);
-
-
-            grdVehicle.DataSource = result;
-
             try
             {
-                
+                grdVehicle.AutoGenerateColumns = false;
+                List<ViewAllVehicle> result;
+                result = _vehicleBOL.SearchVehicle(cbIsCompleted.Checked, txtPlateNumber.Text, cbIsExport.Checked, cbIsImport.Checked, cbIsNotImport.Checked, dtpImportFrom.Value, dtpImportTo.Value,
+                                                        dtpExportFrom.Value, dtpExportTo.Value);
 
+                grdVehicle.DataSource = result;
                 /*
                  * 
                      1-[Xe không xuất cảnh]=Xe không chở hàng đã xuất cảnh = xe có số tờ khai xuất khẩu
@@ -106,11 +102,7 @@ namespace ECustoms
                      = [xe đã đăng ký có số tờ khai khác 0] – [xe đã đăng ký có số tờ khai khác 0 đã được xác nhận xuất cảnh] = [xe còn tồn trên màn hình tìm kiếm khi bấm vào tìm kiếm.]
                     [XeXuaKhauTonTaiCuaKhau] = [Xe([DeclationNumber<>0]&&[ConfirmExport=0])] - Xe([DeclationNumber<>0]&&[ConfirmExport=1])]
 
-                 * 
-                 * 
-                 * 
                  * */
-
 
                 int xeKhongChoHangDaXC = 0;
                 int xeKhongChoHangDaNC = 0;
@@ -142,14 +134,12 @@ namespace ECustoms
                 lblCohangNC.Text = xeNhapHangDaNC.ToString();
                 lblCoHangXC.Text = xeCoHangDaXC.ToString();
                 lblVaonoidia.Text = xeVaoNoiDia.ToString();
-
-
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void cbIsExport_CheckedChanged(object sender, EventArgs e)
@@ -264,9 +254,10 @@ namespace ECustoms
                     vehicle.Show();
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -324,9 +315,10 @@ namespace ECustoms
                     worksheet.Activate();
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -334,7 +326,6 @@ namespace ECustoms
         {
             try
             {
-
                 if (grdVehicle.SelectedRows.Count == 1)
                 {
                     var vehicle = new frmVehicle(3, Convert.ToInt32(grdVehicle.SelectedRows[0].Cells["VehicleID"].Value), _userInfo);
@@ -347,9 +338,10 @@ namespace ECustoms
                 }
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -388,9 +380,10 @@ namespace ECustoms
                 // Bind to grid
                 BindData();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -420,9 +413,10 @@ namespace ECustoms
                 // Bind data to gridview
                 BindData();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -450,9 +444,10 @@ namespace ECustoms
                 // Bind data
                 BindData();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -476,9 +471,10 @@ namespace ECustoms
                 // Bind data to gridview
                 BindData();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 

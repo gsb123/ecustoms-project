@@ -8,12 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmVehicleSelect : Form
     {
-
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmVehicleSelect");
         public event OnSelectedVehicleHandler OnSelectedVehichle;
         public delegate void OnSelectedVehicleHandler(object sender, EventArgs e);
         private List<VehicleInfo> _vehicleList;
@@ -24,7 +25,6 @@ namespace ECustoms
             _declarationID = declarationID;
 
         }
-
 
         private void LoadExportedVehichles(int mode, int declarationID, string search)
         {
@@ -38,7 +38,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -72,8 +73,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                //throw;
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -86,8 +87,6 @@ namespace ECustoms
         {
             this.Text = "Thêm từ phương tiện đã xuất khẩu" + ConstantInfo.MESSAGE_TITLE;
         }
-
-
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -107,7 +106,6 @@ namespace ECustoms
                 LoadExportedVehichles(mode, _declarationID, txtPlate.Text.Trim());
             }
         }
-
     }
 
     public class SelectedVehichleEventArgs : EventArgs

@@ -10,11 +10,13 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmAddUser : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmLogin");
         private frmUser _parrent;
         private int _mode;
         private int _userID;
@@ -60,36 +62,45 @@ namespace ECustoms
         /// </summary>
         private void Init()
         {
-            // Bind Data to combobox
-            cbbPermission.DataSource = _permissionBOL.GetAllPermission();
-            cbbPermission.DisplayMember = ConstantInfo.TBL_PERMISSION_PERMISSION;
-            cbbPermission.ValueMember = ConstantInfo.TBL_PERMISSION_PERMISSION_ID;
-            if (_mode == 0) // Add new Mode
+            try
             {
-                btnUpdate.Enabled = false;
-                btnAdd.Enabled = true;
+                // Bind Data to combobox
+                cbbPermission.DataSource = _permissionBOL.GetAllPermission();
+                cbbPermission.DisplayMember = ConstantInfo.TBL_PERMISSION_PERMISSION;
+                cbbPermission.ValueMember = ConstantInfo.TBL_PERMISSION_PERMISSION_ID;
+                if (_mode == 0) // Add new Mode
+                {
+                    btnUpdate.Enabled = false;
+                    btnAdd.Enabled = true;
+                }
+                else // Update Mode
+                {
+                    btnUpdate.Enabled = true;
+                    btnAdd.Enabled = false;
+                    // Get User by ID
+                    var userInfo = _userBOL.SelectByID(_userID);
+                    // Bind data to the UI
+                    txtUserName.Text = userInfo.UserName;
+
+                    // Don't allow you edit username
+                    txtUserName.Enabled = false;
+
+                    txtPassword.Text = userInfo.Password;
+                    txtRetypePassword.Text = userInfo.Password;
+                    txtEmail.Text = userInfo.Email;
+                    txtName.Text = userInfo.Name;
+                    txtAddress.Text = userInfo.Address;
+                    txtPhone.Text = userInfo.PhoneNumber;
+                    cbbPermission.SelectedValue = userInfo.PermissionID;
+                    cbActive.Checked = userInfo.IsActive;
+                }
             }
-            else // Update Mode
+            catch (Exception ex)
             {
-                btnUpdate.Enabled = true;
-                btnAdd.Enabled = false;
-                // Get User by ID
-                var userInfo = _userBOL.SelectByID(_userID);
-                // Bind data to the UI
-                txtUserName.Text = userInfo.UserName;
-
-                // Don't allow you edit username
-                txtUserName.Enabled = false;
-
-                txtPassword.Text = userInfo.Password;
-                txtRetypePassword.Text = userInfo.Password;
-                txtEmail.Text = userInfo.Email;
-                txtName.Text = userInfo.Name;
-                txtAddress.Text = userInfo.Address;
-                txtPhone.Text = userInfo.PhoneNumber;
-                cbbPermission.SelectedValue = userInfo.PermissionID;
-                cbActive.Checked = userInfo.IsActive;
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());                
             }
+            
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -120,11 +131,10 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
-
 
         private bool Validate()
         {
@@ -183,9 +193,9 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         /// <summary>
@@ -193,14 +203,22 @@ namespace ECustoms
         /// </summary>
         private void BindControlToData(ref UserInfo userInfo)
         {
-            userInfo.UserName = txtUserName.Text.Trim();
-            userInfo.Password = txtPassword.Text.Trim();
-            userInfo.Email = txtEmail.Text;
-            userInfo.Name = txtName.Text;
-            userInfo.Address = txtAddress.Text;
-            userInfo.PhoneNumber = txtPhone.Text;
-            userInfo.PermissionID = Convert.ToInt32(cbbPermission.SelectedValue);
-            userInfo.IsActive = cbActive.Checked;
+            try
+            {
+                userInfo.UserName = txtUserName.Text.Trim();
+                userInfo.Password = txtPassword.Text.Trim();
+                userInfo.Email = txtEmail.Text;
+                userInfo.Name = txtName.Text;
+                userInfo.Address = txtAddress.Text;
+                userInfo.PhoneNumber = txtPhone.Text;
+                userInfo.PermissionID = Convert.ToInt32(cbbPermission.SelectedValue);
+                userInfo.IsActive = cbActive.Checked;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }            
         }
     }
 }
