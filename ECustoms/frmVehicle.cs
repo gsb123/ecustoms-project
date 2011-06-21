@@ -9,11 +9,13 @@ using System.Windows.Forms;
 using ECustoms.Utilities;
 using ECustoms.BOL;
 using ECustoms.DAL;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmVehicle : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmVehicle");
         private frmExport _parrent;
         private List<VehicleInfo> _vehicleInfosTemp;
         private List<VehicleInfo> _newAddingVehicles = new List<VehicleInfo>();
@@ -33,7 +35,6 @@ namespace ECustoms
         {
             InitializeComponent();
             grdVehicle.AutoGenerateColumns = false;
-
         }
 
         private void InitialPermission()
@@ -53,9 +54,7 @@ namespace ECustoms
                 btnConfirmExport.Visible = false;
                 btnConfirmImport.Visible = false;
                 btnSearch.Visible = false;
-
             }
-
         }
 
         public frmVehicle(int mode, frmExport parrent, ref  List<VehicleInfo> vehicleInfosTemp, tblDeclaration declarationInfo, UserInfo userInfo)
@@ -106,14 +105,14 @@ namespace ECustoms
             // allow empty when inserting new verhicle,
             // the driver name might be filled later
 
-            
+
             if (string.IsNullOrEmpty(txtPlateNumber.Text.Trim()))
             {
                 MessageBox.Show("BKS không được để trống!");
                 txtPlateNumber.Focus();
                 return false;
             }
-           
+
 
             return true;
         }
@@ -149,157 +148,174 @@ namespace ECustoms
 
         private void Init()
         {
-            // TODO: Need to handler it
-            if (_mode == 3)
+            try
             {
-                btnDelete.Enabled = false;
-            }
-            btnSearch.Enabled = false;
-
-            if (_mode == 0 || _mode == 4) // Add mode - Click on Add New
-            {
-                dtpImportDate.Visible = false;
-                mtxtImportHour.Visible = false;
-                dtpExportDate.Visible = false;
-                mtxtExportHour.Visible = false;
-                lblIsExport.Visible = true;
-                lblIsImport.Visible = true;
-                btnUpdate.Enabled = false;
-                btnAdd.Enabled = true;
-                btnDelete.Enabled = false;
-                btnConfirmImport.Enabled = true;
-                btnConfirmExport.Enabled = true;
-                btnAdd.Enabled = true;
-                ResetForm();
-                btnAdd.Text = "Lưu trữ phương tiện";
-                btnSearch.Enabled = true;
-
-            }
-            else if (_mode == 1) // Add mode - CLick on Update
-            {
-                dtpImportDate.Visible = false;
-                mtxtImportHour.Visible = false;
-                btnUpdate.Enabled = true;
-                btnAdd.Enabled = false;
-                btnDelete.Enabled = true;
-                btnConfirmImport.Enabled = true;
-                foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
+                // TODO: Need to handler it
+                if (_mode == 3)
                 {
-                    if (vehicleInfo.Count == _count)
-                    {
-                        BindDataToControls(vehicleInfo);
-                        break;
-                    }
+                    btnDelete.Enabled = false;
+                }
+                btnSearch.Enabled = false;
+
+                if (_mode == 0 || _mode == 4) // Add mode - Click on Add New
+                {
+                    dtpImportDate.Visible = false;
+                    mtxtImportHour.Visible = false;
+                    dtpExportDate.Visible = false;
+                    mtxtExportHour.Visible = false;
+                    lblIsExport.Visible = true;
+                    lblIsImport.Visible = true;
+                    btnUpdate.Enabled = false;
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = false;
+                    btnConfirmImport.Enabled = true;
+                    btnConfirmExport.Enabled = true;
+                    btnAdd.Enabled = true;
+                    ResetForm();
+                    btnAdd.Text = "Lưu trữ phương tiện";
+                    btnSearch.Enabled = true;
 
                 }
-                btnAdd.Text = "Lưu trữ phương tiện";
-            }
-            else if (_mode == 2 || _mode == 3) // EditMode - Update
-            {
-                btnAdd.Enabled = false;
-                // Get data from database
-                _vehicleBOL = new VehicleFactory();
-
-                var vehicleInfo = _vehicleBOL.SelectByID(_vehicleID);
-
-                if (_vehicleID == 0) // If vehicleID > 0 --> this form is opened form search form. so get data from database. If vehicle=0--> get by Count
+                else if (_mode == 1) // Add mode - CLick on Update
                 {
-                    foreach (VehicleInfo vehicleInfoTemp in _vehicleInfosTemp)
+                    dtpImportDate.Visible = false;
+                    mtxtImportHour.Visible = false;
+                    btnUpdate.Enabled = true;
+                    btnAdd.Enabled = false;
+                    btnDelete.Enabled = true;
+                    btnConfirmImport.Enabled = true;
+                    foreach (VehicleInfo vehicleInfo in _vehicleInfosTemp)
                     {
-                        if (vehicleInfoTemp.Count == _count)
+                        if (vehicleInfo.Count == _count)
                         {
-                            vehicleInfo = vehicleInfoTemp;
+                            BindDataToControls(vehicleInfo);
+                            break;
+                        }
+
+                    }
+                    btnAdd.Text = "Lưu trữ phương tiện";
+                }
+                else if (_mode == 2 || _mode == 3) // EditMode - Update
+                {
+                    btnAdd.Enabled = false;
+                    // Get data from database
+                    _vehicleBOL = new VehicleFactory();
+
+                    var vehicleInfo = _vehicleBOL.SelectByID(_vehicleID);
+
+                    if (_vehicleID == 0) // If vehicleID > 0 --> this form is opened form search form. so get data from database. If vehicle=0--> get by Count
+                    {
+                        foreach (VehicleInfo vehicleInfoTemp in _vehicleInfosTemp)
+                        {
+                            if (vehicleInfoTemp.Count == _count)
+                            {
+                                vehicleInfo = vehicleInfoTemp;
+                            }
                         }
                     }
-                }
-                if (vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
-                {
-                    if (vehicleInfo.ImportDate.Value.Year.Equals(1900))
+                    if (vehicleInfo.ImportDate != null && vehicleInfo.IsImport)
                     {
-                        vehicleInfo.ImportDate = null;
-                        dtpImportDate.Visible = false;
-                        mtxtImportHour.Visible = false;
-                        lblIsImport.Visible = true;
-                    }
-
-                    if (vehicleInfo.ExportDate != null && vehicleInfo.IsExport)
-                        if (vehicleInfo.ExportDate.Value.Year.Equals(1900))
+                        if (vehicleInfo.ImportDate.Value.Year.Equals(1900))
                         {
                             vehicleInfo.ImportDate = null;
-                            dtpExportDate.Visible = false;
-                            mtxtExportHour.Visible = false;
-                            lblIsExport.Visible = true;
+                            dtpImportDate.Visible = false;
+                            mtxtImportHour.Visible = false;
+                            lblIsImport.Visible = true;
                         }
+
+                        if (vehicleInfo.ExportDate != null && vehicleInfo.IsExport)
+                            if (vehicleInfo.ExportDate.Value.Year.Equals(1900))
+                            {
+                                vehicleInfo.ImportDate = null;
+                                dtpExportDate.Visible = false;
+                                mtxtExportHour.Visible = false;
+                                lblIsExport.Visible = true;
+                            }
+                    }
+
+                    // Bind data to Controls
+
+                    //if(vehicleInfo.IsExport){
+                    //if(vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                    //}
+
+                    BindDataToControls(vehicleInfo);
+
+                    _declarationID = vehicleInfo.DeclarationID;
+                    btnAdd.Text = "Thêm mới phương tiện";
                 }
 
-                // Bind data to Controls
-
-                //if(vehicleInfo.IsExport){
-                //if(vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                //// Check permission
+                //if (_userInfo.PermissionID != 2) // Not is admin
+                //{
+                //    btnConfirmExport.Enabled = false;
+                //    btnConfirmImport.Enabled = false;
                 //}
 
-                BindDataToControls(vehicleInfo);
-
-                _declarationID = vehicleInfo.DeclarationID;
-                btnAdd.Text = "Thêm mới phương tiện";
+                InitialPermission();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
 
-            //// Check permission
-            //if (_userInfo.PermissionID != 2) // Not is admin
-            //{
-            //    btnConfirmExport.Enabled = false;
-            //    btnConfirmImport.Enabled = false;
-            //}
-
-            InitialPermission();
         }
 
         private void BindDataToControls(VehicleInfo vehicleInfo)
         {
-            txtDriverName.Text = vehicleInfo.DriverName;
-            txtPlateNumber.Text = vehicleInfo.PlateNumber;
-            txtNumberOfContainer.Text = vehicleInfo.NumberOfContainer.ToString();
-
-            if (vehicleInfo.IsImport)
+            try
             {
-                dtpImportDate.Value = (DateTime)vehicleInfo.ImportDate;
-                dtpImportDate.Visible = true;
-                mtxtImportHour.Text = vehicleInfo.ImportDate.Value.ToString("HH:mm");
-                mtxtImportHour.Visible = true;
-                lblIsImport.Visible = false;
+                txtDriverName.Text = vehicleInfo.DriverName;
+                txtPlateNumber.Text = vehicleInfo.PlateNumber;
+                txtNumberOfContainer.Text = vehicleInfo.NumberOfContainer.ToString();
+
+                if (vehicleInfo.IsImport)
+                {
+                    dtpImportDate.Value = (DateTime)vehicleInfo.ImportDate;
+                    dtpImportDate.Visible = true;
+                    mtxtImportHour.Text = vehicleInfo.ImportDate.Value.ToString("HH:mm");
+                    mtxtImportHour.Visible = true;
+                    lblIsImport.Visible = false;
+                }
+                else
+                {
+                    dtpImportDate.Visible = false;
+                    mtxtImportHour.Visible = false;
+                    lblIsImport.Visible = true;
+                }
+
+                if (vehicleInfo.IsExport)
+                {
+                    dtpExportDate.Value = (DateTime)vehicleInfo.ExportDate;
+                    dtpExportDate.Visible = true;
+                    mtxtExportHour.Text = vehicleInfo.ExportDate.Value.ToString("HH:mm");
+                    mtxtExportHour.Visible = true;
+                    lblIsExport.Visible = false;
+                }
+                else
+                {
+                    dtpExportDate.Visible = false;
+                    mtxtExportHour.Visible = false;
+                    lblIsExport.Visible = true;
+                }
+
+                txtStatus.Text = vehicleInfo.Status;
+                txtNote.Text = vehicleInfo.Note;
+                _isImport = vehicleInfo.IsImport;
+                _isExport = vehicleInfo.IsExport;
+
+                if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
+                    btnConfirmImport.Enabled = false;
+
+                if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
+                    btnConfirmExport.Enabled = false;
             }
-            else
+            catch (Exception ex)
             {
-                dtpImportDate.Visible = false;
-                mtxtImportHour.Visible = false;
-                lblIsImport.Visible = true;
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
-            if (vehicleInfo.IsExport)
-            {
-                dtpExportDate.Value = (DateTime)vehicleInfo.ExportDate;
-                dtpExportDate.Visible = true;
-                mtxtExportHour.Text = vehicleInfo.ExportDate.Value.ToString("HH:mm");
-                mtxtExportHour.Visible = true;
-                lblIsExport.Visible = false;
-            }
-            else
-            {
-                dtpExportDate.Visible = false;
-                mtxtExportHour.Visible = false;
-                lblIsExport.Visible = true;
-            }
-
-            txtStatus.Text = vehicleInfo.Status;
-            txtNote.Text = vehicleInfo.Note;
-            _isImport = vehicleInfo.IsImport;
-            _isExport = vehicleInfo.IsExport;
-
-            if (vehicleInfo.ConfirmImportBy != 0 && vehicleInfo.ConfirmImportBy != _userInfo.UserID)
-                btnConfirmImport.Enabled = false;
-
-            if (vehicleInfo.ConfirmExportBy != 0 && vehicleInfo.ConfirmExportBy != _userInfo.UserID)
-                btnConfirmExport.Enabled = false;
         }
 
         private void btnConfirmExport_Click(object sender, EventArgs e)
@@ -360,9 +376,10 @@ namespace ECustoms
                     _isExport = false;
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -426,17 +443,16 @@ namespace ECustoms
                     _isCompleted = true;
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -445,7 +461,7 @@ namespace ECustoms
             try
             {
                 if (!Validate()) return;
-                
+
                 // Add data to veicleInfo list
                 var vehicleInfo = new VehicleInfo();
                 vehicleInfo.DriverName = txtDriverName.Text.Trim();
@@ -514,45 +530,47 @@ namespace ECustoms
                 // MessageBox.Show(ConstantInfo.MESSAGE_INSERT_SUCESSFULLY);
                 ResetForm();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            // process when user updating new vehicle input
-            if (!string.IsNullOrEmpty(_currentModifyPlateNumber))
-            {
-                // update to list
-                var result = _newAddingVehicles.Where(v => v.PlateNumber.ToString().Equals(_currentModifyPlateNumber, StringComparison.InvariantCultureIgnoreCase)).ToList().FirstOrDefault();
-                if (result == null)
-                {
-                    return;
-                }
-                result.DriverName = txtDriverName.Text.Trim();
-                result.PlateNumber = txtPlateNumber.Text.Trim();
-                result.NumberOfContainer = Convert.ToInt16(txtNumberOfContainer.Text);
-                result.Status = txtStatus.Text;
-                result.Note = txtNote.Text;
-
-                grdVehicle.Refresh();
-                _parrent.grdVehicle.DataSource = null;
-                _parrent.grdVehicle.DataSource = _vehicleInfosTemp;
-                // assign to emty when finsih proccessing
-                _currentModifyPlateNumber = string.Empty;
-
-                btnAdd.Enabled = true;
-                btnUpdate.Enabled = false;
-                ResetForm();
-
-                return;
-            }
-
-
             try
             {
+                // process when user updating new vehicle input
+                if (!string.IsNullOrEmpty(_currentModifyPlateNumber))
+                {
+                    // update to list
+                    var result = _newAddingVehicles.Where(v => v.PlateNumber.ToString().Equals(_currentModifyPlateNumber, StringComparison.InvariantCultureIgnoreCase)).ToList().FirstOrDefault();
+                    if (result == null)
+                    {
+                        return;
+                    }
+                    result.DriverName = txtDriverName.Text.Trim();
+                    result.PlateNumber = txtPlateNumber.Text.Trim();
+                    result.NumberOfContainer = Convert.ToInt16(txtNumberOfContainer.Text);
+                    result.Status = txtStatus.Text;
+                    result.Note = txtNote.Text;
+
+                    grdVehicle.Refresh();
+                    _parrent.grdVehicle.DataSource = null;
+                    _parrent.grdVehicle.DataSource = _vehicleInfosTemp;
+                    // assign to emty when finsih proccessing
+                    _currentModifyPlateNumber = string.Empty;
+
+                    btnAdd.Enabled = true;
+                    btnUpdate.Enabled = false;
+                    ResetForm();
+
+                    return;
+                }
+
+
+
                 if (!Validate()) return;
                 if (_mode == 1 || _mode == 2) // AddNew- Edit
                 {
@@ -591,7 +609,7 @@ namespace ECustoms
 
                 if (_mode == 3) // Edit mode from Search form
                 {
-                    
+
                     _vehicleBOL = new VehicleFactory();
                     var vehicle = VehicleFactory.GetByID(_vehicleID);
                     vehicle.DriverName = txtDriverName.Text.Trim();
@@ -614,7 +632,8 @@ namespace ECustoms
 
                     vehicle.IsCompleted = _isCompleted;
                     // Set datetime for export
-                    if (_isExport) { 
+                    if (_isExport)
+                    {
                         var exportHour = Convert.ToInt32(mtxtExportHour.Text.Split(':')[0]);
                         var exportMinitues = Convert.ToInt32(mtxtExportHour.Text.Split(':')[1]);
                         vehicle.ExportDate = dtpExportDate.Value.AddHours(exportHour - dtpExportDate.Value.Hour);
@@ -630,17 +649,16 @@ namespace ECustoms
                     }
 
                     VehicleFactory.UpdateVehicle(vehicle);
-                    
+
                     MessageBox.Show("Cập nhật thành công.");
                     this.Close();
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
-
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -675,11 +693,11 @@ namespace ECustoms
 
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString()); 
             }
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -706,94 +724,119 @@ namespace ECustoms
         /// <param name="e">The <see cref="System.Windows.Forms.KeyPressEventArgs"/> instance containing the event data.</param>
         private void txtPlateNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((_mode == 0 || _mode == 4) && e.KeyChar == 13)
+            try
             {
-                if (!Validate()) return;
-
-                // Add data to veicleInfo list
-                var vehicleInfo = new VehicleInfo();
-                vehicleInfo.DriverName = txtDriverName.Text.Trim();
-                vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
-                if (txtNumberOfContainer.Text != "")
+                if ((_mode == 0 || _mode == 4) && e.KeyChar == 13)
                 {
-                    vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
+                    if (!Validate()) return;
+
+                    // Add data to veicleInfo list
+                    var vehicleInfo = new VehicleInfo();
+                    vehicleInfo.DriverName = txtDriverName.Text.Trim();
+                    vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
+                    if (txtNumberOfContainer.Text != "")
+                    {
+                        vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
+                    }
+
+                    if (_isExport)
+                    {
+                        vehicleInfo.ExportDate = dtpExportDate.Value;
+                        vehicleInfo.ExportHour = mtxtExportHour.Text;
+                    }
+
+                    if (_isImport)
+                    {
+                        vehicleInfo.ImportDate = dtpImportDate.Value;
+                        vehicleInfo.ImportHour = mtxtImportHour.Text;
+                    }
+
+                    vehicleInfo.Status = txtStatus.Text;
+                    vehicleInfo.Note = txtNote.Text;
+                    vehicleInfo.VehicleID = _vehicleInfosTemp.Count + 1;
+                    vehicleInfo.IsExport = _isExport;
+                    vehicleInfo.IsImport = _isImport;
+                    vehicleInfo.IsCompleted = _isCompleted;
+                    vehicleInfo.DeclarationID = _parrentDeclaration.DeclarationID;
+                    if (vehicleInfo.ExportDate != null && vehicleInfo.ExportDate.Value.Year.Equals(1900))
+                    {
+                        vehicleInfo.ExportDate = null;
+                    }
+                    if (vehicleInfo.ImportDate != null && vehicleInfo.ImportDate.Value.Year.Equals(1900))
+                    {
+                        vehicleInfo.ImportDate = null;
+                    }
+
+                    _vehicleInfosTemp.Add(vehicleInfo);
+                    _newAddingVehicles.Add(vehicleInfo);
+                    ResetForm();
+                    grdVehicle.DataSource = null;
+                    grdVehicle.DataSource = _newAddingVehicles;
+                    grdVehicle.Refresh();
+                    //Set curent cell for poiter to bottom
+                    this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
+
+
+                    _parrent.BindVehicle(_vehicleInfosTemp);
+                    txtPlateNumber.Focus();
                 }
-
-                if (_isExport)
-                {
-                    vehicleInfo.ExportDate = dtpExportDate.Value;
-                    vehicleInfo.ExportHour = mtxtExportHour.Text;
-                }
-
-                if (_isImport)
-                {
-                    vehicleInfo.ImportDate = dtpImportDate.Value;
-                    vehicleInfo.ImportHour = mtxtImportHour.Text;
-                }
-
-                vehicleInfo.Status = txtStatus.Text;
-                vehicleInfo.Note = txtNote.Text;
-                vehicleInfo.VehicleID = _vehicleInfosTemp.Count + 1;
-                vehicleInfo.IsExport = _isExport;
-                vehicleInfo.IsImport = _isImport;
-                vehicleInfo.IsCompleted = _isCompleted;
-                vehicleInfo.DeclarationID = _parrentDeclaration.DeclarationID;
-                if (vehicleInfo.ExportDate != null && vehicleInfo.ExportDate.Value.Year.Equals(1900))
-                {
-                    vehicleInfo.ExportDate = null;
-                }
-                if (vehicleInfo.ImportDate != null && vehicleInfo.ImportDate.Value.Year.Equals(1900))
-                {
-                    vehicleInfo.ImportDate = null;
-                }
-
-                _vehicleInfosTemp.Add(vehicleInfo);
-                _newAddingVehicles.Add(vehicleInfo);
-                ResetForm();
-                grdVehicle.DataSource = null;
-                grdVehicle.DataSource = _newAddingVehicles;
-                grdVehicle.Refresh();
-                //Set curent cell for poiter to bottom
-                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
-
-
-                _parrent.BindVehicle(_vehicleInfosTemp);
-                txtPlateNumber.Focus();
             }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var driverName = txtDriverName.Text.Trim();
-            var plateNumber = txtPlateNumber.Text.Trim();
-
-            if (string.IsNullOrEmpty(driverName) && string.IsNullOrEmpty(plateNumber))
+            try
             {
-                grdVehicle.DataSource = _newAddingVehicles;
-                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count- 1];
-            }
+                var driverName = txtDriverName.Text.Trim();
+                var plateNumber = txtPlateNumber.Text.Trim();
 
-            var result = _newAddingVehicles.Where(v => (v.DriverName.IndexOf(driverName, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                                                           && (v.PlateNumber.IndexOf(plateNumber, StringComparison.InvariantCultureIgnoreCase) >= 0)).ToList();
-            grdVehicle.DataSource = result;
-            this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count- 1];
+                if (string.IsNullOrEmpty(driverName) && string.IsNullOrEmpty(plateNumber))
+                {
+                    grdVehicle.DataSource = _newAddingVehicles;
+                    this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
+                }
+
+                var result = _newAddingVehicles.Where(v => (v.DriverName.IndexOf(driverName, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                                                               && (v.PlateNumber.IndexOf(plateNumber, StringComparison.InvariantCultureIgnoreCase) >= 0)).ToList();
+                grdVehicle.DataSource = result;
+                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
         }
 
         private void grdVehicle_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var plateNumber = grdVehicle.Rows[e.RowIndex].Cells["PlateNumber"].Value.ToString();
-            var result = _newAddingVehicles.Where(v => v.PlateNumber.ToString().Equals(plateNumber, StringComparison.InvariantCultureIgnoreCase)).ToList().FirstOrDefault();
-            txtDriverName.Text = result.DriverName;
-            txtPlateNumber.Text = result.PlateNumber;
-            txtNumberOfContainer.Text = result.NumberOfContainer.ToString();
-            txtStatus.Text = result.Status;
-            txtNote.Text = result.Note;
-            mtxtImportHour.Text = result.ImportHour;
-            mtxtExportHour.Text = result.ExportHour;
-            _currentModifyPlateNumber = plateNumber;
+            try
+            {
+                var plateNumber = grdVehicle.Rows[e.RowIndex].Cells["PlateNumber"].Value.ToString();
+                var result = _newAddingVehicles.Where(v => v.PlateNumber.ToString().Equals(plateNumber, StringComparison.InvariantCultureIgnoreCase)).ToList().FirstOrDefault();
+                txtDriverName.Text = result.DriverName;
+                txtPlateNumber.Text = result.PlateNumber;
+                txtNumberOfContainer.Text = result.NumberOfContainer.ToString();
+                txtStatus.Text = result.Status;
+                txtNote.Text = result.Note;
+                mtxtImportHour.Text = result.ImportHour;
+                mtxtExportHour.Text = result.ExportHour;
+                _currentModifyPlateNumber = plateNumber;
 
-            btnAdd.Enabled = false;
-            btnUpdate.Enabled = true;
+                btnAdd.Enabled = false;
+                btnUpdate.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
         }
 
         private void frmVehicle_FormClosing(object sender, FormClosingEventArgs e)
@@ -819,7 +862,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
     }

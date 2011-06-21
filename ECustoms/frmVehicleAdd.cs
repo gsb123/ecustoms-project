@@ -9,11 +9,13 @@ using System.Windows.Forms;
 using ECustoms.Utilities;
 using ECustoms.BOL;
 using ECustoms.DAL;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmVehicleAdd : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmVehicleAdd");
         #region Priority
         private List<VehicleInfo> _vehicleInfosTemp = new List<VehicleInfo>();
         private VehicleFactory _vehicleBOL = new VehicleFactory();
@@ -94,47 +96,56 @@ namespace ECustoms
 
         private VehicleInfo GetVehicle()
         {
-            if (!Validate())
-                return null;
-            // Add data to veicleInfo list
             var vehicleInfo = new VehicleInfo();
-            vehicleInfo.DriverName = txtDriverName.Text.Trim();
-            vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
-            if (txtNumberOfContainer.Text != "")
+            try
             {
-                vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
-            }
+                if (!Validate())
+                    return null;
+                // Add data to veicleInfo list
+                
+                vehicleInfo.DriverName = txtDriverName.Text.Trim();
+                vehicleInfo.PlateNumber = txtPlateNumber.Text.Trim();
+                if (txtNumberOfContainer.Text != "")
+                {
+                    vehicleInfo.NumberOfContainer = Convert.ToInt32(txtNumberOfContainer.Text.Trim());
+                }
 
-            if (cbConfirmExport.Checked)
-            {
-                vehicleInfo.ExportDate = dateTimePickerExport.Value;
-                vehicleInfo.ExportHour = mtxtExportHour.Text;
-                vehicleInfo.ConfirmExportBy = _userInfo.UserID;
-            }
+                if (cbConfirmExport.Checked)
+                {
+                    vehicleInfo.ExportDate = dateTimePickerExport.Value;
+                    vehicleInfo.ExportHour = mtxtExportHour.Text;
+                    vehicleInfo.ConfirmExportBy = _userInfo.UserID;
+                }
 
-            if (cbConfirmImport.Checked)
-            {
-                vehicleInfo.ImportDate = dateTimePickerImport.Value;
-                vehicleInfo.ImportHour = mtxtImportHour.Text;
-                vehicleInfo.ConfirmImportBy = _userInfo.UserID;
-            }
+                if (cbConfirmImport.Checked)
+                {
+                    vehicleInfo.ImportDate = dateTimePickerImport.Value;
+                    vehicleInfo.ImportHour = mtxtImportHour.Text;
+                    vehicleInfo.ConfirmImportBy = _userInfo.UserID;
+                }
 
-            vehicleInfo.Status = txtStatus.Text;
-            vehicleInfo.Note = txtNote.Text;
-            vehicleInfo.VehicleID = _vehicleInfosTemp.Count + 1;
-            vehicleInfo.IsExport = cbConfirmExport.Checked;
-            vehicleInfo.IsImport = cbConfirmImport.Checked;
-            vehicleInfo.IsCompleted = false;
-            //vehicleInfo.DeclarationID = _parrentDeclaration.DeclarationID;
-            if (vehicleInfo.ExportDate != null && vehicleInfo.ExportDate.Value.Year.Equals(1900))
-            {
-                vehicleInfo.ExportDate = null;
+                vehicleInfo.Status = txtStatus.Text;
+                vehicleInfo.Note = txtNote.Text;
+                vehicleInfo.VehicleID = _vehicleInfosTemp.Count + 1;
+                vehicleInfo.IsExport = cbConfirmExport.Checked;
+                vehicleInfo.IsImport = cbConfirmImport.Checked;
+                vehicleInfo.IsCompleted = false;
+                //vehicleInfo.DeclarationID = _parrentDeclaration.DeclarationID;
+                if (vehicleInfo.ExportDate != null && vehicleInfo.ExportDate.Value.Year.Equals(1900))
+                {
+                    vehicleInfo.ExportDate = null;
+                }
+                if (vehicleInfo.ImportDate != null && vehicleInfo.ImportDate.Value.Year.Equals(1900))
+                {
+                    vehicleInfo.ImportDate = null;
+                }
+                
             }
-            if (vehicleInfo.ImportDate != null && vehicleInfo.ImportDate.Value.Year.Equals(1900))
+            catch (Exception ex)
             {
-                vehicleInfo.ImportDate = null;
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
             return vehicleInfo;
         }
 
@@ -149,14 +160,22 @@ namespace ECustoms
 
         private void frmVehicleAdd_Load(object sender, EventArgs e)
         {
-            this.Text = "Khai báo phương tiện" + ConstantInfo.MESSAGE_TITLE;
-            this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
+            try
+            {
+                this.Text = "Khai báo phương tiện" + ConstantInfo.MESSAGE_TITLE;
+                this.Location = new Point((this.ParentForm.Width - this.Width) / 2, (this.ParentForm.Height - this.Height) / 2);
 
-            txtPlateNumber.LostFocus += new EventHandler(txtPlateNumber_LostFocus);
+                txtPlateNumber.LostFocus += new EventHandler(txtPlateNumber_LostFocus);
 
-            pictureBoxInvalid.Visible = false;
-            pictureBoxValid.Visible = false;
-            InitialPermission();
+                pictureBoxInvalid.Visible = false;
+                pictureBoxValid.Visible = false;
+                InitialPermission();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
         }
 
         void txtPlateNumber_LostFocus(object sender, EventArgs e)
@@ -166,7 +185,6 @@ namespace ECustoms
             {
                 pictureBoxInvalid.Visible = false;
                 pictureBoxValid.Visible = true;
-
             }
             else
             {
@@ -193,57 +211,57 @@ namespace ECustoms
                 cbConfirmImport.Enabled = false;
                 lblIsExport.Text = "Bạn không có quyền";
                 lblIsImport.Text = "Bạn không có quyền";
-
             }
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-
                 var vehicleInfo = GetVehicle();
                 if (vehicleInfo != null)
                 {
-
                     // Bind to gridview.
                     VehicleInfosTemp.Add(vehicleInfo);
                     BindVehicle(VehicleInfosTemp);
 
                     ResetForm();
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
         public void BindVehicle(List<VehicleInfo> vehicleInfos)
         {
-
-            grdVehicle.DataSource = null;
-            // Bind count column
-            for (int i = 0; i < vehicleInfos.Count; i++)
+            try
             {
-                vehicleInfos[i].Count = i + 1;
+                grdVehicle.DataSource = null;
+                // Bind count column
+                for (int i = 0; i < vehicleInfos.Count; i++)
+                {
+                    vehicleInfos[i].Count = i + 1;
+                }
+
+                grdVehicle.DataSource = vehicleInfos;
+
+                //Set curent cell for poiter to bottom
+                this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
             }
-
-            grdVehicle.DataSource = vehicleInfos;
-
-            //Set curent cell for poiter to bottom
-            this.grdVehicle.CurrentCell = this.grdVehicle[0, this.grdVehicle.Rows.Count - 1];
-
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
             try
             {
-
                 if (grdVehicle.SelectedRows.Count == 1) // New mode
                 {
                     var dr = MessageBox.Show("Bạn có chắc là muốn xóa?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -269,10 +287,9 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -294,16 +311,13 @@ namespace ECustoms
                 dateTimePickerExport.Value = DateTime.Now;
                 mtxtExportHour.Text = string.Format("{0:HH:mm}", DateTime.Now);
                 lblIsExport.Visible = false;
-
             }
             else
             {
                 dateTimePickerExport.Visible = false;
                 mtxtExportHour.Visible = false;
                 lblIsExport.Visible = true;
-
             }
-
         }
 
         private void cbConfirmImport_CheckedChanged(object sender, EventArgs e)
@@ -369,9 +383,9 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
-
         }
 
         private tblDeclaration GetDeclarationInfo()
@@ -389,7 +403,6 @@ namespace ECustoms
             declarationInfo.ProductName = "";
             //declarationInfo.HasDeclaration = Name
 
-
             declarationInfo.ImportType = "";
             declarationInfo.ImportCompanyName = "";
             declarationInfo.ImportCompanyCode = "";
@@ -406,8 +419,6 @@ namespace ECustoms
         }
 
         #endregion
-
-
 
 
     }

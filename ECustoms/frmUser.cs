@@ -8,11 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.BOL;
 using ECustoms.Utilities;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmUser : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmUser");
         private UserFactory _userBOL;
 
         public frmUser()
@@ -53,9 +55,10 @@ namespace ECustoms
                 addUser.MdiParent = this.ParentForm;
                 addUser.Show();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -74,9 +77,10 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn 1 tờ khai cần cập nhật.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
@@ -104,9 +108,10 @@ namespace ECustoms
                     MessageBox.Show("Bạn cần chọn tờ khai.");
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
     }

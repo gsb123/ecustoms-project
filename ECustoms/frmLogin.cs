@@ -54,7 +54,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());                
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
             
         }
@@ -86,7 +87,7 @@ namespace ECustoms
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
-        {                                    
+        {                  
             this.Text = "Đăng nhập" + ConstantInfo.MESSAGE_TITLE;
             _userBOL = new UserFactory();
         }
@@ -128,8 +129,8 @@ namespace ECustoms
                 }
                 catch (Exception ex)
                 {
-
                     logger.Error(ex.ToString());
+                    if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
                 }               
             }
         }

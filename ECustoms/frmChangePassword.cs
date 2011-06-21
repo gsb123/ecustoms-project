@@ -8,11 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using ECustoms.Utilities;
 using ECustoms.BOL;
+using log4net;
 
 namespace ECustoms
 {
     public partial class frmChangePassword : Form
     {
+        private static log4net.ILog logger = LogManager.GetLogger("Ecustoms.frmLogin");
         private UserInfo _userInfo;
         private UserFactory _userBOL = new UserFactory();
         public frmChangePassword(UserInfo userInfor)
@@ -22,7 +24,6 @@ namespace ECustoms
             _userInfo = _userBOL.SelectByID(userInfor.UserID);
 
         }
-
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -49,7 +50,8 @@ namespace ECustoms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
             }
         }
 
