@@ -387,5 +387,23 @@ namespace ECustoms
             }
                             
         }
+
+        private void grvDecleration_CellMouseDoubleClick_1(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && grvDecleration.SelectedRows.Count == 1) // Only select one row
+                {
+                    frmExport frmExport = new frmExport(_userInfo, 1, Convert.ToInt32(grvDecleration.SelectedRows[0].Cells[0].Value));
+                    frmExport.MdiParent = _parrent;
+                    frmExport.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                if (GlobalInfo.IsDebug) MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
