@@ -35,25 +35,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDecleration));
             this.grbDecleration = new System.Windows.Forms.GroupBox();
             this.grvDecleration = new System.Windows.Forms.DataGridView();
-            this.DeclarationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CompanyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportCompanyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportRegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportCompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportProductAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImportUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModifiedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModifiedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -69,6 +50,27 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listViewVehicle = new System.Windows.Forms.ListView();
             this.lblHeader = new System.Windows.Forms.Label();
+            this.DeclarationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompanyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExportType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportCompanyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportRegisterDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportCompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportProductAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifiedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifiedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbDecleration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grvDecleration)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -96,9 +98,11 @@
             this.DeclarationID,
             this.Number,
             this.CompanyCode,
+            this.ExportType,
             this.RegisterDate,
             this.ImportNumber,
             this.ImportCompanyCode,
+            this.ImportType,
             this.ImportRegisterDate,
             this.ProductName,
             this.ImportProductName,
@@ -122,165 +126,6 @@
             this.grvDecleration.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grvDecleration_CellMouseClick);
             this.grvDecleration.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grvDecleration_CellMouseDoubleClick_1);
             this.grvDecleration.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvDecleration_RowLeave);
-            // 
-            // DeclarationID
-            // 
-            this.DeclarationID.DataPropertyName = "DeclarationID";
-            this.DeclarationID.HeaderText = "DeclarationID";
-            this.DeclarationID.Name = "DeclarationID";
-            this.DeclarationID.ReadOnly = true;
-            this.DeclarationID.Visible = false;
-            // 
-            // Number
-            // 
-            this.Number.DataPropertyName = "Number";
-            this.Number.HeaderText = "Số tờ khai xuất";
-            this.Number.Name = "Number";
-            this.Number.ReadOnly = true;
-            this.Number.Width = 150;
-            // 
-            // CompanyCode
-            // 
-            this.CompanyCode.DataPropertyName = "CompanyCode";
-            this.CompanyCode.HeaderText = "Mã DN XK";
-            this.CompanyCode.Name = "CompanyCode";
-            this.CompanyCode.ReadOnly = true;
-            this.CompanyCode.Width = 150;
-            // 
-            // RegisterDate
-            // 
-            this.RegisterDate.DataPropertyName = "RegisterDate";
-            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            this.RegisterDate.DefaultCellStyle = dataGridViewCellStyle1;
-            this.RegisterDate.HeaderText = "Ngày đăng ký XK";
-            this.RegisterDate.Name = "RegisterDate";
-            this.RegisterDate.ReadOnly = true;
-            this.RegisterDate.Width = 170;
-            // 
-            // ImportNumber
-            // 
-            this.ImportNumber.DataPropertyName = "ImportNumber";
-            this.ImportNumber.HeaderText = "Số tờ khai nhập";
-            this.ImportNumber.Name = "ImportNumber";
-            this.ImportNumber.ReadOnly = true;
-            this.ImportNumber.Width = 150;
-            // 
-            // ImportCompanyCode
-            // 
-            this.ImportCompanyCode.DataPropertyName = "ImportCompanyCode";
-            this.ImportCompanyCode.HeaderText = "Mã DN NK";
-            this.ImportCompanyCode.Name = "ImportCompanyCode";
-            this.ImportCompanyCode.ReadOnly = true;
-            this.ImportCompanyCode.Width = 150;
-            // 
-            // ImportRegisterDate
-            // 
-            this.ImportRegisterDate.DataPropertyName = "ImportRegisterDate";
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            this.ImportRegisterDate.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ImportRegisterDate.HeaderText = "Ngày đăng ký NK";
-            this.ImportRegisterDate.Name = "ImportRegisterDate";
-            this.ImportRegisterDate.ReadOnly = true;
-            this.ImportRegisterDate.Width = 170;
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Tên hàng xuất";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.Width = 150;
-            // 
-            // ImportProductName
-            // 
-            this.ImportProductName.DataPropertyName = "ImportProductName";
-            this.ImportProductName.HeaderText = "Tên hàng nhập";
-            this.ImportProductName.Name = "ImportProductName";
-            this.ImportProductName.ReadOnly = true;
-            this.ImportProductName.Width = 140;
-            // 
-            // CompanyName
-            // 
-            this.CompanyName.DataPropertyName = "CompanyName";
-            this.CompanyName.HeaderText = "Tên doanh nghiệp xuất";
-            this.CompanyName.Name = "CompanyName";
-            this.CompanyName.ReadOnly = true;
-            this.CompanyName.Width = 200;
-            // 
-            // ImportCompanyName
-            // 
-            this.ImportCompanyName.DataPropertyName = "ImportCompanyName";
-            this.ImportCompanyName.HeaderText = "Tên doanh nghiệp nhập";
-            this.ImportCompanyName.Name = "ImportCompanyName";
-            this.ImportCompanyName.ReadOnly = true;
-            this.ImportCompanyName.Width = 210;
-            // 
-            // ProductAmount
-            // 
-            this.ProductAmount.DataPropertyName = "ProductAmount";
-            this.ProductAmount.HeaderText = "Lượng hàng xuất";
-            this.ProductAmount.Name = "ProductAmount";
-            this.ProductAmount.ReadOnly = true;
-            this.ProductAmount.Width = 170;
-            // 
-            // ImportProductAmount
-            // 
-            this.ImportProductAmount.DataPropertyName = "ImportProductAmount";
-            this.ImportProductAmount.HeaderText = "Lượng hàng nhập";
-            this.ImportProductAmount.Name = "ImportProductAmount";
-            this.ImportProductAmount.ReadOnly = true;
-            this.ImportProductAmount.Width = 170;
-            // 
-            // Unit
-            // 
-            this.Unit.DataPropertyName = "Unit";
-            this.Unit.HeaderText = "Đơn vị tính xuất";
-            this.Unit.Name = "Unit";
-            this.Unit.ReadOnly = true;
-            this.Unit.Width = 150;
-            // 
-            // ImportUnit
-            // 
-            this.ImportUnit.DataPropertyName = "ImportUnit";
-            this.ImportUnit.HeaderText = "Đơn vị nhập";
-            this.ImportUnit.Name = "ImportUnit";
-            this.ImportUnit.ReadOnly = true;
-            this.ImportUnit.Width = 150;
-            // 
-            // ModifiedDate
-            // 
-            this.ModifiedDate.DataPropertyName = "ModifiedDate";
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            this.ModifiedDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ModifiedDate.HeaderText = "Sửa lần cuối";
-            this.ModifiedDate.Name = "ModifiedDate";
-            this.ModifiedDate.ReadOnly = true;
-            this.ModifiedDate.Width = 150;
-            // 
-            // ModifiedBy
-            // 
-            this.ModifiedBy.DataPropertyName = "ModifiedBy";
-            this.ModifiedBy.HeaderText = "Người cập nhật";
-            this.ModifiedBy.Name = "ModifiedBy";
-            this.ModifiedBy.ReadOnly = true;
-            this.ModifiedBy.Width = 150;
-            // 
-            // CreatedBy
-            // 
-            this.CreatedBy.DataPropertyName = "CreatedBy";
-            this.CreatedBy.HeaderText = "Người tạo";
-            this.CreatedBy.Name = "CreatedBy";
-            this.CreatedBy.ReadOnly = true;
-            // 
-            // CreatedDate
-            // 
-            this.CreatedDate.DataPropertyName = "CreatedDate";
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            this.CreatedDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CreatedDate.HeaderText = "Ngày tạo";
-            this.CreatedDate.Name = "CreatedDate";
-            this.CreatedDate.ReadOnly = true;
-            this.CreatedDate.Width = 150;
             // 
             // btnRefresh
             // 
@@ -469,6 +314,181 @@
             this.lblHeader.Size = new System.Drawing.Size(0, 20);
             this.lblHeader.TabIndex = 1;
             // 
+            // DeclarationID
+            // 
+            this.DeclarationID.DataPropertyName = "DeclarationID";
+            this.DeclarationID.HeaderText = "DeclarationID";
+            this.DeclarationID.Name = "DeclarationID";
+            this.DeclarationID.ReadOnly = true;
+            this.DeclarationID.Visible = false;
+            // 
+            // Number
+            // 
+            this.Number.DataPropertyName = "Number";
+            this.Number.HeaderText = "Số tờ khai xuất";
+            this.Number.Name = "Number";
+            this.Number.ReadOnly = true;
+            this.Number.Width = 150;
+            // 
+            // CompanyCode
+            // 
+            this.CompanyCode.DataPropertyName = "CompanyCode";
+            this.CompanyCode.HeaderText = "Mã DN XK";
+            this.CompanyCode.Name = "CompanyCode";
+            this.CompanyCode.ReadOnly = true;
+            this.CompanyCode.Width = 150;
+            // 
+            // ExportType
+            // 
+            this.ExportType.DataPropertyName = "ExportType";
+            this.ExportType.HeaderText = "Loại hình XK";
+            this.ExportType.Name = "ExportType";
+            this.ExportType.ReadOnly = true;
+            this.ExportType.Width = 150;
+            // 
+            // RegisterDate
+            // 
+            this.RegisterDate.DataPropertyName = "RegisterDate";
+            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
+            this.RegisterDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.RegisterDate.HeaderText = "Ngày đăng ký XK";
+            this.RegisterDate.Name = "RegisterDate";
+            this.RegisterDate.ReadOnly = true;
+            this.RegisterDate.Width = 170;
+            // 
+            // ImportNumber
+            // 
+            this.ImportNumber.DataPropertyName = "ImportNumber";
+            this.ImportNumber.HeaderText = "Số tờ khai nhập";
+            this.ImportNumber.Name = "ImportNumber";
+            this.ImportNumber.ReadOnly = true;
+            this.ImportNumber.Width = 150;
+            // 
+            // ImportCompanyCode
+            // 
+            this.ImportCompanyCode.DataPropertyName = "ImportCompanyCode";
+            this.ImportCompanyCode.HeaderText = "Mã DN NK";
+            this.ImportCompanyCode.Name = "ImportCompanyCode";
+            this.ImportCompanyCode.ReadOnly = true;
+            this.ImportCompanyCode.Width = 150;
+            // 
+            // ImportType
+            // 
+            this.ImportType.DataPropertyName = "ImportType";
+            this.ImportType.HeaderText = "Loại hình NK";
+            this.ImportType.Name = "ImportType";
+            this.ImportType.ReadOnly = true;
+            this.ImportType.Width = 150;
+            // 
+            // ImportRegisterDate
+            // 
+            this.ImportRegisterDate.DataPropertyName = "ImportRegisterDate";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.ImportRegisterDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ImportRegisterDate.HeaderText = "Ngày đăng ký NK";
+            this.ImportRegisterDate.Name = "ImportRegisterDate";
+            this.ImportRegisterDate.ReadOnly = true;
+            this.ImportRegisterDate.Width = 170;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Tên hàng xuất";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.Width = 150;
+            // 
+            // ImportProductName
+            // 
+            this.ImportProductName.DataPropertyName = "ImportProductName";
+            this.ImportProductName.HeaderText = "Tên hàng nhập";
+            this.ImportProductName.Name = "ImportProductName";
+            this.ImportProductName.ReadOnly = true;
+            this.ImportProductName.Width = 140;
+            // 
+            // CompanyName
+            // 
+            this.CompanyName.DataPropertyName = "CompanyName";
+            this.CompanyName.HeaderText = "Tên doanh nghiệp xuất";
+            this.CompanyName.Name = "CompanyName";
+            this.CompanyName.ReadOnly = true;
+            this.CompanyName.Width = 200;
+            // 
+            // ImportCompanyName
+            // 
+            this.ImportCompanyName.DataPropertyName = "ImportCompanyName";
+            this.ImportCompanyName.HeaderText = "Tên doanh nghiệp nhập";
+            this.ImportCompanyName.Name = "ImportCompanyName";
+            this.ImportCompanyName.ReadOnly = true;
+            this.ImportCompanyName.Width = 210;
+            // 
+            // ProductAmount
+            // 
+            this.ProductAmount.DataPropertyName = "ProductAmount";
+            this.ProductAmount.HeaderText = "Lượng hàng xuất";
+            this.ProductAmount.Name = "ProductAmount";
+            this.ProductAmount.ReadOnly = true;
+            this.ProductAmount.Width = 170;
+            // 
+            // ImportProductAmount
+            // 
+            this.ImportProductAmount.DataPropertyName = "ImportProductAmount";
+            this.ImportProductAmount.HeaderText = "Lượng hàng nhập";
+            this.ImportProductAmount.Name = "ImportProductAmount";
+            this.ImportProductAmount.ReadOnly = true;
+            this.ImportProductAmount.Width = 170;
+            // 
+            // Unit
+            // 
+            this.Unit.DataPropertyName = "Unit";
+            this.Unit.HeaderText = "Đơn vị tính xuất";
+            this.Unit.Name = "Unit";
+            this.Unit.ReadOnly = true;
+            this.Unit.Width = 150;
+            // 
+            // ImportUnit
+            // 
+            this.ImportUnit.DataPropertyName = "ImportUnit";
+            this.ImportUnit.HeaderText = "Đơn vị nhập";
+            this.ImportUnit.Name = "ImportUnit";
+            this.ImportUnit.ReadOnly = true;
+            this.ImportUnit.Width = 150;
+            // 
+            // ModifiedDate
+            // 
+            this.ModifiedDate.DataPropertyName = "ModifiedDate";
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            this.ModifiedDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ModifiedDate.HeaderText = "Sửa lần cuối";
+            this.ModifiedDate.Name = "ModifiedDate";
+            this.ModifiedDate.ReadOnly = true;
+            this.ModifiedDate.Width = 150;
+            // 
+            // ModifiedBy
+            // 
+            this.ModifiedBy.DataPropertyName = "ModifiedBy";
+            this.ModifiedBy.HeaderText = "Người cập nhật";
+            this.ModifiedBy.Name = "ModifiedBy";
+            this.ModifiedBy.ReadOnly = true;
+            this.ModifiedBy.Width = 150;
+            // 
+            // CreatedBy
+            // 
+            this.CreatedBy.DataPropertyName = "CreatedBy";
+            this.CreatedBy.HeaderText = "Người tạo";
+            this.CreatedBy.Name = "CreatedBy";
+            this.CreatedBy.ReadOnly = true;
+            // 
+            // CreatedDate
+            // 
+            this.CreatedDate.DataPropertyName = "CreatedDate";
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            this.CreatedDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CreatedDate.HeaderText = "Ngày tạo";
+            this.CreatedDate.Name = "CreatedDate";
+            this.CreatedDate.ReadOnly = true;
+            this.CreatedDate.Width = 150;
+            // 
             // frmDecleration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,9 +539,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DeclarationID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Number;
         private System.Windows.Forms.DataGridViewTextBoxColumn CompanyCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExportType;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegisterDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportCompanyCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImportType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportRegisterDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportProductName;
